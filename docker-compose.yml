@@ -9,7 +9,6 @@ services:
   eosio:
     build:
       context: ./blockchain
-      dockerfile: Dockerfile-eosio
     container_name: "eosio"
     ports:
       - 8888:8888
