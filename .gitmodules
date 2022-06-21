@@ -1,9 +1,9 @@
 [submodule "Tonomy-ID"]
 	path = Tonomy-ID
-	url = https://github.com/Tonomy-Foundation/Tonomy-ID.git
+	url = ../Tonomy-ID.git
 [submodule "Tonomy-ID-SDK"]
 	path = Tonomy-ID-SDK
-	url = https://github.com/Tonomy-Foundation/Tonomy-ID-SDK.git
+	url = ../Tonomy-ID-SDK.git
 [submodule "Tonomy-ID-Demo"]
 	path = Tonomy-ID-Demo
-	url = https://github.com/Tonomy-Foundation/Tonomy-ID-Demo.git
+	url = ../Tonomy-ID-Demo.git
