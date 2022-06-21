@@ -1,8 +1,13 @@
 #!/bin/bash
 
-function install {
+function gitinit {
     cd "$PARENT_PATH"
+    git submodule init
     git submodule update
+}
+
+function install {
+    gitinit
     
     cd "$PARENT_PATH"
     docker-compose build
