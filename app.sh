@@ -19,6 +19,9 @@ function stop {
 
 function install {
     cd "$PARENT_PATH"
+    git submodule update
+    
+    cd "$PARENT_PATH"
     docker-compose build
 
     cd "$PARENT_PATH/back-end"
