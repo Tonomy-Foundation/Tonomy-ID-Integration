@@ -1,4 +1,10 @@
 version: '3'
+
+volumes:
+  eosio-data:
+    external:
+      name: eosio-data
+
 services:
   eosio:
     build:
@@ -9,4 +15,4 @@ services:
       - 8888:8888
     volumes:
       - ./:/var/repo
-      - ./temp/eosio:/data
+      - eosio-data:/data

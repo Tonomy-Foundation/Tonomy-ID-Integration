@@ -29,15 +29,17 @@ function init {
 
 function start {
     cd "$PARENT_PATH"
+    docker volume create --name=eosio-data
     docker-compose up -d
 }
 
 function stop {
     cd "$PARENT_PATH"
-    docker exec -it eosio pkill nodeos
     docker-compose down
 }
 
 function reset {
-    echo "TODO"
+    set +e
+    docker volume rm eosio-data
+    set -e
 }
