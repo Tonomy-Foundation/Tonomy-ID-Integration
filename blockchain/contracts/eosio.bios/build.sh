@@ -2,12 +2,14 @@
 
 PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 
-docker run -v "${PARENT_PATH}/contracts/eosio.bios:/tmp"\
+DOCKER_WORKING_DIR="/tmp"
+CONTRACT_NAME="eosio.bios"
+docker run -v "${PARENT_PATH}/contracts/${CONTRACT_NAME}:${DOCKER_WORKING_DIR}"\
     eostudio/eosio.cdt:v1.8.1\
     eosio-cpp\
     -abigen\
-    -I /tmp/include\
+    -I "${DOCKER_WORKING_DIR}"/include\
     -R resource\
-    -contract eosio.bios\
-    -o /tmp/eosio.bios.wasm\
-    /tmp/src/eosio.bios.cpp
+    -contract "${CONTRACT_NAME}"\
+    -o "${DOCKER_WORKING_DIR}/${CONTRACT_NAME}.wasm"\
+    "${DOCKER_WORKING_DIR}/src/${CONTRACT_NAME}.cpp"
