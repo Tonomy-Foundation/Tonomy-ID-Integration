@@ -21,6 +21,7 @@ then
     install
 elif [ "$ARG1" == "init" ]
 then
+    stop
     reset
     start
     init
