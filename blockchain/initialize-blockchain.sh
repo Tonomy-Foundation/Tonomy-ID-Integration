@@ -13,7 +13,7 @@ sleep 1
 
 # Load the eosio.boot contract so with activate action
 # https://eosio.stackexchange.com/questions/5235/error-while-deploying-eosio-system-contract-to-eosio-account-while-setting-up-a
-cleos set contract eosio /var/repo/contracts/eosio.boot eosio.boot.wasm eosio.boot.abi -p eosio@active
+cleos set contract eosio /var/repo/blockchain/contracts/eosio.boot eosio.boot.wasm eosio.boot.abi -p eosio@active
 sleep 1
 
 # Activate the WTMSIG_BLOCK_SIGNATURES feature for eosio.contract v1.9+
@@ -22,4 +22,7 @@ sleep 1
 
 # Activate the GET_SENDER intrinsic
 cleos push action eosio activate '{"feature_digest":"f0af56d2c5a48d60a4a5b5c903edfb7db3a736a94ed589d0b797df33ff9d3e1d"}' -p eosio@active
+sleep 1
+
+cleos set contract eosio /var/repo/blockchain/contracts/eosio.bios eosio.bios.wasm eosio.bios.abi -p eosio@active
 sleep 1

@@ -9,6 +9,8 @@ cd "$PARENT_PATH"
 
 echo "Resetting blockchain state and history"
 
+TIME1=$(date +%s)
+
 cd "${PARENT_PATH}/contracts/eosio.boot"
 if [ -e eosio.boot.wasm ]
 then
@@ -25,9 +27,12 @@ else
     ./build.sh
 fi
 
+TIME2=$(date +%s)
+SLEEP_FOR=$((10 - (TIME2 - TIME1) ))
+
 # allow for block production to start
-echo "Waiting for blockchain node to start"
-sleep 5
+echo "Waiting 10 seconds for blockchain node to start"
+sleep "${SLEEP_FOR}"
 
 docker-compose exec eosio /bin/bash /var/repo/blockchain/initialize-blockchain.sh
 if [ $? -gt 0 ]
