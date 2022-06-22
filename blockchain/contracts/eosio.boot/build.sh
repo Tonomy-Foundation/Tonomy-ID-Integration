@@ -1,3 +1,15 @@
 #!/bin/bash
 
-docker-compose run eosio-cdt eosio-cpp -abigen -I /var/repo/contracts/eosio.boot/include -R resource -contract eosio.boot -o /var/repo/contracts/eosio.boot/eosio.boot.wasm /var/repo/contracts/eosio.boot/src/eosio.boot.cpp
+PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
+DOCKER_WORKING_DIR="/tmp"
+CONTRACT_NAME="eosio.boot"
+docker run -v "${PARENT_PATH}/contracts/${CONTRACT_NAME}:${DOCKER_WORKING_DIR}"\
+    eostudio/eosio.cdt:v1.8.1\
+    eosio-cpp\
+    -abigen\
+    -I "${DOCKER_WORKING_DIR}"/include\
+    -R resource\
+    -contract "${CONTRACT_NAME}"\
+    -o "${DOCKER_WORKING_DIR}/${CONTRACT_NAME}.wasm"\
+    "${DOCKER_WORKING_DIR}/src/${CONTRACT_NAME}.cpp"
