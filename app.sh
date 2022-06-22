@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ARG1=$1
+ARG2=$2
 
 set -u ## exit if you try to use an uninitialised variable
 set -e ## exit if any statement fails
@@ -34,6 +35,9 @@ elif [ "$ARG1" == "reset" ]
 then
     stop
     reset
+elif [ "$ARG1" == "log" ]
+then
+    log "${ARG2}"
 else
     help
 fi

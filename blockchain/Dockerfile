@@ -12,5 +12,4 @@ CMD nodeos\
     -p eosio\
     --data-dir /data/data-dir\
     --config-dir /var/config\
-    --disable-replay-opts\
-    >> /data/nodeos.log 2>&1
+    --disable-replay-opts

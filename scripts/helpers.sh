@@ -47,3 +47,11 @@ function reset {
     docker volume rm eosio-data
     set -e
 }
+
+function log {
+    SERVICE=${1}
+
+    if [ "$SERVICE" == "eosio" ]; then
+        docker-compose logs -f eosio
+    fi
+}
