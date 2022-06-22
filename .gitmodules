@@ -1,9 +1,12 @@
 [submodule "Tonomy-ID"]
 	path = Tonomy-ID
 	url = ../Tonomy-ID.git
+	branch = master
 [submodule "Tonomy-ID-SDK"]
 	path = Tonomy-ID-SDK
 	url = ../Tonomy-ID-SDK.git
+	branch = master
 [submodule "Tonomy-ID-Demo"]
 	path = Tonomy-ID-Demo
 	url = ../Tonomy-ID-Demo.git
+	branch = master
