@@ -24,7 +24,7 @@ function install {
 
 function init {
     cd "$PARENT_PATH/blockchain"
-    ./init_reset_eosio.sh
+    ./intitialize-blockchain-entry.sh
 }
 
 function start {
