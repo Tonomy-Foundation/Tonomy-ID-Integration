@@ -27,6 +27,14 @@ else
     ./build.sh
 fi
 
+cd "${PARENT_PATH}/contracts/eosio.token"
+if [ -e eosio.token.wasm ]
+then
+    echo "eosio.token already built"
+else
+    ./build.sh
+fi
+
 TIME2=$(date +%s)
 SLEEP_FOR=$((10 - (TIME2 - TIME1) ))
 
