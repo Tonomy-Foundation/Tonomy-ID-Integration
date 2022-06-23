@@ -26,6 +26,7 @@ then
 elif [ "$ARG1" == "init" ]
 then
     stop
+    reset
     start
     init
 elif [ "$ARG1" == "start" ]
