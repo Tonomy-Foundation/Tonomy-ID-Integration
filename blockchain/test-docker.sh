@@ -2,7 +2,7 @@
 
 PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 
-docker exec -it eosiodocker stop.sh
+docker exec -it eosiodocker nodeos-stop.sh
 docker stop eosiodocker
 docker rm eosiodocker
 
