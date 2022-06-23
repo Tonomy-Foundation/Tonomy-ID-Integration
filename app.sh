@@ -7,11 +7,15 @@ set -u ## exit if you try to use an uninitialised variable
 set -e ## exit if any statement fails
 
 # Make sure working dir is same as this dir, so that script can be excuted from another working directory
-PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" || exit ; pwd -P )
 
 # import functions
-source ./scripts/helpers.sh
-source ./scripts/print.sh
+# https://www.shellcheck.net/wiki/SC1090
+# shellcheck source=/var/repo/scripts/helpers.sh
+source scripts/helpers.sh
+
+# shellcheck source=/var/repo/scripts/print.sh
+source scripts/print.sh
 
 if [ -z "$ARG1" ]
 then
