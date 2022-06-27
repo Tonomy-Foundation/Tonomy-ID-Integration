@@ -22,7 +22,7 @@ function printservices {
     echo "Services now running:"
     echo ""
     echo "Blockchain (eosio) node - http://localhost:8888/v1/chain/get_info"
-    echo "Blockchain explorer     - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&systemDomain=eosio"
+    echo "Blockchain explorer     - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&coreSymbol=SYS&systemDomain=eosio"
     echo "" 
     echo ""
     echo ""
