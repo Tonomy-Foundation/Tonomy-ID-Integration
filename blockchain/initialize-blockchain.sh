@@ -31,7 +31,7 @@ cleos set contract eosio /var/repo/blockchain/contracts/eosio.bios eosio.bios.wa
 sleep 1
 
 # Create eosio.token account and deploy contract
-cleos create account eosio eosio.token "EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV" -p eosio@active
+cleos create account eosio eosio.token EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV -p eosio@active
 sleep 1
 
 cleos set contract eosio.token /var/repo/blockchain/contracts/eosio.token eosio.token.wasm eosio.token.abi -p eosio.token@active

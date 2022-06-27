@@ -35,13 +35,18 @@ else
     ./build.sh
 fi
 
+# make sure we have waited at least 10 seconds so that blockchain node starts making blocks
 TIME2=$(date +%s)
 SLEEP_FOR=$((10 - (TIME2 - TIME1) ))
+if [ $SLEEP_FOR -lt 0 ]
+then
+    SLEEP_FOR=0
+fi
 
-# allow for block production to start
 echo "Waiting 10 seconds for blockchain node to start"
 sleep "${SLEEP_FOR}"
 
+# Start initializing some features of the blockchain and setup initial accounts
 docker-compose exec eosio /bin/bash /var/repo/blockchain/initialize-blockchain.sh
 if [ $? -gt 0 ]
 then
