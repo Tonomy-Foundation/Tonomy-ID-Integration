@@ -25,10 +25,12 @@ then
     reset
     start
     init
+    printservices
 elif [ "$ARG1" == "start" ]
 then
     stop
     start
+    printservices
 elif [ "$ARG1" == "stop" ]
 then
     stop

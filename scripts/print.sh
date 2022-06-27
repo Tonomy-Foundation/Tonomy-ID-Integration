@@ -11,5 +11,19 @@ function help {
     echo "    start          - starts application components through docker compose"
     echo "    stop           - stops application execution"
     echo "    reset          - stops application execution and resets all data"
-    echo "    logs [service] - prints logs for the service"
+    echo "    log [service] - prints logs for the service"
+}
+
+function printservices {
+    echo "##################################################"
+    echo ""
+    echo ""
+    echo ""
+    echo "Services now running:"
+    echo ""
+    echo "Blockchain (eosio) node - http://localhost:8888/v1/chain/get_info"
+    echo "Blockchain explorer     - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&systemDomain=eosio"
+    echo "" 
+    echo ""
+    echo ""
 }
