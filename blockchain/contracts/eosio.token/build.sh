@@ -8,7 +8,7 @@ docker run -v "${PARENT_PATH}:${DOCKER_WORKING_DIR}"\
     eostudio/eosio.cdt:v1.8.1\
     eosio-cpp\
     -abigen\
-    -I "${DOCKER_WORKING_DIR}"/include\
+    -I "${DOCKER_WORKING_DIR}/include/${CONTRACT_NAME}"\
     -R "${DOCKER_WORKING_DIR}"/ricardian\
     -contract "${CONTRACT_NAME}"\
     -o "${DOCKER_WORKING_DIR}/${CONTRACT_NAME}.wasm"\
