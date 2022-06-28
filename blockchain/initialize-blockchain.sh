@@ -1,5 +1,12 @@
 #!/bin/bash
 
+set -u ## exit if you try to use an uninitialised variable
+set -e ## exit if any statement fails
+
+# Make sure working dir is same as this dir, so that script can be excuted from another working directory
+PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+cd "$PARENT_PATH"
+
 # Create a new wallet with the eosio and other keys
 cleos wallet create --file /data/wallet.txt
 
@@ -14,15 +21,22 @@ sleep 1
 # Load the eosio.boot contract so with activate action
 # https://eosio.stackexchange.com/questions/5235/error-while-deploying-eosio-system-contract-to-eosio-account-while-setting-up-a
 cleos set contract eosio /var/repo/blockchain/contracts/eosio.boot eosio.boot.wasm eosio.boot.abi -p eosio@active
-sleep 1
+sleep .1
 
-# Activate the WTMSIG_BLOCK_SIGNATURES feature for eosio.contract v1.9+
-cleos push action eosio activate '{"feature_digest":"299dcb6af692324b899b39f16d5a530a33062804e41f09dc97e9f156b4476707"}' -p eosio@active
-sleep 1
-
-# Activate the GET_SENDER intrinsic
-cleos push action eosio activate '{"feature_digest":"f0af56d2c5a48d60a4a5b5c903edfb7db3a736a94ed589d0b797df33ff9d3e1d"}' -p eosio@active
+./initialize-features.sh
 sleep 1
 
 cleos set contract eosio /var/repo/blockchain/contracts/eosio.bios eosio.bios.wasm eosio.bios.abi -p eosio@active
 sleep 1
+
+# Create eosio.token account and deploy contract
+cleos create account eosio eosio.token EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV -p eosio@active
+sleep 1
+
+cleos set contract eosio.token /var/repo/blockchain/contracts/eosio.token eosio.token.wasm eosio.token.abi -p eosio.token@active
+sleep .1
+
+# Create initial currency and issue it
+echo "Creating initial system currency"
+cleos push action eosio.token create '[ "eosio", "10000000000.0000 SYS" ]' -p eosio.token@active
+cleos push action eosio.token issue '[ "eosio", "1000000000.0000 SYS", "issue 1B system tokens" ]' -p eosio@active
