@@ -22,5 +22,5 @@ services:
       - 3000:3000
     volumes:
       - ./:/var/repo
-    working_dir: /var/repo
-    command: [ "/bin/bash", "-c", "npm run start" ]
+    working_dir: /var/repo/Tonomy-ID-Demo
+    command: [ "npm", "run", "start" ]
