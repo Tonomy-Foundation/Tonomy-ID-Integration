@@ -4,11 +4,18 @@ function gitinit {
     cd "$PARENT_PATH"
     git submodule init
     git submodule update
+
+    cd "$PARENT_PATH/Tonomy-ID-SDK"
+    git checkout master
+
+    cd "$PARENT_PATH/Tonomy-ID"
+    git checkout master
+
+    cd "$PARENT_PATH/Tonomy-ID-Demo"
+    git checkout master
 }
 
 function install {
-    gitinit
-    
     cd "$PARENT_PATH"
     docker-compose build
 

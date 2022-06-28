@@ -16,6 +16,9 @@ source ./scripts/print.sh
 if [ -z "$ARG1" ]
 then
     help
+elif [ "$ARG1" == "gitinit" ]
+then
+    gitinit
 elif [ "$ARG1" == "install" ]
 then
     install

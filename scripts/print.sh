@@ -6,6 +6,7 @@ function help {
     echo "    app.sh [commands]"
     echo ""
     echo "Commands:"
+    echo "    gitinit        - initializes all git submodules and checks out master branch"
     echo "    install        - installs all application repositories"
     echo "    init           - starts application components through docker compose and initializes and resets the blockchain and database"
     echo "    start          - starts application components through docker compose"
