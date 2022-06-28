@@ -15,3 +15,12 @@ services:
     volumes:
       - ./:/var/repo
       - eosio-data:/data
+  tonomy-id-demo:
+    image: node:16.4.1-slim
+    container_name: "tonomy-id-demo"
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/var/repo
+    working_dir: /var/repo
+    command: [ "/bin/bash", "-c", "npm run start" ]

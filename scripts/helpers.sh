@@ -60,5 +60,9 @@ function log {
 
     if [ "$SERVICE" == "eosio" ]; then
         docker-compose logs -f eosio
+    elif [ "$SERVICE" == "tonomy-id-demo" ]; then
+        docker-compose logs -f tonomy-id-demo
+    else
+        echo "Unknown service: $SERVICE"
     fi
 }
