@@ -34,6 +34,8 @@ services:
       context: ./
       dockerfile: scripts/Dockerfile-react-native-android
     container_name: id
+    ports:
+      - 8081:8081
     volumes:
       - ./:/var/repo
     working_dir: /var/repo/Tonomy-ID
