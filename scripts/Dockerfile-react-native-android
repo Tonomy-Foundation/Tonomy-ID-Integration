@@ -1,0 +1,28 @@
+# Adapted from https://github.com/ccarcaci/andocker/blob/master/ecosystem/Dockerfile-expo
+FROM node:16.4.1
+
+USER root
+RUN apt update
+RUN apt install zip apt-utils -y
+
+# Install Java JDK 11
+RUN apt install openjdk-11-jdk -y
+
+USER node
+WORKDIR /home/node
+
+# Install Android tools
+RUN wget -q https://dl.google.com/android/repository/platform-tools-latest-linux.zip && \
+    unzip -q platform-tools-latest-linux.zip && \
+    rm platform-tools-latest-linux.zip
+ENV PATH=/home/node/platform-tools:${PATH}
+
+# Install dockerize
+ENV DOCKERIZE_VERSION v0.6.1
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
+    tar -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
+    rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+
+# Setup android runner
+COPY ./scripts/react-native-android-start.sh .
+CMD ./react-native-android-start.sh

@@ -15,9 +15,34 @@ services:
     volumes:
       - ./:/var/repo
       - eosio-data:/data
-  tonomy-id-demo:
-    image: node:16.4.1-slim
-    container_name: "tonomy-id-demo"
+
+  android-emulator:
+    # Solution taken from https://github.com/butomo1989/docker-android
+    image: budtmo/docker-android-x86-11.0
+    container_name: android-emulator
+    ports:
+      - 6080:6080
+      - 5554:5554
+      - 5555:5555
+    environment:
+      - DEVICE=Samsung Galaxy S10
+    privileged: true
+
+  id:
+    # Solution taken from https://github.com/ccarcaci/andocker
+    build:
+      context: ./
+      dockerfile: scripts/Dockerfile-react-native-android
+    container_name: id
+    volumes:
+      - ./:/var/repo
+    working_dir: /var/repo/Tonomy-ID
+    depends_on:
+      - android-emulator
+
+  demo:
+    image: node:16.4.1
+    container_name: "demo"
     ports:
       - 3000:3000
     volumes:
