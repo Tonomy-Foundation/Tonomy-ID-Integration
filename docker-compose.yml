@@ -26,9 +26,6 @@ services:
       - 5555:5555
     environment:
       - DEVICE=Samsung Galaxy S10
-    #  - NO_PROXY=localhost
-    #  - ENABLE_PROXY_ON_EMULATOR=true
-    # network_mode: host
     privileged: true
 
   id:
