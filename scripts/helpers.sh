@@ -64,9 +64,11 @@ function log {
         docker-compose logs -f android-emulator
     elif [ "$SERVICE" == "id" ]; then
         docker-compose logs -f id
+    elif [ "$SERVICE" == "debug" ]; then
+        docker-compose exec id tail -f /var/repo/Tonomy-ID/start.log
     elif [ "$SERVICE" == "demo" ]; then
         docker-compose logs -f demo
     else
-        echo "Unknown service: $SERVICE"
+        loghelp
     fi
 }
