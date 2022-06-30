@@ -8,20 +8,40 @@ RUN apt install zip apt-utils -y
 # Install Java JDK 11
 RUN apt install openjdk-11-jdk -y
 
-USER node
 WORKDIR /home/node
 
-# Install Android tools
-RUN wget -q https://dl.google.com/android/repository/platform-tools-latest-linux.zip && \
-    unzip -q platform-tools-latest-linux.zip && \
-    rm platform-tools-latest-linux.zip
-ENV PATH=/home/node/platform-tools:${PATH}
+# Installs Android SDK
+# adapted from https://stackoverflow.com/questions/68539423/running-android-emulator-in-docker-container
+ENV ANDROID_HOME=/android-sdk
+ENV ANDROID_SDK_HOME $ANDROID_HOME
+
+# See https://developer.android.com/studio/#command-tools
+ARG ANDROID_SDK_VERSION=8512546
+# See https://developer.android.com/studio/releases/platforms (react native requires minimum API level 30)
+ARG ANDROID_BUILD_TOOLS_VERSION=30.0.0
+ARG ANDROID_PLATFORM_VERSION="android-30"
+
+USER root
+#RUN mkdir -p ${ANDROID_SDK_HOME}/cmdline-tools
+RUN wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
+RUN unzip *tools*linux*.zip -d ${ANDROID_SDK_HOME}
+RUN rm *tools*linux*.zip
+
+ENV PATH ${PATH}:${ANDROID_SDK_HOME}/tools:${ANDROID_SDK_HOME}/platform-tools
+
+RUN mkdir -p ~/.android
+RUN touch ~/.android/repositories.cfg
+RUN echo y | ${ANDROID_SDK_HOME}/cmdline-tools/bin/sdkmanager --licenses --sdk_root=${ANDROID_SDK_HOME}
+RUN echo y | ${ANDROID_SDK_HOME}/cmdline-tools/bin/sdkmanager "platform-tools" --sdk_root=${ANDROID_SDK_HOME}
+RUN echo y | ${ANDROID_SDK_HOME}/cmdline-tools/bin/sdkmanager "build-tools;$ANDROID_BUILD_TOOLS_VERSION" --sdk_root=${ANDROID_SDK_HOME}
+RUN echo y | ${ANDROID_SDK_HOME}/cmdline-tools/bin/sdkmanager "platforms;$ANDROID_PLATFORM_VERSION" --sdk_root=${ANDROID_SDK_HOME}
 
 # Install dockerize
+USER node
 ENV DOCKERIZE_VERSION v0.6.1
-RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
-    tar -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
-    rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+RUN wget https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-linux-amd64-${DOCKERIZE_VERSION}.tar.gz
+RUN tar -xzvf dockerize-linux-amd64-${DOCKERIZE_VERSION}.tar.gz
+RUN rm dockerize-linux-amd64-${DOCKERIZE_VERSION}.tar.gz
 
 # Setup android runner in working directory
 COPY ./scripts/react-native-android-start.sh /home/node
