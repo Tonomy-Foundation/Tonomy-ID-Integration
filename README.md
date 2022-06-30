@@ -11,11 +11,17 @@ Developer environment to run Tonomy ID locally alongside a blockchain node, and 
 
 Get the app running for the first time
 ```bash
-./app.sh ginit
+./app.sh gitinit
 ./app.sh install
 ./app.sh init
 ```
 
-To install, run and run tests run the following program
+You can then start and stop the services with.
+```bash
+./app.sh start
+```
 
-`./app.sh`
+For other features like logging and data reset see
+```bash
+./app.sh
+```

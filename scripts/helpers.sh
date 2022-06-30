@@ -7,12 +7,15 @@ function gitinit {
 
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     git checkout master
+    git pull
 
     cd "$PARENT_PATH/Tonomy-ID"
     git checkout master
+    git pull
 
     cd "$PARENT_PATH/Tonomy-ID-Demo"
     git checkout master
+    git pull
 }
 
 function install {
