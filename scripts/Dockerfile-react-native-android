@@ -22,7 +22,9 @@ ARG ANDROID_BUILD_TOOLS_VERSION=30.0.0
 ARG ANDROID_PLATFORM_VERSION="android-30"
 
 USER root
-#RUN mkdir -p ${ANDROID_SDK_HOME}/cmdline-tools
+RUN mkdir -p ${ANDROID_SDK_HOME}
+RUN chown node ${ANDROID_SDK_HOME}
+USER node
 RUN wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
 RUN unzip *tools*linux*.zip -d ${ANDROID_SDK_HOME}
 RUN rm *tools*linux*.zip
@@ -37,7 +39,6 @@ RUN echo y | ${ANDROID_SDK_HOME}/cmdline-tools/bin/sdkmanager "build-tools;$ANDR
 RUN echo y | ${ANDROID_SDK_HOME}/cmdline-tools/bin/sdkmanager "platforms;$ANDROID_PLATFORM_VERSION" --sdk_root=${ANDROID_SDK_HOME}
 
 # Install dockerize
-USER node
 ENV DOCKERIZE_VERSION v0.6.1
 RUN wget https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-linux-amd64-${DOCKERIZE_VERSION}.tar.gz
 RUN tar -xzvf dockerize-linux-amd64-${DOCKERIZE_VERSION}.tar.gz
