@@ -24,6 +24,7 @@ ARG ANDROID_PLATFORM_VERSION="android-30"
 USER root
 RUN mkdir -p ${ANDROID_SDK_HOME}
 RUN chown node ${ANDROID_SDK_HOME}
+
 USER node
 RUN wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
 RUN unzip *tools*linux*.zip -d ${ANDROID_SDK_HOME}
@@ -43,7 +44,3 @@ ENV DOCKERIZE_VERSION v0.6.1
 RUN wget https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-linux-amd64-${DOCKERIZE_VERSION}.tar.gz
 RUN tar -xzvf dockerize-linux-amd64-${DOCKERIZE_VERSION}.tar.gz
 RUN rm dockerize-linux-amd64-${DOCKERIZE_VERSION}.tar.gz
-
-# Setup android runner in working directory
-COPY ./scripts/react-native-android-start.sh /home/node
-CMD /home/node/react-native-android-start.sh

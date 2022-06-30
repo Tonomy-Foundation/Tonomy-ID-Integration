@@ -16,31 +16,40 @@ services:
       - ./:/var/repo
       - eosio-data:/data
 
-  android-emulator:
-    # Solution taken from https://github.com/butomo1989/docker-android
+  emulator:
+    # See https://github.com/butomo1989/docker-android
     image: budtmo/docker-android-x86-11.0
-    container_name: android-emulator
+    container_name: emulator
     ports:
       - 6080:6080
       - 5554:5554
       - 5555:5555
     environment:
       - DEVICE=Samsung Galaxy S10
+    #  - NO_PROXY=localhost
+    #  - ENABLE_PROXY_ON_EMULATOR=true
+    # network_mode: host
     privileged: true
 
   id:
-    # Solution taken from https://github.com/ccarcaci/andocker
+    # Solution adapted from https://github.com/ccarcaci/andocker
     build:
       context: ./
       dockerfile: scripts/Dockerfile-react-native-android
     container_name: id
     ports:
       - 8081:8081
+      - 5037:5037
     volumes:
       - ./:/var/repo
     working_dir: /var/repo/Tonomy-ID
     depends_on:
-      - android-emulator
+      - emulator
+    command:
+      [
+        "/bin/bash",
+        "/var/repo/scripts/react-native-android-start.sh"
+      ]
 
   demo:
     image: node:16.4.1
