@@ -23,6 +23,6 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     tar -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
     rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
-# Setup android runner
-COPY ./scripts/react-native-android-start.sh .
-CMD ./react-native-android-start.sh
+# Setup android runner in working directory
+COPY ./scripts/react-native-android-start.sh /home/node
+CMD /home/node/react-native-android-start.sh

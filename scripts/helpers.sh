@@ -60,6 +60,10 @@ function log {
 
     if [ "$SERVICE" == "eosio" ]; then
         docker-compose logs -f eosio
+    elif [ "$SERVICE" == "emulator" ]; then
+        docker-compose logs -f android-emulator
+    elif [ "$SERVICE" == "id" ]; then
+        docker-compose logs -f id
     elif [ "$SERVICE" == "demo" ]; then
         docker-compose logs -f demo
     else

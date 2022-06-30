@@ -22,7 +22,7 @@ function printservices {
     echo ""
     echo "Services now running:"
     echo ""
-    echo "Tonomy ID app (react native) - http://localhost:6080"
+    echo "Tonomy ID app (react native) - http://localhost:6080  (go here NOW to open the emulator so that Tonomy ID loads correctly)"
     echo "Tonomy ID Demo app (react)   - http://localhost:3000"
     echo "Blockchain node (eosio)      - http://localhost:8888/v1/chain/get_info"
     echo "Blockchain explorer          - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&coreSymbol=SYS&systemDomain=eosio"
