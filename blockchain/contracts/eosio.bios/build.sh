@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" || exit ; pwd -P )
 
 DOCKER_WORKING_DIR="/contract"
 CONTRACT_NAME="eosio.bios"

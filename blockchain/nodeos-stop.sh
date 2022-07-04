@@ -7,12 +7,12 @@
 nodeosd_pid=$(pgrep nodeos)
 echo "Found nodeos pid: [${nodeosd_pid}]"
 
-if [ -n "$(ps -p ${nodeosd_pid} -o pid=)" ]; then
+if [ -n "$(ps -p "${nodeosd_pid}" -o pid=)" ]; then
     echo "Send SIGINT"
-    kill -SIGINT ${nodeosd_pid}
+    kill -SIGINT "${nodeosd_pid}"
 fi
 
-while [ -n "$(ps -p ${nodeosd_pid} -o pid=)" ]
+while [ -n "$(ps -p "${nodeosd_pid}" -o pid=)" ]
 do
     sleep 1
 done
