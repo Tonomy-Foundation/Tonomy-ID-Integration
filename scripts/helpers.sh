@@ -49,20 +49,24 @@ function start {
 
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"
-    npm start &>> demo.log &
-    echo $! >> demo.pid
+    BROWSER=none npm start &>> demo.log &
 }
 
 function stop {
-    cd "$PARENT_PATH"
+    cd "${PARENT_PATH}"
     set +e
     docker-compose exec eosio /bin/bash /bin/nodeos-stop.sh
     set -e
     
     docker-compose down
 
-    cd "${PARENT_PATH}/Tonomy-ID-Demo"
-    pkill -f --pidfile demo.pid
+    echo "Stopping all node processes. May not be the best way to do this. But it works."
+    set +e
+    nodeprocesses=`pidof node`
+    if [[ ! -z "${nodeprocesses}" ]]; then
+        kill -9  ${nodeprocesses}
+    fi
+    set -e
 }
 
 function reset {
@@ -74,14 +78,14 @@ function reset {
 function log {
     SERVICE=${1}
 
-    if [ "$SERVICE" == "eosio" ]; then
+    if [ "${SERVICE}" == "eosio" ]; then
         docker-compose logs -f eosio
-    elif [ "$SERVICE" == "emulator" ]; then
+    elif [ "${SERVICE}" == "emulator" ]; then
         docker-compose logs -f emulator
-    elif [ "$SERVICE" == "id" ]; then
+    elif [ "${SERVICE}" == "id" ]; then
         docker-compose logs -f id
-    elif [ "$SERVICE" == "demo" ]; then
-        docker-compose logs -f demo
+    elif [ "${SERVICE}" == "demo" ]; then
+        tail -f "${PARENT_PATH}/Tonomy-ID-Demo/demo.log"
     else
         loghelp
     fi
