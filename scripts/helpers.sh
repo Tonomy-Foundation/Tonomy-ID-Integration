@@ -21,6 +21,8 @@ function gitinit {
 function install {
     cd "$PARENT_PATH"
     docker-compose build
+    #nvm install v16.4.1
+    #nvm alias default v16.4.1
 
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     npm install
@@ -30,6 +32,8 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID-Demo"
     npm install
+
+    mkdir "$PARENT_PATH/tmp"
 }
 
 function init {
@@ -38,13 +42,15 @@ function init {
 }
 
 function start {
+    echo "Starting Docker compose"
     cd "$PARENT_PATH"
     docker volume create --name=eosio-data
     docker-compose up -d
-    
-    # Let the emulator communicate with the packager (metro) on the id container, thinking that it is at localhost
-    # https://unix.stackexchange.com/a/560810
-    sleep 20 && docker-compose exec -T emulator socat tcp-listen:8081,bind=localhost,fork tcp:id:8081 &
+
+    echo "Starting Tonomy-ID-Demo"
+    cd "${PARENT_PATH}/Tonomy-ID-Demo"
+    npm start &>> demo.log &
+    echo $! >> demo.pid
 }
 
 function stop {
@@ -54,6 +60,9 @@ function stop {
     set -e
     
     docker-compose down
+
+    cd "${PARENT_PATH}/Tonomy-ID-Demo"
+    pkill -f --pidfile demo.pid
 }
 
 function reset {
