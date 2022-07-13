@@ -20,7 +20,11 @@ services:
     container_name: "tonomy-id-demo"
     ports:
       - 3000:3000
+    environment:
+      # makes webpack work with docker-compose
+      - WATCHPACK_POLLING=true
+    user: "root"
     volumes:
       - ./:/var/repo
     working_dir: /var/repo/Tonomy-ID-Demo
-    command: [ "npm", "run", "start" ]
+    command: npm start
