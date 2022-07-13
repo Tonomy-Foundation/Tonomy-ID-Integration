@@ -19,10 +19,15 @@ function gitinit {
 }
 
 function install {
+    echo "Installing docker containers"
     cd "$PARENT_PATH"
     docker-compose build
+
+    echo "Setting up to use node v16.4.1"
     #nvm install v16.4.1
     #nvm alias default v16.4.1
+    echo "Installing pm2 globally"
+    npm i -g pm2
 
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     npm install
@@ -49,7 +54,7 @@ function start {
 
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"
-    BROWSER=none npm start &>> demo.log &
+    pm2 start npm --name "demo" -- start
 }
 
 function stop {
@@ -60,12 +65,9 @@ function stop {
     
     docker-compose down
 
-    echo "Stopping all node processes. May not be the best way to do this. But it works."
+    echo "Stopping npm apps (ID and Demo)"
     set +e
-    nodeprocesses=`pidof node`
-    if [[ ! -z "${nodeprocesses}" ]]; then
-        kill -9  ${nodeprocesses}
-    fi
+    pm2 stop demo
     set -e
 }
 
@@ -85,7 +87,7 @@ function log {
     elif [ "${SERVICE}" == "id" ]; then
         docker-compose logs -f id
     elif [ "${SERVICE}" == "demo" ]; then
-        tail -f "${PARENT_PATH}/Tonomy-ID-Demo/demo.log"
+        pm2 log demo
     else
         loghelp
     fi
