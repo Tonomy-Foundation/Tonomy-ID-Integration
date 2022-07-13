@@ -24,7 +24,7 @@ function loghelp {
     echo ""
     echo "Commands:"
     echo "    eosio    - blockchain node (eosio)"
-    echo "    expo     - Tonomy ID app expo packaer (react native)"
+    echo "    id       - Tonomy ID app expo packaer (react native)"
     echo "    demo     - Tonomy ID Demo app (react)"
 }
 
@@ -35,7 +35,7 @@ function printservices {
     echo ""
     echo "Services now running:"
     echo ""
-    echo "Tonomy ID app expo packager (react native) - http://localhost:6080"
+    echo "Tonomy ID app expo packager (react native) - http://localhost:19002"
     echo "Tonomy ID Demo app (react)                 - http://localhost:3000"
     echo "Blockchain node (eosio)                    - http://localhost:8888/v1/chain/get_info"
     echo "Blockchain explorer                        - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&coreSymbol=SYS&systemDomain=eosio"

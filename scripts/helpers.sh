@@ -28,6 +28,8 @@ function install {
     #nvm alias default v16.4.1
     echo "Installing pm2 globally"
     npm i -g pm2
+    echo "Installing Expo-CLI globally"
+    npm i -g expo-cli
 
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     npm install
@@ -52,6 +54,11 @@ function start {
     docker volume create --name=eosio-data
     docker-compose up -d
 
+    echo "Starting Tonomy-ID"
+    cd "${PARENT_PATH}/Tonomy-ID"
+    pm2 start expo --name "id" -- start --host localhost
+    #pm2 start expo --name "id" -- start --host tunnel
+
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"
     pm2 start npm --name "demo" -- start
@@ -67,7 +74,7 @@ function stop {
 
     echo "Stopping npm apps (ID and Demo)"
     set +e
-    pm2 stop demo
+    pm2 delete id demo
     set -e
 }
 
@@ -82,10 +89,8 @@ function log {
 
     if [ "${SERVICE}" == "eosio" ]; then
         docker-compose logs -f eosio
-    elif [ "${SERVICE}" == "emulator" ]; then
-        docker-compose logs -f emulator
     elif [ "${SERVICE}" == "id" ]; then
-        docker-compose logs -f id
+        pm2 log id
     elif [ "${SERVICE}" == "demo" ]; then
         pm2 log demo
     else
