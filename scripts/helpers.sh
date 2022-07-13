@@ -41,10 +41,9 @@ function start {
     cd "$PARENT_PATH"
     docker volume create --name=eosio-data
     docker-compose up -d
+    cd "$PARENT_PATH/Tonomy-ID"
+    npm run start
     
-    # Let the emulator communicate with the packager (metro) on the id container, thinking that it is at localhost
-    # https://unix.stackexchange.com/a/560810
-    sleep 20 && docker-compose exec -T emulator socat tcp-listen:8081,bind=localhost,fork tcp:id:8081 &
 }
 
 function stop {
