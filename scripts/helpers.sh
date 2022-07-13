@@ -43,6 +43,8 @@ function start {
     cd "$PARENT_PATH"
     docker volume create --name=eosio-data
     docker-compose up -d
+    cd "$PARENT_PATH/Tonomy-ID"
+    npm run start
     
     echo "Starting Tonomy-ID-SDK"
     cd "$PARENT_PATH/Tonomy-ID-SDK"
