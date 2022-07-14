@@ -31,8 +31,6 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID-Demo"
     npm install
-
-    mkdir "$PARENT_PATH/tmp"
 }
 
 function init {
@@ -53,7 +51,7 @@ function start {
 
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"
-    pm2 start npm --name "demo" -- start
+    BROWSER=none pm2 start npm --name "demo" -- start
 }
 
 function stop {
@@ -78,7 +76,7 @@ function log {
     if [ "${SERVICE}" == "eosio" ]; then
         docker-compose logs -f eosio
     elif [ "${SERVICE}" == "id" ]; then
-        pm2 log id
+        pm2 log --lines 20 id
     elif [ "${SERVICE}" == "demo" ]; then
         pm2 log demo
     else

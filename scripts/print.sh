@@ -41,5 +41,15 @@ function printservices {
     echo "Blockchain explorer                        - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&coreSymbol=SYS&systemDomain=eosio"
     echo "" 
     echo ""
+    echo "Scan this QR code in your Expo app on your phone to use the Tonomy ID app"
+    printidqrcode
     echo ""
+    echo ""
+}
+
+function printidqrcode {
+    LINES=`wc -l < ~/.pm2/logs/id-out.log`
+    START=$((LINES-19))
+    END=$((LINES-5))
+    sed -n "${START},${END}p" ~/.pm2/logs/id-out.log
 }
