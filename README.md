@@ -5,8 +5,13 @@ Developer environment to run Tonomy ID locally alongside a blockchain node, and 
 ## Dependancies
 
 - Linux debian distribution (Ubuntu 20.0.4 LTS used)
-- [Docker Compose](http://docs.docker.com/compose/) v1.25.0+
-- [Nodejs](https://nodejs.org) v16.4.1+ suggested installed with [nvm](https://github.com/nvm-sh/nvm)
+- [Docker](http://docs.docker.com) v20.10+
+- [Docker Compose](http://docs.docker.com/compose/) v1.29+
+- [npm](https://www.npmjs.com/) v16.4-17.0. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
+- [expo-cli](https://expo.dev/) v5.2+ installed globally by `npm`
+- [pm2](https://pm2.io) v5.5+ installed globally by `npm`
+
+Check `./scripts/install_prerequisits.sh` for way to install this on Ubuntu 20.0.4.
 
 ## Use
 
