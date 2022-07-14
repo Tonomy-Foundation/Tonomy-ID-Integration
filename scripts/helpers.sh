@@ -27,9 +27,9 @@ function install {
     #nvm install v16.4.1
     #nvm alias default v16.4.1
     echo "Installing pm2 globally"
-    npm i -g pm2
+    npm i -g pm2@5.2.0
     echo "Installing Expo-CLI globally"
-    npm i -g expo-cli
+    npm i -g expo-cli@5.5.1
 
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     npm install
