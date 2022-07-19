@@ -19,6 +19,7 @@ function gitinit {
 }
 
 function install {
+    echo "Installing docker containers"
     cd "$PARENT_PATH"
     docker-compose build
 
@@ -40,18 +41,29 @@ function init {
 }
 
 function start {
+    echo "Starting Docker compose"
     cd "$PARENT_PATH"
     docker volume create --name=eosio-data
     docker-compose up -d
-    
-    # Let the emulator communicate with the packager (metro) on the id container, thinking that it is at localhost
-    # https://unix.stackexchange.com/a/560810
-    sleep 20 && docker-compose exec -T emulator socat tcp-listen:8081,bind=localhost,fork tcp:id:8081 &
+
+    echo "Starting Tonomy-ID"
+    cd "${PARENT_PATH}/Tonomy-ID"
+    pm2 start expo --name "id" -- start --host localhost
+    #pm2 start expo --name "id" -- start --host tunnel
+
+    echo "Starting Tonomy-ID-Demo"
+    cd "${PARENT_PATH}/Tonomy-ID-Demo"
+    BROWSER=none pm2 start npm --name "demo" -- start
 }
 
 function stop {
-    cd "$PARENT_PATH"
+    cd "${PARENT_PATH}"
     docker-compose down
+
+    echo "Stopping npm apps (ID and Demo)"
+    set +e
+    pm2 delete id demo
+    set -e
 }
 
 function reset {
@@ -63,14 +75,12 @@ function reset {
 function log {
     SERVICE=${1}
 
-    if [ "$SERVICE" == "eosio" ]; then
+    if [ "${SERVICE}" == "eosio" ]; then
         docker-compose logs -f eosio
-    elif [ "$SERVICE" == "emulator" ]; then
-        docker-compose logs -f emulator
-    elif [ "$SERVICE" == "id" ]; then
-        docker-compose logs -f id
-    elif [ "$SERVICE" == "demo" ]; then
-        docker-compose logs -f demo
+    elif [ "${SERVICE}" == "id" ]; then
+        pm2 log --lines 20 id
+    elif [ "${SERVICE}" == "demo" ]; then
+        pm2 log demo
     else
         loghelp
     fi

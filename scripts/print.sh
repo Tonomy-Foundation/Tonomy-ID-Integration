@@ -24,9 +24,7 @@ function loghelp {
     echo ""
     echo "Commands:"
     echo "    eosio    - blockchain node (eosio)"
-    echo "    emulator - Android emulator"
-    echo "    id       - Tonomy ID app (react native)"
-    echo "    debug    - Tonomy ID packager (debugger)"
+    echo "    id       - Tonomy ID app expo packaer (react native)"
     echo "    demo     - Tonomy ID Demo app (react)"
 }
 
@@ -37,12 +35,21 @@ function printservices {
     echo ""
     echo "Services now running:"
     echo ""
-    echo "Tonomy ID app (react native) - http://localhost:6080  (go here NOW to open the emulator so that Tonomy ID loads correctly)"
-    echo "Tonomy ID app debugger       - http://localhost:8081"
-    echo "Tonomy ID Demo app (react)   - http://localhost:3000"
-    echo "Blockchain node (eosio)      - http://localhost:8888/v1/chain/get_info"
-    echo "Blockchain explorer          - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&coreSymbol=SYS&systemDomain=eosio"
+    echo "Tonomy ID app expo packager (react native) - http://localhost:19002"
+    echo "Tonomy ID Demo app (react)                 - http://localhost:3000"
+    echo "Blockchain node (eosio)                    - http://localhost:8888/v1/chain/get_info"
+    echo "Blockchain explorer                        - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&coreSymbol=SYS&systemDomain=eosio"
     echo "" 
     echo ""
+    echo "Scan this QR code in your Expo app on your phone to use the Tonomy ID app"
+    printidqrcode
     echo ""
+    echo ""
+}
+
+function printidqrcode {
+    LINES=`wc -l < ~/.pm2/logs/id-out.log`
+    START=$((LINES-19))
+    END=$((LINES-5))
+    sed -n "${START},${END}p" ~/.pm2/logs/id-out.log
 }
