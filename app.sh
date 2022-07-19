@@ -16,18 +16,24 @@ source ./scripts/print.sh
 if [ -z "$ARG1" ]
 then
     help
+elif [ "$ARG1" == "gitinit" ]
+then
+    gitinit
 elif [ "$ARG1" == "install" ]
 then
     install
 elif [ "$ARG1" == "init" ]
 then
     stop
+    reset
     start
     init
+    printservices
 elif [ "$ARG1" == "start" ]
 then
     stop
     start
+    printservices
 elif [ "$ARG1" == "stop" ]
 then
     stop
