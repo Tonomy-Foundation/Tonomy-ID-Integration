@@ -19,6 +19,7 @@ function gitinit {
 }
 
 function install {
+
     echo "Installing docker containers"
     cd "$PARENT_PATH"
     docker-compose build
@@ -28,11 +29,12 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
+ 
+
 
     cd "$PARENT_PATH/Tonomy-ID-Demo"
     npm install
 
-    npm link "${PARENT_PATH}/Tonomy-ID-SDK"
 }
 
 function init {
@@ -41,15 +43,32 @@ function init {
 }
 
 function start {
+    # watchman watch-del-all
+    wml rm all
+   
     echo "Starting Docker compose"
     cd "$PARENT_PATH"
     docker volume create --name=eosio-data
     docker-compose up -d
+    echo "starting wml file linking"
+    
+    # watchman watch "${PARENT_PATH}/Tonomy-ID-SDK/dist/" 
+  
+    echo "Starting Tonomy-ID-SDK"
+    cd "$PARENT_PATH/Tonomy-ID-SDK"
+    pm2 start npm --name "sdk" -- run start
+
+    
+    wml add "${PARENT_PATH}/Tonomy-ID-SDK/dist" "${PARENT_PATH}/Tonomy-ID/node_modules/tonomy-id-sdk"
+    wml add "${PARENT_PATH}/Tonomy-ID-SDK/dist"  "${PARENT_PATH}/Tonomy-ID-Demo/node_modules/tonomy-id-sdk"
+    pm2 start wml --name "linking" -- start
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
-    pm2 start expo --name "id" -- start --host localhost
-    #pm2 start expo --name "id" -- start --host tunnel
+
+    pm2 start npm --name "id" -- start
+    # pm2 start expo --name "id" -- start --host tunnel
+
 
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"
@@ -62,7 +81,7 @@ function stop {
 
     echo "Stopping npm apps (ID and Demo)"
     set +e
-    pm2 delete id demo
+    pm2 delete id demo sdk linking
     set -e
 }
 
@@ -81,6 +100,8 @@ function log {
         pm2 log --lines 20 id
     elif [ "${SERVICE}" == "demo" ]; then
         pm2 log demo
+    elif [ "${SERVICE}" == "sdk" ]; then
+        pm2 log sdk
     else
         loghelp
     fi

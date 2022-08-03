@@ -26,6 +26,7 @@ function loghelp {
     echo "    eosio    - blockchain node (eosio)"
     echo "    id       - Tonomy ID app expo packaer (react native)"
     echo "    demo     - Tonomy ID Demo app (react)"
+    echo "    sdk      - Tonomy ID SDK (node)"
 }
 
 function printservices {
