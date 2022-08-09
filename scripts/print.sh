@@ -12,6 +12,7 @@ function help {
     echo "    start          - starts application components through docker compose"
     echo "    stop           - stops application execution"
     echo "    reset          - stops application execution and resets all data"
+    echo "    test           - reset and run integration tests"
     echo "    log [service] - prints logs for the service"
 }
 

@@ -74,6 +74,11 @@ function reset {
     set -e
 }
 
+function test {
+    cd "${PARENT_PATH}"
+    npm test
+}
+
 function log {
     SERVICE=${1}
 
