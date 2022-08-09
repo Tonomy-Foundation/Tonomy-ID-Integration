@@ -1,5 +1,3 @@
-// const TonomySdk = require('tonomy-id-sdk');
-
 function sum(a: number, b: number): number {
     return a + b;
 }
