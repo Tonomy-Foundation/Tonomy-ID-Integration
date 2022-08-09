@@ -31,6 +31,10 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID-Demo"
     npm install
+
+    cd "$PARENT_PATH"
+    npm install
+    npm link "$PARENT_PATH/Tonomy-ID-SDK"
 }
 
 function init {
