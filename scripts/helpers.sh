@@ -19,7 +19,6 @@ function gitinit {
 }
 
 function install {
-
     echo "Installing docker containers"
     cd "$PARENT_PATH"
     docker-compose build
@@ -30,11 +29,8 @@ function install {
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
  
-
-
     cd "$PARENT_PATH/Tonomy-ID-Demo"
     npm install
-
 }
 
 function init {
@@ -61,7 +57,6 @@ function start {
 
     pm2 start npm --name "id" -- start
     # pm2 start expo --name "id" -- start --host tunnel
-
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"
     npm link "${PARENT_PATH}/Tonomy-ID-SDK"
