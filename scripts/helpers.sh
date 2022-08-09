@@ -42,25 +42,18 @@ function init {
     ./intitialize-blockchain-entry.sh
 }
 
-function start {
-    # watchman watch-del-all
-    wml rm all
-   
+function start {   
     echo "Starting Docker compose"
     cd "$PARENT_PATH"
     docker volume create --name=eosio-data
     docker-compose up -d
-    echo "starting wml file linking"
     
-    # watchman watch "${PARENT_PATH}/Tonomy-ID-SDK/dist/" 
-  
     echo "Starting Tonomy-ID-SDK"
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     pm2 start npm --name "sdk" -- run start
 
-    
-    wml add "${PARENT_PATH}/Tonomy-ID-SDK/dist" "${PARENT_PATH}/Tonomy-ID/node_modules/tonomy-id-sdk"
-    wml add "${PARENT_PATH}/Tonomy-ID-SDK/dist"  "${PARENT_PATH}/Tonomy-ID-Demo/node_modules/tonomy-id-sdk"
+    # workaround for not being able to use `npm link` to the SDK. see https://stackoverflow.com/a/48987307
+    wml add "${PARENT_PATH}/Tonomy-ID-SDK" "${PARENT_PATH}/Tonomy-ID/node_modules/tonomy-id-sdk"
     pm2 start wml --name "linking" -- start
 
     echo "Starting Tonomy-ID"
@@ -69,9 +62,9 @@ function start {
     pm2 start npm --name "id" -- start
     # pm2 start expo --name "id" -- start --host tunnel
 
-
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"
+    npm link "${PARENT_PATH}/Tonomy-ID-SDK"
     BROWSER=none pm2 start npm --name "demo" -- start
 }
 
@@ -83,6 +76,14 @@ function stop {
     set +e
     pm2 delete id demo sdk linking
     set -e
+
+    set +e
+    echo "Stopping watchman and removing wml links"
+    watchman watch-del-all
+    watchman watch-del-all
+    wml stop
+    wml rm all
+    set +e
 }
 
 function reset {
@@ -102,6 +103,9 @@ function log {
         pm2 log demo
     elif [ "${SERVICE}" == "sdk" ]; then
         pm2 log sdk
+
+    elif [ "${SERVICE}" == "linking" ]; then
+        pm2 log linking
     else
         loghelp
     fi
