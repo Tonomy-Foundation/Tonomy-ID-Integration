@@ -42,11 +42,15 @@ function init {
     ./intitialize-blockchain-entry.sh
 }
 
-function start {
+function startdocker {
     echo "Starting Docker compose"
     cd "$PARENT_PATH"
     docker volume create --name=eosio-data
     docker-compose up -d
+}
+
+function start {
+    startdocker
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
@@ -75,6 +79,12 @@ function reset {
 }
 
 function test {
+    startdocker
+    init
+
+    cd "$PARENT_PATH/Tonomy-ID-SDK"
+    npm install
+
     cd "${PARENT_PATH}"
     npm test
 }
