@@ -11,6 +11,7 @@ Developer environment to run Tonomy ID locally alongside a blockchain node, and 
 - [npm](https://www.npmjs.com/) v16.4-17.0. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
 - [expo-cli](https://expo.dev/) v5.2+ installed globally by `npm`
 - [pm2](https://pm2.io) v5.5+ installed globally by `npm`
+- [tsdx](https://tsdx.io) v0.14.1 installed globally by `npm`
 - [wml](https://www.wml.io) v0.0.83+ installed globally by `npm`
 
 Check `./scripts/install_prerequisits.sh` for way to install this on Ubuntu 20.0.4.

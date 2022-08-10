@@ -42,21 +42,15 @@ function init {
     ./intitialize-blockchain-entry.sh
 }
 
-function start {   
+function startdocker {
     echo "Starting Docker compose"
     cd "$PARENT_PATH"
     docker volume create --name=eosio-data
     docker-compose up -d
-    cd "$PARENT_PATH/Tonomy-ID"
-    npm run start
-    
-    echo "Starting Tonomy-ID-SDK"
-    cd "$PARENT_PATH/Tonomy-ID-SDK"
-    pm2 start npm --name "sdk" -- run start
+}
 
-    # workaround for not being able to use `npm link` to the SDK. see https://stackoverflow.com/a/48987307
-    wml add "${PARENT_PATH}/Tonomy-ID-SDK" "${PARENT_PATH}/Tonomy-ID/node_modules/tonomy-id-sdk"
-    pm2 start wml --name "linking" -- start
+function start {
+    startdocker
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
@@ -91,6 +85,17 @@ function reset {
     set +e
     docker volume rm eosio-data
     set -e
+}
+
+function test {
+    startdocker
+    init
+
+    cd "$PARENT_PATH/Tonomy-ID-SDK"
+    npm install
+
+    cd "${PARENT_PATH}"
+    npm test
 }
 
 function log {

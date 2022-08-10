@@ -41,6 +41,11 @@ elif [ "$ARG1" == "reset" ]
 then
     stop
     reset
+elif [ "$ARG1" == "test" ]
+then
+    stop
+    reset
+    test
 elif [ "$ARG1" == "log" ]
 then
     log "${ARG2}"
