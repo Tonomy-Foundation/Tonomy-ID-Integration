@@ -16,6 +16,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 apt-cache policy docker-ce
 sudo apt install docker-ce=5:20.10.17~3-0~ubuntu-focal -y
+sudo apt-get install watchman=0.0.83 -y
 sudo usermod -aG docker ${USER}
 sudo shutdown now
 
@@ -36,3 +37,5 @@ echo "Installing Expo-CLI globally"
 npm i -g expo-cli@5.5.1
 echo "Installing TSDX globally"
 npm i -g tsdx@0.14.1
+echo "Intalling  wml globally"
+npm i -g wml@0.0.83
