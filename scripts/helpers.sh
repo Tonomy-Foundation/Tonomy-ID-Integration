@@ -16,6 +16,10 @@ function gitinit {
     cd "$PARENT_PATH/Tonomy-ID-Demo"
     git checkout master
     git pull
+
+    cd "$PARENT_PATH/Tonomy-Contracts"
+    git checkout master
+    git pull
 }
 
 function install {
