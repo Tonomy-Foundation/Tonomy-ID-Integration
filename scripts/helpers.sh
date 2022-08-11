@@ -41,9 +41,16 @@ function install {
     npm link "$PARENT_PATH/Tonomy-ID-SDK"
 }
 
+function buildcontracts {
+    cd "$PARENT_PATH/Tonomy-Contracts"
+    ./build-contracts.sh
+}
+
 function init {
     cd "$PARENT_PATH/blockchain"
-    ./intitialize-blockchain-entry.sh
+    echo "Waiting 5 seconds for blockchain node to start"
+    sleep 5
+    docker-compose exec eosio /bin/bash /var/repo/blockchain/initialize-blockchain.sh
 }
 
 function startdocker {

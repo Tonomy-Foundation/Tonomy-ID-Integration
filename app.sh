@@ -26,6 +26,7 @@ elif [ "$ARG1" == "init" ]
 then
     stop
     reset
+    buildcontracts
     start
     init
     printservices
