@@ -7,11 +7,8 @@ import { PrivateKey } from "@greymass/eosio";
 
 const privateKey = "PVT_K1_2bfGi9rYsXQSXXTvJbDAPhHLQUojjaNLomdm3cEJ1XTzMqUt3V";
 const publicKey = PrivateKey.from(privateKey).toPublic();
-// PUB_K1_6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5BoDq63
 
-const signatureProvider = new JsSignatureProvider([
-    `5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3`,
-]);
+const signatureProvider = new JsSignatureProvider([privateKey]);
 
 const rpc = new JsonRpc("http://localhost:8888", { fetch })
 const api = new Api({

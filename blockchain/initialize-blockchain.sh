@@ -11,7 +11,7 @@ cd "$PARENT_PATH"
 cleos wallet create --file /data/wallet.txt
 
 # import eosio
-PKEY_EOSIO="5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3"
+PKEY_EOSIO="PVT_K1_2bfGi9rYsXQSXXTvJbDAPhHLQUojjaNLomdm3cEJ1XTzMqUt3V"
 cleos wallet import --private-key $PKEY_EOSIO
 
 # Enable protocol feature pre-activation PREACTIVATE_FEATURE for eosio.contract v1.8+
