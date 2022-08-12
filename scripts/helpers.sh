@@ -51,6 +51,9 @@ function init {
     echo "Waiting 5 seconds for blockchain node to start"
     sleep 5
     docker-compose exec eosio /bin/bash /var/repo/blockchain/initialize-blockchain.sh
+
+    cd "$PARENT_PATH/initialize"
+    node bootstrap.ts
 }
 
 function startdocker {
@@ -106,6 +109,7 @@ function test {
     npm install
 
     cd "${PARENT_PATH}"
+    npm link "$PARENT_PATH/Tonomy-ID-SDK"
     npm test
 }
 
