@@ -2,9 +2,9 @@
 
 import fs from "fs";
 import path from "path";
+// TODO use @greymass/eosio instead of eosjs
 import { Serialize } from "eosjs";
 import { api } from "./config";
-
 
 function getDeployableFilesFromDir(dir) {
     const dirCont = fs.readdirSync(dir)
@@ -45,6 +45,7 @@ async function deployContract({ account, contractDir }) {
     abiDefinition.serialize(buffer, abi)
 
     // 3. Send transaction with both setcode and setabi actions
+    console.log(`Deploying contract to ${account}`);
     const result = await api.transact(
         {
             actions: [

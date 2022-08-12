@@ -1,11 +1,13 @@
-import { JsAuthenticator, User } from 'tonomy-id-sdk';
-import { APIClient } from '@greymass/eosio';
 import deployContract from "./deploy-contract";
+import path from 'path';
+import createAccount from './create-account';
 
 async function main() {
     // TODO
     // create and issue the system currency
-    await deployContract({ account: "id.tonomy", contractDir: "../Tonomy-Contracts/contracts/id.tonomy" });
+    await createAccount({ account: "id.tonomy" });
+
+    await deployContract({ account: "id.tonomy", contractDir: path.join(__dirname, "../../Tonomy-Contracts/contracts/id.tonomy") });
     // create a new person, from the eosio account
 }
 
