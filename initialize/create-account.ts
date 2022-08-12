@@ -24,6 +24,18 @@ function createDelegatedAuthority(permission: { actor: string, permission: strin
     }
 }
 
+function addCodePermission(authority: any, account: string) {
+    // TODO this modifies the argument. need to create copy and return a new object
+    authority.accounts.push({
+        permission: {
+            actor: account,
+            permission: "eosio.code"
+        },
+        weight: 1
+    })
+    return authority;
+}
+
 async function createAccount({ account }) {
     const authory = createKeyAuthoriy(publicKey.toString());
 
@@ -44,7 +56,9 @@ async function createAccount({ account }) {
                         creator: "eosio",
                         name: account,
                         owner: authory,
-                        active: authory
+                        // need to add the eosio.code authority as well
+                        // https://developers.eos.io/welcome/v2.1/smart-contract-guides/adding-inline-actions#step-1-adding-eosiocode-to-permissions
+                        active: addCodePermission(authory, account)
                     },
                 }
             ],
@@ -56,4 +70,4 @@ async function createAccount({ account }) {
     )
 }
 
-export default createAccount;
+export { createAccount };
