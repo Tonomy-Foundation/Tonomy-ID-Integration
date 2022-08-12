@@ -1,5 +1,7 @@
 {
   "scripts": {
+    "build": "tsc --project ./tsconfig.initialize.json",
+    "bootstrap": "node initialize/build/bootstrap.js",
     "test": "jest"
   },
   "devDependencies": {
@@ -10,6 +12,9 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@greymass/eosio": "^0.6.2"
+    "@greymass/eosio": "^0.6.2",
+    "eosjs": "^20.0.3",
+    "fs": "^0.0.1-security",
+    "node-fetch": "^2.6.0"
   }
 }

@@ -52,8 +52,9 @@ function init {
     sleep 5
     docker-compose exec eosio /bin/bash /var/repo/blockchain/initialize-blockchain.sh
 
-    cd "$PARENT_PATH/initialize"
-    node bootstrap.ts
+    cd "$PARENT_PATH"
+    npm run build
+    npm run bootstrap
 }
 
 function startdocker {
