@@ -27,7 +27,7 @@ then
     stop
     reset
     buildcontracts
-    start
+    startdocker
     init
     printservices
 elif [ "$ARG1" == "start" ]
@@ -46,10 +46,16 @@ elif [ "$ARG1" == "test" ]
 then
     stop
     reset
+    buildcontracts
+    startdocker
+    init
     test
 elif [ "$ARG1" == "log" ]
 then
     log "${ARG2}"
+elif [ "$ARG1" == "myscript" ]
+then
+    myscript
 else
     help
 fi

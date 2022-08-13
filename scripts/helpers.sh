@@ -103,14 +103,19 @@ function reset {
 }
 
 function test {
-    startdocker
-    init
-
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     npm install
 
     cd "${PARENT_PATH}"
     npm link "$PARENT_PATH/Tonomy-ID-SDK"
+    npm test
+}
+
+function myscript {
+    cd "$PARENT_PATH/Tonomy-ID-SDK"
+    npm install
+
+    cd "${PARENT_PATH}"
     npm test
 }
 

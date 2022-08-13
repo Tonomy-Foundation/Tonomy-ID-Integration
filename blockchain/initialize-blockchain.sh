@@ -28,15 +28,3 @@ sleep 1
 
 cleos set contract eosio /var/repo/Tonomy-Contracts/contracts/eosio.bios eosio.bios.wasm eosio.bios.abi -p eosio@active
 sleep 1
-
-# Create eosio.token account and deploy contract
-cleos create account eosio eosio.token EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV -p eosio@active
-sleep 1
-
-cleos set contract eosio.token /var/repo/Tonomy-Contracts/contracts/eosio.token eosio.token.wasm eosio.token.abi -p eosio.token@active
-sleep .1
-
-# Create initial currency and issue it
-echo "Creating initial system currency"
-cleos push action eosio.token create '[ "eosio", "10000000000.0000 SYS" ]' -p eosio.token@active
-cleos push action eosio.token issue '[ "eosio", "1000000000.0000 SYS", "issue 1B system tokens" ]' -p eosio@active
