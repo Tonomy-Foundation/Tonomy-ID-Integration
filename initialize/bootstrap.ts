@@ -29,7 +29,7 @@ async function createAndIssueToken() {
                     },
                 ],
                 data: {
-                    issuer: "eosio",
+                    issuer: "eosio.token",
                     maximum_supply: "10000000000.0000 SYS",
                 },
             }, {
@@ -42,7 +42,7 @@ async function createAndIssueToken() {
                     },
                 ],
                 data: {
-                    to: "eosio",
+                    to: "eosio.token",
                     quantity: "1000000000.0000 SYS",
                     memo: ""
                 },
