@@ -6,9 +6,9 @@ test('Create a new account', async () => {
 
     const user = new User(auth);
 
-    user.savePassword("myPassword123!");
-    user.savePIN("4568");
-    user.saveFingerprint();
+    // user.savePassword("myPassword123!");
+    // user.savePIN("4568");
+    // user.saveFingerprint();
 
     await user.createPerson("jack");
     const accountName = user.accountName.toString();
