@@ -48,8 +48,8 @@ function buildcontracts {
 
 function init {
     cd "$PARENT_PATH/blockchain"
-    echo "Waiting 5 seconds for blockchain node to start"
-    sleep 5
+    echo "Waiting 8 seconds for blockchain node to start"
+    sleep 8
     docker-compose exec eosio /bin/bash /var/repo/blockchain/initialize-blockchain.sh
 
     cd "$PARENT_PATH"
@@ -108,14 +108,6 @@ function test {
 
     cd "${PARENT_PATH}"
     npm link "$PARENT_PATH/Tonomy-ID-SDK"
-    npm test
-}
-
-function myscript {
-    cd "$PARENT_PATH/Tonomy-ID-SDK"
-    npm install
-
-    cd "${PARENT_PATH}"
     npm test
 }
 

@@ -53,9 +53,6 @@ then
 elif [ "$ARG1" == "log" ]
 then
     log "${ARG2}"
-elif [ "$ARG1" == "myscript" ]
-then
-    myscript
 else
     help
 fi
