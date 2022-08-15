@@ -1,7 +1,7 @@
 import { JsAuthenticator, User } from 'tonomy-id-sdk';
-import { APIClient } from '@greymass/eosio';
+import { api } from './services/eosio';
 
-test('Create a new account', async () => {
+test('Create a new ID of a person', async () => {
     const auth = new JsAuthenticator();
 
     const user = new User(auth);
@@ -13,8 +13,7 @@ test('Create a new account', async () => {
     await user.createPerson("jack");
     const accountName = user.accountName.toString();
 
-    const eosioClient = new APIClient({ url: "http://localhost:8888" });
-    const accountInfo = await eosioClient.v1.chain.get_account(accountName);
+    const accountInfo = await api.v1.chain.get_account(accountName);
 
     expect(accountInfo).toBeDefined();
     expect(accountInfo.account_name).toBe(accountName);

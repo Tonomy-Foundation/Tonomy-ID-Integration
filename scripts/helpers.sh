@@ -104,10 +104,10 @@ function reset {
 
 function test {
     cd "$PARENT_PATH/Tonomy-ID-SDK"
-    npm install
+    npm run prepare
 
     cd "${PARENT_PATH}"
-    npm link "$PARENT_PATH/Tonomy-ID-SDK"
+    # npm link "$PARENT_PATH/Tonomy-ID-SDK"
     npm test
 }
 
