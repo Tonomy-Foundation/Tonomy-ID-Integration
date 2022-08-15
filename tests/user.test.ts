@@ -1,6 +1,10 @@
 import { JsAuthenticator, User } from 'tonomy-id-sdk';
 import { api } from './services/eosio';
 
+beforeEach((): void => {
+    jest.setTimeout(60000);
+});
+
 test('Create a new ID of a person', async () => {
     const auth = new JsAuthenticator();
 
