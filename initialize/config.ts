@@ -3,7 +3,7 @@ import { Api, JsonRpc } from "eosjs";
 import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig"
 import fetch from "node-fetch"; // node only; not needed in browsers
 import { TextEncoder, TextDecoder } from "util"; // node only; native TextEncoder/Decoder
-import { PrivateKey } from "@greymass/eosio";
+import { APIClient, FetchProvider, PrivateKey } from "@greymass/eosio";
 
 const privateKey = "PVT_K1_2bfGi9rYsXQSXXTvJbDAPhHLQUojjaNLomdm3cEJ1XTzMqUt3V";
 const publicKey = PrivateKey.from(privateKey).toPublic();
@@ -19,4 +19,10 @@ const api = new Api({
     textEncoder: new TextEncoder(),
 })
 
-export { api, publicKey };
+const api2 = new APIClient({
+    url: "http://localhost:8888",
+    provider: new FetchProvider("http://localhost:8888", { fetch })
+})
+
+
+export { api, api2, publicKey };

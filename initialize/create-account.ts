@@ -1,5 +1,6 @@
 import { api, publicKey } from "./config";
-import { createKeyAuthoriy, addCodePermission } from 'tonomy-id-sdk';
+import { EosioUtil } from 'tonomy-id-sdk';
+const { createKeyAuthoriy, addCodePermission } = EosioUtil;
 
 async function createAccount({ account }) {
     const authory = createKeyAuthoriy(publicKey.toString());
