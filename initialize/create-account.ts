@@ -1,5 +1,5 @@
 import { api, publicKey } from "./config";
-import { createKeyAuthoriy, createDelegatedAuthority, addCodePermission } from 'tonomy-id-sdk';
+import { createKeyAuthoriy, addCodePermission } from 'tonomy-id-sdk';
 
 async function createAccount({ account }) {
     const authory = createKeyAuthoriy(publicKey.toString());

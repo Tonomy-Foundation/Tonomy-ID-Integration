@@ -107,7 +107,9 @@ function test {
     npm run prepare
 
     cd "${PARENT_PATH}"
+    # make sure that the SDK is linked into the test suite with:
     # npm link "$PARENT_PATH/Tonomy-ID-SDK"
+
     npm test
 }
 
