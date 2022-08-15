@@ -1,5 +1,5 @@
-import { JsAuthenticator, User } from 'tonomy-id-sdk';
-import { api } from './services/eosio';
+import { JsAuthenticator, User, EosioUtil } from 'tonomy-id-sdk';
+const { api } = EosioUtil;
 
 beforeEach((): void => {
     jest.setTimeout(60000);
