@@ -5,8 +5,6 @@ import path from "path";
 import { ABI, Name, Serializer, Checksum256 } from '@greymass/eosio';
 import { EosioUtil } from 'tonomy-id-sdk';
 const { transact, privateKey } = EosioUtil;
-// import { transact } from "tonomy-id-sdk/dist/services/eosio/transaction";
-// import { privateKey } from "tonomy-id-sdk/dist/services/eosio/eosio";
 
 const signer = {
     sign(digest: Checksum256) {
