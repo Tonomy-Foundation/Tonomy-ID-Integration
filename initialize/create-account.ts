@@ -1,39 +1,18 @@
-import { api, publicKey } from "./config";
 import { EosioUtil } from 'tonomy-id-sdk';
-const { createKeyAuthoriy, addCodePermission } = EosioUtil;
+const { createKeyAuthoriy, addCodePermission, publicKey } = EosioUtil;
+import { EosioContract } from 'tonomy-id-sdk';
+
+const eosioContract: EosioContract = EosioContract.Instance;
 
 async function createAccount({ account }) {
-    const authory = createKeyAuthoriy(publicKey.toString());
+    const ownerAuth = createKeyAuthoriy(publicKey.toString());
+
+    // need to add the eosio.code authority as well
+    // https://developers.eos.io/welcome/v2.1/smart-contract-guides/adding-inline-actions#step-1-adding-eosiocode-to-permissions
+    const activeAuth = addCodePermission(ownerAuth, account)
 
     console.log(`Creating new account ${account}`)
-    const result = await api.transact(
-        {
-            actions: [
-                {
-                    account: "eosio",
-                    name: "newaccount",
-                    authorization: [
-                        {
-                            actor: "eosio",
-                            permission: 'active',
-                        },
-                    ],
-                    data: {
-                        creator: "eosio",
-                        name: account,
-                        owner: authory,
-                        // need to add the eosio.code authority as well
-                        // https://developers.eos.io/welcome/v2.1/smart-contract-guides/adding-inline-actions#step-1-adding-eosiocode-to-permissions
-                        active: addCodePermission(authory, account)
-                    },
-                }
-            ],
-        },
-        {
-            blocksBehind: 3,
-            expireSeconds: 30,
-        }
-    )
+    await eosioContract.newaccount("eosio", account, ownerAuth, activeAuth);
 }
 
 export { createAccount };

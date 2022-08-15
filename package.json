@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@greymass/eosio": "^0.6.2",
-    "eosjs": "^20.0.3",
     "fs": "^0.0.1-security",
     "node-fetch": "^2.6.0"
   }
