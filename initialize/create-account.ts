@@ -11,6 +11,7 @@ async function createAccount({ account }) {
 
     console.log(`Creating new account ${account}`)
     // need to add the eosio.code authority as well so that it can call eosio from the smart contract
+    ownerAuth.addCodePermission(account);
     activeAuth.addCodePermission(account);
     await eosioContract.newaccount("eosio", account, ownerAuth, activeAuth);
 }
