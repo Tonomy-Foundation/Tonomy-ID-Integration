@@ -15,7 +15,7 @@ test('Create a new ID of a person', async () => {
     // user.saveFingerprint();
 
     await user.createPerson("jack");
-    console.log("created user sucessfully!");
+
     const accountName = user.accountName.toString();
 
     const accountInfo = await api.v1.chain.get_account(accountName);

@@ -21,12 +21,12 @@ function getDeployableFilesFromDir(dir) {
     }
 }
 
-async function deployContract({ account, contractDir }) {
+async function deployContract({ account, contractDir }, signer) {
     const { wasmPath, abiPath } = getDeployableFilesFromDir(contractDir)
 
     const wasmFile = fs.readFileSync(wasmPath);
     const abiFile = fs.readFileSync(abiPath, 'utf8');
-    await eosioContract.deployContract(Name.from(account), wasmFile, abiFile);
+    await eosioContract.deployContract(Name.from(account), wasmFile, abiFile, signer);
 }
 
 export default deployContract;
