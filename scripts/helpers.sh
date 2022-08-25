@@ -57,6 +57,16 @@ function start {
 
     pm2 start npm --name "id" -- start
     # pm2 start expo --name "id" -- start --host tunnel
+
+
+    echo "Starting Tonomy-ID-SDK"
+    cd "$PARENT_PATH/Tonomy-ID-SDK"
+    pm2 start npm --name "sdk" -- run start
+
+    # workaround for not being able to use `npm link` to the SDK. see https://stackoverflow.com/a/48987307
+    wml add "${PARENT_PATH}/Tonomy-ID-SDK" "${PARENT_PATH}/Tonomy-ID/node_modules/tonomy-id-sdk"
+    pm2 start wml --name "linking" -- start
+
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"
     npm link "${PARENT_PATH}/Tonomy-ID-SDK"
