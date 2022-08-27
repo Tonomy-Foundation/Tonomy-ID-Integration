@@ -40,7 +40,6 @@ function install {
 
     cd "$PARENT_PATH"
     npm install
-    npm link "$PARENT_PATH/Tonomy-ID-SDK"
 }
 
 function buildcontracts {
@@ -74,6 +73,7 @@ function start {
 
     pm2 start npm --name "id" -- start
     # pm2 start expo --name "id" -- start --host tunnel
+
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"
     npm link "${PARENT_PATH}/Tonomy-ID-SDK"
@@ -109,9 +109,6 @@ function test {
     npm run prepare
 
     cd "${PARENT_PATH}"
-    # make sure that the SDK is linked into the test suite with:
-    # npm link "$PARENT_PATH/Tonomy-ID-SDK"
-
     npm test
 }
 
