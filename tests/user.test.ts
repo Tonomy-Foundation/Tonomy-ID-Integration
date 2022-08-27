@@ -8,7 +8,7 @@ export async function createRandomID() {
     const auth = new JsAuthenticator();
     const user = new User(auth);
 
-    const username = randomString(16);
+    const username = randomString(10);
     const password = randomString(32);
     const pin = Math.floor(Math.random() * 5).toString();
     // user.savePassword(password);
@@ -35,7 +35,7 @@ describe("User tests", () => {
         // user.saveFingerprint();
         // user.saveLocal();
 
-        await user.createPerson("jack2233");
+        await user.createPerson(randomString(4));
 
         const accountName = user.accountName;
 
