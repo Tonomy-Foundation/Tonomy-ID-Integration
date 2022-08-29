@@ -26,7 +26,8 @@ elif [ "$ARG1" == "init" ]
 then
     stop
     reset
-    start
+    buildcontracts
+    startdocker
     init
     printservices
 elif [ "$ARG1" == "start" ]
@@ -45,6 +46,9 @@ elif [ "$ARG1" == "test" ]
 then
     stop
     reset
+    buildcontracts
+    startdocker
+    init
     test
 elif [ "$ARG1" == "log" ]
 then

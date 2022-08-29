@@ -11,7 +11,7 @@ cd "$PARENT_PATH"
 cleos wallet create --file /data/wallet.txt
 
 # import eosio
-PKEY_EOSIO="5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3"
+PKEY_EOSIO="PVT_K1_2bfGi9rYsXQSXXTvJbDAPhHLQUojjaNLomdm3cEJ1XTzMqUt3V"
 cleos wallet import --private-key $PKEY_EOSIO
 
 # Enable protocol feature pre-activation PREACTIVATE_FEATURE for eosio.contract v1.8+
@@ -20,23 +20,11 @@ sleep 1
 
 # Load the eosio.boot contract so with activate action
 # https://eosio.stackexchange.com/questions/5235/error-while-deploying-eosio-system-contract-to-eosio-account-while-setting-up-a
-cleos set contract eosio /var/repo/blockchain/contracts/eosio.boot eosio.boot.wasm eosio.boot.abi -p eosio@active
+cleos set contract eosio /var/repo/Tonomy-Contracts/contracts/eosio.boot eosio.boot.wasm eosio.boot.abi -p eosio@active
 sleep .1
 
 ./initialize-features.sh
 sleep 1
 
-cleos set contract eosio /var/repo/blockchain/contracts/eosio.bios eosio.bios.wasm eosio.bios.abi -p eosio@active
+cleos set contract eosio /var/repo/Tonomy-Contracts/contracts/eosio.bios eosio.bios.wasm eosio.bios.abi -p eosio@active
 sleep 1
-
-# Create eosio.token account and deploy contract
-cleos create account eosio eosio.token EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV -p eosio@active
-sleep 1
-
-cleos set contract eosio.token /var/repo/blockchain/contracts/eosio.token eosio.token.wasm eosio.token.abi -p eosio.token@active
-sleep .1
-
-# Create initial currency and issue it
-echo "Creating initial system currency"
-cleos push action eosio.token create '[ "eosio", "10000000000.0000 SYS" ]' -p eosio.token@active
-cleos push action eosio.token issue '[ "eosio", "1000000000.0000 SYS", "issue 1B system tokens" ]' -p eosio@active

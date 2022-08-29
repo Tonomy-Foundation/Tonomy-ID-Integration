@@ -16,6 +16,10 @@ function gitinit {
     cd "$PARENT_PATH/Tonomy-ID-Demo"
     git checkout master
     git pull
+
+    cd "$PARENT_PATH/Tonomy-Contracts"
+    git checkout master
+    git pull
 }
 
 function install {
@@ -28,18 +32,31 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
+    npm link "$PARENT_PATH/Tonomy-ID-SDK"
  
     cd "$PARENT_PATH/Tonomy-ID-Demo"
     npm install
+    npm link "$PARENT_PATH/Tonomy-ID-SDK"
 
     cd "$PARENT_PATH"
     npm install
     npm link "$PARENT_PATH/Tonomy-ID-SDK"
 }
 
+function buildcontracts {
+    cd "$PARENT_PATH/Tonomy-Contracts"
+    ./build-contracts.sh
+}
+
 function init {
     cd "$PARENT_PATH/blockchain"
-    ./intitialize-blockchain-entry.sh
+    echo "Waiting 8 seconds for blockchain node to start"
+    sleep 8
+    docker-compose exec eosio /bin/bash /var/repo/blockchain/initialize-blockchain.sh
+
+    cd "$PARENT_PATH"
+    npm run build
+    npm run bootstrap
 }
 
 function startdocker {
@@ -98,13 +115,13 @@ function reset {
 }
 
 function test {
-    startdocker
-    init
-
     cd "$PARENT_PATH/Tonomy-ID-SDK"
-    npm install
+    npm run prepare
 
     cd "${PARENT_PATH}"
+    # make sure that the SDK is linked into the test suite with:
+    # npm link "$PARENT_PATH/Tonomy-ID-SDK"
+
     npm test
 }
 
