@@ -6,19 +6,19 @@ function gitinit {
     git submodule update
 
     cd "$PARENT_PATH/Tonomy-ID-SDK"
-    git checkout master
+    git checkout development
     git pull
 
     cd "$PARENT_PATH/Tonomy-ID"
-    git checkout master
+    git checkout development
     git pull
 
     cd "$PARENT_PATH/Tonomy-ID-Demo"
-    git checkout master
+    git checkout development
     git pull
 
     cd "$PARENT_PATH/Tonomy-Contracts"
-    git checkout master
+    git checkout development
     git pull
 }
 
