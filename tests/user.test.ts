@@ -1,11 +1,12 @@
 import { Name } from '@greymass/eosio';
 // need to use API types from inside tonomy-id-sdk, otherwise type compatibility issues
 import { API as SDK_API } from 'tonomy-id-sdk/node_modules/@greymass/eosio';
-import { JsAuthenticator, User, randomString } from 'tonomy-id-sdk';
+import { JsKeyManager, User, randomString } from 'tonomy-id-sdk';
 import { api } from './services/eosio';
 
+
 export async function createRandomID() {
-    const auth = new JsAuthenticator();
+    const auth = new JsKeyManager();
     const user = new User(auth);
 
     const username = randomString(10);
@@ -26,7 +27,7 @@ describe("User tests", () => {
     });
 
     test("createPerson(): Create a new ID of a person", async () => {
-        const auth = new JsAuthenticator();
+        const auth = new JsKeyManager();
 
         const user = new User(auth);
 
