@@ -18,7 +18,7 @@ describe("IDContract tests", () => {
         expect(idInfo.status).toEqual(0); // 0 = Creating
         expect(idInfo.type).toEqual(0); // 0 = Person
         // expect(idInfo.password_salt).toEqual(user.salt); // TODO uncomment when salt implemented properly in User.ts
-
+        expect(idInfo.version).toBe(1);
 
         // get by username
         idInfo = await idContract.getAccountTonomyIDInfo(user.username);
