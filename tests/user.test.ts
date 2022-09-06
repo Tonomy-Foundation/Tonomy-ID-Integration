@@ -29,7 +29,6 @@ describe("User tests", () => {
 
     test("createPerson(): Create a new ID of a person", async () => {
         const auth = new JsKeyManager();
-
         const user = new User(auth);
 
         // user.savePassword("myPassword123!");

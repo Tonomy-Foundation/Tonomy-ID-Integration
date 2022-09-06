@@ -1,13 +1,10 @@
-
-import { KeyManagerLevel, User } from '../Tonomy-ID-SDK/src/index';
+import { KeyManagerLevel, User } from 'tonomy-id-sdk';
 import { PrivateKey } from '@greymass/eosio';
-
-import * as argon2 from 'argon2';
+import argon2 from 'argon2';
 import JsKeyManager from './services/jskeymanager';
 const keyManager = new JsKeyManager();
 const user = new User(keyManager);
 describe('Keymanager class', () => {
-
     test('KeyManagerLevel enum helpers', () => {
         const passwordLevel = KeyManagerLevel.PASSWORD;
         expect(passwordLevel).toBe('PASSWORD');
@@ -16,20 +13,13 @@ describe('Keymanager class', () => {
     });
 });
 
-
-
-
 describe('saving a password', () => {
-
     test('function savePassword is defined', () => {
-
         expect(user.savePassword).toBeDefined();
     });
 
     test('generate private key returns privatekey', async () => {
-
         const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword('123')
-
         expect(privateKey).toBeInstanceOf(PrivateKey);
         expect(salt).toBeDefined();
     })
@@ -42,7 +32,6 @@ describe('saving a password', () => {
         expect(result).toBe(true);
     })
 })
-
 
 describe('generates random keys', () => {
     test('function generateRandomPrivateKey is defined', () => {
