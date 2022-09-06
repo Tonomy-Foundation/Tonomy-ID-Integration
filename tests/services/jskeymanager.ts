@@ -1,7 +1,15 @@
-import { KeyManager, KeyManagerLevel, KeyStorage, StoreKeyOptions, SignDataOptions, GetKeyOptions } from 'tonomy-id-sdk';
+import { KeyManager, KeyManagerLevel, StoreKeyOptions, SignDataOptions, GetKeyOptions } from 'tonomy-id-sdk';
 import { sha256, randomString, randomBytes } from 'tonomy-id-sdk';
 import argon2 from 'argon2';
 import { Bytes, Checksum256, KeyType, PrivateKey, PublicKey, Signature } from '@greymass/eosio';
+
+type KeyStorage = {
+  privateKey: PrivateKey;
+  publicKey: PublicKey;
+  // TODO: check that this complies with the eosio checksum256 format
+  hashedSaltedChallenge?: string;
+  salt?: string;
+}
 export default class JsKeyManager implements KeyManager {
   // TODO: use localStorage or sessionStorage in browser if available instead of keyStorage
   keyStorage: {
