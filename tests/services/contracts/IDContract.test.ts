@@ -3,7 +3,7 @@ import { createRandomID } from '../../user.test';
 
 const idContract = IDContract.Instance;
 
-describe("IDContract tests", () => {
+describe("IDContract class", () => {
     beforeEach((): void => {
         jest.setTimeout(60000);
     });

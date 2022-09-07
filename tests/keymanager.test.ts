@@ -13,35 +13,31 @@ describe('Keymanager class', () => {
         expect(KeyManagerLevel.indexFor(passwordLevel)).toBe(0);
         expect(KeyManagerLevel.from('PASSWORD')).toBe(passwordLevel);
     });
-});
 
-describe('saving a password', () => {
-    test('function savePassword is defined', () => {
+    test('savePassword() is defined', () => {
         expect(user.savePassword).toBeDefined();
     });
 
-    test('generate private key returns privatekey', async () => {
+    test('generatePrivateKeyFromPassword() returns privatekey', async () => {
         const password = '123'
         const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword(password)
         expect(privateKey).toBeInstanceOf(PrivateKey);
         expect(salt).toBeDefined();
     })
 
-    test('password can be verfied', async () => {
+    test('generatePrivateKeyFromPassword() password can be verfied', async () => {
         const password = '123'
         const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword(password);
         const data = Buffer.from(privateKey.data.array)
         const result = await argon2.verify(data.toString(), password, { salt: Buffer.from(salt.toString()) });
         expect(result).toBe(true);
     })
-})
 
-describe('generates random keys', () => {
-    test('function generateRandomPrivateKey is defined', () => {
+    test('generateRandomPrivateKey() is defined', () => {
         expect(keyManager.generateRandomPrivateKey).toBeDefined();
     })
 
-    test('generate random key', async () => {
+    test('generateRandomPrivateKey() generates random key', async () => {
         const r1 = keyManager.generateRandomPrivateKey();
         expect(r1).toBeInstanceOf(PrivateKey);
 

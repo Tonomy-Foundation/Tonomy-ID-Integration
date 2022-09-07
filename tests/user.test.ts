@@ -24,7 +24,7 @@ export async function createRandomID() {
     return { user, password, pin };
 }
 
-describe("User tests", () => {
+describe("User class", () => {
     beforeEach((): void => {
         jest.setTimeout(60000);
         auth = new JsKeyManager();
@@ -32,7 +32,7 @@ describe("User tests", () => {
 
     });
 
-    test("savePassword()", async () => {
+    test("savePassword() generates and saves new private key", async () => {
         expect(user.savePassword).toBeDefined();
 
         expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toThrowError(Error);
@@ -42,19 +42,19 @@ describe("User tests", () => {
         expect(user.salt).toBeDefined();
     });
 
-    test("savePIN()", async () => {
+    test("savePIN() saves new private key", async () => {
         expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PIN })).toThrowError(Error);
         await user.savePIN("4568");
         expect(user.keyManager.getKey({ level: KeyManagerLevel.PIN })).toBeDefined();
     });
 
-    test("saveFingerprint()", async () => {
+    test("saveFingerprint() saves new private key", async () => {
         expect(() => user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).toThrowError(Error);
         await user.saveFingerprint();
         expect(user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).toBeDefined();
     });
 
-    test("saveLocal()", async () => {
+    test("saveLocal() saves new private key", async () => {
         expect(() => user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).toThrowError(Error);
         await user.saveLocal();
         expect(user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).toBeDefined();
