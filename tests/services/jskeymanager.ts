@@ -1,5 +1,7 @@
-import { KeyManager, KeyManagerLevel, StoreKeyOptions, SignDataOptions, GetKeyOptions } from 'tonomy-id-sdk';
-import { sha256, randomString, randomBytes } from 'tonomy-id-sdk';
+import {
+  KeyManager, KeyManagerLevel, StoreKeyOptions, SignDataOptions,
+  GetKeyOptions, sha256, randomString, randomBytes
+} from 'tonomy-id-sdk';
 import argon2 from 'argon2';
 import { Bytes, Checksum256, KeyType, PrivateKey, PublicKey, Signature } from '@greymass/eosio';
 
@@ -10,11 +12,12 @@ type KeyStorage = {
   hashedSaltedChallenge?: string;
   salt?: string;
 }
+
 export default class JsKeyManager implements KeyManager {
   // TODO: use localStorage or sessionStorage in browser if available instead of keyStorage
   keyStorage: {
     [key in KeyManagerLevel]: KeyStorage;
-  }
+  } = {} as any;
 
   // Creates a cryptographically secure Private key
   generateRandomPrivateKey(): PrivateKey {
@@ -22,11 +25,10 @@ export default class JsKeyManager implements KeyManager {
     return new PrivateKey(KeyType.K1, new Bytes(bytes));
   };
 
-  async generatePrivateKeyFromPassword(password: string): Promise<{ privateKey: PrivateKey, salt: Buffer }> {
+  async generatePrivateKeyFromPassword(password: string): Promise<{ privateKey: PrivateKey, salt: Checksum256 }> {
     // creates a key based on secure (hashing) key generation algorithm like Argon2 or Scrypt
-    const salt = randomBytes(32);
-
-    const hash = await argon2.hash(password, { salt });
+    const salt = Checksum256.from(randomBytes(32));
+    const hash = await argon2.hash(password, { salt: Buffer.from(salt.toString()) })
     const newBytes = Buffer.from(hash)
     const privateKey = new PrivateKey(KeyType.K1, new Bytes(newBytes));
 
@@ -52,7 +54,7 @@ export default class JsKeyManager implements KeyManager {
   }
 
   async signData(options: SignDataOptions): Promise<string | Signature> {
-    if (options.level in this.keyStorage) throw new Error("No key for this level");
+    if (!(options.level in this.keyStorage)) throw new Error("No key for this level");
 
     const keyStore = this.keyStorage[options.level];
 
@@ -63,14 +65,19 @@ export default class JsKeyManager implements KeyManager {
 
       if (keyStore.hashedSaltedChallenge !== hashedSaltedChallenge) throw new Error("Challenge does not match");
     }
+
     const privateKey = keyStore.privateKey;
-    const hash = Checksum256.hash(options.data);
-    const signature = privateKey.signDigest(hash)
+    let digest = options.data;
+    if (options.data instanceof String) {
+      digest = Checksum256.hash(Buffer.from(options.data));
+    }
+    const signature = privateKey.signDigest(digest)
+
     return signature;
   }
 
   getKey(options: GetKeyOptions): PublicKey {
-    if (options.level in this.keyStorage) throw new Error("No key for this level");
+    if (!(options.level in this.keyStorage)) throw new Error("No key for this level");
     const keyStore = this.keyStorage[options.level];
     return keyStore.publicKey;
   }

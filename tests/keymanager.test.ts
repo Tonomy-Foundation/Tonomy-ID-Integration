@@ -2,8 +2,10 @@ import { KeyManagerLevel, User } from 'tonomy-id-sdk';
 import { PrivateKey } from '@greymass/eosio';
 import argon2 from 'argon2';
 import JsKeyManager from './services/jskeymanager';
+
 const keyManager = new JsKeyManager();
 const user = new User(keyManager);
+
 describe('Keymanager class', () => {
     test('KeyManagerLevel enum helpers', () => {
         const passwordLevel = KeyManagerLevel.PASSWORD;
@@ -19,7 +21,8 @@ describe('saving a password', () => {
     });
 
     test('generate private key returns privatekey', async () => {
-        const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword('123')
+        const password = '123'
+        const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword(password)
         expect(privateKey).toBeInstanceOf(PrivateKey);
         expect(salt).toBeDefined();
     })
@@ -28,7 +31,7 @@ describe('saving a password', () => {
         const password = '123'
         const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword(password);
         const data = Buffer.from(privateKey.data.array)
-        const result = await argon2.verify(data.toString(), password, { salt });
+        const result = await argon2.verify(data.toString(), password, { salt: Buffer.from(salt.toString()) });
         expect(result).toBe(true);
     })
 })

@@ -1,49 +1,70 @@
-import { Name } from '@greymass/eosio';
 // need to use API types from inside tonomy-id-sdk, otherwise type compatibility issues
 import { API as SDK_API } from 'tonomy-id-sdk/node_modules/@greymass/eosio';
-import { User, randomString } from 'tonomy-id-sdk';
+import { User, KeyManagerLevel, randomString } from 'tonomy-id-sdk';
 import { api } from './services/eosio';
 import JsKeyManager from './services/jskeymanager';
 
+let auth: JsKeyManager;
+let user: User;
 
 export async function createRandomID() {
-    const auth = new JsKeyManager();
-    const user = new User(auth);
+    auth = new JsKeyManager();
+    user = new User(auth);
 
-    const username = randomString(10);
     const password = randomString(32);
+    const username = randomString(16);
     const pin = Math.floor(Math.random() * 5).toString();
-    // user.savePassword(password);
-    // user.savePIN(pin;
-    // user.saveFingerprint();
-    // user.saveLocal();
 
-    await user.createPerson(username);
+    await user.savePassword(password);
+    await user.savePIN(pin);
+    await user.saveFingerprint();
+    await user.saveLocal();
+
+    await user.createPerson(username, password);
     return { user, password, pin };
 }
 
 describe("User tests", () => {
     beforeEach((): void => {
         jest.setTimeout(60000);
+        auth = new JsKeyManager();
+        user = new User(auth);
+
+    });
+
+    test("savePassword()", async () => {
+        expect(user.savePassword).toBeDefined();
+
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toThrowError(Error);
+        expect(user.salt).not.toBeDefined();
+        await user.savePassword("myPassword123!");
+        expect(user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toBeDefined();
+        expect(user.salt).toBeDefined();
+    });
+
+    test("savePIN()", async () => {
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PIN })).toThrowError(Error);
+        await user.savePIN("4568");
+        expect(user.keyManager.getKey({ level: KeyManagerLevel.PIN })).toBeDefined();
+    });
+
+    test("saveFingerprint()", async () => {
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).toThrowError(Error);
+        await user.saveFingerprint();
+        expect(user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).toBeDefined();
+    });
+
+    test("saveLocal()", async () => {
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).toThrowError(Error);
+        await user.saveLocal();
+        expect(user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).toBeDefined();
     });
 
     test("createPerson(): Create a new ID of a person", async () => {
-        const auth = new JsKeyManager();
-        const user = new User(auth);
-
-        // user.savePassword("myPassword123!");
-        // user.savePIN("4568");
-        // user.saveFingerprint();
-        // user.saveLocal();
-
-        await user.createPerson(randomString(4));
+        const { user } = await createRandomID();
 
         const accountName = user.accountName;
 
-        // for this call to work:
-        // node_modules/@greymass/eosio/lib/eosio-core.js:L1239
-        // replace "throw new Error(`Unexpectedly encountered ${value} for non-optional`);"
-        // with "return null"
         const accountInfo = await api.v1.chain.get_account(accountName);
 
         expect(accountInfo).toBeDefined();
@@ -89,4 +110,5 @@ describe("User tests", () => {
         expect(userInfo).toBeInstanceOf(SDK_API.v1.AccountObject);
         expect(userInfo.account_name).toEqual(user.accountName);
     });
+
 })
