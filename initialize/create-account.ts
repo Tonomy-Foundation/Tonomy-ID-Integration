@@ -8,7 +8,6 @@ async function createAccount({ account }, signer) {
 
     const activeAuth = Authority.fromKey(publicKey.toString());
 
-    console.log(`Creating new account ${account}`)
     // need to add the eosio.code authority as well so that it can call eosio from the smart contract
     ownerAuth.addCodePermission(account);
     activeAuth.addCodePermission(account);

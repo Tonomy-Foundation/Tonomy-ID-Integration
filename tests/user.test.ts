@@ -1,6 +1,6 @@
 // need to use API types from inside tonomy-id-sdk, otherwise type compatibility issues
 import { API as SDK_API } from 'tonomy-id-sdk/node_modules/@greymass/eosio';
-import { User, KeyManagerLevel, randomString } from 'tonomy-id-sdk';
+import { User, KeyManagerLevel, randomString, sha256 } from 'tonomy-id-sdk';
 import { api } from './services/eosio';
 import JsKeyManager from './services/jskeymanager';
 
@@ -11,8 +11,8 @@ export async function createRandomID() {
     auth = new JsKeyManager();
     user = new User(auth);
 
-    const password = randomString(32);
-    const username = randomString(16);
+    const password = randomString(8);
+    const username = randomString(8);
     const pin = Math.floor(Math.random() * 5).toString();
 
     await user.savePassword(password);
@@ -21,6 +21,7 @@ export async function createRandomID() {
     await user.saveLocal();
 
     await user.createPerson(username, password);
+
     return { user, password, pin };
 }
 
@@ -60,7 +61,7 @@ describe("User class", () => {
         expect(user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).toBeDefined();
     });
 
-    test("createPerson(): Create a new ID of a person", async () => {
+    test("createPerson() creates a new ID of a person", async () => {
         const { user } = await createRandomID();
 
         const accountName = user.accountName;
@@ -93,6 +94,33 @@ describe("User class", () => {
         expect(accountInfo.getPermission("active").parent.toString()).toBe("owner");
         expect(accountInfo.getPermission("active").required_auth.threshold.toNumber()).toBe(1);
         expect(accountInfo.getPermission("active").required_auth.keys[0].key).toBeDefined();
+    });
+
+    test("login() logs in with password", async () => {
+        const { user, password } = await createRandomID();
+
+        const username = user.username;
+
+        const newKeyManager = new JsKeyManager();
+        const userLogin = new User(newKeyManager);
+
+        const idInfo = await userLogin.login(username, password);
+
+        expect(idInfo.username_hash).toBe(sha256(username));
+        expect(userLogin.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toBeDefined();
+        expect(userLogin.accountName).toBeDefined();
+        expect(userLogin.username).toBe(username);
+    });
+
+    test("login() fails with wrong password", async () => {
+        const { user } = await createRandomID();
+
+        const username = user.username;
+
+        const newKeyManager = new JsKeyManager();
+        const userLogin = new User(newKeyManager);
+
+        await expect(() => userLogin.login(username, "differentpassword")).rejects.toThrowError(Error);
     });
 
     test("getAccountInfo(): Get ID information", async () => {
