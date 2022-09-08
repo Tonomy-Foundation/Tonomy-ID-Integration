@@ -28,9 +28,9 @@ describe('Keymanager class', () => {
     test('generatePrivateKeyFromPassword() password can be verfied', async () => {
         const password = '123'
         const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword(password);
-        const data = Buffer.from(privateKey.data.array)
-        const result = await argon2.verify(data.toString(), password, { salt: Buffer.from(salt.toString()) });
-        expect(result).toBe(true);
+
+        const { privateKey: privateKey2 } = await keyManager.generatePrivateKeyFromPassword(password, salt);
+        expect(privateKey).toEqual(privateKey2);
     })
 
     test('generateRandomPrivateKey() is defined', () => {
