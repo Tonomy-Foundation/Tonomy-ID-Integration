@@ -26,9 +26,8 @@ export default class JsKeyManager implements KeyManager {
     // creates a key based on secure (hashing) key generation algorithm like Argon2 or Scrypt
     const salt = randomBytes(32);
 
-    const hash = await argon2.hash(password, { salt });
-    const newBytes = Buffer.from(hash)
-    const privateKey = new PrivateKey(KeyType.K1, new Bytes(newBytes));
+    let hash = await argon2.hash(password, { salt, hashLength: 32, type: argon2.argon2id, raw: true });
+    const privateKey = new PrivateKey(KeyType.K1, new Bytes(hash));
 
     return {
       privateKey,
