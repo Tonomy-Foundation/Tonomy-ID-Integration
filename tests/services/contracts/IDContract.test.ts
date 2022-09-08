@@ -16,9 +16,9 @@ describe("IDContract class", () => {
         expect(idInfo.account_name).toEqual(user.accountName);
         expect(idInfo.username_hash.toString()).toEqual(sha256(user.username));
         expect(idInfo.status).toEqual(0); // 0 = Creating. TODO turn into enum string
-        // expect(idInfo.type).toEqual(0); // 0 = Person // TODO bring back type property based on account_name[0] character
+        // expect(idInfo.type).toEqual(0); // 0 = Person // TODO bring back type property (as enum string) based on account_name[0] character
+        expect(idInfo.account_name.toString()[0]).toEqual('p'); // p = person
         expect(idInfo.password_salt).toEqual(user.salt);
-        expect(idInfo.account_name[0]).toEqual('p'); // p = person
         expect(idInfo.version).toBe(1);
 
         // get by username

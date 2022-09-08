@@ -104,12 +104,14 @@ describe("User class", () => {
         const newKeyManager = new JsKeyManager();
         const userLogin = new User(newKeyManager);
 
+        expect(userLogin.isLoggedIn()).toBeFalsy();
         const idInfo = await userLogin.login(username, password);
 
         expect(idInfo.username_hash.toString()).toBe(sha256(username));
         expect(userLogin.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toBeDefined();
         expect(userLogin.accountName).toBeDefined();
         expect(userLogin.username).toBe(username);
+        expect(userLogin.isLoggedIn()).toBeTruthy();
     });
 
     test("login() fails with wrong password", async () => {
