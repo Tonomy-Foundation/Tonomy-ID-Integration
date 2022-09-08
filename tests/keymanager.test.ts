@@ -19,16 +19,19 @@ describe('saving a password', () => {
     });
 
     test('generate private key returns privatekey', async () => {
-        const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword('123')
+        const password = "123";
+        const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword(password);
         expect(privateKey).toBeInstanceOf(PrivateKey);
         expect(salt).toBeDefined();
     })
 
     test('password can be verfied', async () => {
-        const password = '123'
+        const password = "123";
         const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword(password);
-        const data = Buffer.from(privateKey.data.array)
-        const result = await argon2.verify(data.toString(), password, { salt });
+
+        // TODO fix to use overloaded generatePrivateKeyFromPassword(password, salt) to check
+        const data = Buffer.from(privateKey.data.array);
+        const result = await argon2.verify(data.toString(), password, { salt, hashLength: 32, type: argon2.argon2id, raw: true });
         expect(result).toBe(true);
     })
 })
