@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@greymass/eosio": "^0.6.4",
+    "argon2": "^0.29.1",
     "fs": "^0.0.1-security",
     "node-fetch": "^2.6.0"
   }
