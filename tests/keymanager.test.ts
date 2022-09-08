@@ -1,6 +1,5 @@
 import { KeyManagerLevel, User } from 'tonomy-id-sdk';
 import { PrivateKey } from '@greymass/eosio';
-import argon2 from 'argon2';
 import JsKeyManager from './services/jskeymanager';
 
 const keyManager = new JsKeyManager();
@@ -29,10 +28,8 @@ describe('Keymanager class', () => {
         const password = "123";
         const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword(password);
 
-        // TODO fix to use overloaded generatePrivateKeyFromPassword(password, salt) to check
-        const data = Buffer.from(privateKey.data.array)
-        const result = await argon2.verify(data.toString(), password, { salt: Buffer.from(salt.toString()), hashLength: 32, type: argon2.argon2id, raw: true });
-        expect(result).toBe(true);
+        const { privateKey: privateKey2 } = await keyManager.generatePrivateKeyFromPassword(password, salt);
+        expect(privateKey).toEqual(privateKey2);
     })
 
     test('generateRandomPrivateKey() is defined', () => {

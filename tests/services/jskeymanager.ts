@@ -25,9 +25,9 @@ export default class JsKeyManager implements KeyManager {
     return new PrivateKey(KeyType.K1, new Bytes(bytes));
   };
 
-  async generatePrivateKeyFromPassword(password: string): Promise<{ privateKey: PrivateKey, salt: Checksum256 }> {
+  async generatePrivateKeyFromPassword(password: string, salt?: Checksum256): Promise<{ privateKey: PrivateKey, salt: Checksum256 }> {
     // creates a key based on secure (hashing) key generation algorithm like Argon2 or Scrypt
-    const salt = Checksum256.from(randomBytes(32));
+    if (!salt) salt = Checksum256.from(randomBytes(32));
     const hash = await argon2.hash(password, { salt: Buffer.from(salt.toString()), hashLength: 32, type: argon2.argon2id, raw: true })
     const privateKey = new PrivateKey(KeyType.K1, new Bytes(hash));
 
