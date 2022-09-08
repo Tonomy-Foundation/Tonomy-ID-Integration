@@ -2,12 +2,45 @@
 import { API as SDK_API } from 'tonomy-id-sdk/node_modules/@greymass/eosio';
 import { api } from './util/eosio';
 import { createRandomID } from './util/user';
-import { User } from 'tonomy-id-sdk';
+import { KeyManager, KeyManagerLevel, sha256, User } from 'tonomy-id-sdk';
+import JsKeyManager from './services/jskeymanager';
 
+let auth: KeyManager;
+let user: User;
 
-describe("User tests", () => {
+describe("User class", () => {
     beforeEach((): void => {
         jest.setTimeout(60000);
+        auth = new JsKeyManager();
+        user = new User(auth);
+    });
+
+    test("savePassword() generates and saves new private key", async () => {
+        expect(user.savePassword).toBeDefined();
+
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toThrowError(Error);
+        expect(user.salt).not.toBeDefined();
+        await user.savePassword("myPassword123!");
+        expect(user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toBeDefined();
+        expect(user.salt).toBeDefined();
+    });
+
+    test("savePIN() saves new private key", async () => {
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PIN })).toThrowError(Error);
+        await user.savePIN("4568");
+        expect(user.keyManager.getKey({ level: KeyManagerLevel.PIN })).toBeDefined();
+    });
+
+    test("saveFingerprint() saves new private key", async () => {
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).toThrowError(Error);
+        await user.saveFingerprint();
+        expect(user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).toBeDefined();
+    });
+
+    test("saveLocal() saves new private key", async () => {
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).toThrowError(Error);
+        await user.saveLocal();
+        expect(user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).toBeDefined();
     });
 
     test("createPerson(): Create a new ID of a person", async () => {
@@ -15,10 +48,6 @@ describe("User tests", () => {
 
         const accountName = user.accountName;
 
-        // for this call to work:
-        // node_modules/@greymass/eosio/lib/eosio-core.js:L1239
-        // replace "throw new Error(`Unexpectedly encountered ${value} for non-optional`);"
-        // with "return null"
         const accountInfo = await api.v1.chain.get_account(accountName);
 
         expect(accountInfo).toBeDefined();
@@ -49,6 +78,35 @@ describe("User tests", () => {
         expect(accountInfo.getPermission("active").required_auth.keys[0].key).toBeDefined();
     });
 
+    test("login() logs in with password", async () => {
+        const { user, password } = await createRandomID();
+
+        const username = user.username;
+
+        const newKeyManager = new JsKeyManager();
+        const userLogin = new User(newKeyManager);
+
+        expect(userLogin.isLoggedIn()).toBeFalsy();
+        const idInfo = await userLogin.login(username, password);
+
+        expect(idInfo.username_hash.toString()).toBe(sha256(username));
+        expect(userLogin.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toBeDefined();
+        expect(userLogin.accountName).toBeDefined();
+        expect(userLogin.username).toBe(username);
+        expect(userLogin.isLoggedIn()).toBeTruthy();
+    });
+
+    test("login() fails with wrong password", async () => {
+        const { user } = await createRandomID();
+
+        const username = user.username;
+
+        const newKeyManager = new JsKeyManager();
+        const userLogin = new User(newKeyManager);
+
+        await expect(() => userLogin.login(username, "differentpassword")).rejects.toThrowError(Error);
+    });
+
     test("getAccountInfo(): Get ID information", async () => {
         const { user } = await createRandomID();
 
@@ -64,4 +122,5 @@ describe("User tests", () => {
         expect(userInfo).toBeInstanceOf(SDK_API.v1.AccountObject);
         expect(userInfo.account_name).toEqual(user.accountName);
     });
+
 })
