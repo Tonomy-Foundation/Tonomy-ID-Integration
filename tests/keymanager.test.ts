@@ -1,6 +1,5 @@
 import { KeyManagerLevel, User } from 'tonomy-id-sdk';
 import { PrivateKey } from '@greymass/eosio';
-import argon2 from 'argon2';
 import JsKeyManager from './services/jskeymanager';
 
 const keyManager = new JsKeyManager();
@@ -19,14 +18,14 @@ describe('Keymanager class', () => {
     });
 
     test('generatePrivateKeyFromPassword() returns privatekey', async () => {
-        const password = '123'
+        const password = "123";
         const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword(password)
         expect(privateKey).toBeInstanceOf(PrivateKey);
         expect(salt).toBeDefined();
     })
 
     test('generatePrivateKeyFromPassword() password can be verfied', async () => {
-        const password = '123'
+        const password = "123";
         const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword(password);
 
         const { privateKey: privateKey2 } = await keyManager.generatePrivateKeyFromPassword(password, salt);
