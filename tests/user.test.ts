@@ -1,36 +1,18 @@
 // need to use API types from inside tonomy-id-sdk, otherwise type compatibility issues
 import { API as SDK_API } from 'tonomy-id-sdk/node_modules/@greymass/eosio';
-import { User, KeyManagerLevel, randomString, sha256 } from 'tonomy-id-sdk';
-import { api } from './services/eosio';
+import { api } from './util/eosio';
+import { createRandomID } from './util/user';
+import { KeyManager, KeyManagerLevel, sha256, User } from 'tonomy-id-sdk';
 import JsKeyManager from './services/jskeymanager';
 
-let auth: JsKeyManager;
+let auth: KeyManager;
 let user: User;
-
-export async function createRandomID() {
-    auth = new JsKeyManager();
-    user = new User(auth);
-
-    const password = randomString(8);
-    const username = randomString(8);
-    const pin = Math.floor(Math.random() * 5).toString();
-
-    await user.savePassword(password);
-    await user.savePIN(pin);
-    await user.saveFingerprint();
-    await user.saveLocal();
-
-    await user.createPerson(username, password);
-
-    return { user, password, pin };
-}
 
 describe("User class", () => {
     beforeEach((): void => {
         jest.setTimeout(60000);
         auth = new JsKeyManager();
         user = new User(auth);
-
     });
 
     test("savePassword() generates and saves new private key", async () => {
@@ -61,7 +43,7 @@ describe("User class", () => {
         expect(user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).toBeDefined();
     });
 
-    test("createPerson() creates a new ID of a person", async () => {
+    test("createPerson(): Create a new ID of a person", async () => {
         const { user } = await createRandomID();
 
         const accountName = user.accountName;
