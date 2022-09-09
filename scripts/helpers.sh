@@ -109,9 +109,25 @@ function stop {
 }
 
 function reset {
+    ARG1=$1
+
     set +e
     docker volume rm eosio-data
     set -e
+
+    if [ "$ARG1" == "all" ]
+    then
+        echo "Deleting all node_modules"
+        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/node_modules"
+        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/dist"
+        rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
+        rm -R "${PARENT_PATH}/Tonomy-ID-Demo/node_modules"
+        rm -R "${PARENT_PATH}/node_modules"
+
+        echo "Reinstalling npm packages"
+        install
+    fi
+
 }
 
 function test {
@@ -120,6 +136,13 @@ function test {
 
     cd "${PARENT_PATH}"
     npm test
+
+    if [ "$ARG1" == "all" ]
+    then
+        echo "Running unit tests"
+        cd "$PARENT_PATH/Tonomy-ID-SDK"
+        npm run test
+    fi
 }
 
 function log {
