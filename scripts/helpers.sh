@@ -92,6 +92,10 @@ function start {
 
 function stop {
     cd "${PARENT_PATH}"
+    set +e
+    docker-compose exec eosio /bin/bash /bin/nodeos-stop.sh
+    set -e
+
     docker-compose down
 
     echo "Stopping npm apps (ID and Demo)"
