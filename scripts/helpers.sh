@@ -92,6 +92,10 @@ function start {
 
 function stop {
     cd "${PARENT_PATH}"
+    set +e
+    docker-compose exec eosio /bin/bash /bin/nodeos-stop.sh
+    set -e
+
     docker-compose down
 
     echo "Stopping npm apps (ID and Demo)"
@@ -109,21 +113,46 @@ function stop {
 }
 
 function reset {
+    ARG1=${1-default}
+
     set +e
     docker volume rm eosio-data
     set -e
+
+    if [ "${ARG1}" == "all" ]
+    then
+        echo "Deleting all node_modules"
+        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/node_modules"
+        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/dist"
+        rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
+        rm -R "${PARENT_PATH}/Tonomy-ID-Demo/node_modules"
+        rm -R "${PARENT_PATH}/node_modules"
+
+        echo "Reinstalling npm packages"
+        install
+    fi
+
 }
 
 function test {
+    ARG1=${1-default}
+
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     npm run prepare
 
     cd "${PARENT_PATH}"
     npm test
+
+    if [ "${ARG1}" == "all" ]
+    then
+        echo "Running unit tests"
+        cd "$PARENT_PATH/Tonomy-ID-SDK"
+        npm run test
+    fi
 }
 
 function log {
-    SERVICE=${1}
+    SERVICE=${1-default}
 
     if [ "${SERVICE}" == "eosio" ]; then
         docker-compose logs -f eosio
