@@ -109,7 +109,18 @@ describe("User class", () => {
 
         await expect(() => userLogin.login(username, "differentpassword")).rejects.toThrowError(Error);
     });
+    test('logout', async () => {
+        const { user, password } = await createRandomID();
+        const newKeyManager = new JsKeyManager();
+        const newStorage = new MockStorage();
+        const userLogin = initialize(newKeyManager, newStorage);
+        await userLogin.login(user.storage.username, password);
+        expect(userLogin.isLoggedIn()).toBeTruthy();
 
+        userLogin.logout();
+        expect(userLogin.storage.status).toBeNull();
+        expect(userLogin.isLoggedIn()).toBeFalsy();
+    })
     test("getAccountInfo(): Get ID information", async () => {
         const { user } = await createRandomID();
 
