@@ -111,15 +111,12 @@ describe("User class", () => {
     });
     test('logout', async () => {
         const { user, password } = await createRandomID();
-        const newKeyManager = new JsKeyManager();
-        const newStorage = new MockStorage();
-        const userLogin = initialize(newKeyManager, newStorage);
-        await userLogin.login(user.storage.username, password);
-        expect(userLogin.isLoggedIn()).toBeTruthy();
 
-        userLogin.logout();
-        expect(userLogin.storage.status).toBeNull();
-        expect(userLogin.isLoggedIn()).toBeFalsy();
+        user.logout();
+        console.log(user.storage)
+        expect(user.storage.status).toBeFalsy();
+        expect(user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toBeFalsy();
+        expect(user.isLoggedIn()).toBeFalsy();
     })
     test("getAccountInfo(): Get ID information", async () => {
         const { user } = await createRandomID();
