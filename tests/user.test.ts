@@ -5,7 +5,7 @@ import { createRandomID } from './util/user';
 import { KeyManager, KeyManagerLevel, sha256, initialize, User } from 'tonomy-id-sdk';
 import JsKeyManager from './services/jskeymanager';
 import { PersistantStorage } from 'tonomy-id-sdk/dist/storage';
-import MockStorage from './services/mockstorage';
+import JsStorage from './services/jsstorage';
 
 let auth: KeyManager;
 let user: User;
@@ -14,7 +14,7 @@ describe("User class", () => {
     beforeEach((): void => {
         jest.setTimeout(60000);
         auth = new JsKeyManager();
-        storage = new MockStorage();
+        storage = new JsStorage();
         user = initialize(auth, storage);
     });
 
@@ -109,7 +109,17 @@ describe("User class", () => {
 
         await expect(() => userLogin.login(username, "differentpassword")).rejects.toThrowError(Error);
     });
+    test('logout', async () => {
+        const { user, password } = await createRandomID();
 
+        user.logout();
+        expect(user.storage.status).toBeFalsy();
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PIN })).toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).toThrowError(Error);
+        expect(user.isLoggedIn()).toBeFalsy();
+    })
     test("getAccountInfo(): Get ID information", async () => {
         const { user } = await createRandomID();
 

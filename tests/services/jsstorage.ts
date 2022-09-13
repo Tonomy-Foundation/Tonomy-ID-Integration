@@ -1,6 +1,6 @@
 import { PersistantStorage } from "tonomy-id-sdk/dist/storage";
 
-export default class MockStorage implements PersistantStorage {
+export default class JsStorage implements PersistantStorage {
   private _storage: any;
   constructor() {
     this._storage = {};
@@ -14,7 +14,7 @@ export default class MockStorage implements PersistantStorage {
     this._storage[key] = value;
   }
 
-  remove(key: string): void {
-    delete this._storage[key];
+  clear(): void {
+    this._storage = {};
   }
 }
