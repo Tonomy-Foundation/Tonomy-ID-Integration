@@ -2,27 +2,30 @@
 import { API as SDK_API } from 'tonomy-id-sdk/node_modules/@greymass/eosio';
 import { api } from './util/eosio';
 import { createRandomID } from './util/user';
-import { KeyManager, KeyManagerLevel, sha256, User } from 'tonomy-id-sdk';
+import { KeyManager, KeyManagerLevel, sha256, initialize, User } from 'tonomy-id-sdk';
 import JsKeyManager from './services/jskeymanager';
+import { PersistantStorage } from 'tonomy-id-sdk/dist/storage';
+import MockStorage from './services/mockstorage';
 
 let auth: KeyManager;
 let user: User;
-
+let storage: PersistantStorage;
 describe("User class", () => {
     beforeEach((): void => {
         jest.setTimeout(60000);
         auth = new JsKeyManager();
-        user = new User(auth);
+        storage = new MockStorage();
+        user = initialize(auth, storage);
     });
 
     test("savePassword() generates and saves new private key", async () => {
         expect(user.savePassword).toBeDefined();
 
         expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toThrowError(Error);
-        expect(user.salt).not.toBeDefined();
+        expect(user.storage.salt).not.toBeDefined();
         await user.savePassword("myPassword123!");
         expect(user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toBeDefined();
-        expect(user.salt).toBeDefined();
+        expect(user.storage.salt).toBeDefined();
     });
 
     test("savePIN() saves new private key", async () => {
@@ -46,7 +49,7 @@ describe("User class", () => {
     test("createPerson(): Create a new ID of a person", async () => {
         const { user } = await createRandomID();
 
-        const accountName = user.accountName;
+        const accountName = user.storage.accountName;
 
         const accountInfo = await api.v1.chain.get_account(accountName);
 
@@ -81,28 +84,28 @@ describe("User class", () => {
     test("login() logs in with password", async () => {
         const { user, password } = await createRandomID();
 
-        const username = user.username;
+        const username = user.storage.username;
 
         const newKeyManager = new JsKeyManager();
-        const userLogin = new User(newKeyManager);
+        const userLogin = initialize(newKeyManager, storage);
 
         expect(userLogin.isLoggedIn()).toBeFalsy();
         const idInfo = await userLogin.login(username, password);
 
         expect(idInfo.username_hash.toString()).toBe(sha256(username));
         expect(userLogin.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toBeDefined();
-        expect(userLogin.accountName).toBeDefined();
-        expect(userLogin.username).toBe(username);
+        expect(userLogin.storage.accountName).toBeDefined();
+        expect(userLogin.storage.username).toBe(username);
         expect(userLogin.isLoggedIn()).toBeTruthy();
     });
 
     test("login() fails with wrong password", async () => {
         const { user } = await createRandomID();
 
-        const username = user.username;
+        const username = user.storage.username;
 
         const newKeyManager = new JsKeyManager();
-        const userLogin = new User(newKeyManager);
+        const userLogin = initialize(newKeyManager, storage);
 
         await expect(() => userLogin.login(username, "differentpassword")).rejects.toThrowError(Error);
     });
@@ -111,16 +114,16 @@ describe("User class", () => {
         const { user } = await createRandomID();
 
         // get by account name
-        let userInfo = await User.getAccountInfo(user.accountName);
+        let userInfo = await User.getAccountInfo(user.storage.accountName);
 
         expect(userInfo).toBeInstanceOf(SDK_API.v1.AccountObject);
-        expect(userInfo.account_name).toEqual(user.accountName);
+        expect(userInfo.account_name).toEqual(user.storage.accountName);
 
         // get by username
-        userInfo = await User.getAccountInfo(user.username);
+        userInfo = await User.getAccountInfo(user.storage.username);
 
         expect(userInfo).toBeInstanceOf(SDK_API.v1.AccountObject);
-        expect(userInfo.account_name).toEqual(user.accountName);
+        expect(userInfo.account_name).toEqual(user.storage.accountName);
     });
 
 })
