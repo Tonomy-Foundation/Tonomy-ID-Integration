@@ -1,10 +1,10 @@
 import { KeyManagerLevel, initialize } from 'tonomy-id-sdk';
 import { PrivateKey } from '@greymass/eosio';
 import JsKeyManager from './services/jskeymanager';
-import MockStorage from './services/mockstorage';
+import JsStorage from './services/jsstorage';
 
 const keyManager = new JsKeyManager();
-const storage = new MockStorage();
+const storage = new JsStorage();
 const user = initialize(keyManager, storage);
 
 describe('Keymanager class', () => {

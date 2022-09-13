@@ -5,7 +5,7 @@ import { createRandomID } from './util/user';
 import { KeyManager, KeyManagerLevel, sha256, initialize, User } from 'tonomy-id-sdk';
 import JsKeyManager from './services/jskeymanager';
 import { PersistantStorage } from 'tonomy-id-sdk/dist/storage';
-import MockStorage from './services/mockstorage';
+import JsStorage from './services/jsstorage';
 
 let auth: KeyManager;
 let user: User;
@@ -14,7 +14,7 @@ describe("User class", () => {
     beforeEach((): void => {
         jest.setTimeout(60000);
         auth = new JsKeyManager();
-        storage = new MockStorage();
+        storage = new JsStorage();
         user = initialize(auth, storage);
     });
 
