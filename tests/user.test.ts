@@ -113,9 +113,11 @@ describe("User class", () => {
         const { user, password } = await createRandomID();
 
         user.logout();
-        console.log(user.storage)
         expect(user.storage.status).toBeFalsy();
-        expect(user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toBeFalsy();
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PIN })).toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).toThrowError(Error);
         expect(user.isLoggedIn()).toBeFalsy();
     })
     test("getAccountInfo(): Get ID information", async () => {

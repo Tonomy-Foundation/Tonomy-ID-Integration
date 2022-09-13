@@ -15,6 +15,6 @@ export default class MockStorage implements PersistantStorage {
   }
 
   clear(): void {
-    this._storage = { t: 't' };
+    this._storage = {};
   }
 }
