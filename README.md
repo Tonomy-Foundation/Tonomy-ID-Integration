@@ -2,6 +2,8 @@
 
 Developer environment to run Tonomy ID locally alongside a blockchain node, and the demo app.
 
+# Enviroment
+
 ## Dependancies
 
 - Linux debian distribution (Ubuntu 20.0.4 LTS used)
@@ -16,14 +18,12 @@ Developer environment to run Tonomy ID locally alongside a blockchain node, and 
 
 Check `./scripts/install_prerequisits.sh` for way to install this on Ubuntu 20.0.4.
 
-## Software Repositories
-We use the Ubuntu 20.04 / 22.04 environments. Please use them, as Windows is not suggested & Mac is untested. 
-If you have a Windows PC, it's suggested to install VirtualBox.
-
 ## Integration
 [Integration Repo](https://github.com/Tonomy-Foundation/Tonomy-ID-Integration)
 
-* Follow these steps one by one & read them carefully. Do not rush through it.
+## Run
+
+Follow these steps one by one & read them carefully. Do not rush through it.
 * Clone the repo
 * `git checkout development`
 * go through [this](https://github.com/Tonomy-Foundation/Tonomy-ID-Integration/blob/development/scripts/install_prerequisits.sh) script, line by line, and install the dependencies you don't have.

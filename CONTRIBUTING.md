@@ -5,14 +5,30 @@ Reading and following these guidelines will help us make the contribution proces
 
 ## Quicklinks
 * [Getting Started](#getting-started)
+* [Software Repositories](#software-repositories)
 * [Tonomy ID Workshop](#tonomy-id-workshop)
 * [Design](#design)
 * [General Practices](#general-practices)
 * [Issues](#issues)
 * [Pull Requests](#pull-requests)
 * [Getting Help](#getting-help)
+* [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our React Native cross-platform mobile wallet for public & private EOSIO blockchains.
+    * [Directory Structure](https://learn.habilelabs.io/best-folder-structure-for-react-native-project-a46405bdba7)
+* [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - used in Tonomy ID to interact and call with the EOSIO blockchain and services.
+* [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) - Smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
+* [Demo](https://github.com/Tonomy-Foundation/Tonomy-ID-Demo) - A reactjs application to show demo flows with Tonomy ID
+
+For visual aid, a recording of a full walkthrough with a junior dev can be found [here](https://www.loom.com/share/f44be75ce80044a08a73c53ea64a3afd)
+
+A recording which explains how it all works, and how to run tests can be found [here](https://www.loom.com/share/8566b834759742309ebc96c74e955767)
+
+
 
 ## Getting Started
+
+### Software Repositories
+We use the Ubuntu 20.04 / 22.04 environments. Please use them, as Windows is not suggested & Mac is untested. 
+If you have a Windows PC, it's suggested to install VirtualBox.
 
 ### Tonomy ID Workshop
 https://www.loom.com/share/d29cda0913bf4f569ed501aee76c5337
