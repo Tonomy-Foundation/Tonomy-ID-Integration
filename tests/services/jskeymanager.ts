@@ -83,7 +83,7 @@ export default class JsKeyManager implements KeyManager {
     return keyStore.publicKey;
   }
 
-  removeKey(options: GetKeyOptions): void {
+  async removeKey(options: GetKeyOptions): Promise<void> {
     if (!(options.level in this.keyStorage)) throw new Error("No key for this level");
     delete this.keyStorage[options.level];
   }
