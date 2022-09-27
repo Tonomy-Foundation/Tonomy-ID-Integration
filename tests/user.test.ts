@@ -2,9 +2,8 @@
 import { API as SDK_API } from 'tonomy-id-sdk/node_modules/@greymass/eosio';
 import { api } from './util/eosio';
 import { createRandomID } from './util/user';
-import { KeyManager, KeyManagerLevel, sha256, initialize, User } from 'tonomy-id-sdk';
+import { KeyManager, KeyManagerLevel, sha256, initialize, User, PersistantStorage } from 'tonomy-id-sdk';
 import JsKeyManager from './services/jskeymanager';
-import { PersistantStorage } from 'tonomy-id-sdk/dist/storage';
 import JsStorage from './services/jsstorage';
 
 let auth: KeyManager;
