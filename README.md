@@ -39,9 +39,11 @@ Follow these steps one by one & read them carefully. Do not rush through it.
 * `./app.sh log eosio`
 * `./app.sh stop` or `./app.sh reset` or `./app.sh reset all`
 
-For visual aid, a recording of a full walkthrough with a junior dev can be found [here](https://www.loom.com/share/f44be75ce80044a08a73c53ea64a3afd)
+For visual aid, a recording of a full walkthrough of the setup with a junior dev can be found [here](https://www.loom.com/share/f44be75ce80044a08a73c53ea64a3afd)
 
 A recording which explains how it all works, and how to run tests can be found [here](https://www.loom.com/share/8566b834759742309ebc96c74e955767)
+
+## Repositories
 
 * [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our React Native cross-platform mobile wallet for public & private EOSIO blockchains.
 * [Directory Structure](https://learn.habilelabs.io/best-folder-structure-for-react-native-project-a46405bdba7)
