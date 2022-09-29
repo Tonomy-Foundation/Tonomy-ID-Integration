@@ -1,5 +1,5 @@
 import { KeyManagerLevel, initialize } from 'tonomy-id-sdk';
-import { PrivateKey } from '@greymass/eosio';
+import { Checksum256, PrivateKey } from '@greymass/eosio';
 import JsKeyManager from './services/jskeymanager';
 import JsStorage from './services/jsstorage';
 
@@ -44,5 +44,12 @@ describe('Keymanager class', () => {
 
         const r2 = keyManager.generateRandomPrivateKey();
         expect(r1).not.toEqual(r2);
+    })
+
+    test("generates same key as RN keymanager", async () => {
+        const salt: Checksum256 = Checksum256.from(Buffer.from("12345678901234567890123456789012", "utf-8"));
+        const { privateKey } = await keyManager.generatePrivateKeyFromPassword("password", salt);
+
+        expect(privateKey.toString()).toBe("PVT_K1_pPnFBQwMSQgjAenyLdMHoeFQBtazFBYEWeA12FtKpm5PEY4fc");
     })
 })

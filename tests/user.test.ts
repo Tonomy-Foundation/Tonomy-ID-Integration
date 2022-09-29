@@ -2,9 +2,8 @@
 import { API as SDK_API } from 'tonomy-id-sdk/node_modules/@greymass/eosio';
 import { api } from './util/eosio';
 import { createRandomID } from './util/user';
-import { KeyManager, KeyManagerLevel, sha256, initialize, User } from 'tonomy-id-sdk';
+import { KeyManager, KeyManagerLevel, sha256, initialize, User, PersistantStorage } from 'tonomy-id-sdk';
 import JsKeyManager from './services/jskeymanager';
-import { PersistantStorage } from 'tonomy-id-sdk/dist/storage';
 import JsStorage from './services/jsstorage';
 
 let auth: KeyManager;
@@ -21,29 +20,29 @@ describe("User class", () => {
     test("savePassword() generates and saves new private key", async () => {
         expect(user.savePassword).toBeDefined();
 
-        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).rejects.toThrowError(Error);
         expect(user.storage.salt).not.toBeDefined();
         await user.savePassword("myPassword123!");
-        expect(user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toBeDefined();
+        expect(user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).resolves.toBeDefined();
         expect(user.storage.salt).toBeDefined();
     });
 
     test("savePIN() saves new private key", async () => {
-        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PIN })).toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PIN })).rejects.toThrowError(Error);
         await user.savePIN("4568");
-        expect(user.keyManager.getKey({ level: KeyManagerLevel.PIN })).toBeDefined();
+        expect(user.keyManager.getKey({ level: KeyManagerLevel.PIN })).resolves.toBeDefined();
     });
 
     test("saveFingerprint() saves new private key", async () => {
-        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).rejects.toThrowError(Error);
         await user.saveFingerprint();
-        expect(user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).toBeDefined();
+        expect(user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).resolves.toBeDefined();
     });
 
     test("saveLocal() saves new private key", async () => {
-        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).rejects.toThrowError(Error);
         await user.saveLocal();
-        expect(user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).toBeDefined();
+        expect(user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).resolves.toBeDefined();
     });
 
     test("createPerson(): Create a new ID of a person", async () => {
@@ -93,7 +92,7 @@ describe("User class", () => {
         const idInfo = await userLogin.login(username, password);
 
         expect(idInfo.username_hash.toString()).toBe(sha256(username));
-        expect(userLogin.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toBeDefined();
+        expect(userLogin.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).resolves.toBeDefined();
         expect(userLogin.storage.accountName).toBeDefined();
         expect(userLogin.storage.username).toBe(username);
         expect(userLogin.isLoggedIn()).toBeTruthy();
@@ -112,12 +111,13 @@ describe("User class", () => {
     test('logout', async () => {
         const { user, password } = await createRandomID();
 
-        user.logout();
+        await user.logout();
+        console.log(user.storage)
         expect(user.storage.status).toBeFalsy();
-        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).toThrowError(Error);
-        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PIN })).toThrowError(Error);
-        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).toThrowError(Error);
-        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).rejects.toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PIN })).rejects.toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).rejects.toThrowError(Error);
+        expect(() => user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).rejects.toThrowError(Error);
         expect(user.isLoggedIn()).toBeFalsy();
     })
     test("getAccountInfo(): Get ID information", async () => {
