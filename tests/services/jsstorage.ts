@@ -1,4 +1,4 @@
-import { PersistantStorage } from "tonomy-id-sdk/dist/storage";
+import { PersistantStorage } from "tonomy-id-sdk";
 
 export default class JsStorage implements PersistantStorage {
   private _storage: any;
@@ -6,15 +6,15 @@ export default class JsStorage implements PersistantStorage {
     this._storage = {};
   }
 
-  retrieve(key: string): any {
+  async retrieve(key: string): Promise<any> {
     return this._storage[key];
   }
 
-  store(key: string, value: any): void {
+  async store(key: string, value: any): Promise<void> {
     this._storage[key] = value;
   }
 
-  clear(): void {
+  async clear(): Promise<void> {
     this._storage = {};
   }
 }
