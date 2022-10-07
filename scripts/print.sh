@@ -11,8 +11,8 @@ function help {
     echo "    init           - starts application components through docker compose and initializes and resets the blockchain and database"
     echo "    start          - starts application components through docker compose"
     echo "    stop           - stops application execution"
-    echo "    reset (all)    - stops application execution and resets all data. Optionally specify 'all' to also reset all node_modules"
-    echo "    test (all)     - reset and run integration tests. Optionally specify 'all' to run all unit tests"
+    echo "    reset [all]    - stops application execution and resets all data. Optionally specify 'all' to also reset all node_modules"
+    echo "    test [all]     - reset and run integration tests. Optionally specify 'all' to run all unit tests"
     echo "    log [service] - prints logs for the service"
 }
 
