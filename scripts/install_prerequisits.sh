@@ -41,3 +41,5 @@ echo "Installing TSDX globally"
 npm i -g tsdx@0.14.1
 echo "Intalling  wml globally"
 npm i -g wml@0.0.83
+echo "Intalling  eas-cli globally"
+npm i -g eas-cli@2.2.1

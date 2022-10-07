@@ -81,8 +81,8 @@ function start {
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
-    pm2 start npm --name "id" -- start
-    # pm2 start expo --name "id" -- start --host tunnel
+    # pm2 start npm --name "id" -- start
+    pm2 start expo --name "id" -- start --host tunnel
 
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"
@@ -127,9 +127,6 @@ function reset {
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID-Demo/node_modules"
         rm -R "${PARENT_PATH}/node_modules"
-
-        echo "Reinstalling npm packages"
-        install
     fi
 
 }
@@ -148,6 +145,10 @@ function test {
         echo "Running unit tests"
         cd "$PARENT_PATH/Tonomy-ID-SDK"
         npm run test
+
+        echo "Running unit tests"
+        cd "$PARENT_PATH/Tonomy-ID"
+        npm run test -- --all
     fi
 }
 
