@@ -81,8 +81,8 @@ function start {
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
-    # pm2 start npm --name "id" -- start
-    pm2 start expo --name "id" -- start --host tunnel
+    pm2 start npm --name "id" -- start
+    # pm2 start npm --name "id" -- start --host tunnel
 
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"
