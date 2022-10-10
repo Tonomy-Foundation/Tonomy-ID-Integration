@@ -1,5 +1,7 @@
 # Tonomy-ID-integration
 
+# STOP! Scroll down to RUN and only do that. 
+
 Developer environment to run Tonomy ID locally alongside a blockchain node, and the demo app.
 
 Check the [CONTRIBUTING.md](./CONTRIBUTING.md) for developers contributing to this project.
