@@ -8,8 +8,8 @@
 # Is the user calling this root?
 # Is this Ubuntu 20.04 ?
 
-sudo apt install npm git htop -y
-
+sudo apt install npm git htop  -y
+npm install -g eas-cli
 #Nodejs??
 
 #dialog --backtitle "TONOMY INTERGRATION MODULE" \
