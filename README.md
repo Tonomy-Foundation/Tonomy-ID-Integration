@@ -24,8 +24,31 @@ Check the [CONTRIBUTING.md](./CONTRIBUTING.md) for developers contributing to th
 
 Go through `./scripts/install_prerequisits.sh`, execusing each command line-by-line to install this on Ubuntu 20.0.4.
 
+
+## Run
+
+Follow these steps one by one & read them carefully. Do not rush through it.
+
+- Clone the repo
+- `git checkout development`
+- `./app.sh` and read what each command does
+- `./app.sh gitinit`
+- `./app.sh install`
+- Now run the Pre-run setup below***
+- `./app.sh init`
+- Now, you can do one of the following;
+- `./app.sh start`
+  - Check out the links shown
+  - Scan the QR code with the expo app
+- `./app.sh test` or `./app.sh test all`
+- `./app.sh log eosio`
+- `./app.sh stop` or `./app.sh reset` or `./app.sh reset all`
+
+For visual aid, a recording of a full walkthrough of the setup with a junior dev can be found [here](https://www.loom.com/share/f44be75ce80044a08a73c53ea64a3afd)
+
+A recording which explains how it all works, and how to run tests can be found [here](https://www.loom.com/share/8566b834759742309ebc96c74e955767)
+
 ### Pre-run (one time)
-## this is depriciated, Pending remove
 
 See the Run instructions below for when to do this***
 
@@ -46,28 +69,6 @@ See the Run instructions below for when to do this***
 6. Return to [https://expo.dev/](https://expo.dev/) and click on the Tonomy ID project build
 7. Install the created app on your phone
 
-## Run
-
-Follow these steps one by one & read them carefully. Do not rush through it.
-
-- Clone the repo
-- `git checkout development`
-- `./app.sh` and read what each command does
-- `./app.sh gitinit`
-- `./app.sh install`
-- Now run the Pre-run setup above***
-- `./app.sh init`
-- Now, you can do one of the following;
-- `./app.sh start`
-  - Check out the links shown
-  - Scan the QR code with the expo app
-- `./app.sh test` or `./app.sh test all`
-- `./app.sh log eosio`
-- `./app.sh stop` or `./app.sh reset` or `./app.sh reset all`
-
-For visual aid, a recording of a full walkthrough of the setup with a junior dev can be found [here](https://www.loom.com/share/f44be75ce80044a08a73c53ea64a3afd)
-
-A recording which explains how it all works, and how to run tests can be found [here](https://www.loom.com/share/8566b834759742309ebc96c74e955767)
 
 ## Repositories
 
