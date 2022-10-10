@@ -10,6 +10,8 @@
 
 sudo apt install npm git htop  -y
 npm install -g eas-cli
+npm install pm2
+npm install wml
 #Nodejs??
 
 #dialog --backtitle "TONOMY INTERGRATION MODULE" \
