@@ -22,9 +22,6 @@ Check the [CONTRIBUTING.md](./CONTRIBUTING.md) for developers contributing to th
 - [wml](https://www.wml.io) v0.0.83+ installed globally by `npm`
 - [Eas-cli](https://docs.expo.dev/workflow/expo-cli/) v2.2.1 globally installed with npm
 
-Go through `./scripts/install_prerequisits.sh`, execusing each command line-by-line to install this on Ubuntu 20.0.4.
-
-
 ## Run
 
 Follow these steps one by one & read them carefully. Do not rush through it.
