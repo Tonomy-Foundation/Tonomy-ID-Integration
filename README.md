@@ -23,6 +23,7 @@ Check the [CONTRIBUTING.md](./CONTRIBUTING.md) for developers contributing to th
 Go through `./scripts/install_prerequisits.sh`, execusing each command line-by-line to install this on Ubuntu 20.0.4.
 
 ### Pre-run (one time)
+## this is depriciated, Pending remove
 
 See the Run instructions below for when to do this***
 
