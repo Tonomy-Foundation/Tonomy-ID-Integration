@@ -53,7 +53,7 @@ Follow these steps one by one & read them carefully. Do not rush through it.
 - Clone the repo
 - `git checkout development`
 - `./app.sh` and read what each command does
-- `./app.sh gitinstall`
+- `./app.sh gitinit`
 - `./app.sh install`
 - Now run the Pre-run setup above***
 - `./app.sh init`
