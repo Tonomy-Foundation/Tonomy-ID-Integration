@@ -2,7 +2,13 @@
 
 # Ubuntu 20 machine
 
-sudo apt install npm git htop 
+
+# NEEDS prerequisite check
+# Does the server have enough RAM? 
+# Is the user calling this root?
+# Is this Ubuntu 20.04 ?
+
+sudo apt install npm git htop -y
 
 #Nodejs??
 
@@ -15,7 +21,7 @@ sudo apt install npm git htop
 #read var
 #exit
 
-sudo apt update
+sudo apt update -y && sudo apt upgrade -y && sudo autoremove -y
 
 # Docker 20.10.17 and docker-compose 1.29.2
 # https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
