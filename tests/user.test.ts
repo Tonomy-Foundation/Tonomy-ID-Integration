@@ -5,6 +5,7 @@ import { createRandomID } from './util/user';
 import { KeyManager, KeyManagerLevel, sha256, initialize, User, PersistantStorage } from 'tonomy-id-sdk';
 import JsKeyManager from './services/jskeymanager';
 import JsStorage from './services/jsstorage';
+import settings from './services/settings';
 
 let auth: KeyManager;
 let user: User;
@@ -14,7 +15,7 @@ describe("User class", () => {
         jest.setTimeout(60000);
         auth = new JsKeyManager();
         storage = new JsStorage();
-        user = initialize(auth, storage);
+        user = initialize(auth, storage, settings);
     });
 
     test("savePassword() generates and saves new private key", async () => {
@@ -86,7 +87,7 @@ describe("User class", () => {
         const username = await user.storage.username;
 
         const newKeyManager = new JsKeyManager();
-        const userLogin = initialize(newKeyManager, storage);
+        const userLogin = initialize(newKeyManager, storage, settings);
 
         expect(userLogin.isLoggedIn()).resolves.toBeFalsy();
         const idInfo = await userLogin.login(username, password);
@@ -104,7 +105,7 @@ describe("User class", () => {
         const username = await user.storage.username;
 
         const newKeyManager = new JsKeyManager();
-        const userLogin = initialize(newKeyManager, storage);
+        const userLogin = initialize(newKeyManager, storage, settings);
 
         await expect(() => userLogin.login(username, "differentpassword")).rejects.toThrowError(Error);
     });

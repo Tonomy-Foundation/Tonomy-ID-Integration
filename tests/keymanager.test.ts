@@ -2,10 +2,11 @@ import { KeyManagerLevel, initialize } from 'tonomy-id-sdk';
 import { Checksum256, PrivateKey } from '@greymass/eosio';
 import JsKeyManager from './services/jskeymanager';
 import JsStorage from './services/jsstorage';
+import settings from './services/settings';
 
 const keyManager = new JsKeyManager();
 const storage = new JsStorage();
-const user = initialize(keyManager, storage);
+const user = initialize(keyManager, storage, settings);
 
 describe('Keymanager class', () => {
     test('KeyManagerLevel enum helpers', () => {
