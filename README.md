@@ -27,6 +27,8 @@ Follow these steps one by one & read them carefully. Do not rush through it.
 - `./app.sh log eosio`
 - `./app.sh stop` or `./app.sh reset` or `./app.sh reset all`
 
+If you see errors related to missing pages, then try `pm2 restart id`
+
 To run in staging or production, use:
 
 ```bash
