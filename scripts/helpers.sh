@@ -67,6 +67,13 @@ function startdocker {
 }
 
 function start {
+    set +u
+    if [ -z "${NODE_ENV}" ]
+    then
+        NODE_ENV=development;
+    fi
+    set -u
+
     startdocker
 
     echo "Starting Tonomy-ID-SDK"
@@ -78,11 +85,13 @@ function start {
     rm -R "${PARENT_PATH}/Tonomy-ID/node_modules/tonomy-id-sdk"
     wml add "${PARENT_PATH}/Tonomy-ID-SDK" "${PARENT_PATH}/Tonomy-ID/node_modules/tonomy-id-sdk"
     pm2 start wml --name "linking" -- start
+    sleep 60 # needed to wait for the linking to finish
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
-    pm2 start npm --name "id" -- start
-    # pm2 start npm --name "id" -- start --host tunnel
+    echo "NODE_ENV=${NODE_ENV}"
+    NODE_ENV="${NODE_ENV}" pm2 start npm --name "id" -- start
+    # pm2 start npm --name "id" -- start --tunnel
 
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"

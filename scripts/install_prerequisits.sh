@@ -3,25 +3,10 @@
 # Ubuntu 20 machine
 
 
-# NEEDS prerequisite check
-# Does the server have enough RAM? 
-# Is the user calling this root?
-# Is this Ubuntu 20.04 ?
-
-sudo apt install npm git htop  -y
-npm install -g eas-cli
-npm install pm2
-npm install wml
-#Nodejs??
-
-#dialog --backtitle "TONOMY INTERGRATION MODULE" \
-#       --title "Configuration sun-java-jre" \
-#       --yesno "\nThis will install all prerequisites to run the tonomy network. This is a test network and prototype, we are not responsible for your data\n\nDo you accept?" 10 30
-
-#echo "Run this script manually, as you need to reboot and exit terminal during installation."
-#echo "Press any key to exit..."
-#read var
-#exit
+echo "Run this script manually, as you need to reboot and exit terminal during installation."
+echo "Press any key to exit..."
+read var
+exit
 
 sudo apt update -y && sudo apt upgrade -y && sudo autoremove -y
 

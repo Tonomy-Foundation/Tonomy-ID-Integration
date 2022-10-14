@@ -1,7 +1,5 @@
 # Tonomy-ID-integration
 
-# STOP! Scroll down to RUN and only do that. 
-
 Developer environment to run Tonomy ID locally alongside a blockchain node, and the demo app.
 
 Check the [CONTRIBUTING.md](./CONTRIBUTING.md) for developers contributing to this project.
@@ -28,6 +26,18 @@ Follow these steps one by one & read them carefully. Do not rush through it.
 - `./app.sh test` or `./app.sh test all`
 - `./app.sh log eosio`
 - `./app.sh stop` or `./app.sh reset` or `./app.sh reset all`
+
+If you see errors related to missing pages, then try `pm2 restart id`
+
+To run in staging or production, use:
+
+```bash
+export NODE_ENV=staging
+#or
+export NODE_ENV=production
+#then
+./app.sh start
+```
 
 For visual aid, a recording of a full walkthrough of the setup with a junior dev can be found [here](https://www.loom.com/share/f44be75ce80044a08a73c53ea64a3afd)
 
@@ -67,7 +77,6 @@ In case you have problems here is a list of the dependencies
 - [tsdx](https://tsdx.io) v0.14.1 installed globally by `npm`
 - [wml](https://www.wml.io) v0.0.83+ installed globally by `npm`
 - [Eas-cli](https://docs.expo.dev/workflow/expo-cli/) v2.2.1 globally installed with npm
-
 
 ## Repositories
 
