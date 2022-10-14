@@ -67,6 +67,13 @@ function startdocker {
 }
 
 function start {
+    set +u
+    if [ -z "${NODE_ENV}" ]
+    then
+        NODE_ENV=development;
+    fi
+    set -u
+
     startdocker
 
     echo "Starting Tonomy-ID-SDK"
@@ -82,6 +89,7 @@ function start {
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
+    echo "NODE_ENV=${NODE_ENV}"
     NODE_ENV="${NODE_ENV}" pm2 start npm --name "id" -- start
     # pm2 start npm --name "id" -- start --tunnel
 
