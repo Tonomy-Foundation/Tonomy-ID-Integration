@@ -82,8 +82,7 @@ function start {
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
-    echo "${NODE_ENV}"
-    pm2 start npm --name "id" -- start
+    NODE_ENV="${NODE_ENV}" pm2 start npm --name "id" -- start
     # pm2 start npm --name "id" -- start --tunnel
 
     echo "Starting Tonomy-ID-Demo"
