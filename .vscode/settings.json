@@ -4,12 +4,6 @@
         "javascript",
         "typescript"
     ],
-    "eslint.workingDirectories": [
-        "./",
-        "./Tonomy-ID",
-        "./Tonomy-ID-SDK",
-        "./Tonomy-ID-Demo",
-    ],
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true,
     }
