@@ -1,4 +1,3 @@
-
 import { User, randomString, KeyManager, initialize } from 'tonomy-id-sdk';
 import { PersistantStorage } from 'tonomy-id-sdk';
 import JsKeyManager from '../services/jskeymanager';
