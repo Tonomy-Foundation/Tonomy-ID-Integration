@@ -9,7 +9,7 @@ import JsStorage from './services/jsstorage';
 let auth: KeyManager;
 let user: User;
 let storage: PersistantStorage;
-describe("User class", () => {
+describe('User class', () => {
     beforeEach((): void => {
         jest.setTimeout(60000);
         auth = new JsKeyManager();
@@ -17,35 +17,35 @@ describe("User class", () => {
         user = initialize(auth, storage);
     });
 
-    test("savePassword() generates and saves new private key", async () => {
+    test('savePassword() generates and saves new private key', async () => {
         expect(user.savePassword).toBeDefined();
 
         expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).rejects.toThrowError(Error);
         expect(await user.storage.salt).not.toBeDefined();
-        await user.savePassword("myPassword123!");
+        await user.savePassword('myPassword123!');
         expect(user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).resolves.toBeDefined();
         expect(await user.storage.salt).toBeDefined();
     });
 
-    test("savePIN() saves new private key", async () => {
+    test('savePIN() saves new private key', async () => {
         expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PIN })).rejects.toThrowError(Error);
-        await user.savePIN("4568");
+        await user.savePIN('4568');
         expect(user.keyManager.getKey({ level: KeyManagerLevel.PIN })).resolves.toBeDefined();
     });
 
-    test("saveFingerprint() saves new private key", async () => {
+    test('saveFingerprint() saves new private key', async () => {
         expect(() => user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).rejects.toThrowError(Error);
         await user.saveFingerprint();
         expect(user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).resolves.toBeDefined();
     });
 
-    test("saveLocal() saves new private key", async () => {
+    test('saveLocal() saves new private key', async () => {
         expect(() => user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).rejects.toThrowError(Error);
         await user.saveLocal();
         expect(user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).resolves.toBeDefined();
     });
 
-    test("createPerson(): Create a new ID of a person", async () => {
+    test('createPerson(): Create a new ID of a person', async () => {
         const { user } = await createRandomID();
 
         const accountName = await user.storage.accountName;
@@ -56,31 +56,31 @@ describe("User class", () => {
         expect(accountInfo.account_name.toString()).toBe(accountName.toString());
 
         // Password key
-        expect(accountInfo.getPermission("owner").required_auth.threshold.toNumber()).toBe(1);
-        expect(accountInfo.getPermission("owner").required_auth.keys[0].key).toBeDefined();
+        expect(accountInfo.getPermission('owner').required_auth.threshold.toNumber()).toBe(1);
+        expect(accountInfo.getPermission('owner').required_auth.keys[0].key).toBeDefined();
 
         // PIN key
-        expect(accountInfo.getPermission("pin").parent.toString()).toBe("owner");
-        expect(accountInfo.getPermission("pin").required_auth.threshold.toNumber()).toBe(1);
-        expect(accountInfo.getPermission("pin").required_auth.keys[0].key).toBeDefined();
+        expect(accountInfo.getPermission('pin').parent.toString()).toBe('owner');
+        expect(accountInfo.getPermission('pin').required_auth.threshold.toNumber()).toBe(1);
+        expect(accountInfo.getPermission('pin').required_auth.keys[0].key).toBeDefined();
 
         // Fingerprint key
-        expect(accountInfo.getPermission("fingerprint").parent.toString()).toBe("owner");
-        expect(accountInfo.getPermission("fingerprint").required_auth.threshold.toNumber()).toBe(1);
-        expect(accountInfo.getPermission("fingerprint").required_auth.keys[0].key).toBeDefined();
+        expect(accountInfo.getPermission('fingerprint').parent.toString()).toBe('owner');
+        expect(accountInfo.getPermission('fingerprint').required_auth.threshold.toNumber()).toBe(1);
+        expect(accountInfo.getPermission('fingerprint').required_auth.keys[0].key).toBeDefined();
 
         // Local key
-        expect(accountInfo.getPermission("local").parent.toString()).toBe("owner");
-        expect(accountInfo.getPermission("local").required_auth.threshold.toNumber()).toBe(1);
-        expect(accountInfo.getPermission("local").required_auth.keys[0].key).toBeDefined();
+        expect(accountInfo.getPermission('local').parent.toString()).toBe('owner');
+        expect(accountInfo.getPermission('local').required_auth.threshold.toNumber()).toBe(1);
+        expect(accountInfo.getPermission('local').required_auth.keys[0].key).toBeDefined();
 
         // Active key
-        expect(accountInfo.getPermission("active").parent.toString()).toBe("owner");
-        expect(accountInfo.getPermission("active").required_auth.threshold.toNumber()).toBe(1);
-        expect(accountInfo.getPermission("active").required_auth.keys[0].key).toBeDefined();
+        expect(accountInfo.getPermission('active').parent.toString()).toBe('owner');
+        expect(accountInfo.getPermission('active').required_auth.threshold.toNumber()).toBe(1);
+        expect(accountInfo.getPermission('active').required_auth.keys[0].key).toBeDefined();
     });
 
-    test("login() logs in with password", async () => {
+    test('login() logs in with password', async () => {
         const { user, password } = await createRandomID();
 
         const username = await user.storage.username;
@@ -98,7 +98,7 @@ describe("User class", () => {
         expect(userLogin.isLoggedIn()).toBeTruthy();
     });
 
-    test("login() fails with wrong password", async () => {
+    test('login() fails with wrong password', async () => {
         const { user } = await createRandomID();
 
         const username = await user.storage.username;
@@ -106,7 +106,7 @@ describe("User class", () => {
         const newKeyManager = new JsKeyManager();
         const userLogin = initialize(newKeyManager, storage);
 
-        await expect(() => userLogin.login(username, "differentpassword")).rejects.toThrowError(Error);
+        await expect(() => userLogin.login(username, 'differentpassword')).rejects.toThrowError(Error);
     });
     test('logout', async () => {
         const { user, password } = await createRandomID();
@@ -119,8 +119,8 @@ describe("User class", () => {
         expect(() => user.keyManager.getKey({ level: KeyManagerLevel.FINGERPRINT })).rejects.toThrowError(Error);
         expect(() => user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).rejects.toThrowError(Error);
         expect(user.isLoggedIn()).resolves.toBeFalsy();
-    })
-    test("getAccountInfo(): Get ID information", async () => {
+    });
+    test('getAccountInfo(): Get ID information', async () => {
         const { user } = await createRandomID();
 
         // get by account name
@@ -135,5 +135,4 @@ describe("User class", () => {
         expect(userInfo).toBeInstanceOf(SDK_API.v1.AccountObject);
         expect(userInfo.account_name).toEqual(await user.storage.accountName);
     });
-
-})
+});

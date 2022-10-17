@@ -20,23 +20,23 @@ describe('Keymanager class', () => {
     });
 
     test('generatePrivateKeyFromPassword() returns privatekey', async () => {
-        const password = "123";
-        const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword(password)
+        const password = '123';
+        const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword(password);
         expect(privateKey).toBeInstanceOf(PrivateKey);
         expect(salt).toBeDefined();
-    })
+    });
 
     test('generatePrivateKeyFromPassword() password can be verfied', async () => {
-        const password = "123";
+        const password = '123';
         const { privateKey, salt } = await keyManager.generatePrivateKeyFromPassword(password);
 
         const { privateKey: privateKey2 } = await keyManager.generatePrivateKeyFromPassword(password, salt);
         expect(privateKey).toEqual(privateKey2);
-    })
+    });
 
     test('generateRandomPrivateKey() is defined', () => {
         expect(keyManager.generateRandomPrivateKey).toBeDefined();
-    })
+    });
 
     test('generateRandomPrivateKey() generates random key', async () => {
         const r1 = keyManager.generateRandomPrivateKey();
@@ -44,12 +44,12 @@ describe('Keymanager class', () => {
 
         const r2 = keyManager.generateRandomPrivateKey();
         expect(r1).not.toEqual(r2);
-    })
+    });
 
-    test("generates same key as RN keymanager", async () => {
-        const salt: Checksum256 = Checksum256.from(Buffer.from("12345678901234567890123456789012", "utf-8"));
-        const { privateKey } = await keyManager.generatePrivateKeyFromPassword("password", salt);
+    test('generates same key as RN keymanager', async () => {
+        const salt: Checksum256 = Checksum256.from(Buffer.from('12345678901234567890123456789012', 'utf-8'));
+        const { privateKey } = await keyManager.generatePrivateKeyFromPassword('password', salt);
 
-        expect(privateKey.toString()).toBe("PVT_K1_pPnFBQwMSQgjAenyLdMHoeFQBtazFBYEWeA12FtKpm5PEY4fc");
-    })
-})
+        expect(privateKey.toString()).toBe('PVT_K1_pPnFBQwMSQgjAenyLdMHoeFQBtazFBYEWeA12FtKpm5PEY4fc');
+    });
+});
