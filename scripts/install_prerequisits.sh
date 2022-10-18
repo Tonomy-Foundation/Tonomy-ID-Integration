@@ -27,7 +27,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 # watchman
-sudo apt-get install watchman=4.9.0-3build1 -y
+sudo apt install watchman=4.9.0* -y
 
 # nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash

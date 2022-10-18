@@ -34,9 +34,9 @@ function install {
     npm install
     npm link "$PARENT_PATH/Tonomy-ID-SDK"
  
-    cd "$PARENT_PATH/Tonomy-ID-Demo"
-    npm install
-    npm link "$PARENT_PATH/Tonomy-ID-SDK"
+    # cd "$PARENT_PATH/Tonomy-ID-Demo"
+    # npm install
+    # npm link "$PARENT_PATH/Tonomy-ID-SDK"
 
     cd "$PARENT_PATH"
     npm install
@@ -90,13 +90,17 @@ function start {
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
     echo "NODE_ENV=${NODE_ENV}"
-    NODE_ENV="${NODE_ENV}" pm2 start npm --name "id" -- start
-    # pm2 start npm --name "id" -- start --tunnel
+    if [ "$NODE_ENV" = "development" ]
+    then
+        NODE_ENV="${NODE_ENV}" pm2 start npm --name "id" -- start
+    else
+        NODE_ENV="${NODE_ENV}" pm2 start npm --name "id" -- run tunnel
+    fi
 
-    echo "Starting Tonomy-ID-Demo"
-    cd "${PARENT_PATH}/Tonomy-ID-Demo"
-    npm link "${PARENT_PATH}/Tonomy-ID-SDK"
-    BROWSER=none pm2 start npm --name "demo" -- start
+    # echo "Starting Tonomy-ID-Demo"
+    # cd "${PARENT_PATH}/Tonomy-ID-Demo"
+    # npm link "${PARENT_PATH}/Tonomy-ID-SDK"
+    # BROWSER=none pm2 start npm --name "demo" -- start
 }
 
 function stop {
@@ -109,7 +113,10 @@ function stop {
 
     echo "Stopping npm apps (ID and Demo)"
     set +e
-    pm2 delete id demo sdk linking
+    pm2 delete id
+    pm2 delete demo
+    pm2 delete sdk
+    pm2 delete linking
     set -e
 
     set +e
@@ -126,8 +133,13 @@ function reset {
 
     set +e
     docker volume rm eosio-data
-    set -e
 
+    pm2 delete id
+    pm2 delete sdk
+    pm2 delete linking
+    pm2 delete demo
+    set -e
+    
     if [ "${ARG1}" == "all" ]
     then
         echo "Deleting all node_modules"
