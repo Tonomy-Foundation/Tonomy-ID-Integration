@@ -8,16 +8,17 @@ sudo systemctl restart nginx
 
 # Commands for the staging server
 
+export NODE_ENV=staging
 git clone https://github.com/Tonomy-Foundation/Tonomy-ID-Integration.git
 cd Tonomy-ID-Integration
 git checkout development
 ./apps.sh gitinit
 ./apps.sh install
-export NODE_ENV=staging
 ./apps.sh init
 ./apps.sh start
 
 # next time, to upgrade
+export NODE_ENV=staging
 cd Tonomy-ID-Integration
 ./apps.sh stop
 git pull
