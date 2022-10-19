@@ -85,11 +85,11 @@ function start {
     rm -R "${PARENT_PATH}/Tonomy-ID/node_modules/tonomy-id-sdk"
     wml add "${PARENT_PATH}/Tonomy-ID-SDK" "${PARENT_PATH}/Tonomy-ID/node_modules/tonomy-id-sdk"
     pm2 start wml --name "linking" -- start
-    sleep 60 # needed to wait for the linking to finish
-
+    
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
     echo "NODE_ENV=${NODE_ENV}"
+    sleep 60 # needed to wait for the linking to finish
     if [ "$NODE_ENV" = "development" ]
     then
         pm2 start npm --name "id" -- run start
