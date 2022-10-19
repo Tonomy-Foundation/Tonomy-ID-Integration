@@ -16,25 +16,40 @@ source ./scripts/print.sh
 if [ -z "$ARG1" ]
 then
     help
+elif [ "$ARG1" == "gitinit" ]
+then
+    gitinit
 elif [ "$ARG1" == "install" ]
 then
     install
 elif [ "$ARG1" == "init" ]
 then
     stop
-    start
+    reset
+    buildcontracts
+    startdocker
     init
+    printservices
 elif [ "$ARG1" == "start" ]
 then
     stop
     start
+    printservices
 elif [ "$ARG1" == "stop" ]
 then
     stop
 elif [ "$ARG1" == "reset" ]
 then
     stop
+    reset "${ARG2}"
+elif [ "$ARG1" == "test" ]
+then
+    stop
     reset
+    buildcontracts
+    startdocker
+    init
+    test "${ARG2}"
 elif [ "$ARG1" == "log" ]
 then
     log "${ARG2}"
