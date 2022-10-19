@@ -3,7 +3,8 @@
 # Extra pre-requisits to install
 
 sudo apt install -y nginx
-cp ../nginx/nginx.conf /etc/nginx/conf.d/default.conf
+cp ./nginx.conf /etc/nginx/conf.d/default.conf
+sudo systemctl restart nginx
 
 # Commands for the staging server
 
@@ -12,6 +13,7 @@ cd Tonomy-ID-Integration
 git checkout development
 ./apps.sh gitinit
 ./apps.sh install
+export NODE_ENV=staging
 ./apps.sh init
 ./apps.sh start
 

@@ -90,7 +90,12 @@ function start {
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
     echo "NODE_ENV=${NODE_ENV}"
-    NODE_ENV="${NODE_ENV}" pm2 start npm --name "id" -- start
+    if [ "$NODE_ENV" = "development" ]
+    then
+        pm2 start npm --name "id" -- run start
+    else
+        pm2 start npm --name "id" -- run start --tunnel
+    fi
 
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"
@@ -179,9 +184,10 @@ function log {
         pm2 log demo
     elif [ "${SERVICE}" == "sdk" ]; then
         pm2 log sdk
-
     elif [ "${SERVICE}" == "linking" ]; then
         pm2 log linking
+    elif [ "${SERVICE}" == "nginx" ]; then
+        tail -f --lines=10 /var/log/nginx/access.log
     else
         loghelp
     fi
