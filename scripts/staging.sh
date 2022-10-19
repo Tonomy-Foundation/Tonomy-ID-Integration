@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Extra pre-requisits to install
+
+sudo apt install -y nginx
+cp ../nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
 # Commands for the staging server
 
 git clone https://github.com/Tonomy-Foundation/Tonomy-ID-Integration.git

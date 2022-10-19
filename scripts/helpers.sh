@@ -34,9 +34,9 @@ function install {
     npm install
     npm link "$PARENT_PATH/Tonomy-ID-SDK"
  
-    # cd "$PARENT_PATH/Tonomy-ID-Demo"
-    # npm install
-    # npm link "$PARENT_PATH/Tonomy-ID-SDK"
+    cd "$PARENT_PATH/Tonomy-ID-Demo"
+    npm install
+    npm link "$PARENT_PATH/Tonomy-ID-SDK"
 
     cd "$PARENT_PATH"
     npm install
@@ -97,10 +97,10 @@ function start {
         NODE_ENV="${NODE_ENV}" pm2 start npm --name "id" -- run tunnel
     fi
 
-    # echo "Starting Tonomy-ID-Demo"
-    # cd "${PARENT_PATH}/Tonomy-ID-Demo"
-    # npm link "${PARENT_PATH}/Tonomy-ID-SDK"
-    # BROWSER=none pm2 start npm --name "demo" -- start
+    echo "Starting Tonomy-ID-Demo"
+    cd "${PARENT_PATH}/Tonomy-ID-Demo"
+    npm link "${PARENT_PATH}/Tonomy-ID-SDK"
+    BROWSER=none pm2 start npm --name "demo" -- start
 }
 
 function stop {
