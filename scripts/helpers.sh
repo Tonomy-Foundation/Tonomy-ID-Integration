@@ -90,12 +90,7 @@ function start {
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
     echo "NODE_ENV=${NODE_ENV}"
-    if [ "$NODE_ENV" = "development" ]
-    then
-        NODE_ENV="${NODE_ENV}" pm2 start npm --name "id" -- start
-    else
-        NODE_ENV="${NODE_ENV}" pm2 start npm --name "id" -- run tunnel
-    fi
+    NODE_ENV="${NODE_ENV}" pm2 start npm --name "id" -- start
 
     echo "Starting Tonomy-ID-Demo"
     cd "${PARENT_PATH}/Tonomy-ID-Demo"
