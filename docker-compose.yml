@@ -15,3 +15,9 @@ services:
     volumes:
       - ./:/var/repo
       - eosio-data:/data
+  nginx:
+    image: nginx:1.23.1
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
