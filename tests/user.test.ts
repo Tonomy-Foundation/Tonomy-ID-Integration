@@ -8,8 +8,9 @@ import JsStorage from './services/jsstorage';
 import settings from './services/settings';
 
 let auth: KeyManager;
-let user: User;
 let storage: PersistantStorage;
+let user: User;
+
 describe('User class', () => {
     beforeEach((): void => {
         jest.setTimeout(60000);

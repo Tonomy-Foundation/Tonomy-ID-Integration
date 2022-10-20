@@ -4,10 +4,7 @@ import { createAccount } from './create-account';
 import { EosioTokenContract, setSettings } from 'tonomy-id-sdk';
 import { signer } from './keys';
 
-setSettings({
-    blockchainUrl: 'http://localhost:8888',
-});
-
+setSettings({ blockchainUrl: 'http://localhost:8888' });
 const eosioTokenContract = EosioTokenContract.Instance;
 
 async function main() {
