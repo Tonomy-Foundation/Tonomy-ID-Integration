@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "build": "tsc --project ./tsconfig.initialize.json",
-    "bootstrap": "node initialize/build/bootstrap.js",
+    "bootstrap": "npx ts-node@v10.9.1 initialize/bootstrap.ts",
     "test": "jest",
     "lint": "eslint tests --ext .ts",
     "lint:fix": "npm run lint -- --fix"
