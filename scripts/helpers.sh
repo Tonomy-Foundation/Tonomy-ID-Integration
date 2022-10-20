@@ -55,7 +55,6 @@ function init {
     docker-compose exec eosio /bin/bash /var/repo/blockchain/initialize-blockchain.sh
 
     cd "$PARENT_PATH"
-    npm run build
     npm run bootstrap
 }
 
