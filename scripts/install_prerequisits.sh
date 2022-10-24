@@ -8,7 +8,7 @@ echo "Press any key to exit..."
 read var
 exit
 
-sudo apt update -y && sudo apt upgrade -y && sudo autoremove -y
+sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
 
 # Docker 20.10.17 and docker-compose 1.29.2
 # https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
