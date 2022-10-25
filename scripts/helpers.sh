@@ -88,7 +88,6 @@ function start {
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
     echo "NODE_ENV=${NODE_ENV}"
-    sleep 60 # needed to wait for the linking to finish
     if [ "$NODE_ENV" = "development" ]
     then
         pm2 start npm --name "id" -- run start

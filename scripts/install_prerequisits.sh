@@ -27,7 +27,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 # lsyncd
- sudo apt-get -y install lsyncd
+ sudo apt-get -y install lsyncd=2.2.3
 
 #rsync
 sudo apt-get install rsync=3.2.3 -y
