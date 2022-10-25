@@ -22,12 +22,11 @@ In case you have problems here is a list of the dependencies
 
 - [Docker](http://docs.docker.com) v20.10+
 - [Docker Compose](http://docs.docker.com/compose/) v1.29+
-- [watchman](https://facebook.github.io/watchman/) v4.9.0+
+- [lsyncd](https://github.com/lsyncd/lsyncd) v2.2.3+
 - [npm](https://www.npmjs.com/) v16.4-17.0. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
 - [expo-cli](https://expo.dev/) v5.2+ installed globally by `npm`
 - [pm2](https://pm2.io) v5.5+ installed globally by `npm`
 - [tsdx](https://tsdx.io) v0.14.1 installed globally by `npm`
-- [wml](https://www.wml.io) v0.0.83+ installed globally by `npm`
 - [Eas-cli](https://docs.expo.dev/workflow/expo-cli/) v2.2.1 globally installed with npm
 
 ## Run

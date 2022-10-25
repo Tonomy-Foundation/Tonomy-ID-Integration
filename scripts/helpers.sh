@@ -32,11 +32,10 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
-    npm link "$PARENT_PATH/Tonomy-ID-SDK"
  
-    cd "$PARENT_PATH/Tonomy-ID-Demo"
-    npm install
-    npm link "$PARENT_PATH/Tonomy-ID-SDK"
+    # cd "$PARENT_PATH/Tonomy-ID-Demo"
+    # npm install
+    # npm link "$PARENT_PATH/Tonomy-ID-SDK"
 
     cd "$PARENT_PATH"
     npm install
@@ -80,15 +79,14 @@ function start {
     pm2 start npm --name "sdk" -- run start
  
     # Link Tonomy ID to use the SDK
-    # workaround for not being able to use `npm link` to the SDK. see https://stackoverflow.com/a/48987307
-    rm -R "${PARENT_PATH}/Tonomy-ID/node_modules/tonomy-id-sdk"
-    wml add "${PARENT_PATH}/Tonomy-ID-SDK" "${PARENT_PATH}/Tonomy-ID/node_modules/tonomy-id-sdk"
-    pm2 start wml --name "linking" -- start
-    
+    echo "linking tonomy id sdk to tonomy id"
+    rsync -avzcrd "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
+    pm2 start lsyncd --name "linking" -- -nodaemon --delay 5  -rsync   "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
+  
+
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
     echo "NODE_ENV=${NODE_ENV}"
-    sleep 60 # needed to wait for the linking to finish
     if [ "$NODE_ENV" = "development" ]
     then
         pm2 start npm --name "id" -- run start
@@ -96,10 +94,10 @@ function start {
         pm2 start npm --name "id" -- run tunnel
     fi
 
-    echo "Starting Tonomy-ID-Demo"
-    cd "${PARENT_PATH}/Tonomy-ID-Demo"
-    npm link "${PARENT_PATH}/Tonomy-ID-SDK"
-    BROWSER=none pm2 start npm --name "demo" -- start
+    # echo "Starting Tonomy-ID-Demo"
+    # cd "${PARENT_PATH}/Tonomy-ID-Demo"
+    # npm link "${PARENT_PATH}/Tonomy-ID-SDK"
+    # BROWSER=none pm2 start npm --name "demo" -- start
 }
 
 function stop {
@@ -112,19 +110,9 @@ function stop {
 
     echo "Stopping npm apps (ID and Demo)"
     set +e
-    pm2 delete id
-    pm2 delete demo
-    pm2 delete sdk
-    pm2 delete linking
+    pm2 stop all
+    pm2 delete all
     set -e
-
-    set +e
-    echo "Stopping watchman and removing wml links"
-    watchman watch-del-all
-    watchman watch-del-all
-    wml stop
-    wml rm all
-    set +e
 }
 
 function reset {
