@@ -91,7 +91,8 @@ function start {
     then
         pm2 start npm --name "id" -- run start
     else
-        pm2 start npm --name "id" -- run tunnel
+        # use different command here for staging/production
+        pm2 start npm --name "id" -- run start
     fi
 
     # echo "Starting Tonomy-ID-Demo"
