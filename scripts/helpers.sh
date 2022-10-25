@@ -80,7 +80,7 @@ function start {
  
     # Link Tonomy ID to use the SDK
     echo "linking tonomy id sdk to tonomy id"
-    rsync -avzcrd "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
+    rsync -azcrd "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
     pm2 start lsyncd --name "linking" -- -nodaemon --delay 5  -rsync   "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
   
 
@@ -121,10 +121,8 @@ function reset {
     set +e
     docker volume rm eosio-data
 
-    pm2 delete id
-    pm2 delete sdk
-    pm2 delete linking
-    pm2 delete demo
+    pm2 stop all
+    pm2 delete all
     set -e
     
     if [ "${ARG1}" == "all" ]
