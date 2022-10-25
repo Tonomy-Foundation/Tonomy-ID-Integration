@@ -3,7 +3,7 @@ import { createRandomID } from '../../util/user';
 
 const idContract = IDContract.Instance;
 
-describe("IDContract class", () => {
+describe('IDContract class', () => {
     beforeEach((): void => {
         jest.setTimeout(60000);
     });
@@ -27,4 +27,4 @@ describe("IDContract class", () => {
         expect(idInfo.account_name.toString()).toEqual(user.storage.accountName.toString());
         expect(idInfo.username_hash.toString()).toEqual(sha256(user.storage.username));
     });
-})
+});

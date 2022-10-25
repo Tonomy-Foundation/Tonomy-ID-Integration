@@ -66,6 +66,13 @@ function startdocker {
 }
 
 function start {
+    set +u
+    if [ -z "${NODE_ENV}" ]
+    then
+        NODE_ENV=development;
+    fi
+    set -u
+
     startdocker
 
     echo "Starting Tonomy-ID-SDK"
@@ -80,8 +87,9 @@ function start {
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
-    pm2 start npm --name "id" -- start
-    # pm2 start expo --name "id" -- start --host tunnel
+    echo "NODE_ENV=${NODE_ENV}"
+    NODE_ENV="${NODE_ENV}" pm2 start npm --name "id" -- start
+    # pm2 start npm --name "id" -- start --tunnel
 
     # echo "Starting Tonomy-ID-Demo"
     # cd "${PARENT_PATH}/Tonomy-ID-Demo"
@@ -119,9 +127,6 @@ function reset {
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID-Demo/node_modules"
         rm -R "${PARENT_PATH}/node_modules"
-
-        echo "Reinstalling npm packages"
-        install
     fi
 
 }
@@ -140,6 +145,10 @@ function test {
         echo "Running unit tests"
         cd "$PARENT_PATH/Tonomy-ID-SDK"
         npm run test
+
+        echo "Running unit tests"
+        cd "$PARENT_PATH/Tonomy-ID"
+        npm run test -- --all
     fi
 }
 

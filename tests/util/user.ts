@@ -1,13 +1,13 @@
-
 import { User, randomString, KeyManager, initialize } from 'tonomy-id-sdk';
-import { PersistantStorage } from 'tonomy-id-sdk/dist/storage';
+import { PersistantStorage } from 'tonomy-id-sdk';
 import JsKeyManager from '../services/jskeymanager';
 import JsStorage from '../services/jsstorage';
+import settings from '../services/settings';
 
 export async function createRandomID() {
     const auth: KeyManager = new JsKeyManager();
     const storage: PersistantStorage = new JsStorage();
-    const user = initialize(auth, storage);
+    const user = initialize(auth, storage, settings);
 
     const password = randomString(8);
     const username = randomString(8);
