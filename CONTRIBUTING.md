@@ -30,6 +30,8 @@ Once this is set up, you should be able to run `./app.sh start` and then connect
 
 To connect to the service manually, or other services in the Virtualbox, find your IP address using `ip a` inside the Virtualbox as shown in the article above. Then you can use this IP address in your host to access exposed services. For example you can go to your browser and open <http://10.2.218.179:3000> to get to the demo app.
 
+You need to update `localhost` value(s) in `./Tonomy-ID/src/config/config.json` to use this IP address, so that the mobile app can connect to the blockchain and other services running on your computer.
+
 ### Tonomy ID Workshop
 
 <https://www.loom.com/share/d29cda0913bf4f569ed501aee76c5337>
