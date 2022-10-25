@@ -13,7 +13,7 @@ export async function createRandomID() {
     const username = randomString(8);
     const pin = Math.floor(Math.random() * 5).toString();
 
-    await user.saveUsername(username);
+    await user.saveUsername(username, '.test.id');
     await user.savePassword(password);
     await user.savePIN(pin);
     await user.saveFingerprint();

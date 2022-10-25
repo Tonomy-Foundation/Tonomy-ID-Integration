@@ -19,7 +19,18 @@ Reading and following these guidelines will help us make the contribution proces
 ### Software Repositories
 
 We use the Ubuntu 20.04 / 22.04 environments. Please use them, as Windows is not suggested & Mac is untested.
-If you have a Windows PC, it's suggested to install VirtualBox.
+If you have a Windows or Mac PC, it's suggested to install VirtualBox.
+
+### Setup Virtualbox to connect to the React Native app
+
+You need to change the network mode of the Virtualbox that is running Tonomy ID to use a Bridged connection:
+<https://linuxhint.com/use-virtualbox-bridged-adapter/>
+
+Once this is set up, you should be able to run `./app.sh start` and then connect with the QR code.
+
+To connect to the service manually, or other services in the Virtualbox, find your IP address using `ip a` inside the Virtualbox as shown in the article above. Then you can use this IP address in your host to access exposed services. For example you can go to your browser and open <http://10.2.218.179:3000> to get to the demo app.
+
+You need to update `localhost` value(s) in `./Tonomy-ID/src/config/config.json` to use this IP address, so that the mobile app can connect to the blockchain and other services running on your computer.
 
 ### Tonomy ID Workshop
 
