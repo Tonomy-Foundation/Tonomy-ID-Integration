@@ -80,7 +80,7 @@ function start {
     pm2 start npm --name "sdk" -- run start
  
     # Link Tonomy ID to use the SDK
-     echo "linking tonomy id sdk to tonomy id"
+    echo "linking tonomy id sdk to tonomy id"
     rsync -avzcrd "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
     pm2 start lsyncd --name "linking" -- -nodaemon --delay 5  -rsync   "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
   
@@ -88,8 +88,13 @@ function start {
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
     echo "NODE_ENV=${NODE_ENV}"
-    NODE_ENV="${NODE_ENV}" pm2 start npm --name "id" -- start
-    # pm2 start npm --name "id" -- start --tunnel
+    sleep 60 # needed to wait for the linking to finish
+    if [ "$NODE_ENV" = "development" ]
+    then
+        pm2 start npm --name "id" -- run start
+    else
+        pm2 start npm --name "id" -- run start --tunnel
+    fi
 
     # echo "Starting Tonomy-ID-Demo"
     # cd "${PARENT_PATH}/Tonomy-ID-Demo"
@@ -117,8 +122,13 @@ function reset {
 
     set +e
     docker volume rm eosio-data
-    set -e
 
+    pm2 delete id
+    pm2 delete sdk
+    pm2 delete linking
+    pm2 delete demo
+    set -e
+    
     if [ "${ARG1}" == "all" ]
     then
         echo "Deleting all node_modules"
@@ -163,9 +173,10 @@ function log {
         pm2 log demo
     elif [ "${SERVICE}" == "sdk" ]; then
         pm2 log sdk
-
     elif [ "${SERVICE}" == "linking" ]; then
         pm2 log linking
+    elif [ "${SERVICE}" == "nginx" ]; then
+        tail -f --lines=10 /var/log/nginx/access.log
     else
         loghelp
     fi
