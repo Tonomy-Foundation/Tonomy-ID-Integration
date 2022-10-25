@@ -23,8 +23,11 @@ sudo shutdown now
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-# watchman
-sudo apt-get install watchman=4.9.0-3build1 -y
+# lsyncd
+ sudo apt-get -y install lsyncd
+
+#rsync
+sudo apt-get install rsync=3.2.3 -y
 
 # nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
@@ -39,5 +42,3 @@ echo "Installing Expo-CLI globally"
 npm i -g expo-cli@5.5.1
 echo "Installing TSDX globally"
 npm i -g tsdx@0.14.1
-echo "Intalling  wml globally"
-npm i -g wml@0.0.83

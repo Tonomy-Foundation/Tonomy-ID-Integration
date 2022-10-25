@@ -32,11 +32,10 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
-    npm link "$PARENT_PATH/Tonomy-ID-SDK"
  
-    cd "$PARENT_PATH/Tonomy-ID-Demo"
-    npm install
-    npm link "$PARENT_PATH/Tonomy-ID-SDK"
+    # cd "$PARENT_PATH/Tonomy-ID-Demo"
+    # npm install
+    # npm link "$PARENT_PATH/Tonomy-ID-SDK"
 
     cd "$PARENT_PATH"
     npm install
@@ -74,20 +73,20 @@ function start {
     pm2 start npm --name "sdk" -- run start
  
     # Link Tonomy ID to use the SDK
-    # workaround for not being able to use `npm link` to the SDK. see https://stackoverflow.com/a/48987307
-    rm -R "${PARENT_PATH}/Tonomy-ID/node_modules/tonomy-id-sdk"
-    wml add "${PARENT_PATH}/Tonomy-ID-SDK" "${PARENT_PATH}/Tonomy-ID/node_modules/tonomy-id-sdk"
-    pm2 start wml --name "linking" -- start
+     echo "linking tonomy id sdk to tonomy id"
+    rsync -avzcrd "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
+    pm2 start lsyncd --name "linking" -- -nodaemon --delay 5  -rsync   "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
+  
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
     pm2 start npm --name "id" -- start
     # pm2 start expo --name "id" -- start --host tunnel
 
-    echo "Starting Tonomy-ID-Demo"
-    cd "${PARENT_PATH}/Tonomy-ID-Demo"
-    npm link "${PARENT_PATH}/Tonomy-ID-SDK"
-    BROWSER=none pm2 start npm --name "demo" -- start
+    # echo "Starting Tonomy-ID-Demo"
+    # cd "${PARENT_PATH}/Tonomy-ID-Demo"
+    # npm link "${PARENT_PATH}/Tonomy-ID-SDK"
+    # BROWSER=none pm2 start npm --name "demo" -- start
 }
 
 function stop {
@@ -100,16 +99,9 @@ function stop {
 
     echo "Stopping npm apps (ID and Demo)"
     set +e
-    pm2 delete id demo sdk linking
+    pm2 stop all
+    pm2 delete all
     set -e
-
-    set +e
-    echo "Stopping watchman and removing wml links"
-    watchman watch-del-all
-    watchman watch-del-all
-    wml stop
-    wml rm all
-    set +e
 }
 
 function reset {
