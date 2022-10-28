@@ -6,7 +6,9 @@ Reading and following these guidelines will help us make the contribution proces
 
 ## Quicklinks
 
-* [Getting Started](#getting-started)
+* [Git and development policy](#git-and-development-policy)
+* [Environment](#environment)
+* [Setup Virtualbox](#setup-virtualbox)
 * [Tonomy ID Workshop](#tonomy-id-workshop)
 * [Design](#design)
 * [General Practices](#general-practices)
@@ -14,16 +16,31 @@ Reading and following these guidelines will help us make the contribution proces
 * [Pull Requests](#pull-requests)
 * [Getting Help](#getting-help)
 
-## Getting Started
+## Git and development policy
 
-### Software Repositories
+Git branch policy:
+
+![Git branch policy]("./assets/Development process-Branch.drawio.png")
+
+Development process:
+
+![Development process]("./assets/Development process-Simple dev process.drawio.png")
+
+Source: <https://drive.google.com/file/d/1-mACdt8ucz5ONKpqiECjSz3GAP0ASq8o/view?usp=sharing>
+
+### Environment
 
 We use the Ubuntu 20.04 / 22.04 environments. Please use them, as Windows is not suggested & Mac is untested.
 If you have a Windows or Mac PC, it's suggested to install VirtualBox.
 
-### Setup Virtualbox to connect to the React Native app
+### Setup Virtualbox
 
-You need to change the network mode of the Virtualbox that is running Tonomy ID to use a Bridged connection:
+Setup Virtualbox to connect to the React Native app:
+
+* Download and install the latest [VirtualBox hypervisor](https://www.virtualbox.org/)
+* Download the latest [Ubuntu LTS desktop image (.iso)](https://releases.ubuntu.com/) and install in a new Virtual Machine
+
+You need to change the network mode of the Virtualbox VM that is running Tonomy ID to use a Bridged connection:
 <https://linuxhint.com/use-virtualbox-bridged-adapter/>
 
 Once this is set up, you should be able to run `./app.sh start` and then connect with the QR code.
@@ -32,11 +49,19 @@ To connect to the service manually, or other services in the Virtualbox, find yo
 
 You need to update `localhost` value(s) in `./Tonomy-ID/src/config/config.json` to use this IP address, so that the mobile app can connect to the blockchain and other services running on your computer.
 
+We strongly suggest you create regular snapshots in Virtualbox, including after you have installed Ubuntu. This allows you to go back to the last point when you had the software working. Remember to turn the machine off before creating a snapshot.
+
+!(./assets/snapshots.jpg)
+
 ### Tonomy ID Workshop
+
+Watch to understand the architecture and general model and use case:
 
 <https://www.loom.com/share/d29cda0913bf4f569ed501aee76c5337>
 
 ### Design
+
+Figma design:
 
 <https://www.figma.com/file/cvV48t0f7O2znT6QBxK0Zj/Tonomy-ID>
 
@@ -59,4 +84,4 @@ PRs are the best and quickest way to get your fix, improvement or feature merged
 
 ## Getting Help
 
-Send a message to contact@tonomy.foundation for help.
+Send a message to contact@tonomy.foundation for help or reach out on our [Discord](https://discord.gg/rrJwz6Uf5P)
