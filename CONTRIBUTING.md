@@ -20,11 +20,11 @@ Reading and following these guidelines will help us make the contribution proces
 
 Git branch policy:
 
-![Git branch policy]("./assets/Development process-Branch.drawio.png")
+<img src="./assets/Development process-Branch.drawio.png" />
 
 Development process:
 
-![Development process]("./assets/Development process-Simple dev process.drawio.png")
+<img src="./assets/Development process-Simple dev process.drawio.png" />
 
 Source: <https://drive.google.com/file/d/1-mACdt8ucz5ONKpqiECjSz3GAP0ASq8o/view?usp=sharing>
 
@@ -51,7 +51,7 @@ You need to update `localhost` value(s) in `./Tonomy-ID/src/config/config.json` 
 
 We strongly suggest you create regular snapshots in Virtualbox, including after you have installed Ubuntu. This allows you to go back to the last point when you had the software working. Remember to turn the machine off before creating a snapshot.
 
-!(./assets/snapshots.jpg)
+<img src="./assets/snapshots.jpg" />
 
 ### Tonomy ID Workshop
 
