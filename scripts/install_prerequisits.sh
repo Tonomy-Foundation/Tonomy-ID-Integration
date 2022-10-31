@@ -16,7 +16,7 @@ sudo apt install apt-transport-https ca-certificates software-properties-common 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 apt-cache policy docker-ce
-sudo apt install docker-ce=5:20.10.17~3-0~ubuntu-focal -y
+sudo apt install docker-ce=5:20.10* -y
 sudo usermod -aG docker ${USER}
 #sudo shutdown now
 # you can't shutdown a server like this, we might never get access to it again. Also this interrupts the script! 
@@ -27,10 +27,10 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 # lsyncd
- sudo apt-get -y install lsyncd=2.2.3
+sudo apt install lsyncd=2.2.3* -y
 
 #rsync
-sudo apt-get install rsync=3.2.3 -y
+sudo apt install rsync=3.2.3* -y
 
 # nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash

@@ -27,13 +27,15 @@ In case you have problems here is a list of the dependencies
 
 - [Docker](http://docs.docker.com) v20.10+
 - [Docker Compose](http://docs.docker.com/compose/) v1.29+
-- [lsyncd](https://github.com/lsyncd/lsyncd) v2.2.3+
 - [rsync](https://rsync.samba.org/) v3.2.3+
+- [lsyncd](https://github.com/lsyncd/lsyncd) v2.2.3+
 - [npm](https://www.npmjs.com/) v16.4-17.0. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
 - [expo-cli](https://expo.dev/) v5.2+ installed globally by `npm`
 - [pm2](https://pm2.io) v5.5+ installed globally by `npm`
 - [tsdx](https://tsdx.io) v0.14.1 installed globally by `npm`
-- [Eas-cli](https://docs.expo.dev/workflow/expo-cli/) v2.2.1 globally installed with npm
+- [eas-cli](https://docs.expo.dev/workflow/expo-cli/) v2.2.1 globally installed by `npm`
+
+Check out the file `./scripts/install_prerequisits.sh`. This can be used as a guide to install all dependancies on an Ubuntu 18+ machine. Run the script line-by-line, as sometimes you need to exit terminal or restart your machine to continue.
 
 ### Pre-run (one time)
 
@@ -58,8 +60,6 @@ This is to create an expo build so you can down an `.apk` or `.ipa` file from [h
 
 ## Run
 
-First run the Pre-run setup below***
-
 Follow these steps one by one & read them carefully. Do not rush through it.
 
 - Clone the repo
@@ -70,7 +70,7 @@ Follow these steps one by one & read them carefully. Do not rush through it.
 - `./app.sh init`
 - Now, you can do one of the following;
 - `./app.sh start`
-  - Check out the links shown at the end of `start`
+  - Check out the links shown
   - Open [http://localhost:19002](http://localhost:19002) and you can scan the QR code with your phone, open the URL which should open the `.apk` or `.ipa` file from expo and you are now using the app!
 - `./app.sh test` or `./app.sh test all`
 - `./app.sh log eosio`
