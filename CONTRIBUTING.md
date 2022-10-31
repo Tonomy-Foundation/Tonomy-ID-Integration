@@ -28,12 +28,41 @@ Development process:
 
 Source: <https://drive.google.com/file/d/1-mACdt8ucz5ONKpqiECjSz3GAP0ASq8o/view?usp=sharing>
 
-### Environment
+## Setup Virtualbox
 
 We use the Ubuntu 20.04 / 22.04 environments. Please use them, as Windows is not suggested & Mac is untested.
 If you have a Windows or Mac PC, it's suggested to install VirtualBox.
 
-### Setup Virtualbox
+It is possible to run on Mac. Please adapt and install the [dependancies](./README.md#dependancies) with `brew` instead. Antelope has [known issues with the M1 chip](https://github.com/EOSIO/eos/issues/9759).
+
+### Setup Virtualbox with ready image
+
+This is suggested for anyone new to Virtualbox or the project.
+
+Steps to have a fully configured Ubuntu 20.04 LTS machine with all Tonomy-ID-Integration dependancies installed, and Tonomy-ID-Integration installed and ready to run.
+
+Steps:
+
+1. Download the Virtualbox image here:
+2. Import this as a new machine in VirtualBox
+3. You may want to turn Auto Capture Keyboard in settings
+4. Change the network driver to bridege mode
+5. Run the VM. Login details:
+
+```bash
+username=dev
+password=Password123!
+```
+
+6. You may want to re-install Guest additions on the new VM
+7. Run `ip a` and note the IP address of the VM. See [here](https://linuxhint.com/use-virtualbox-bridged-adapter) for more details.
+8. Change the `localhost` values in `./Tonomy ID/src/config/config.json` to the IP address
+9. Follow the [pre-run](./README.md#pre-run-one-time) setup if not done already
+9. Now run `./app.sh start` and open the app!
+
+### Setup Virtualbox manually
+
+This gives you more control over the virtual machine.
 
 Setup Virtualbox to connect to the React Native app:
 
@@ -53,6 +82,8 @@ We strongly suggest you create regular snapshots in Virtualbox, including after 
 
 <img src="./assets/snapshots.jpg" />
 
+## Resources
+
 ### Tonomy ID Workshop
 
 Watch to understand the architecture and general model and use case:
@@ -69,6 +100,12 @@ Figma design:
 
 * The JavaScript variables capital convention is [CamelCase](https://textcaseconvert.com/blog/what-is-camel-case/)
 
+## Contributing
+
+### Looking for how to contribute?
+
+Check out the issues in the [repositories](./README.md#repositories), or, if you have access, the issues in our [Zenhub board](https://app.zenhub.com/workspaces/tonomy-id-62a06b705d27820023023630/board)
+
 ### Issues
 
 Issues should be used to report problems with the library, request a new feature, or to discuss potential changes before a PR is created.
@@ -82,6 +119,6 @@ PRs are the best and quickest way to get your fix, improvement or feature merged
 * Only fix/add the functionality in the issue
 * Address a single concern in the least number of changed lines as possible
 
-## Getting Help
+### Getting Help
 
 Send a message to contact@tonomy.foundation for help or reach out on our [Discord](https://discord.gg/rrJwz6Uf5P)
