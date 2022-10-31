@@ -7,7 +7,6 @@ Reading and following these guidelines will help us make the contribution proces
 ## Quicklinks
 
 * [Git and development policy](#git-and-development-policy)
-* [Environment](#environment)
 * [Setup Virtualbox](#setup-virtualbox)
 * [Tonomy ID Workshop](#tonomy-id-workshop)
 * [Design](#design)
@@ -43,7 +42,7 @@ Steps to have a fully configured Ubuntu 20.04 LTS machine with all Tonomy-ID-Int
 
 Steps:
 
-1. Download the Virtualbox image here:
+1. Download the Virtualbox image here: <https://www.dropbox.com/s/d8pu25dwaj7u8au/ubuntu20-dev-tonomy-id1.ova?dl=0>
 2. Import this as a new machine in VirtualBox
 3. Change the network driver to bridge mode
 4. Run the VM. Login details:
