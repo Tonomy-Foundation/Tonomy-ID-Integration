@@ -110,6 +110,7 @@ describe('User class', () => {
 
         await expect(() => userLogin.login(username, 'differentpassword')).rejects.toThrowError(Error);
     });
+
     test('logout', async () => {
         const { user, password } = await createRandomID();
 
@@ -122,6 +123,7 @@ describe('User class', () => {
         expect(() => user.keyManager.getKey({ level: KeyManagerLevel.LOCAL })).rejects.toThrowError(Error);
         expect(user.isLoggedIn()).resolves.toBeFalsy();
     });
+
     test('getAccountInfo(): Get ID information', async () => {
         const { user } = await createRandomID();
 
