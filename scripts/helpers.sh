@@ -29,6 +29,19 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     npm install
+    echo "Installed SDK!"
+    sleep 2
+    if [ ! -d "$PARENT_PATH/Tonomy-ID-SDK/node_modules/babel-eslint" ] || [ ! -f "$PARENT_PATH/Tonomy-ID-SDK/dist/tonomy-id-sdk.cjs.development.js" ]; then
+        echo "Error: npm install failed. Trying again..."
+        sleep 5
+        npm install
+
+        if [ ! -d "$PARENT_PATH/Tonomy-ID-SDK/node_modules/babel-eslint" ] || [ ! -f "$PARENT_PATH/Tonomy-ID-SDK/dist/tonomy-id-sdk.cjs.development.js" ]; then
+            echo "Error: npm install failed AGAIN. Try installing manually"
+            exit 1
+            sleep 5
+        fi        
+    fi
 
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
@@ -47,6 +60,11 @@ function buildcontracts {
     ./build-contracts.sh
 }
 
+function deletecontracts {
+    cd "$PARENT_PATH/Tonomy-Contracts"
+    ./delte-built-contracts.sh
+}
+
 function init {
     cd "$PARENT_PATH/blockchain"
     echo "Waiting 8 seconds for blockchain node to start"
@@ -55,6 +73,12 @@ function init {
 
     cd "$PARENT_PATH"
     npm run bootstrap
+
+    echo ""
+    echo ""
+    echo "Blockchain running and initialized"
+    echo ""
+    echo "To start Tonomy ID run: ./app.sh start"
 }
 
 function startdocker {
@@ -134,6 +158,8 @@ function reset {
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID-Demo/node_modules"
         rm -R "${PARENT_PATH}/node_modules"
+
+        deletecontracts
     fi
 
 }
@@ -145,7 +171,7 @@ function test {
     npm run prepare
 
     cd "${PARENT_PATH}"
-    npm test
+    npm test "${ARG1}"
 
     if [ "${ARG1}" == "all" ]
     then

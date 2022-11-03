@@ -22,6 +22,7 @@ then
 elif [ "$ARG1" == "install" ]
 then
     install
+    buildcontracts
 elif [ "$ARG1" == "init" ]
 then
     stop
@@ -29,7 +30,6 @@ then
     buildcontracts
     startdocker
     init
-    printservices
 elif [ "$ARG1" == "start" ]
 then
     stop
