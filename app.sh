@@ -22,6 +22,7 @@ then
 elif [ "$ARG1" == "install" ]
 then
     install
+    buildcontracts
 elif [ "$ARG1" == "init" ]
 then
     stop

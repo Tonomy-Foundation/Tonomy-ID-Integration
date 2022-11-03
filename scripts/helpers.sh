@@ -29,6 +29,17 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     npm install
+    sleep 2
+    if [ ! -d "$PARENT_PATH/Tonomy-ID-SDK/node_modules/babel-eslint" ]; then
+        echo "Error: npm install failed. Trying again..."
+        sleep 5
+        npm install
+
+        if [ ! -d "$PARENT_PATH/Tonomy-ID-SDK/node_modules/babel-eslint" ]; then
+            echo "Error: npm install failed AGAIN. Try installing manually"
+            sleep 5
+        fi        
+    fi
 
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
@@ -61,6 +72,8 @@ function init {
     cd "$PARENT_PATH"
     npm run bootstrap
 
+    echo ""
+    echo ""
     echo "Blockchain running and initialized"
     echo ""
     echo "To start Tonomy ID run: ./app.sh start"
@@ -156,7 +169,7 @@ function test {
     npm run prepare
 
     cd "${PARENT_PATH}"
-    npm test
+    npm test "${ARG1}"
 
     if [ "${ARG1}" == "all" ]
     then
