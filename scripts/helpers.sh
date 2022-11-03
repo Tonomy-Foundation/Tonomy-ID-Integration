@@ -47,6 +47,11 @@ function buildcontracts {
     ./build-contracts.sh
 }
 
+function deletecontracts {
+    cd "$PARENT_PATH/Tonomy-Contracts"
+    ./delte-built-contracts.sh
+}
+
 function init {
     cd "$PARENT_PATH/blockchain"
     echo "Waiting 8 seconds for blockchain node to start"
@@ -134,6 +139,8 @@ function reset {
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID-Demo/node_modules"
         rm -R "${PARENT_PATH}/node_modules"
+
+        deletecontracts
     fi
 
 }
