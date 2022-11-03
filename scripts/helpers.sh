@@ -60,6 +60,10 @@ function init {
 
     cd "$PARENT_PATH"
     npm run bootstrap
+
+    echo "Blockchain running and initialized"
+    echo ""
+    echo "To start Tonomy ID run: ./app.sh start"
 }
 
 function startdocker {

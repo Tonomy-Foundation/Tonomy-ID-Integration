@@ -29,7 +29,6 @@ then
     buildcontracts
     startdocker
     init
-    printservices
 elif [ "$ARG1" == "start" ]
 then
     stop
