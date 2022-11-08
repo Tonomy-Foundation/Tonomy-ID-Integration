@@ -97,14 +97,16 @@ function start {
     set -u
 
     startdocker
-
+    # copy files to tonomy id
+    rsync -azcrd "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
+    
     echo "Starting Tonomy-ID-SDK"
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     pm2 start npm --name "sdk" -- run start
+    sleep 5
  
     # Link Tonomy ID to use the SDK
     echo "linking tonomy id sdk to tonomy id"
-    rsync -azcrd "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
     pm2 start lsyncd --name "linking" -- -nodaemon --delay 5  -rsync   "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
   
 
