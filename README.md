@@ -54,7 +54,7 @@ This is to create an expo build so you can down an `.apk` or `.ipa` file from [h
     }
 ```
 
-4. (for IOS only) Run `npm run build:ios:create` to create a device profile for your phone
+4. (for IOS only) Run `npm run build:ios:create` to create a device profile for your phone (you need to connect to an Apple Developer account - we do not have one yet)
 5. Run `npm run build:ios` (ios) or `npm run build:android` (android) to build the app for your phone
 6. Return to [https://expo.dev/](https://expo.dev/) and click on the Tonomy ID project build
 7. Install the created app on your phone
