@@ -29,19 +29,6 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     npm install
-    echo "Installed SDK!"
-    sleep 2
-    if [ ! -d "$PARENT_PATH/Tonomy-ID-SDK/node_modules/babel-eslint" ] || [ ! -f "$PARENT_PATH/Tonomy-ID-SDK/dist/tonomy-id-sdk.cjs.development.js" ]; then
-        echo "Error: npm install failed. Trying again..."
-        sleep 5
-        npm install
-
-        if [ ! -d "$PARENT_PATH/Tonomy-ID-SDK/node_modules/babel-eslint" ] || [ ! -f "$PARENT_PATH/Tonomy-ID-SDK/dist/tonomy-id-sdk.cjs.development.js" ]; then
-            echo "Error: npm install failed AGAIN. Try installing manually"
-            exit 1
-            sleep 5
-        fi        
-    fi
 
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
