@@ -2,7 +2,14 @@
 
 ## Package dependancy issues
 
-FIX: reset all and start again:
+**FIX:** re-install the SDK manually
+
+```bash
+cd Tonomy-ID-SDK
+npm i
+```
+
+**FIX:** reset all and start again:
 
 ```bash
 ./app.sh reset all
@@ -11,7 +18,7 @@ FIX: reset all and start again:
 ./app.sh start
 ```
 
-FIX: restart id after you have started
+**FIX:** restart id after you have started
 
 ```bash
 ./app.sh start
@@ -19,7 +26,7 @@ FIX: restart id after you have started
 pm2 restart id
 ```
 
-FIX: re-clone the repo and install all from scratch
+**FIX:** re-clone the repo and install all from scratch
 
 Make sure you push and code changes you want to keep before you reclone!
 
