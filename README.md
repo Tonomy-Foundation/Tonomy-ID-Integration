@@ -2,8 +2,9 @@
 
 Developer environment to run Tonomy ID locally alongside a blockchain node, and the demo app.
 
-All developers contributing to the project should check [Contributors Guide](./CONTRIBUTING.md).
+All developers contributing to the project should check [Contributors Guide](./CONTRIBUTING.md) and first check the [Troubleshoot Guide](./TROUBLESHOOT.md) if you have issues installing or running.
 
+All developers sh
 ## Repositories
 
 - [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our React Native cross-platform mobile wallet for public & private EOSIO blockchains.
