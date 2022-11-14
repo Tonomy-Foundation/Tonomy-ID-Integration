@@ -1,5 +1,5 @@
 import { IDContract } from 'tonomy-id-sdk';
-import { createRandomID } from '../../util/user';
+import { createRandomID, createRandomApp } from '../../util/user';
 
 const idContract = IDContract.Instance;
 
@@ -30,5 +30,18 @@ describe('IDContract class', () => {
         idInfo = await idContract.gePerson(username);
         expect(idInfo.account_name.toString()).toEqual(accountName.toString());
         expect(idInfo.username_hash.toString()).toEqual(username.usernameHash);
+    });
+
+    test('newapp', async () => {
+        const { name, description, username, logo_url, domain, accountName } = await createRandomApp();
+
+        const appInfo = await idContract.geApp(username);
+
+        expect(appInfo.app_name).toEqual(name);
+        expect(appInfo.description).toEqual(description);
+        expect(appInfo.username_hash.toString()).toEqual(username.usernameHash);
+        expect(appInfo.logo_url).toEqual(logo_url);
+        expect(appInfo.domain).toEqual(domain);
+        expect(appInfo.account_name.toString()).toEqual(accountName.toString());
     });
 });
