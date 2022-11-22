@@ -8,7 +8,7 @@ describe('IDContract class', () => {
         jest.setTimeout(60000);
     });
 
-    test('gePerson(): Fetch ID details of a user', async () => {
+    test('getPerson(): Fetch ID details of a user', async () => {
         const { user } = await createRandomID();
 
         const accountName = await user.storage.accountName;
@@ -16,7 +16,7 @@ describe('IDContract class', () => {
         const salt = await user.storage.salt;
 
         // get by account name
-        let idInfo = await idContract.gePerson(accountName);
+        let idInfo = await idContract.getPerson(accountName);
 
         expect(idInfo.account_name).toEqual(accountName);
         expect(idInfo.username_hash.toString()).toEqual(username.usernameHash);
@@ -27,7 +27,7 @@ describe('IDContract class', () => {
         expect(idInfo.version).toBe(1);
 
         // get by username
-        idInfo = await idContract.gePerson(username);
+        idInfo = await idContract.getPerson(username);
         expect(idInfo.account_name.toString()).toEqual(accountName.toString());
         expect(idInfo.username_hash.toString()).toEqual(username.usernameHash);
     });
@@ -35,7 +35,7 @@ describe('IDContract class', () => {
     test('newapp', async () => {
         const { name, description, username, logo_url, domain, accountName } = await createRandomApp();
 
-        const appInfo = await idContract.geApp(username);
+        const appInfo = await idContract.getApp(username);
 
         expect(appInfo.app_name).toEqual(name);
         expect(appInfo.description).toEqual(description);
