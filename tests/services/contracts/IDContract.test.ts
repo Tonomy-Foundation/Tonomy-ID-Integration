@@ -33,7 +33,7 @@ describe('IDContract class', () => {
     });
 
     test('newapp', async () => {
-        const { name, description, username, logo_url, domain, accountName } = await createRandomApp();
+        const { name, description, username, logo_url, origin, accountName } = await createRandomApp();
 
         const appInfo = await idContract.getApp(username);
 
@@ -41,7 +41,7 @@ describe('IDContract class', () => {
         expect(appInfo.description).toEqual(description);
         expect(appInfo.username_hash.toString()).toEqual(username.usernameHash);
         expect(appInfo.logo_url).toEqual(logo_url);
-        expect(appInfo.domain).toEqual(domain);
+        expect(appInfo.origin).toEqual(origin);
         expect(appInfo.account_name.toString()).toEqual(accountName.toString());
     });
 });

@@ -37,11 +37,11 @@ export async function createRandomID() {
     return { user, password, pin };
 }
 
-export async function createRandomApp(logo_url?: string, domain?: string) {
+export async function createRandomApp(logo_url?: string, origin?: string) {
     const name = randomString(8);
     const description = randomString(80);
     const username = new TonomyUsername(randomString(8), AccountType.APP, '.test.id');
-    if (!domain) domain = 'http://localhost:3000';
+    if (!origin) origin = 'http://localhost:3000';
     if (!logo_url) logo_url = 'http://localhost:3000/logo.png';
 
     const res = await idContract.newapp(
@@ -49,7 +49,7 @@ export async function createRandomApp(logo_url?: string, domain?: string) {
         username.usernameHash,
         description,
         logo_url,
-        domain,
+        origin,
         privateKey.toPublic(),
         EosioUtil.createSigner(privateKey)
     );
@@ -57,5 +57,5 @@ export async function createRandomApp(logo_url?: string, domain?: string) {
     const newAccountAction = res.processed.action_traces[0].inline_traces[0].act;
     const accountName = Name.from(newAccountAction.data.name);
 
-    return { name, description, username, logo_url, domain, accountName };
+    return { name, description, username, logo_url, origin, accountName };
 }
