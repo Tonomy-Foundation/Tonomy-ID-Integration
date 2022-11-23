@@ -2,8 +2,9 @@
 
 Developer environment to run Tonomy ID locally alongside a blockchain node, and the demo app.
 
-All developers contributing to the project should check [Contributors Guide](./CONTRIBUTING.md).
+All developers contributing to the project should check [Contributors Guide](./CONTRIBUTING.md) and first check the [Troubleshoot Guide](./TROUBLESHOOT.md) if you have issues installing or running.
 
+All developers sh
 ## Repositories
 
 - [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our React Native cross-platform mobile wallet for public & private EOSIO blockchains.
@@ -53,8 +54,8 @@ This is to create an expo build so you can down an `.apk` or `.ipa` file from [h
     }
 ```
 
-4. (for IOS only) Run `eas device:create` to create a device profile for your phone
-5. Run `eas build --profile development --platform ios` (ios) or `eas build --profile development --platform android` (android) to build the app for your phone
+4. (for IOS only) Run `npm run build:ios:create` to create a device profile for your phone (you need to connect to an Apple Developer account - we do not have one yet)
+5. Run `npm run build:ios` (ios) or `npm run build:android` (android) to build the app for your phone
 6. Return to [https://expo.dev/](https://expo.dev/) and click on the Tonomy ID project build
 7. Install the created app on your phone
 

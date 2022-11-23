@@ -93,10 +93,10 @@ describe('User class', () => {
         expect(userLogin.isLoggedIn()).resolves.toBeFalsy();
         const idInfo = await userLogin.login(username, password);
 
-        expect(idInfo.username_hash.toString()).toBe(sha256(username));
+        expect(idInfo.username_hash.toString()).toBe(username.usernameHash);
         expect(userLogin.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).resolves.toBeDefined();
         expect(await userLogin.storage.accountName).toBeDefined();
-        expect(await userLogin.storage.username).toBe(username);
+        expect(await userLogin.storage.username.username).toBe(username.username);
         expect(userLogin.isLoggedIn()).toBeTruthy();
     });
 
@@ -134,6 +134,7 @@ describe('User class', () => {
         expect(userInfo.account_name).toEqual(await user.storage.accountName);
 
         // get by username
+        const un = await user.storage.username;
         userInfo = await User.getAccountInfo(await user.storage.username);
 
         expect(userInfo).toBeInstanceOf(SDK_API.v1.AccountObject);
