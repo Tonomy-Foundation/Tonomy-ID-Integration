@@ -46,8 +46,8 @@ export async function createRandomApp(logo_url?: string, origin?: string) {
 
     const res = await idContract.newapp(
         name,
-        username.usernameHash,
         description,
+        username.usernameHash,
         logo_url,
         origin,
         privateKey.toPublic(),
