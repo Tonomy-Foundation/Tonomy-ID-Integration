@@ -28,26 +28,26 @@ describe('Keymanager class', () => {
         expect(salt).toBeDefined();
     });
 
-    const password = '123';
-    const salt = Checksum256.from(randomBytes(32));
-    const options = {
-        salt: Buffer.from(salt.hexString, 'hex'),
-        hashLength: 32,
-        type: argon2.argon2id,
-        raw: true,
-        memoryCost: 16384,
-        parallelism: 1,
-    };
-
-    async function timeArgon2(options): Promise<number> {
-        const start = new Date();
-        await argon2.hash(password, options);
-        const finish = new Date();
-
-        return finish.getTime() - start.getTime();
-    }
-
     test('time hashing in generatePrivateKeyFromPassword() function', async () => {
+        const password = '123';
+        const salt = Checksum256.from(randomBytes(32));
+        const options = {
+            salt: Buffer.from(salt.hexString, 'hex'),
+            hashLength: 32,
+            type: argon2.argon2id,
+            raw: true,
+            memoryCost: 16384,
+            parallelism: 1,
+        };
+
+        async function timeArgon2(options): Promise<number> {
+            const start = new Date();
+            await argon2.hash(password, options);
+            const finish = new Date();
+
+            return finish.getTime() - start.getTime();
+        }
+
         const time0 = await timeArgon2(options);
         const time1 = await timeArgon2({ ...options, ...{ type: argon2.argon2d } });
         const time2 = await timeArgon2({ ...options, ...{ type: argon2.argon2i } });
