@@ -14,3 +14,7 @@
 	path = Tonomy-Contracts
 	url = ../Tonomy-Contracts.git
 	branch = development
+[submodule "Tonomy-ID-Demo-market.com"]
+	path = Tonomy-ID-Demo-market.com
+	url = https://github.com/Tonomy-Foundation/Tonomy-ID-Demo-market.com.git
+	branch = development
