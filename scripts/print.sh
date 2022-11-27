@@ -26,7 +26,7 @@ function loghelp {
     echo "Commands:"
     echo "    eosio    - blockchain node (eosio)"
     echo "    id       - Tonomy ID app expo packaer (react native)"
-    echo "    demo     - Tonomy ID Demo app (react)"
+    echo "    sso     - Tonomy ID SSO app (react)"
     echo "    sdk      - Tonomy ID SDK (node)"
     echo "    linking  - linking service (node)"
     echo "    market   - Tonomy ID Demo market app (react)"
@@ -48,7 +48,7 @@ function printservices {
 }
 
 function printWebsiteServices {
-    echo "Tonomy ID Demo app (react)            - http://localhost:3000"
+    echo "Tonomy ID Demo SSO Website (react)    - http://localhost:3000"
     echo "Tonomy ID Demo market app (react)     - http://localhost:3001"
     echo "" 
     echo ""
