@@ -1,13 +1,24 @@
 # Common issues
 
-## Package dependancy issues
+## Package issues
 
-**FIX:** re-install the SDK manually
+### Error: Requiring module "node_modules/...
+
+**FIX** you need to create a new expo build with the latest dependencies
+
+`npm run build:ios` (ios) or `npm run build:android`
+
+### Error: Cannot find module './tonomy-id-sdk.cjs.development.js'
+
+**FIX:** re-install the SDK manually and restart id
 
 ```bash
 cd Tonomy-ID-SDK
 npm i
+pm2 restart id
 ```
+
+### Other package errors
 
 **FIX:** reset all and start again:
 
@@ -18,19 +29,11 @@ npm i
 ./app.sh start
 ```
 
-**FIX:** restart id after you have started
-
-```bash
-./app.sh start
-...
-pm2 restart id
-```
-
 **FIX:** re-clone the repo and install all from scratch
 
 Make sure you push and code changes you want to keep before you reclone!
 
-## [Error] Could not decrypt the item in SecureStore
+## [Error] Could not encrypt/decrypt the item in SecureStore
 
 Your secure hardware keystore has keys which have now changed config and cannot be removed.
 
