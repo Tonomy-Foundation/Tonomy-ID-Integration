@@ -21,7 +21,7 @@ export async function createRandomID() {
     const storage: PersistentStorage = new JsStorage();
     const user = initialize(auth, storage, settings);
 
-    const password = randomString(8);
+    const password = randomString(8) + 'aA0!';
     const username = randomString(8);
     const pin = Math.floor(Math.random() * 5).toString();
 
