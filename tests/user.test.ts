@@ -2,13 +2,13 @@
 import { API as SDK_API } from 'tonomy-id-sdk/node_modules/@greymass/eosio';
 import { api } from './util/eosio';
 import { createRandomID } from './util/user';
-import { KeyManager, KeyManagerLevel, sha256, initialize, User, PersistantStorage } from 'tonomy-id-sdk';
+import { KeyManager, KeyManagerLevel, sha256, initialize, User, PersistentStorage } from 'tonomy-id-sdk';
 import JsKeyManager from './services/jskeymanager';
 import JsStorage from './services/jsstorage';
 import settings from './services/settings';
 
 let auth: KeyManager;
-let storage: PersistantStorage;
+let storage: PersistentStorage;
 let user: User;
 
 describe('User class', () => {
@@ -24,7 +24,7 @@ describe('User class', () => {
 
         expect(() => user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).rejects.toThrowError(Error);
         expect(await user.storage.salt).not.toBeDefined();
-        await user.savePassword('myPassword123!');
+        await user.savePassword('n4RR8mj!cC$VaG907bq4');
         expect(user.keyManager.getKey({ level: KeyManagerLevel.PASSWORD })).resolves.toBeDefined();
         expect(await user.storage.salt).toBeDefined();
     });

@@ -160,7 +160,12 @@ function test {
     npm run prepare
 
     cd "${PARENT_PATH}"
-    npm test "${ARG1}"
+    if [ "${ARG1}" == "all" ]
+    then
+        npm test
+    else
+        npm test "${ARG1}"
+    fi
 
     if [ "${ARG1}" == "all" ]
     then
