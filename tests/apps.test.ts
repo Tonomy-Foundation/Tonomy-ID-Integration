@@ -2,13 +2,13 @@
 import { API as SDK_API } from 'tonomy-id-sdk/node_modules/@greymass/eosio';
 import { api } from './util/eosio';
 import { createRandomApp, createRandomID } from './util/user';
-import { KeyManager, initialize, User, PersistantStorage } from 'tonomy-id-sdk';
+import { KeyManager, initialize, User, PersistentStorage } from 'tonomy-id-sdk';
 import JsKeyManager from './services/jskeymanager';
 import JsStorage from './services/jsstorage';
 import settings from './services/settings';
 
 let auth: KeyManager;
-let storage: PersistantStorage;
+let storage: PersistentStorage;
 let user: User;
 
 describe('User class', () => {
@@ -20,17 +20,17 @@ describe('User class', () => {
     });
 
     test('loginWithApp(): Logs into new app', async () => {
-        const { user } = await createRandomID();
-        const accountName = await user.storage.accountName;
+        const { user, password } = await createRandomID();
+        const userAccountName = await user.storage.accountName;
 
-        const { app } = await createRandomApp();
+        const { accountName } = await createRandomApp();
         const newKey = auth.generateRandomPrivateKey();
 
-        await user.apps.loginWithApp(app.accountName, newKey.toPublic());
+        await user.app.loginWithApp(accountName, newKey.toPublic(), password);
 
-        const accountInfo = await User.getAccountInfo(accountName);
+        const accountInfo = await User.getAccountInfo(userAccountName);
         const permissions = accountInfo.permissions;
-        const appPermission = permissions.find((p) => p.perm_name === app.accountName);
+        const appPermission = permissions.find((p) => p.perm_name === accountName);
 
         expect(appPermission).toBeDefined();
         expect(appPermission.parent).toEqual('active');
