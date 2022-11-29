@@ -8,7 +8,7 @@
 	branch = development
 [submodule "Tonomy-ID-SSO-Website"]
 	path = Tonomy-ID-SSO-Website
-	url = https://github.com/Tonomy-Foundation/Tonomy-ID-SSO-Website.git
+	url = ../Tonomy-ID-SSO-Website.git
 	branch = development
 [submodule "Tonomy-Contracts"]
 	path = Tonomy-Contracts
@@ -16,5 +16,5 @@
 	branch = development
 [submodule "Tonomy-ID-Demo-market.com"]
 	path = Tonomy-ID-Demo-market.com
-	url = https://github.com/Tonomy-Foundation/Tonomy-ID-Demo-market.com.git
+	url = ../Tonomy-ID-Demo-market.com.git
 	branch = development
