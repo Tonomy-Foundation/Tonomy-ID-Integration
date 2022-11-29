@@ -7,7 +7,7 @@ import {
     EosioUtil,
     AccountType,
     TonomyUsername,
-    PersistantStorage,
+    PersistentStorage,
 } from 'tonomy-id-sdk';
 import JsKeyManager from '../services/jskeymanager';
 import JsStorage from '../services/jsstorage';
@@ -18,7 +18,7 @@ const idContract: IDContract = IDContract.Instance;
 
 export async function createRandomID() {
     const auth: KeyManager = new JsKeyManager();
-    const storage: PersistantStorage = new JsStorage();
+    const storage: PersistentStorage = new JsStorage();
     const user = initialize(auth, storage, settings);
 
     const password = randomString(8);

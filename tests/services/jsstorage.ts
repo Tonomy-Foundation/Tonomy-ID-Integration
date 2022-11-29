@@ -1,6 +1,6 @@
-import { PersistantStorage } from 'tonomy-id-sdk';
+import { PersistentStorage } from 'tonomy-id-sdk';
 
-export default class JsStorage implements PersistantStorage {
+export default class JsStorage implements PersistentStorage {
     private _storage: any;
     constructor() {
         this._storage = {};
