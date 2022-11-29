@@ -29,11 +29,12 @@ describe('User class', () => {
         await user.app.loginWithApp(accountName, newKey.toPublic(), password);
 
         const accountInfo = await User.getAccountInfo(userAccountName);
+
         const permissions = accountInfo.permissions;
         const appPermission = permissions.find((p) => p.perm_name === accountName);
 
         expect(appPermission).toBeDefined();
-        expect(appPermission.parent).toEqual('active');
+        expect(appPermission.parent).toEqual('local');
         expect(appPermission.required_auth.keys[0]).toEqual(newKey.toPublic().toString());
     });
 });
