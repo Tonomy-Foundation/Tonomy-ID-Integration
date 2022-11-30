@@ -31,10 +31,10 @@ describe('User class', () => {
         const accountInfo = await User.getAccountInfo(userAccountName);
 
         const permissions = accountInfo.permissions;
-        const appPermission = permissions.find((p) => p.perm_name === accountName);
+        const appPermission = permissions.find((p) => p.perm_name.toString() === accountName.toString());
 
         expect(appPermission).toBeDefined();
-        expect(appPermission.parent).toEqual('local');
-        expect(appPermission.required_auth.keys[0]).toEqual(newKey.toPublic().toString());
+        expect(appPermission.parent.toString()).toEqual('active');
+        expect(appPermission.required_auth.keys[0].key.toString()).toEqual(newKey.toPublic().toString());
     });
 });
