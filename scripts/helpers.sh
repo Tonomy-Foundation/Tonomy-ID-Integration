@@ -13,7 +13,11 @@ function gitinit {
     git checkout development
     git pull
 
-    cd "$PARENT_PATH/Tonomy-ID-Demo"
+    cd "$PARENT_PATH/Tonomy-ID-SSO-Website"
+    git checkout development
+    git pull
+    
+    cd "$PARENT_PATH/Tonomy-ID-Demo-market.com"
     git checkout development
     git pull
 
@@ -33,9 +37,13 @@ function install {
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
  
-    # cd "$PARENT_PATH/Tonomy-ID-Demo"
-    # npm install
-    # npm link "$PARENT_PATH/Tonomy-ID-SDK"
+    cd "$PARENT_PATH/Tonomy-ID-SSO-Website"
+    npm install
+    npm link "$PARENT_PATH/Tonomy-ID-SDK"
+
+    cd "$PARENT_PATH/Tonomy-ID-Demo-market.com"
+    npm install
+    npm link "$PARENT_PATH/Tonomy-ID-SDK"
 
     cd "$PARENT_PATH"
     npm install
@@ -76,6 +84,7 @@ function startdocker {
 }
 
 function start {
+    ARG1=${1-default}
     set +u
     if [ -z "${NODE_ENV}" ]
     then
@@ -107,11 +116,23 @@ function start {
         # use different command here for staging/production
         pm2 start npm --name "id" -- run start
     fi
+    if [ "${ARG1}" == "all" ]
+    then
+        echo "Starting Tonomy-ID-SSO-Website"
+        cd "${PARENT_PATH}/Tonomy-ID-SSO-Website"
+        npm link "${PARENT_PATH}/Tonomy-ID-SDK"
+        BROWSER=none pm2 start npm --name "sso" -- start
 
-    # echo "Starting Tonomy-ID-Demo"
-    # cd "${PARENT_PATH}/Tonomy-ID-Demo"
-    # npm link "${PARENT_PATH}/Tonomy-ID-SDK"
-    # BROWSER=none pm2 start npm --name "demo" -- start
+        echo "Starting Tonomy-ID-Demo-market.com"
+        cd "${PARENT_PATH}/Tonomy-ID-Demo-market.com"
+        npm link "${PARENT_PATH}/Tonomy-ID-SDK"
+        BROWSER=none pm2 start npm --name "market" -- start
+    fi
+    printservices
+    if [ "${ARG1}" == "all" ]
+    then
+        printWebsiteServices
+    fi
 }
 
 function stop {
@@ -146,6 +167,7 @@ function reset {
         rm -R "${PARENT_PATH}/Tonomy-ID-SDK/dist"
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID-Demo/node_modules"
+        rm -R "${PARENT_PATH}/Tonomy-ID-Demo-market.com/node_modules"
         rm -R "${PARENT_PATH}/node_modules"
 
         deletecontracts
@@ -186,14 +208,16 @@ function log {
         docker-compose logs -f eosio
     elif [ "${SERVICE}" == "id" ]; then
         pm2 log --lines 20 id
-    elif [ "${SERVICE}" == "demo" ]; then
-        pm2 log demo
+    elif [ "${SERVICE}" == "sso" ]; then
+        pm2 log sso
     elif [ "${SERVICE}" == "sdk" ]; then
         pm2 log sdk
     elif [ "${SERVICE}" == "linking" ]; then
         pm2 log linking
     elif [ "${SERVICE}" == "nginx" ]; then
         tail -f --lines=10 /var/log/nginx/access.log
+    elif [ "${SERVICE}" == "market" ]; then
+        pm2 log market
     else
         loghelp
     fi

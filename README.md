@@ -11,8 +11,8 @@ All developers sh
   - [Directory Structure](https://learn.habilelabs.io/best-folder-structure-for-react-native-project-a46405bdba7)
 - [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - used in Tonomy ID to interact and call with the EOSIO blockchain and services.
 - [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) - Smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
-- [Demo](https://github.com/Tonomy-Foundation/Tonomy-ID-Demo) - A reactjs application to show demo flows with Tonomy ID
-
+- [SSO-Demo](https://github.com/Tonomy-Foundation/Tonomy-ID-Demo) - A reactjs application to show demo flows with Tonomy ID
+- [Market.com](https://github.com/Tonomy-Foundation/Tonomy-ID-Demo-market.com.git) - A reactjs application to show demo flows with Tonomy ID and Tonomy ID SSO
 ## Environment compatibility
 
 - Linux debian distribution (Ubuntu 20.0.4 LTS used)
@@ -71,6 +71,7 @@ Follow these steps one by one & read them carefully. Do not rush through it.
 - `./app.sh init`
 - Now, you can do one of the following;
 - `./app.sh start`
+- `./app.sh start all` to start all services (including the websites)
   - Check out the links shown
   - Open [http://localhost:19002](http://localhost:19002) and you can scan the QR code with your phone, open the URL which should open the `.apk` or `.ipa` file from expo and you are now using the app!
 - `./app.sh test` or `./app.sh test all`
