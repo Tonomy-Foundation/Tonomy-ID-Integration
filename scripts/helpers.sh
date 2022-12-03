@@ -99,16 +99,11 @@ function start {
     echo "Starting Tonomy-ID-SDK"
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     pm2 start npm --name "sdk" -- run start
-    sleep 5
  
-    # Link Tonomy ID to use the SDK
-    echo "linking tonomy id sdk to tonomy id"
-    pm2 start lsyncd --name "linking" -- -nodaemon --delay 5  -rsync   "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
-  
-
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
     echo "NODE_ENV=${NODE_ENV}"
+
     if [ "$NODE_ENV" = "development" ]
     then
         pm2 start npm --name "id" -- run start
@@ -116,6 +111,7 @@ function start {
         # use different command here for staging/production
         pm2 start npm --name "id" -- run start
     fi
+
     if [ "${ARG1}" == "all" ]
     then
         echo "Starting Tonomy-ID-SSO-Website"
@@ -128,6 +124,12 @@ function start {
         npm link "${PARENT_PATH}/Tonomy-ID-SDK"
         BROWSER=none pm2 start npm --name "market" -- start
     fi
+
+    sleep 10
+    # Link Tonomy ID to use the SDK
+    echo "linking tonomy id sdk to tonomy id"
+    pm2 start lsyncd --name "linking" -- -nodaemon --delay 5  -rsync   "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
+
     printservices
     if [ "${ARG1}" == "all" ]
     then
