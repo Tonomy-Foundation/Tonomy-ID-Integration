@@ -33,6 +33,12 @@ pm2 restart id
 
 Make sure you push and code changes you want to keep before you reclone!
 
+## CombinedError [GraphQL]: Entity not authorized
+
+You are not authorized for this project with this EAS user
+
+FIX: change the value of projectID in the `./Tonomy-ID/app.default.json` file
+
 ## [Error] Could not encrypt/decrypt the item in SecureStore
 
 Your secure hardware keystore has keys which have now changed config and cannot be removed.

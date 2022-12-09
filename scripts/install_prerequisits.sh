@@ -18,10 +18,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 apt-cache policy docker-ce
 sudo apt install docker-ce=5:20.10* -y
 sudo usermod -aG docker ${USER}
-# sudo shutdown now
-# you can't shutdown a server like this, we might never get access to it again. Also this interrupts the script! 
-# Find a way to reboot services instead. 
-exit
+reboot now
 
 # https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -35,7 +32,7 @@ sudo apt install rsync=3.2.3* -y
 
 # nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-#exit
+exit
 echo "Setting up to use node v16.4.1"
 nvm install v16.4.1
 nvm alias default v16.4.1
