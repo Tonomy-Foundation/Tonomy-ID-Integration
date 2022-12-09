@@ -40,24 +40,9 @@ Check out the file `./scripts/install_prerequisits.sh`. This can be used as a gu
 
 ### Pre-run (one time)
 
-This is to create an expo build so you can down an `.apk` or `.ipa` file from [https://expo.dev](https://expo.dev) which you can use to run the app.
+In the `Tonomy-ID` repository you need to set up the expo build and install it on your phone. See instructions here
 
-1. Create an expo account to build the app. [https://expo.dev/signup](https://expo.dev/signup)
-2. Move to the Tonomy-ID directory `cd ./Tonomy-ID`
-3. Remove the following lines from `app.json`
-
-```json
-    "extra": {
-      "eas": {
-        "projectId": "afffe2ee-9f93-4d18-9361-df30429cbd98"
-      }
-    }
-```
-
-4. (for IOS only) Run `npm run build:ios:create` to create a device profile for your phone (you need to connect to an Apple Developer account - we do not have one yet)
-5. Run `npm run build:ios` (ios) or `npm run build:android` (android) to build the app for your phone
-6. Return to [https://expo.dev/](https://expo.dev/) and click on the Tonomy ID project build
-7. Install the created app on your phone
+https://github.com/Tonomy-Foundation/Tonomy-ID/tree/development#pre-run-build-first-time-and-each-time-new-rn-only-packages-are-installed
 
 ## Run
 
