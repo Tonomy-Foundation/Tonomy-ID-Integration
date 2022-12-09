@@ -9,12 +9,6 @@
 # - 100GB SSD
 
 
-# Extra pre-requisits to install
-
-sudo apt install -y nginx
-cp ./nginx.conf /etc/nginx/conf.d/default.conf
-sudo systemctl restart nginx
-
 # Clone Tonomy-ID-Integration and initialize submoules
 git clone https://github.com/Tonomy-Foundation/Tonomy-ID-Integration.git
 cd Tonomy-ID-Integration
@@ -36,8 +30,26 @@ sudo tar -C /usr/local --strip-components 1 -xzf node-v16.4.1-linux-x64.tar.gz
 ./app.sh install
 ./app.sh init
 
+
 # To reset
 cd Tonomy-ID-Integration
 ./apps.sh stop
 git pull
 ./apps.sh init
+
+
+
+
+
+# Setup SSL
+
+sudo apt install -y nginx
+cp ./nginx.conf /etc/nginx/conf.d/default.conf
+sudo systemctl restart nginx#
+
+# Generate a new Cloudflare origin certificate, or use your existing one
+# https://dash.cloudflare.com/62eb32c324aaeaeaecc751b529bfb23a/tonomy.foundation/ssl-tls/origin
+# Install the Cloudflare Origin SSL certificate *.tonomy.foundation in the /etc/ssl/cert.pem and /etc/ssl/cert.file
+
+# In Cloudflare, add a new proxied A record blockchain-api-staging.tonomy.foundation and point it to the IP of the droplet.
+
