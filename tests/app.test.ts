@@ -11,7 +11,7 @@ let auth: KeyManager;
 let storage: PersistentStorage;
 let user: User;
 
-describe('User class', () => {
+describe('App class', () => {
     beforeEach((): void => {
         jest.setTimeout(60000);
         auth = new JsKeyManager();
