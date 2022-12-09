@@ -104,7 +104,8 @@ function start {
     cd "${PARENT_PATH}/Tonomy-ID"
     echo "NODE_ENV=${NODE_ENV}"
 
-    BLOCKCHAIN_URL=http://localhost:8888 pm2 start npm --name "id" -- run start
+    ip=`hostname -I | head -n1 | awk '{print $1;}'`
+    BLOCKCHAIN_URL="${ip}" pm2 start npm --name "id" -- run start
 
     if [ "${ARG1}" == "all" ]
     then
