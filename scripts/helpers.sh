@@ -104,13 +104,7 @@ function start {
     cd "${PARENT_PATH}/Tonomy-ID"
     echo "NODE_ENV=${NODE_ENV}"
 
-    if [ "$NODE_ENV" = "development" ]
-    then
-        pm2 start npm --name "id" -- run start
-    else
-        # use different command here for staging/production
-        pm2 start npm --name "id" -- run start
-    fi
+    BLOCKCHAIN_URL=http://localhost:8888 pm2 start npm --name "id" -- run start
 
     if [ "${ARG1}" == "all" ]
     then

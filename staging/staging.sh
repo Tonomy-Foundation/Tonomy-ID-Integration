@@ -45,7 +45,7 @@ git pull
 
 sudo apt install -y nginx
 cp ./nginx.conf /etc/nginx/conf.d/default.conf
-sudo systemctl restart nginx#
+sudo systemctl restart nginx
 
 # Generate a new Cloudflare origin certificate, or use your existing one
 # https://dash.cloudflare.com/62eb32c324aaeaeaecc751b529bfb23a/tonomy.foundation/ssl-tls/origin
