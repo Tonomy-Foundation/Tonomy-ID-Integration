@@ -9,6 +9,12 @@
 # - 100GB SSD
 
 
+# Extra pre-requisits to install
+
+sudo apt install -y nginx
+cp ./nginx.conf /etc/nginx/conf.d/default.conf
+sudo systemctl restart nginx
+
 # Clone Tonomy-ID-Integration and initialize submoules
 git clone https://github.com/Tonomy-Foundation/Tonomy-ID-Integration.git
 cd Tonomy-ID-Integration

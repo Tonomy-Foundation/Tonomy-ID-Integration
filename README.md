@@ -95,3 +95,7 @@ export NODE_ENV=production
 #then
 ./app.sh start
 ```
+
+## Staging server
+
+See `./staging/staging.sh`
