@@ -4,7 +4,6 @@ Developer environment to run Tonomy ID locally alongside a blockchain node, and 
 
 All developers contributing to the project should check [Contributors Guide](./CONTRIBUTING.md) and first check the [Troubleshoot Guide](./TROUBLESHOOT.md) if you have issues installing or running.
 
-All developers sh
 ## Repositories
 
 - [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our React Native cross-platform mobile wallet for public & private EOSIO blockchains.
@@ -13,6 +12,7 @@ All developers sh
 - [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) - Smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
 - [SSO-Demo](https://github.com/Tonomy-Foundation/Tonomy-ID-Demo) - A reactjs application to show demo flows with Tonomy ID
 - [Market.com](https://github.com/Tonomy-Foundation/Tonomy-ID-Demo-market.com.git) - A reactjs application to show demo flows with Tonomy ID and Tonomy ID SSO
+
 ## Environment compatibility
 
 - Linux debian distribution (Ubuntu 20.0.4 LTS used)
@@ -28,8 +28,6 @@ In case you have problems here is a list of the dependencies
 
 - [Docker](http://docs.docker.com) v20.10+
 - [Docker Compose](http://docs.docker.com/compose/) v1.29+
-- [rsync](https://rsync.samba.org/) v3.2.3+
-- [lsyncd](https://github.com/lsyncd/lsyncd) v2.2.3+
 - [npm](https://www.npmjs.com/) v16.4-17.0. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
 - [expo-cli](https://expo.dev/) v5.2+ installed globally by `npm`
 - [pm2](https://pm2.io) v5.5+ installed globally by `npm`
@@ -55,10 +53,11 @@ Follow these steps one by one & read them carefully. Do not rush through it.
 - `./app.sh install`
 - `./app.sh init`
 - Now, you can do one of the following;
-- `./app.sh start`
+- `./app.sh start` or
 - `./app.sh start all` to start all services (including the websites)
+  - Open the installed Tonomy ID app downloaded from [https://expo.dev](https://expo.dev) (See #pre-run-one-time)
+  - Call `getip` and then input the "Enter URL manually" `http://{ip fro getip}:8081
   - Check out the links shown
-  - Open [http://localhost:19002](http://localhost:19002) and you can scan the QR code with your phone, open the URL which should open the `.apk` or `.ipa` file from expo and you are now using the app!
 - `./app.sh test` or `./app.sh test all`
 - `./app.sh log eosio`
 - `./app.sh stop` or `./app.sh reset` or `./app.sh reset all`
