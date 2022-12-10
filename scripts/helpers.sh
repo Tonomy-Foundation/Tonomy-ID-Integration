@@ -102,7 +102,6 @@ function start {
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     pm2 start npm --name "sdk" -- run start
     echo "Waiting for SDK to finish compiling"
-    sleep 20
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
