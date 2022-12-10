@@ -83,29 +83,34 @@ function startdocker {
     docker-compose up -d
 }
 
+getip() {
+    hostname -I | head -n1 | awk '{print $1;}'
+}
+
 function start {
     ARG1=${1-default}
     set +u
     if [ -z "${NODE_ENV}" ]
     then
-        NODE_ENV=development;
+        export NODE_ENV="local";
     fi
     set -u
 
     startdocker
-    # copy files to tonomy id
-    rsync -azcrd "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
     
     echo "Starting Tonomy-ID-SDK"
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     pm2 start npm --name "sdk" -- run start
- 
+    echo "wait for SDK to finish compiling"
+    sleep 20
+
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
     echo "NODE_ENV=${NODE_ENV}"
 
-    ip=`hostname -I | head -n1 | awk '{print $1;}'`
-    BLOCKCHAIN_URL="${ip}" pm2 start npm --name "id" -- run start
+    ip=`getip`
+    export BLOCKCHAIN_URL="http://${ip}:8888"
+    pm2 start npm --name "id" -- run start
 
     if [ "${ARG1}" == "all" ]
     then
@@ -119,11 +124,6 @@ function start {
         npm link "${PARENT_PATH}/Tonomy-ID-SDK"
         BROWSER=none pm2 start npm --name "market" -- start
     fi
-
-    sleep 10
-    # Link Tonomy ID to use the SDK
-    echo "linking tonomy id sdk to tonomy id"
-    pm2 start lsyncd --name "linking" -- -nodaemon --delay 5  -rsync   "$PARENT_PATH/Tonomy-ID-SDK/" "$PARENT_PATH/Tonomy-ID/node_modules/tonomy-id-sdk"
 
     printservices
     if [ "${ARG1}" == "all" ]
