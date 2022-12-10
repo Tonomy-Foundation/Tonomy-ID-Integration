@@ -6,9 +6,9 @@ All developers contributing to the project should check [Contributors Guide](./C
 
 ## Repositories
 
-- [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our React Native cross-platform mobile wallet for public & private EOSIO blockchains.
+- [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our React Native cross-platform mobile wallet for public & private Antelope blockchains.
   - [Directory Structure](https://learn.habilelabs.io/best-folder-structure-for-react-native-project-a46405bdba7)
-- [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - used in Tonomy ID to interact and call with the EOSIO blockchain and services.
+- [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - used in Tonomy ID to interact and call with the Antelope blockchain and services.
 - [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) - Smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
 - [SSO-Demo](https://github.com/Tonomy-Foundation/Tonomy-ID-Demo) - A reactjs application to show demo flows with Tonomy ID
 - [Market.com](https://github.com/Tonomy-Foundation/Tonomy-ID-Demo-market.com.git) - A reactjs application to show demo flows with Tonomy ID and Tonomy ID SSO
@@ -29,12 +29,9 @@ In case you have problems here is a list of the dependencies
 - [Docker](http://docs.docker.com) v20.10+
 - [Docker Compose](http://docs.docker.com/compose/) v1.29+
 - [npm](https://www.npmjs.com/) v16.4-17.0. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
-- [expo-cli](https://expo.dev/) v5.2+ installed globally by `npm`
 - [pm2](https://pm2.io) v5.5+ installed globally by `npm`
-- [tsdx](https://tsdx.io) v0.14.1 installed globally by `npm`
-- [eas-cli](https://docs.expo.dev/workflow/expo-cli/) v2.2.1 globally installed by `npm`
 
-Check out the file `./scripts/install_prerequisits.sh`. This can be used as a guide to install all dependancies on an Ubuntu 18+ machine. Run the script line-by-line, as sometimes you need to exit terminal or restart your machine to continue.
+Check out the file `./scripts/install_prerequisits.sh`. This can be used as a guide to install all dependencies on an Ubuntu 18+ machine. Run the script line-by-line, as sometimes you need to exit terminal or restart your machine to continue.
 
 ### Pre-run (one time)
 
@@ -59,7 +56,7 @@ Follow these steps one by one & read them carefully. Do not rush through it.
   - Call `getip` and then input the "Enter URL manually" `http://{ip fro getip}:8081
   - Check out the links shown
 - `./app.sh test` or `./app.sh test all`
-- `./app.sh log eosio`
+- `./app.sh log antelope`
 - `./app.sh stop` or `./app.sh reset` or `./app.sh reset all`
 
 See [TROUBLESHOOT.md](./TROUBLESHOOT.md) to fix common issues when running the app.
