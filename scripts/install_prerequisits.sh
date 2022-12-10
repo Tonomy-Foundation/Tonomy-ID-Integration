@@ -33,7 +33,3 @@ nvm alias default v16.4.1
 
 echo "Installing pm2 globally"
 npm i -g pm2@5.2.0
-echo "Installing Expo-CLI globally"
-npm i -g expo-cli@5.5.1
-echo "Intalling  eas-cli globally"
-npm i -g eas-cli@2.2.1
