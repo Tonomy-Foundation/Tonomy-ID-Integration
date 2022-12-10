@@ -24,11 +24,10 @@ function loghelp {
     echo "    app.sh log [commands]"
     echo ""
     echo "Commands:"
-    echo "    eosio    - blockchain node (eosio)"
+    echo "    antelope - blockchain node (antelope)"
+    echo "    sdk      - Tonomy ID SDK (tsdx)"
     echo "    id       - Tonomy ID app expo packaer (react native)"
-    echo "    sso     - Tonomy ID SSO app (react)"
-    echo "    sdk      - Tonomy ID SDK (node)"
-    echo "    linking  - linking service (node)"
+    echo "    sso      - Tonomy ID SSO app (react)"
     echo "    market   - Tonomy ID Demo market app (react)"
 }
 
