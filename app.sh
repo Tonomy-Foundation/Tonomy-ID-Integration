@@ -21,7 +21,8 @@ then
     gitinit
 elif [ "$ARG1" == "install" ]
 then
-    install
+    stop
+    install "${ARG2}"
     buildcontracts
 elif [ "$ARG1" == "init" ]
 then

@@ -27,6 +27,15 @@ function gitinit {
 }
 
 function install {
+    ARG1=${1-default}
+
+    if [ "${ARG1}" == "sdk" ]
+    then
+        cd "$PARENT_PATH/Tonomy-ID-SDK"
+        npm run prepare
+        return
+    fi
+
     echo "Installing docker containers"
     cd "$PARENT_PATH"
     docker-compose build
@@ -36,7 +45,7 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
- 
+
     cd "$PARENT_PATH/Tonomy-ID-SSO-Website"
     npm install
     npm link "$PARENT_PATH/Tonomy-ID-SDK"
