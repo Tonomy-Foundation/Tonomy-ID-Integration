@@ -92,9 +92,10 @@ function startdocker {
     docker-compose up -d
 }
 
-getip() {
+getIpAddress() {
     hostname -I | head -n1 | awk '{print $1;}'
 }
+ip=`getIpAddress`
 
 function start {
     ARG1=${1-default}
@@ -115,7 +116,6 @@ function start {
     cd "${PARENT_PATH}/Tonomy-ID"
     echo "NODE_ENV=${NODE_ENV}"
 
-    ip=`getip`
     export BLOCKCHAIN_URL="http://${ip}:8888"
     pm2 start npm --name "id" -- run start
 
@@ -123,6 +123,7 @@ function start {
     then
         echo "Starting Tonomy-ID-SSO-Website"
         cd "${PARENT_PATH}/Tonomy-ID-SSO-Website"
+        export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
         npm link "${PARENT_PATH}/Tonomy-ID-SDK"
         BROWSER=none pm2 start npm --name "sso" -- start
 
