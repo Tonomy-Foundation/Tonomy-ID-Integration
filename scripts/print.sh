@@ -42,7 +42,9 @@ function printservices {
     echo "Tonomy ID app debugger                - http://localhost:8081/debugger-ui/"
     echo "Blockchain node (eosio)               - http://localhost:8888/v1/chain/get_info"
     echo "Blockchain explorer                   - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&coreSymbol=SYS&systemDomain=eosio"
-    echo "" 
+    echo ""
+    echo "Your IP = ${ip}"
+    echo ""
     echo ""
 }
 
