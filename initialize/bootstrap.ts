@@ -32,7 +32,7 @@ async function main() {
         appName: 'Market',
         usernamePrefix: 'market',
         description: 'market.com where you can buy and sell stuff ',
-        origin: `http://${address.ip()}`,
+        origin: `http://${address.ip()}:3001`,
         logoUrl: 'https://tonomy.foundation/images/logo.png',
         publicKey: publicKey,
     });

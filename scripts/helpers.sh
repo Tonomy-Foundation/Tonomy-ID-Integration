@@ -121,16 +121,18 @@ function start {
 
     if [ "${ARG1}" == "all" ]
     then
+        export REACT_APP_SSO_WEBSITE_ORIGIN="http://${ip}:3000"
+        export REACT_APP_TONOMY_ID_LINK="tonomy-id//home/test"
+        export REACT_APP_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
+        
         echo "Starting Tonomy-ID-SSO-Website"
         cd "${PARENT_PATH}/Tonomy-ID-SSO-Website"
         export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
-        npm link "${PARENT_PATH}/Tonomy-ID-SDK"
         BROWSER=none pm2 start npm --name "sso" -- start
 
         echo "Starting Tonomy-ID-Demo-market.com"
         cd "${PARENT_PATH}/Tonomy-ID-Demo-market.com"
-        npm link "${PARENT_PATH}/Tonomy-ID-SDK"
-        BROWSER=none pm2 start npm --name "market" -- start
+        BROWSER=none PORT=3001 pm2 start npm --name "market" -- start
     fi
 
     printservices
