@@ -103,6 +103,7 @@ function start {
     if [ -z "${NODE_ENV}" ]
     then
         export NODE_ENV="local";
+        export REACT_APP_NODE_ENV="local";
     fi
     set -u
 
