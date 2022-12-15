@@ -130,7 +130,7 @@ function start {
 
         echo "Starting Tonomy-ID-Demo-market.com"
         cd "${PARENT_PATH}/Tonomy-ID-Demo-market.com"
-        BROWSER=none PORT=3001 pm2 start npm --name "market" -- start
+        BROWSER=none pm2 start npm --name "market" -- start
     fi
 
     printservices
