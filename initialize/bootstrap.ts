@@ -1,8 +1,9 @@
 import deployContract from './deploy-contract';
 import path from 'path';
-import { createAccount } from './create-account';
+import { createAccount, createApp } from './create-account';
 import { EosioTokenContract, setSettings } from 'tonomy-id-sdk';
-import { signer } from './keys';
+import { signer, publicKey } from './keys';
+import address from 'address';
 
 setSettings({ blockchainUrl: 'http://localhost:8888' });
 const eosioTokenContract = EosioTokenContract.Instance;
@@ -26,6 +27,15 @@ async function main() {
         { account: 'eosio', contractDir: path.join(__dirname, '../Tonomy-Contracts/contracts/eosio.bios.tonomy') },
         signer
     );
+
+    await createApp({
+        appName: 'Market',
+        usernamePrefix: 'market',
+        description: 'market.com where you can buy and sell stuff ',
+        origin: `http://${address.ip()}:3001`,
+        logoUrl: 'https://tonomy.foundation/images/logo.png',
+        publicKey: publicKey,
+    });
 }
 
 Promise.resolve(main()).catch((err) => {

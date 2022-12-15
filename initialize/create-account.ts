@@ -1,9 +1,9 @@
 import { publicKey } from './keys';
-import { Authority, EosioContract } from 'tonomy-id-sdk';
+import { Authority, EosioContract, App, AppCreateOptions } from 'tonomy-id-sdk';
 
 const eosioContract: EosioContract = EosioContract.Instance;
 
-async function createAccount({ account }, signer) {
+export async function createAccount({ account }, signer) {
     const ownerAuth = Authority.fromKey(publicKey.toString());
 
     const activeAuth = Authority.fromKey(publicKey.toString());
@@ -11,7 +11,10 @@ async function createAccount({ account }, signer) {
     // need to add the eosio.code authority as well so that it can call eosio from the smart contract
     ownerAuth.addCodePermission(account);
     activeAuth.addCodePermission(account);
-    await eosioContract.newaccount("eosio", account, ownerAuth, activeAuth, signer);
+    await eosioContract.newaccount('eosio', account, ownerAuth, activeAuth, signer);
 }
 
-export { createAccount };
+export async function createApp(options: AppCreateOptions) {
+    const res = await App.create(options);
+    console.log('New app created with username: ', res.username.username);
+}

@@ -27,6 +27,15 @@ function gitinit {
 }
 
 function install {
+    ARG1=${1-default}
+
+    if [ "${ARG1}" == "sdk" ]
+    then
+        cd "$PARENT_PATH/Tonomy-ID-SDK"
+        npm run prepare
+        return
+    fi
+
     echo "Installing docker containers"
     cd "$PARENT_PATH"
     docker-compose build
@@ -36,7 +45,7 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
- 
+
     cd "$PARENT_PATH/Tonomy-ID-SSO-Website"
     npm install
     npm link "$PARENT_PATH/Tonomy-ID-SDK"
@@ -83,9 +92,10 @@ function startdocker {
     docker-compose up -d
 }
 
-getip() {
+getIpAddress() {
     hostname -I | head -n1 | awk '{print $1;}'
 }
+ip=`getIpAddress`
 
 function start {
     ARG1=${1-default}
@@ -101,27 +111,25 @@ function start {
     echo "Starting Tonomy-ID-SDK"
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     pm2 start npm --name "sdk" -- run start
-    echo "Waiting for SDK to compile"
-    sleep 10
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
     echo "NODE_ENV=${NODE_ENV}"
 
-    ip=`getip`
     export BLOCKCHAIN_URL="http://${ip}:8888"
     pm2 start npm --name "id" -- run start
 
     if [ "${ARG1}" == "all" ]
     then
+        export REACT_APP_SSO_WEBSITE_ORIGIN="http://${ip}:3000"
+        export REACT_APP_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
+        
         echo "Starting Tonomy-ID-SSO-Website"
         cd "${PARENT_PATH}/Tonomy-ID-SSO-Website"
-        npm link "${PARENT_PATH}/Tonomy-ID-SDK"
         BROWSER=none pm2 start npm --name "sso" -- start
 
         echo "Starting Tonomy-ID-Demo-market.com"
         cd "${PARENT_PATH}/Tonomy-ID-Demo-market.com"
-        npm link "${PARENT_PATH}/Tonomy-ID-SDK"
         BROWSER=none pm2 start npm --name "market" -- start
     fi
 
