@@ -2,21 +2,20 @@
 import { API as SDK_API } from 'tonomy-id-sdk/node_modules/@greymass/eosio';
 import { api } from './util/eosio';
 import { createRandomID } from './util/user';
-import { KeyManager, KeyManagerLevel, sha256, initialize, User, PersistentStorage } from 'tonomy-id-sdk';
+import { KeyManager, KeyManagerLevel, User, createUserObject, jsStorageFactory, setSettings } from 'tonomy-id-sdk';
 import JsKeyManager from './services/jskeymanager';
-import JsStorage from './services/jsstorage';
 import settings from './services/settings';
 
 let auth: KeyManager;
-let storage: PersistentStorage;
 let user: User;
+
+setSettings(settings);
 
 describe('User class', () => {
     beforeEach((): void => {
         jest.setTimeout(60000);
         auth = new JsKeyManager();
-        storage = new JsStorage();
-        user = initialize(auth, storage, settings);
+        user = createUserObject(auth, jsStorageFactory);
     });
 
     test('savePassword() generates and saves new private key', async () => {
@@ -88,7 +87,7 @@ describe('User class', () => {
         const username = await user.storage.username;
 
         const newKeyManager = new JsKeyManager();
-        const userLogin = initialize(newKeyManager, storage, settings);
+        const userLogin = createUserObject(newKeyManager, jsStorageFactory);
 
         expect(userLogin.isLoggedIn()).resolves.toBeFalsy();
         const idInfo = await userLogin.login(username, password);
@@ -106,7 +105,7 @@ describe('User class', () => {
         const username = await user.storage.username;
 
         const newKeyManager = new JsKeyManager();
-        const userLogin = initialize(newKeyManager, storage, settings);
+        const userLogin = createUserObject(newKeyManager, jsStorageFactory);
 
         await expect(() => userLogin.login(username, 'differentpassword')).rejects.toThrowError(Error);
     });

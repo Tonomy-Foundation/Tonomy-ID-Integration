@@ -1,24 +1,13 @@
 // need to use API types from inside tonomy-id-sdk, otherwise type compatibility issues
 import { createRandomApp, createRandomID } from './util/user';
-import { KeyManager, initialize, User, PersistentStorage } from 'tonomy-id-sdk';
-import JsKeyManager from './services/jskeymanager';
-import JsStorage from './services/jsstorage';
+import { User, setSettings } from 'tonomy-id-sdk';
 import settings from './services/settings';
 
-let auth: KeyManager;
-let storage: PersistentStorage;
-let user: User;
+setSettings(settings);
 
 describe('App class', () => {
-    beforeEach((): void => {
-        jest.setTimeout(60000);
-        auth = new JsKeyManager();
-        storage = new JsStorage();
-        user = initialize(auth, storage, settings);
-    });
-
     test('loginWithApp(): Logs into new app', async () => {
-        const { user, password } = await createRandomID();
+        const { user, password, auth } = await createRandomID();
         const userAccountName = await user.storage.accountName;
 
         const { accountName } = await createRandomApp();
