@@ -21,8 +21,11 @@
   "dependencies": {
     "@greymass/eosio": "^0.6.4",
     "address": "^1.2.1",
-    "argon2": "^0.29.1",
     "fs": "^0.0.1-security",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "tonomy-id-sdk": "file:Tonomy-ID-SDK"
+  },
+  "resolutions": {
+    "@greymass/eosio": "^0.6.4"
   }
 }

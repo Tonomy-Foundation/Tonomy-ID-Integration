@@ -8,8 +8,9 @@ import {
     TonomyUsername,
     createUserObject,
     jsStorageFactory,
+    JsKeyManager,
 } from 'tonomy-id-sdk';
-import JsKeyManager from '../services/jskeymanager';
+import settings from '../services/settings';
 import { privateKey } from './eosio';
 
 const idContract: IDContract = IDContract.Instance;
@@ -22,7 +23,7 @@ export async function createRandomID() {
     const username = randomString(8);
     const pin = Math.floor(Math.random() * 5).toString();
 
-    await user.saveUsername(username, '.test.id');
+    await user.saveUsername(username);
     await user.savePassword(password);
     await user.savePIN(pin);
     await user.saveFingerprint();
@@ -37,7 +38,7 @@ export async function createRandomID() {
 export async function createRandomApp(logo_url?: string, origin?: string) {
     const name = randomString(8);
     const description = randomString(80);
-    const username = new TonomyUsername(randomString(8), AccountType.APP, '.test.id');
+    const username = new TonomyUsername(randomString(8), AccountType.APP, settings.accountSuffix);
     if (!origin) origin = 'http://localhost:3000';
     if (!logo_url) logo_url = 'http://localhost:3000/logo.png';
 

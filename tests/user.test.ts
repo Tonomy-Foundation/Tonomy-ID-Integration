@@ -1,9 +1,15 @@
-// need to use API types from inside tonomy-id-sdk, otherwise type compatibility issues
-import { API as SDK_API } from 'tonomy-id-sdk/node_modules/@greymass/eosio';
+import { API } from '@greymass/eosio';
 import { api } from './util/eosio';
 import { createRandomID } from './util/user';
-import { KeyManager, KeyManagerLevel, User, createUserObject, jsStorageFactory, setSettings } from 'tonomy-id-sdk';
-import JsKeyManager from './services/jskeymanager';
+import {
+    KeyManager,
+    KeyManagerLevel,
+    User,
+    createUserObject,
+    jsStorageFactory,
+    setSettings,
+    JsKeyManager,
+} from 'tonomy-id-sdk';
 import settings from './services/settings';
 
 let auth: KeyManager;
@@ -129,14 +135,14 @@ describe('User class', () => {
         // get by account name
         let userInfo = await User.getAccountInfo(await user.storage.accountName);
 
-        expect(userInfo).toBeInstanceOf(SDK_API.v1.AccountObject);
+        expect(userInfo).toBeInstanceOf(API.v1.AccountObject);
         expect(userInfo.account_name).toEqual(await user.storage.accountName);
 
         // get by username
         const un = await user.storage.username;
         userInfo = await User.getAccountInfo(await user.storage.username);
 
-        expect(userInfo).toBeInstanceOf(SDK_API.v1.AccountObject);
+        expect(userInfo).toBeInstanceOf(API.v1.AccountObject);
         expect(userInfo.account_name).toEqual(await user.storage.accountName);
     });
 });
