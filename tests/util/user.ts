@@ -2,24 +2,21 @@ import { Name } from '@greymass/eosio';
 import {
     randomString,
     KeyManager,
-    initialize,
     IDContract,
     EosioUtil,
     AccountType,
     TonomyUsername,
-    PersistentStorage,
+    createUserObject,
+    jsStorageFactory,
 } from 'tonomy-id-sdk';
 import JsKeyManager from '../services/jskeymanager';
-import JsStorage from '../services/jsstorage';
-import settings from '../services/settings';
 import { privateKey } from './eosio';
 
 const idContract: IDContract = IDContract.Instance;
 
 export async function createRandomID() {
     const auth: KeyManager = new JsKeyManager();
-    const storage: PersistentStorage = new JsStorage();
-    const user = initialize(auth, storage, settings);
+    const user = createUserObject(auth, jsStorageFactory);
 
     const password = randomString(8) + 'aA0!';
     const username = randomString(8);
@@ -34,7 +31,7 @@ export async function createRandomID() {
     await user.createPerson();
     await user.updateKeys(password);
 
-    return { user, password, pin };
+    return { user, password, pin, auth };
 }
 
 export async function createRandomApp(logo_url?: string, origin?: string) {

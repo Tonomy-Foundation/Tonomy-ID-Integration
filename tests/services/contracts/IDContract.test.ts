@@ -1,5 +1,8 @@
-import { IDContract } from 'tonomy-id-sdk';
+import { IDContract, setSettings } from 'tonomy-id-sdk';
 import { createRandomID, createRandomApp } from '../../util/user';
+import settings from '../settings';
+
+setSettings(settings);
 
 const idContract = IDContract.Instance;
 

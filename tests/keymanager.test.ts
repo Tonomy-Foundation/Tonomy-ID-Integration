@@ -1,13 +1,13 @@
-import { KeyManagerLevel, initialize, randomBytes } from 'tonomy-id-sdk';
+import { KeyManagerLevel, createUserObject, jsStorageFactory, setSettings, randomBytes } from 'tonomy-id-sdk';
 import { Checksum256, PrivateKey } from '@greymass/eosio';
 import JsKeyManager from './services/jskeymanager';
-import JsStorage from './services/jsstorage';
 import settings from './services/settings';
 import argon2 from 'argon2';
 
+setSettings(settings);
+
 const keyManager = new JsKeyManager();
-const storage = new JsStorage();
-const user = initialize(keyManager, storage, settings);
+const user = createUserObject(keyManager, jsStorageFactory);
 
 describe('Keymanager class', () => {
     test('KeyManagerLevel enum helpers', () => {
