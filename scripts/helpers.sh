@@ -92,7 +92,6 @@ function startdocker {
 getIpAddress() {
     hostname -I | head -n1 | awk '{print $1;}'
 }
-ip=`getIpAddress`
 
 function start {
     ARG1=${1-default}
@@ -105,7 +104,9 @@ function start {
     set -u
 
     startdocker
-    
+
+    ip=`getIpAddress`
+
     echo "Starting Tonomy-ID-SDK"
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     pm2 start npm --name "sdk" -- run start
