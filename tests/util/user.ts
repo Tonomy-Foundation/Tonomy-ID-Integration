@@ -7,9 +7,10 @@ import {
     AccountType,
     TonomyUsername,
     createUserObject,
-    jsStorageFactory,
-    JsKeyManager,
 } from 'tonomy-id-sdk';
+import { JsKeyManager } from 'tonomy-id-sdk/test/services/jskeymanager';
+import { jsStorageFactory } from 'tonomy-id-sdk/test/services/jsstorage';
+
 import settings from '../services/settings';
 import { privateKey } from './eosio';
 

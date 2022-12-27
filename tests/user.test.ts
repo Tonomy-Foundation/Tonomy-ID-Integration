@@ -1,15 +1,8 @@
-import { API } from '@greymass/eosio';
 import { api } from './util/eosio';
 import { createRandomID } from './util/user';
-import {
-    KeyManager,
-    KeyManagerLevel,
-    User,
-    createUserObject,
-    jsStorageFactory,
-    setSettings,
-    JsKeyManager,
-} from 'tonomy-id-sdk';
+import { KeyManager, KeyManagerLevel, User, createUserObject, setSettings } from 'tonomy-id-sdk';
+import { JsKeyManager } from 'tonomy-id-sdk/test/services/jskeymanager';
+import { jsStorageFactory } from 'tonomy-id-sdk/test/services/jsstorage';
 import settings from './services/settings';
 
 let auth: KeyManager;
@@ -135,14 +128,11 @@ describe('User class', () => {
         // get by account name
         let userInfo = await User.getAccountInfo(await user.storage.accountName);
 
-        expect(userInfo).toBeInstanceOf(API.v1.AccountObject);
         expect(userInfo.account_name).toEqual(await user.storage.accountName);
 
         // get by username
-        const un = await user.storage.username;
         userInfo = await User.getAccountInfo(await user.storage.username);
 
-        expect(userInfo).toBeInstanceOf(API.v1.AccountObject);
         expect(userInfo.account_name).toEqual(await user.storage.accountName);
     });
 });
