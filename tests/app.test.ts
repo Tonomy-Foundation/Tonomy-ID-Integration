@@ -1,6 +1,6 @@
 // need to use API types from inside tonomy-id-sdk, otherwise type compatibility issues
 import { createRandomApp, createRandomID } from './util/user';
-import { User, setSettings } from 'tonomy-id-sdk';
+import { User, setSettings, AppStatus } from 'tonomy-id-sdk';
 import settings from './services/settings';
 
 setSettings(settings);
@@ -23,5 +23,12 @@ describe('App class', () => {
         expect(appPermission).toBeDefined();
         expect(appPermission.parent.toString()).toEqual('active');
         expect(appPermission.required_auth.keys[0].key.toString()).toEqual(newKey.toPublic().toString());
+
+        const userApps = await user.app.storage.apps;
+        expect(userApps.length).toBe(1);
+        const myApp = userApps[0];
+        expect(myApp.account).toEqual(accountName.toString());
+        expect(myApp.status).toEqual(AppStatus.READY);
+        expect(myApp.added).toBeDefined();
     });
 });
