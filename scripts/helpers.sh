@@ -48,15 +48,12 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID-SSO-Website"
     npm install
-    npm link "$PARENT_PATH/Tonomy-ID-SDK"
 
     cd "$PARENT_PATH/Tonomy-ID-Demo-market.com"
     npm install
-    npm link "$PARENT_PATH/Tonomy-ID-SDK"
 
     cd "$PARENT_PATH"
     npm install
-    npm link "$PARENT_PATH/Tonomy-ID-SDK"
 }
 
 function buildcontracts {

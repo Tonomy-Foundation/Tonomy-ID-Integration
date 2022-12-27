@@ -8,8 +8,8 @@ import {
     TonomyUsername,
     createUserObject,
     jsStorageFactory,
+    JsKeyManager,
 } from 'tonomy-id-sdk';
-import JsKeyManager from '../services/jskeymanager';
 import settings from '../services/settings';
 import { privateKey } from './eosio';
 
