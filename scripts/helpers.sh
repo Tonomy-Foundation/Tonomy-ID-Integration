@@ -116,11 +116,12 @@ function start {
     echo "NODE_ENV=${NODE_ENV}"
 
     export BLOCKCHAIN_URL="http://${ip}:8888"
+    export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
     pm2 start npm --name "id" -- run start
 
     if [ "${ARG1}" == "all" ]
     then
-        export REACT_APP_SSO_WEBSITE_ORIGIN="http://${ip}:3000"
+        export REACT_APP_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
         export REACT_APP_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
         
         echo "Starting Tonomy-ID-SSO-Website"
