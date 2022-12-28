@@ -1,20 +1,8 @@
-import { Name } from '@greymass/eosio';
-import {
-    randomString,
-    KeyManager,
-    IDContract,
-    EosioUtil,
-    AccountType,
-    TonomyUsername,
-    createUserObject,
-} from 'tonomy-id-sdk';
+import { randomString, KeyManager, createUserObject, App } from 'tonomy-id-sdk';
 import { JsKeyManager } from 'tonomy-id-sdk/test/services/jskeymanager';
 import { jsStorageFactory } from 'tonomy-id-sdk/test/services/jsstorage';
 
-import settings from '../services/settings';
 import { privateKey } from './eosio';
-
-const idContract: IDContract = IDContract.Instance;
 
 export async function createRandomID() {
     const auth: KeyManager = new JsKeyManager();
@@ -36,25 +24,18 @@ export async function createRandomID() {
     return { user, password, pin, auth };
 }
 
-export async function createRandomApp(logo_url?: string, origin?: string) {
+export async function createRandomApp(logoUrl?: string, origin?: string): Promise<App> {
     const name = randomString(8);
     const description = randomString(80);
-    const username = new TonomyUsername(randomString(8), AccountType.APP, settings.accountSuffix);
     if (!origin) origin = 'http://localhost:3000';
-    if (!logo_url) logo_url = 'http://localhost:3000/logo.png';
+    if (!logoUrl) logoUrl = 'http://localhost:3000/logo.png';
 
-    const res = await idContract.newapp(
-        name,
-        description,
-        username.usernameHash,
-        logo_url,
+    return await App.create({
+        usernamePrefix: randomString(8),
+        appName: name,
+        description: description,
+        logoUrl,
         origin,
-        privateKey.toPublic(),
-        EosioUtil.createSigner(privateKey)
-    );
-
-    const newAccountAction = res.processed.action_traces[0].inline_traces[0].act;
-    const accountName = Name.from(newAccountAction.data.name);
-
-    return { name, description, username, logo_url, origin, accountName };
+        publicKey: privateKey.toPublic(),
+    });
 }
