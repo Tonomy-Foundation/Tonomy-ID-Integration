@@ -35,10 +35,28 @@ describe('IDContract class', () => {
         expect(idInfo.username_hash.toString()).toEqual(username.usernameHash);
     });
 
-    test('newapp', async () => {
+    test('newapp and getApp', async () => {
         const { appName, description, username, logoUrl, origin, accountName } = await createRandomApp();
 
-        const appInfo = await idContract.getApp(username);
+        let appInfo = await idContract.getApp(username);
+
+        expect(appInfo.app_name).toEqual(appName);
+        expect(appInfo.description).toEqual(description);
+        expect(appInfo.username_hash.toString()).toEqual(username.usernameHash);
+        expect(appInfo.logo_url).toEqual(logoUrl);
+        expect(appInfo.origin).toEqual(origin);
+        expect(appInfo.account_name.toString()).toEqual(accountName.toString());
+
+        appInfo = await idContract.getApp(origin);
+
+        expect(appInfo.app_name).toEqual(appName);
+        expect(appInfo.description).toEqual(description);
+        expect(appInfo.username_hash.toString()).toEqual(username.usernameHash);
+        expect(appInfo.logo_url).toEqual(logoUrl);
+        expect(appInfo.origin).toEqual(origin);
+        expect(appInfo.account_name.toString()).toEqual(accountName.toString());
+
+        appInfo = await idContract.getApp(accountName);
 
         expect(appInfo.app_name).toEqual(appName);
         expect(appInfo.description).toEqual(description);

@@ -8,7 +8,7 @@ const idContract: IDContract = IDContract.Instance;
 export async function createRandomApp(logo_url?: string, origin?: string) {
     const name = randomString(8);
     const description = randomString(80);
-    const username = new TonomyUsername(randomString(8), AccountType.APP, settings.accountSuffix);
+    const username = TonomyUsername.fromUsername(randomString(8), AccountType.APP, settings.accountSuffix);
     if (!origin) origin = 'http://localhost:3000';
     if (!logo_url) logo_url = 'http://localhost:3000/logo.png';
 
