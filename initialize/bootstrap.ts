@@ -33,7 +33,7 @@ async function main() {
         usernamePrefix: 'market',
         description: 'market.com where you can buy and sell stuff ',
         origin: `http://${address.ip()}:3001`,
-        logoUrl: 'https://tonomy.foundation/images/logo.png',
+        logoUrl: `http://${address.ip()}:3001/market.com.png`,
         publicKey: publicKey,
     });
 }
