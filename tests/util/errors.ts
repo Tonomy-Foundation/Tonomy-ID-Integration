@@ -2,7 +2,10 @@
 export function catchAndPrintErrors(fn: () => Promise<void>): () => Promise<void> {
     return () =>
         fn().catch((err) => {
-            console.error(JSON.stringify(err, null, 2));
+            if (!err?.matcherResult) {
+                // Not a Jest error
+                console.error(JSON.stringify(err, null, 2));
+            }
             throw err;
         });
 }
