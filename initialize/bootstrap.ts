@@ -23,8 +23,6 @@ async function main() {
         { account: 'id.tonomy', contractDir: path.join(__dirname, '../Tonomy-Contracts/contracts/id.tonomy') },
         signer
     );
-    // await createAccount({ account: 'jack' }, signer);
-    // await addkeylocal(signer);
 
     await deployContract(
         { account: 'eosio', contractDir: path.join(__dirname, '../Tonomy-Contracts/contracts/eosio.bios.tonomy') },
