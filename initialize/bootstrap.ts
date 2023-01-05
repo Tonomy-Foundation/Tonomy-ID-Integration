@@ -1,11 +1,12 @@
 import deployContract from './deploy-contract';
 import path from 'path';
 import { createAccount, createApp } from './create-account';
-import { EosioTokenContract, setSettings } from 'tonomy-id-sdk';
+import { EosioTokenContract, IDContract, setSettings } from 'tonomy-id-sdk';
 import { signer, publicKey } from './keys';
 import address from 'address';
+import settings from '../tests/services/settings';
 
-setSettings({ blockchainUrl: 'http://localhost:8888' });
+setSettings(settings);
 const eosioTokenContract = EosioTokenContract.Instance;
 
 async function main() {
@@ -22,6 +23,8 @@ async function main() {
         { account: 'id.tonomy', contractDir: path.join(__dirname, '../Tonomy-Contracts/contracts/id.tonomy') },
         signer
     );
+    // await createAccount({ account: 'jack' }, signer);
+    // await addkeylocal(signer);
 
     await deployContract(
         { account: 'eosio', contractDir: path.join(__dirname, '../Tonomy-Contracts/contracts/eosio.bios.tonomy') },
@@ -36,6 +39,14 @@ async function main() {
         logoUrl: `http://${address.ip()}:3001/market.com.png`,
         publicKey: publicKey,
     });
+
+    // await loginwithapp();
+}
+
+const idContract = IDContract.Instance;
+async function loginwithapp() {
+    console.log('test');
+    idContract.test('jack', signer);
 }
 
 Promise.resolve(main()).catch((err) => {
