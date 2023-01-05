@@ -10,5 +10,5 @@
         ],
         "esModuleInterop": true,
     },
-    "include": [ "./tests/**/*.ts", "Tonomy-ID-SDK/test/services/keymanager.test.ts" ]
+    "include": [ "./tests/**/*.ts" ]
 }

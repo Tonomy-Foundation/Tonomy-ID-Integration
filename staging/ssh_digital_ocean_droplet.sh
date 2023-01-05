@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ssh -v root@165.232.88.169
+ssh -v root@165.232.82.168

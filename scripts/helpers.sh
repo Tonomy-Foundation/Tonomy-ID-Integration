@@ -63,7 +63,7 @@ function buildcontracts {
 
 function deletecontracts {
     cd "$PARENT_PATH/Tonomy-Contracts"
-    ./delte-built-contracts.sh
+    ./delete-buildt-contracts.sh
 }
 
 function init {
@@ -116,11 +116,12 @@ function start {
     echo "NODE_ENV=${NODE_ENV}"
 
     export BLOCKCHAIN_URL="http://${ip}:8888"
+    export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
     pm2 start npm --name "id" -- run start
 
     if [ "${ARG1}" == "all" ]
     then
-        export REACT_APP_SSO_WEBSITE_ORIGIN="http://${ip}:3000"
+        export REACT_APP_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
         export REACT_APP_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
         
         echo "Starting Tonomy-ID-SSO-Website"
@@ -167,13 +168,15 @@ function reset {
     if [ "${ARG1}" == "all" ]
     then
         echo "Deleting all node_modules"
+        set +e
         rm -R "${PARENT_PATH}/Tonomy-ID-SDK/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID-SDK/dist"
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
-        rm -R "${PARENT_PATH}/Tonomy-ID-Demo/node_modules"
+        rm -R "${PARENT_PATH}/Tonomy-ID/.expo"
+        rm -R "${PARENT_PATH}/Tonomy-ID-SSO-Website/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID-Demo-market.com/node_modules"
         rm -R "${PARENT_PATH}/node_modules"
-
+        set -e
         deletecontracts
     fi
 
