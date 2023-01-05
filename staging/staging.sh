@@ -18,38 +18,32 @@ git checkout development
 
 # Install prerequisits
 ## Run instructions in ../scripts/install_prerequisits.sh
+./scripts/install_prerequisits.sh
 
 ## install nodejs manually, as the nvm installation doesnt work with root user
 wget nodejs.org/dist/v16.4.1/node-v16.4.1-linux-x64.tar.gz
 sudo tar -C /usr/local --strip-components 1 -xzf node-v16.4.1-linux-x64.tar.gz
+## pm2 is not needed
 
-## lsync, rsync, eas, expo and pm2 are not needed
-./scripts/install_prerequisits.sh
+# Setup SSL
+sudo apt install -y nginx
+cp ./staging/nginx.conf /etc/nginx/conf.d/default.conf
+sudo systemctl restart nginx
 
+# Generate a new Cloudflare origin certificate, or use your existing one
+# https://dash.cloudflare.com/62eb32c324aaeaeaecc751b529bfb23a/tonomy.foundation/ssl-tls/origin
+# Install the Cloudflare Origin SSL certificate *.tonomy.foundation in the /etc/ssl/cert.pem and /etc/ssl/cert.key
 
+# In Cloudflare, add a new proxied A record blockchain-api-staging.tonomy.foundation and point it to the IP of the droplet.
+
+# Install, run and initialize the blockchain-api
+cd Tonomy-ID-Integration
 ./app.sh install
 ./app.sh init
-
 
 # To reset
 cd Tonomy-ID-Integration
 ./apps.sh stop
 git pull
 ./apps.sh init
-
-
-
-
-
-# Setup SSL
-
-sudo apt install -y nginx
-cp ./nginx.conf /etc/nginx/conf.d/default.conf
-sudo systemctl restart nginx
-
-# Generate a new Cloudflare origin certificate, or use your existing one
-# https://dash.cloudflare.com/62eb32c324aaeaeaecc751b529bfb23a/tonomy.foundation/ssl-tls/origin
-# Install the Cloudflare Origin SSL certificate *.tonomy.foundation in the /etc/ssl/cert.pem and /etc/ssl/cert.file
-
-# In Cloudflare, add a new proxied A record blockchain-api-staging.tonomy.foundation and point it to the IP of the droplet.
 
