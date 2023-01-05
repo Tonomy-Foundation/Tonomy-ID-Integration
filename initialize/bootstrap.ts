@@ -39,14 +39,6 @@ async function main() {
         logoUrl: `http://${address.ip()}:3001/market.com.png`,
         publicKey: publicKey,
     });
-
-    // await loginwithapp();
-}
-
-const idContract = IDContract.Instance;
-async function loginwithapp() {
-    console.log('test');
-    idContract.test('jack', signer);
 }
 
 Promise.resolve(main()).catch((err) => {
