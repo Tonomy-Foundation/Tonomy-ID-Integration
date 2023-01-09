@@ -1,10 +1,11 @@
 import deployContract from './deploy-contract';
 import path from 'path';
 import { createAccount, createApp } from './create-account';
-import { EosioTokenContract, IDContract, setSettings } from 'tonomy-id-sdk';
+import { EosioTokenContract, setSettings } from 'tonomy-id-sdk';
 import { signer, publicKey } from './keys';
 import address from 'address';
 import settings from '../tests/services/settings';
+import { createUser } from '../tests/util/user';
 
 setSettings(settings);
 const eosioTokenContract = EosioTokenContract.Instance;
@@ -37,6 +38,9 @@ async function main() {
         logoUrl: `http://${address.ip()}:3001/market.com.png`,
         publicKey: publicKey,
     });
+
+    // The Apple app needs to have a test user for their review. That is this user.
+    await createUser('testuser', '1GjGtP%g5UOp2lQ&U5*p');
 }
 
 Promise.resolve(main()).catch((err) => {
