@@ -39,6 +39,7 @@ async function main() {
         publicKey: publicKey,
     });
 
+    // The Apple app needs to have a test user for their review. That is this user.
     await createUser('testuser', '1GjGtP%g5UOp2lQ&U5*p');
 }
 
