@@ -26,7 +26,8 @@ async function deployContract({ account, contractDir }, signer) {
 
     const wasmFile = fs.readFileSync(wasmPath);
     const abiFile = fs.readFileSync(abiPath, 'utf8');
-    await eosioContract.deployContract(Name.from(account), wasmFile, abiFile, signer);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await eosioContract.deployContract(Name.from(account) as any, wasmFile, abiFile, signer);
 }
 
 export default deployContract;
