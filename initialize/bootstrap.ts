@@ -40,6 +40,16 @@ async function main() {
         publicKey: publicKey as any,
     });
 
+    await createApp({
+        appName: 'Tonomy Website',
+        usernamePrefix: 'tonomy',
+        description: 'Tonomy website to manager your ID and Data',
+        origin: `http://${address.ip()}:3000`,
+        logoUrl: `http://${address.ip()}:3000/tonomy-logo1024.png`,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        publicKey: publicKey as any,
+    });
+
     // The Apple app needs to have a test user for their review. That is this user.
     await createUser('testuser', '1GjGtP%g5UOp2lQ&U5*p');
 }
