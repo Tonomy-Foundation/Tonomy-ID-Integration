@@ -36,7 +36,8 @@ async function main() {
         description: 'market.com where you can buy and sell stuff ',
         origin: `http://${address.ip()}:3001`,
         logoUrl: `http://${address.ip()}:3001/market.com.png`,
-        publicKey: publicKey,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        publicKey: publicKey as any,
     });
 
     // The Apple app needs to have a test user for their review. That is this user.

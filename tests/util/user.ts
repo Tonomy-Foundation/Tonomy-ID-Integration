@@ -48,6 +48,7 @@ export async function createRandomApp(logoUrl?: string, origin?: string): Promis
         description: description,
         logoUrl,
         origin,
-        publicKey: privateKey.toPublic(),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        publicKey: privateKey.toPublic() as any,
     });
 }
