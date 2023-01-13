@@ -4,6 +4,19 @@ Developer environment to run Tonomy ID locally alongside a blockchain node, and 
 
 All developers contributing to the project should check [Contributors Guide](./CONTRIBUTING.md) and first check the [Troubleshoot Guide](./TROUBLESHOOT.md) if you have issues installing or running.
 
+## Staging environment
+
+See `./staging`
+
+- Demo market.com: <https://tonomy-id-market-com-staging.tonomy.foundation>
+- Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
+- Readthedocs: <https://tonomy-id-sdk.readthedocs.io>
+- Tonomy ID:
+  - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
+  - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
+    - TestFlight: TODO
+- Testers issue reporting sheet: <https://docs.google.com/spreadsheets/d/1_LtUzEV8aiw5OYYuEHnQd-Mf0Jpwd4jWEUZgnJqI9ME/edit#gid=1902629582>
+
 ## Repositories
 
 - [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our React Native cross-platform mobile wallet for public & private Antelope blockchains.
@@ -37,7 +50,7 @@ Check out the file `./scripts/install_prerequisits.sh`. This can be used as a gu
 
 In the `Tonomy-ID` repository you need to set up the expo build and install it on your phone. See instructions here
 
-https://github.com/Tonomy-Foundation/Tonomy-ID/tree/development#pre-run-build-first-time-and-each-time-new-rn-only-packages-are-installed
+<https://github.com/Tonomy-Foundation/Tonomy-ID/tree/development#pre-run-build-first-time-and-each-time-new-rn-only-packages-are-installed>
 
 ## Run
 
@@ -53,7 +66,7 @@ Follow these steps one by one & read them carefully. Do not rush through it.
 - `./app.sh start` or
 - `./app.sh start all` to start all services (including the websites)
   - Open the installed Tonomy ID app downloaded from [https://expo.dev](https://expo.dev) (See #pre-run-one-time)
-  - Call `getip` and then input the "Enter URL manually" `http://{ip fro getip}:8081
+  - Call `getip` and then input the "Enter URL manually" `<http://{ip> fro getip}:8081
   - Check out the links shown
 - `./app.sh test` or `./app.sh test all`
 - `./app.sh log antelope`
