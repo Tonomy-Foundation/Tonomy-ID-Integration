@@ -44,7 +44,7 @@ async function main() {
         appName: 'Tonomy Website',
         usernamePrefix: 'tonomy',
         description: 'Tonomy website to manager your ID and Data',
-        origin: bootstrapSettings.config.demoWebsiteOrigin,
+        origin: bootstrapSettings.config.ssoWebsiteOrigin,
         logoUrl: bootstrapSettings.config.ssoWebsiteLogoUrl,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         publicKey: publicKey as any,
