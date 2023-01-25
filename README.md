@@ -10,6 +10,8 @@ See `./staging`
 
 - Demo market.com: <https://tonomy-id-market-com-staging.tonomy.foundation>
 - Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
+- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
+- Blockchain API: <https://blockchain-api-staging.tonomy.foundation>
 - Readthedocs: <https://tonomy-id-sdk.readthedocs.io>
 - Tonomy ID:
   - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
