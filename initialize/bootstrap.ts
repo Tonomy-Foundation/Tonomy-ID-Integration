@@ -3,7 +3,7 @@ import path from 'path';
 import { createAccount, createApp } from './create-account';
 import { EosioTokenContract, setSettings } from 'tonomy-id-sdk';
 import { signer, publicKey } from './keys';
-import address from 'address';
+import bootstrapSettings from './settings';
 import settings from '../tests/services/settings';
 import { createUser } from '../tests/util/user';
 
@@ -34,8 +34,8 @@ async function main() {
         appName: 'Market',
         usernamePrefix: 'market',
         description: 'market.com where you can buy and sell stuff ',
-        origin: `http://${address.ip()}:3001`,
-        logoUrl: `http://${address.ip()}:3001/market.com.png`,
+        origin: bootstrapSettings.config.demoWebsiteOrigin,
+        logoUrl: bootstrapSettings.config.demoWebsiteLogoUrl,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         publicKey: publicKey as any,
     });
@@ -44,8 +44,8 @@ async function main() {
         appName: 'Tonomy Website',
         usernamePrefix: 'tonomy',
         description: 'Tonomy website to manager your ID and Data',
-        origin: `http://${address.ip()}:3000`,
-        logoUrl: `http://${address.ip()}:3000/tonomy-logo1024.png`,
+        origin: bootstrapSettings.config.demoWebsiteOrigin,
+        logoUrl: bootstrapSettings.config.ssoWebsiteLogoUrl,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         publicKey: publicKey as any,
     });
