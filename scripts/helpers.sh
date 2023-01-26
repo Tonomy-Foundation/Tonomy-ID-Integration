@@ -24,6 +24,10 @@ function gitinit {
     cd "$PARENT_PATH/Tonomy-Contracts"
     git checkout development
     git pull
+
+    cd "$PARENT_PATH/Tonomy-Communication"
+    git checkout development
+    git pull
 }
 
 function install {
@@ -51,6 +55,9 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID-Demo-market.com"
     npm install
+
+    cd "$PARENT_PATH/Tonomy-Communication"
+    yarn install
 
     cd "$PARENT_PATH"
     npm install
@@ -131,6 +138,11 @@ function start {
         echo "Starting Tonomy-ID-Demo-market.com"
         cd "${PARENT_PATH}/Tonomy-ID-Demo-market.com"
         BROWSER=none pm2 start npm --name "market" -- start
+
+
+        echo "Starting communication microservice"
+        cd  "$PARENT_PATH/Tonomy-Communication"
+        pm2 start yarn --name "micro" -- run start:dev
     fi
 
     printservices
@@ -170,6 +182,7 @@ function reset {
         echo "Deleting all node_modules"
         set +e
         rm -R "${PARENT_PATH}/Tonomy-ID-SDK/node_modules"
+        rm -R "${PARENT_PATH}/Tonomy-Communication/node_modules" 
         rm -R "${PARENT_PATH}/Tonomy-ID-SDK/dist"
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID/.expo"
@@ -225,6 +238,8 @@ function log {
         tail -f --lines=10 /var/log/nginx/access.log
     elif [ "${SERVICE}" == "market" ]; then
         pm2 log market
+    elif [ "${SERVICE}" == "micro" ]; then
+        pm2 log micro
     else
         loghelp
     fi
