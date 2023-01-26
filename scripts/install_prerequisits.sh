@@ -31,5 +31,8 @@ echo "Setting up to use node v16.4.1"
 nvm install v16.4.1
 nvm alias default v16.4.1
 
+echo "enable corepack"
+corepack enable
+
 echo "Installing pm2 globally"
 npm i -g pm2@5.2.0
