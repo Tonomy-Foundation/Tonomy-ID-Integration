@@ -182,32 +182,6 @@ function reset {
 
 }
 
-function test {
-    ARG1=${1-default}
-
-    cd "$PARENT_PATH/Tonomy-ID-SDK"
-    npm run prepare
-
-    cd "${PARENT_PATH}"
-    if [ "${ARG1}" == "all" ]
-    then
-        npm test
-    else
-        npm test "${ARG1}"
-    fi
-
-    if [ "${ARG1}" == "all" ]
-    then
-        echo "Running unit tests"
-        cd "$PARENT_PATH/Tonomy-ID-SDK"
-        npm run test
-
-        echo "Running unit tests"
-        cd "$PARENT_PATH/Tonomy-ID"
-        npm run test -- --all
-    fi
-}
-
 function log {
     SERVICE=${1-default}
 
