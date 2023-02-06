@@ -41,14 +41,6 @@ elif [ "$ARG1" == "reset" ]
 then
     stop
     reset "${ARG2}"
-elif [ "$ARG1" == "test" ]
-then
-    stop
-    reset
-    buildcontracts
-    startdocker
-    init
-    test "${ARG2}"
 elif [ "$ARG1" == "log" ]
 then
     log "${ARG2}"
