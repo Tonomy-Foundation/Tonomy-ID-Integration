@@ -26,10 +26,6 @@ function gitinit {
     cd "$PARENT_PATH/Tonomy-ID-Demo-market.com"
     git checkout development
     git pull
-
-    cd "$PARENT_PATH/Tonomy-Contracts"
-    git checkout development
-    git pull
 }
 
 function install {
@@ -64,7 +60,6 @@ function deletecontracts {
 }
 
 function init {
-    cd "$PARENT_PATH/Tonomy-Contracts/blockchain"
     echo "Waiting 8 seconds for blockchain node to start"
     sleep 8
 
