@@ -9,6 +9,12 @@ function gitinit {
     git checkout development
     git pull
 
+    git submodule init
+    git submodule update
+    cd "$PARENT_PATH/Tonomy-ID-SDK/Tonomy-Contracts"
+    git checkout development
+    git pull
+
     cd "$PARENT_PATH/Tonomy-ID"
     git checkout development
     git pull
@@ -36,7 +42,7 @@ function install {
         return
     fi
 
-    cd "$PARENT_PATH/Tonomy-Contracts"
+    cd "$PARENT_PATH/Tonomy-ID-SDK/Tonomy-Contracts"
     ./blockchain/build-docker.sh
 
     cd "$PARENT_PATH/Tonomy-ID-SDK"
