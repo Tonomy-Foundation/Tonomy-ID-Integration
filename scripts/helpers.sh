@@ -36,9 +36,8 @@ function install {
         return
     fi
 
-    echo "Installing docker containers"
-    cd "$PARENT_PATH"
-    docker-compose build
+    cd "$PARENT_PATH/Tonomy-Contracts"
+    ./blockchain/build-docker.sh
 
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     npm install
@@ -56,21 +55,15 @@ function install {
     npm install
 }
 
-function buildcontracts {
-    cd "$PARENT_PATH/Tonomy-Contracts"
-    ./build-contracts.sh
-}
-
 function deletecontracts {
     cd "$PARENT_PATH/Tonomy-Contracts"
     ./delete-buildt-contracts.sh
 }
 
 function init {
-    cd "$PARENT_PATH/blockchain"
+    cd "$PARENT_PATH/Tonomy/Contracts/blockchain"
     echo "Waiting 8 seconds for blockchain node to start"
     sleep 8
-    docker-compose exec eosio /bin/bash /var/repo/blockchain/initialize-blockchain.sh
 
     cd "$PARENT_PATH"
     npm run bootstrap
@@ -85,7 +78,7 @@ function init {
 function startdocker {
     echo "Starting Docker compose"
     cd "$PARENT_PATH"
-    docker volume create --name=eosio-data
+    docker volume create --name=antelope-data
     docker-compose up -d
 }
 
@@ -142,9 +135,7 @@ function start {
 
 function stop {
     cd "${PARENT_PATH}"
-    set +e
-    docker-compose exec eosio /bin/bash /bin/nodeos-stop.sh
-    set -e
+    docker-compose exec antelope ./nodeos.sh stop || true
 
     docker-compose down
 
@@ -159,7 +150,7 @@ function reset {
     ARG1=${1-default}
 
     set +e
-    docker volume rm eosio-data
+    docker volume rm antelope-data
 
     pm2 stop all
     pm2 delete all
@@ -175,7 +166,6 @@ function reset {
         rm -R "${PARENT_PATH}/Tonomy-ID/.expo"
         rm -R "${PARENT_PATH}/Tonomy-ID-SSO-Website/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID-Demo-market.com/node_modules"
-        rm -R "${PARENT_PATH}/node_modules"
         set -e
         deletecontracts
     fi
@@ -185,8 +175,8 @@ function reset {
 function log {
     SERVICE=${1-default}
 
-    if [ "${SERVICE}" == "eosio" ]; then
-        docker-compose logs -f eosio
+    if [ "${SERVICE}" == "antelope" ]; then
+        docker-compose logs -f antelope
     elif [ "${SERVICE}" == "id" ]; then
         pm2 log --lines 20 id
     elif [ "${SERVICE}" == "sso" ]; then

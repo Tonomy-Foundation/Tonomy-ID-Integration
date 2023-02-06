@@ -1,17 +1,15 @@
 version: '3'
 
 volumes:
-  eosio-data:
+  antelope-data:
     external:
-      name: eosio-data
+      name: antelope-data
 
 services:
-  eosio:
-    build:
-      context: ./blockchain
-    container_name: "eosio"
+  antelope:
+    build: tonomy_blockchain_initialized
+    container_name: "antelope"
     ports:
       - 8888:8888
     volumes:
-      - ./:/var/repo
-      - eosio-data:/data
+      - antelope-data:/data
