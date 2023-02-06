@@ -50,9 +50,6 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID-Demo-market.com"
     npm install
-
-    cd "$PARENT_PATH"
-    npm install
 }
 
 function deletecontracts {

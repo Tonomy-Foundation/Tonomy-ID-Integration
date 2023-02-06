@@ -22,12 +22,10 @@ then
 elif [ "$ARG1" == "install" ]
 then
     install "${ARG2}"
-    buildcontracts
 elif [ "$ARG1" == "init" ]
 then
     stop
     reset
-    buildcontracts
     startdocker
     init
 elif [ "$ARG1" == "start" ]
