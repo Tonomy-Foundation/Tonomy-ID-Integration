@@ -37,7 +37,7 @@ Hardware suggestions:
 - 2 Gb RAM minimum
 - 2 core minimum
 
-## Dependancies
+## Dependencies
 
 In case you have problems here is a list of the dependencies
 
@@ -70,15 +70,10 @@ Follow these steps one by one & read them carefully. Do not rush through it.
   - Open the installed Tonomy ID app downloaded from [https://expo.dev](https://expo.dev) (See #pre-run-one-time)
   - Call `getip` and then input the "Enter URL manually" `<http://{ip> fro getip}:8081
   - Check out the links shown
-- `./app.sh test` or `./app.sh test all`
 - `./app.sh log antelope`
 - `./app.sh stop` or `./app.sh reset` or `./app.sh reset all`
 
 See [TROUBLESHOOT.md](./TROUBLESHOOT.md) to fix common issues when running the app.
-
-For visual aid, a recording of a full walkthrough of the setup with a junior dev can be found [here](https://www.loom.com/share/f44be75ce80044a08a73c53ea64a3afd)
-
-A recording which explains how it all works, and how to run tests can be found [here](https://www.loom.com/share/8566b834759742309ebc96c74e955767)
 
 ## Environment variables
 
