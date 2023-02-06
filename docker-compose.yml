@@ -7,7 +7,7 @@ volumes:
 
 services:
   antelope:
-    build: tonomy_blockchain_initialized
+    image: tonomy_blockchain_initialized
     container_name: "antelope"
     ports:
       - 8888:8888

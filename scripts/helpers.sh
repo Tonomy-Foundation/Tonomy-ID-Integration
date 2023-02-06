@@ -58,11 +58,11 @@ function deletecontracts {
 }
 
 function init {
-    cd "$PARENT_PATH/Tonomy/Contracts/blockchain"
+    cd "$PARENT_PATH/Tonomy-Contracts/blockchain"
     echo "Waiting 8 seconds for blockchain node to start"
     sleep 8
 
-    cd "$PARENT_PATH"
+    cd "$PARENT_PATH/Tonomy-ID-SDK"
     npm run bootstrap
 
     echo ""
