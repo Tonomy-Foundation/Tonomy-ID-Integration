@@ -9,9 +9,15 @@ set -e ## exit if any statement fails
 # Make sure working dir is same as this dir, so that script can be excuted from another working directory
 PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 
+getIpAddress() {
+    hostname -I | head -n1 | awk '{print $1;}'
+}
+ip=`getIpAddress`
+
 # import functions
 source ./scripts/helpers.sh
 source ./scripts/print.sh
+
 
 if [ -z "$ARG1" ]
 then

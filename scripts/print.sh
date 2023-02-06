@@ -12,7 +12,6 @@ function help {
     echo "    start [all]    - starts application components through docker compose"
     echo "    stop           - stops application execution"
     echo "    reset [all]    - stops application execution and resets all data. Optionally specify 'all' to also reset all node_modules"
-    echo "    test [all]     - reset and run integration tests. Optionally specify 'all' to run all unit tests"
     echo "    log [service]  - prints logs for the service"
 }
 
@@ -49,8 +48,8 @@ function printservices {
 }
 
 function printWebsiteServices {
-    echo "Tonomy ID Demo SSO Website (react)    - http://localhost:3000"
-    echo "Tonomy ID Demo market app (react)     - http://localhost:3001"
+    echo "Tonomy ID Demo SSO Website (react)    - http://${ip}:3000"
+    echo "Tonomy ID Demo market app (react)     - http://${ip}:3001"
     echo "" 
     echo ""
 }

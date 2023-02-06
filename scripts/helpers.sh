@@ -79,10 +79,6 @@ function startdocker {
     docker-compose up -d
 }
 
-getIpAddress() {
-    hostname -I | head -n1 | awk '{print $1;}'
-}
-
 function start {
     ARG1=${1-default}
     set +u
@@ -94,8 +90,6 @@ function start {
     set -u
 
     startdocker
-
-    ip=`getIpAddress`
 
     echo "Starting Tonomy-ID-SDK"
     cd "$PARENT_PATH/Tonomy-ID-SDK"
