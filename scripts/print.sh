@@ -52,7 +52,7 @@ function printservices {
 function printWebsiteServices {
     echo "Tonomy ID Demo SSO Website (react)    - http://localhost:3000"
     echo "Tonomy ID Demo market app (react)     - http://localhost:3001"
-    echo "Tonomy Communication microservice     - http://localhost:3002"
+    echo "Tonomy Communication microservice     - http://localhost:5000"
     echo "" 
     echo ""
 }
