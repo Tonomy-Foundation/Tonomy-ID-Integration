@@ -14,10 +14,10 @@ type ConfigType = {
 const ipAddress = address.ip();
 
 const defaultConfig = {
-    ssoWebsiteOrigin: `http://${ipAddress}:3001`,
-    ssoWebsiteLogoUrl: `http://${ipAddress}:3001/tonomy-logo1024.png`,
-    demoWebsiteOrigin: `http://${ipAddress}:3000`,
-    demoWebsiteLogoUrl: `http://${ipAddress}:3000//market.com.png`,
+    ssoWebsiteOrigin: `http://${ipAddress}:3000`,
+    ssoWebsiteLogoUrl: `http://${ipAddress}:3000/tonomy-logo1024.png`,
+    demoWebsiteOrigin: `http://${ipAddress}:3001`,
+    demoWebsiteLogoUrl: `http://${ipAddress}:3001/market.com.png`,
 };
 
 const stagingConfig = {
