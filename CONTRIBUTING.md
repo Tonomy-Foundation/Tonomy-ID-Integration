@@ -7,7 +7,6 @@ Reading and following these guidelines will help us make the contribution proces
 ## Quicklinks
 
 * [Git and development policy](#git-and-development-policy)
-* [Setup Virtualbox](#setup-virtualbox)
 * [Tonomy ID Workshop](#tonomy-id-workshop)
 * [Design](#design)
 * [General Practices](#general-practices)
@@ -26,60 +25,6 @@ Development process:
 <img src="./assets/Development process-Simple dev process.drawio.png" />
 
 Source: <https://drive.google.com/file/d/1-mACdt8ucz5ONKpqiECjSz3GAP0ASq8o/view?usp=sharing>
-
-## Setup Virtualbox
-
-We use the Ubuntu 20.04 / 22.04 environments. Please use them, as Windows is not suggested & Mac is untested.
-If you have a Windows or Mac PC, it's suggested to install VirtualBox.
-
-It is possible to run on Mac. Please adapt and install the [dependencies](./README.md#dependancies) with `brew` instead. Antelope has [known issues with the M1 chip](https://github.com/EOSIO/eos/issues/9759).
-
-### Setup Virtualbox with ready image
-
-This is suggested for anyone new to Virtualbox or the project.
-
-Steps to have a fully configured Ubuntu 20.04 LTS machine with all Tonomy-ID-Integration [dependencies installed at commit 0957658](https://github.com/Tonomy-Foundation/Tonomy-ID-Integration/blob/0957658bc16fa71632dad0acb67b6935f065f199/README.md#dependancies), and Tonomy-ID-Integration installed and ready to run.
-
-Steps:
-
-1. Download the Virtualbox image here: <https://www.dropbox.com/s/d8pu25dwaj7u8au/ubuntu20-dev-tonomy-id1.ova?dl=0>
-2. Import this as a new machine in VirtualBox
-3. Change the network driver to bridge mode
-4. Run the VM. Login details:
-
-```bash
-username=dev
-password=Password123!
-```
-
-5. Run `ip a` and note the IP address of the VM. See [here](https://linuxhint.com/use-virtualbox-bridged-adapter) for more details.
-6. Change the `localhost` values in `./Tonomy ID/src/config/config.json` to the IP address
-7. Follow the [pre-run](./README.md#pre-run-one-time) setup, including login to `eas`
-8. Now run `./app.sh start` and open the app from your phone. See [run](./README.md#run) for how this works.
-
-Additionally, you may want to re-install Guest additions on the new VM. You may want to install your own `ssh` keys for Github. You may want to turn Auto Capture Keyboard in settings to have [Ctr/Alt] keystrokes inputted into the VM properly.
-
-### Setup Virtualbox manually
-
-This gives you more control over the virtual machine.
-
-Setup Virtualbox to connect to the React Native app:
-
-* Download and install the latest [VirtualBox hypervisor](https://www.virtualbox.org/)
-* Download the latest [Ubuntu LTS desktop image (.iso)](https://releases.ubuntu.com/) and install in a new Virtual Machine
-
-You need to change the network mode of the Virtualbox VM that is running Tonomy ID to use a Bridged connection:
-<https://linuxhint.com/use-virtualbox-bridged-adapter/>
-
-Once this is set up, you should be able to run `./app.sh start` and then connect with the QR code.
-
-To connect to the service manually, or other services in the Virtualbox, find your IP address using `ip a` inside the Virtualbox as shown in the article above. Then you can use this IP address in your host to access exposed services. For example you can go to your browser and open <http://10.2.218.179:3000> to get to the demo app.
-
-You need to update `localhost` value(s) in `./Tonomy-ID/src/config/config.json` to use this IP address, so that the mobile app can connect to the blockchain and other services running on your computer.
-
-We strongly suggest you create regular snapshots in Virtualbox, including after you have installed Ubuntu. This allows you to go back to the last point when you had the software working. Remember to turn the machine off before creating a snapshot.
-
-<img src="./assets/snapshots.jpg" />
 
 ## Resources
 

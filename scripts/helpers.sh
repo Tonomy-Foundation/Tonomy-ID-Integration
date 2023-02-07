@@ -9,6 +9,12 @@ function gitinit {
     git checkout development
     git pull
 
+    git submodule init
+    git submodule update
+    cd "$PARENT_PATH/Tonomy-ID-SDK/Tonomy-Contracts"
+    git checkout development
+    git pull
+
     cd "$PARENT_PATH/Tonomy-ID"
     git checkout development
     git pull
@@ -18,10 +24,6 @@ function gitinit {
     git pull
     
     cd "$PARENT_PATH/Tonomy-ID-Demo-market.com"
-    git checkout development
-    git pull
-
-    cd "$PARENT_PATH/Tonomy-Contracts"
     git checkout development
     git pull
 
@@ -40,9 +42,8 @@ function install {
         return
     fi
 
-    echo "Installing docker containers"
-    cd "$PARENT_PATH"
-    docker-compose build
+    cd "$PARENT_PATH/Tonomy-ID-SDK/Tonomy-Contracts"
+    ./blockchain/build-docker.sh
 
     cd "$PARENT_PATH/Tonomy-ID-SDK"
     npm install
@@ -58,14 +59,6 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-Communication"
     yarn install
-
-    cd "$PARENT_PATH"
-    npm install
-}
-
-function buildcontracts {
-    cd "$PARENT_PATH/Tonomy-Contracts"
-    ./build-contracts.sh
 }
 
 function deletecontracts {
@@ -74,12 +67,10 @@ function deletecontracts {
 }
 
 function init {
-    cd "$PARENT_PATH/blockchain"
     echo "Waiting 8 seconds for blockchain node to start"
     sleep 8
-    docker-compose exec eosio /bin/bash /var/repo/blockchain/initialize-blockchain.sh
 
-    cd "$PARENT_PATH"
+    cd "$PARENT_PATH/Tonomy-ID-SDK"
     npm run bootstrap
 
     echo ""
@@ -92,12 +83,8 @@ function init {
 function startdocker {
     echo "Starting Docker compose"
     cd "$PARENT_PATH"
-    docker volume create --name=eosio-data
+    docker volume create --name=antelope-data
     docker-compose up -d
-}
-
-getIpAddress() {
-    hostname -I | head -n1 | awk '{print $1;}'
 }
 
 function start {
@@ -111,8 +98,6 @@ function start {
     set -u
 
     startdocker
-
-    ip=`getIpAddress`
 
     echo "Starting Tonomy-ID-SDK"
     cd "$PARENT_PATH/Tonomy-ID-SDK"
@@ -155,9 +140,7 @@ function start {
 
 function stop {
     cd "${PARENT_PATH}"
-    set +e
-    docker-compose exec eosio /bin/bash /bin/nodeos-stop.sh
-    set -e
+    docker-compose exec antelope ./nodeos.sh stop || true
 
     docker-compose down
 
@@ -172,7 +155,7 @@ function reset {
     ARG1=${1-default}
 
     set +e
-    docker volume rm eosio-data
+    docker volume rm antelope-data
 
     pm2 stop all
     pm2 delete all
@@ -189,44 +172,17 @@ function reset {
         rm -R "${PARENT_PATH}/Tonomy-ID/.expo"
         rm -R "${PARENT_PATH}/Tonomy-ID-SSO-Website/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID-Demo-market.com/node_modules"
-        rm -R "${PARENT_PATH}/node_modules"
         set -e
         deletecontracts
     fi
 
 }
 
-function test {
-    ARG1=${1-default}
-
-    cd "$PARENT_PATH/Tonomy-ID-SDK"
-    npm run prepare
-
-    cd "${PARENT_PATH}"
-    if [ "${ARG1}" == "all" ]
-    then
-        npm test
-    else
-        npm test "${ARG1}"
-    fi
-
-    if [ "${ARG1}" == "all" ]
-    then
-        echo "Running unit tests"
-        cd "$PARENT_PATH/Tonomy-ID-SDK"
-        npm run test
-
-        echo "Running unit tests"
-        cd "$PARENT_PATH/Tonomy-ID"
-        npm run test -- --all
-    fi
-}
-
 function log {
     SERVICE=${1-default}
 
-    if [ "${SERVICE}" == "eosio" ]; then
-        docker-compose logs -f eosio
+    if [ "${SERVICE}" == "antelope" ]; then
+        docker-compose logs -f antelope
     elif [ "${SERVICE}" == "id" ]; then
         pm2 log --lines 20 id
     elif [ "${SERVICE}" == "sso" ]; then
