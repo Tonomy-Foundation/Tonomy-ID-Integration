@@ -19,15 +19,11 @@ function gitinit {
     git checkout development
     git pull
 
-    cd "$PARENT_PATH/Tonomy-ID-SSO-Website"
-    git checkout development
-    git pull
-    
-    cd "$PARENT_PATH/Tonomy-ID-Demo-market.com"
+    cd "$PARENT_PATH/Tonomy-Communication"
     git checkout development
     git pull
 
-    cd "$PARENT_PATH/Tonomy-Communication"
+    cd "$PARENT_PATH/Tonomy-App-Websites"
     git checkout development
     git pull
 }
@@ -51,11 +47,8 @@ function install {
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
 
-    cd "$PARENT_PATH/Tonomy-ID-SSO-Website"
-    npm install
-
-    cd "$PARENT_PATH/Tonomy-ID-Demo-market.com"
-    npm install
+    cd "$PARENT_PATH/Tonomy-App-Websites"
+    yarn install
 
     cd "$PARENT_PATH/Tonomy-Communication"
     yarn install
@@ -117,14 +110,9 @@ function start {
         export REACT_APP_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
         export REACT_APP_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
         
-        echo "Starting Tonomy-ID-SSO-Website"
-        cd "${PARENT_PATH}/Tonomy-ID-SSO-Website"
-        BROWSER=none pm2 start npm --name "sso" -- start
-
-        echo "Starting Tonomy-ID-Demo-market.com"
-        cd "${PARENT_PATH}/Tonomy-ID-Demo-market.com"
-        BROWSER=none pm2 start npm --name "market" -- start
-
+        echo "Starting Tonomy-App-Websites"
+        cd "${PARENT_PATH}/Tonomy-App-Websites"
+        BROWSER=none pm2 start yarn --name "Apps" -- dev
 
         echo "Starting communication microservice"
         cd  "$PARENT_PATH/Tonomy-Communication"
