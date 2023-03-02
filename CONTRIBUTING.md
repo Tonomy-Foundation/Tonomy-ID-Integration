@@ -16,15 +16,26 @@ Reading and following these guidelines will help us make the contribution proces
 
 ## Git and development policy
 
-Git branch policy:
+### Git branch policy
 
 <img src="./assets/Development process-Branch.drawio.png" />
 
-Development process:
+### Development process
 
 <img src="./assets/Development process-Simple dev process.drawio.png" />
 
 Source: <https://drive.google.com/file/d/1-mACdt8ucz5ONKpqiECjSz3GAP0ASq8o/view?usp=sharing>
+
+### Definition of ready
+
+This policy defines when all developer tasks are ready to be started/worked on.
+
+- [ ] x
+- [ ] y
+
+### Definition of done
+
+This policy defines when all developer tasks are finished and can be closed.
 
 ## Resources
 
@@ -54,7 +65,7 @@ Check out the issues in the [repositories](./README.md#repositories), or, if you
 
 Issues should be used to report problems with the library, request a new feature, or to discuss potential changes before a PR is created.
 
-If you find an issue that adresses the problems you're having, please add your own reproduction information to the existing issue rather than creating a new one. Adding a [reaction](link) can also help with indicating to our maintainers and developers.
+If you find an issue that addresses the problems you're having, please add your own reproduction information to the existing issue rather than creating a new one. Adding a [reaction](link) can also help with indicating to our maintainers and developers.
 
 ### Pull Requests
 

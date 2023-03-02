@@ -62,7 +62,7 @@ function install {
 }
 
 function deletecontracts {
-    cd "$PARENT_PATH/Tonomy-Contracts"
+    cd "$PARENT_PATH/Tonomy-ID-SDK/Tonomy-Contracts"
     ./delete-buildt-contracts.sh
 }
 
