@@ -4,10 +4,14 @@ A big welcome and thank you for considering contributing to Tonomy! It is people
 
 Reading and following these guidelines will help us make the contribution process easy and effective for everyone involved. It also communicates that you respect the time of the developers managing and developing these open source projects. In return, we will reciprocate this by addressing your issue, assessing changes and helping you finalize your pull requests.
 
-## Quicklinks
+## Quick links
 
 * [Developer environment](#developer-environment)
 * [Git and development policy](#git-and-development-policy)
+  * [Branch policy](#git-branch-policy)
+  * [Development process](#development-process)
+  * [Definition of ready](#definition-of-ready)
+  * [Definition of done](#definition-of-done)
 * [Tonomy ID Workshop](#tonomy-id-workshop)
 * [Design](#design)
 * [General Practices](#general-practices)
@@ -21,8 +25,10 @@ Developers are suggested to use linux with Ubuntu 20.04 for development. We use 
 
 If you do not have a Linux machine we suggest setting up a [VirtualBox](https://www.virtualbox.org/) hypervisor on your machine, and installing a Ubuntu 20.04 virtual machine.
 
-* We suggest you use Snapshots in Virtualbox to create snapshots you can go back to if you encounter unsolvable issues.
+* We suggest you use Snapshots in Virtualbox to create snapshots you can go back to if you encounter unsolvable issues. (see below)
 * To run Tonomy ID on your mobile device through the virtual machine, you will need use a [Bridged Network Adapter](https://www.techrepublic.com/article/how-to-set-bridged-networking-in-a-virtualbox-virtual-machine/) in the settings of the virtual machine
+
+<img src="./assets/snapshots.jpg" />
 
 ## Git and development policy
 
