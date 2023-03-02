@@ -30,12 +30,43 @@ Source: <https://drive.google.com/file/d/1-mACdt8ucz5ONKpqiECjSz3GAP0ASq8o/view?
 
 This policy defines when all developer tasks are ready to be started/worked on.
 
-- [ ] x
-- [ ] y
+* [ ] (optional for complex tasks open to mis-interpretation) A small implementation plan is created and reviewed by another developer before implementation starts. This is suggested for all new contributors, and all junior developers. See [Implementation plan](#implementation-plan) below.
+* [ ] y
 
 ### Definition of done
 
 This policy defines when all developer tasks are finished and can be closed.
+
+* [ ] User interface matches the Figma designs
+* [ ] Acceptance criteria is implemented and tested
+  * [ ] Functional criteria are tested functionally (i.e. use the app and check the behavior is as expected)
+  * [ ] Non-functional criteria are validated by the developer, via logging or other appropriate method
+* [ ] All linting, unit and integration tests are passing (usually in Github pipeline)
+* [ ] All comments are removed
+* [ ] All changed classes and functions are documented ([TSDoc](https://tsdoc.org/) for Typescript)
+* [ ] README.md is updated if the way to run is changed or anything else relevant
+* [ ] If any externally facing interfaces change, then any dependant software in other repositories is updated. See [Repositories](https://github.com/Tonomy-Foundation/Tonomy-ID-Integration/tree/development#repositories)
+* [ ] A developer that did not do the work reviews the PR and approves it (or gives feedback which needs to be addressed)
+* [ ] Before the PR is merged, the branch is rebased from development. See [Git rebase](#git-rebase) below.
+* [ ] The PR is merged
+
+#### Git rebase
+
+Full `git merge` steps:
+
+```bash
+git checkout development
+git pull
+git checkout feature/task-no-description
+git merge development
+# fix conflicts
+```
+
+Don't use `git rebase` ([why](https://medium.com/@fredrikmorken/why-you-should-stop-using-git-rebase-5552bee4fed1))
+
+#### Implementation plan
+
+An implementation plan shows the changes to class/function interfaces. Pseudo-code can also be added to show intended implementation. This should be done in the Github Issue, or a PR. The implementation plan exists to have a conversation, but not to fix the outcome at the end.
 
 ## Resources
 
