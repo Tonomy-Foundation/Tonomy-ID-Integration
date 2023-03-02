@@ -2,10 +2,11 @@
 
 A big welcome and thank you for considering contributing to Tonomy! It is people like you that help shape the future where your identity is in your hands.
 
-Reading and following these guidelines will help us make the contribution process easy and effective for everyone involved. It also communicates that you respect the time of the developers managing and developing these open source projects. In return, we will reciprocate this by adressing your issue, assessing changes and helping you finalize your pull requests.
+Reading and following these guidelines will help us make the contribution process easy and effective for everyone involved. It also communicates that you respect the time of the developers managing and developing these open source projects. In return, we will reciprocate this by addressing your issue, assessing changes and helping you finalize your pull requests.
 
 ## Quicklinks
 
+* [Developer environment](#developer-environment)
 * [Git and development policy](#git-and-development-policy)
 * [Tonomy ID Workshop](#tonomy-id-workshop)
 * [Design](#design)
@@ -13,6 +14,15 @@ Reading and following these guidelines will help us make the contribution proces
 * [Issues](#issues)
 * [Pull Requests](#pull-requests)
 * [Getting Help](#getting-help)
+
+## Developer environment
+
+Developers are suggested to use linux with Ubuntu 20.04 for development. We use [VS Code](https://code.visualstudio.com/) as an IDE for development and have several suggested extensions in the repositories that are useful.
+
+If you do not have a Linux machine we suggest setting up a [VirtualBox](https://www.virtualbox.org/) hypervisor on your machine, and installing a Ubuntu 20.04 virtual machine.
+
+* We suggest you use Snapshots in Virtualbox to create snapshots you can go back to if you encounter unsolvable issues.
+* To run Tonomy ID on your mobile device through the virtual machine, you will need use a [Bridged Network Adapter](https://www.techrepublic.com/article/how-to-set-bridged-networking-in-a-virtualbox-virtual-machine/) in the settings of the virtual machine
 
 ## Git and development policy
 
@@ -22,7 +32,7 @@ Reading and following these guidelines will help us make the contribution proces
 
 ### Development process
 
-<img src="./assets/Development process-Simple dev process.drawio.png" />
+<img src="./assets/Development process-Advanced dev process.drawio.png" />
 
 Source: <https://drive.google.com/file/d/1-mACdt8ucz5ONKpqiECjSz3GAP0ASq8o/view?usp=sharing>
 
@@ -31,11 +41,13 @@ Source: <https://drive.google.com/file/d/1-mACdt8ucz5ONKpqiECjSz3GAP0ASq8o/view?
 This policy defines when all developer tasks are ready to be started/worked on.
 
 * [ ] (optional for complex tasks open to mis-interpretation) A small implementation plan is created and reviewed by another developer before implementation starts. This is suggested for all new contributors, and all junior developers. See [Implementation plan](#implementation-plan) below.
+* [ ] x
 * [ ] y
+* [ ] z
 
 ### Definition of done
 
-This policy defines when all developer tasks are finished and can be closed.
+This policy defines when all developer tasks are finished and can be closed. This applies to all tasks with the 'Application' tag.
 
 * [ ] User interface matches the Figma designs
 * [ ] Acceptance criteria is implemented and tested
