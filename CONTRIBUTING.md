@@ -68,6 +68,7 @@ This policy defines when all developer tasks are finished and can be closed. Thi
 * [ ] If any externally facing interfaces change, then any **dependant software in other repositories is updated**. See [Repositories](https://github.com/Tonomy-Foundation/Tonomy-ID-Integration/tree/development#repositories). Or a task is created to do this.
 * [ ] A developer that did not do the work **reviews the PR** and approves it (or gives feedback which needs to be addressed).
 * [ ] Before the PR is merged, the branch is **rebased** from development. See [Git rebase](#git-rebase) below.
+* [ ] **Test again** after rebase if there were upstream changes merged
 * [ ] The PR is **merged**.
 
 #### Git rebase
