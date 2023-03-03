@@ -55,18 +55,20 @@ This policy defines when all developer tasks are ready to be started/worked on.
 
 This policy defines when all developer tasks are finished and can be closed. This applies to all tasks with the 'Application' tag.
 
-* [ ] User interface matches the Figma designs
-* [ ] Acceptance criteria is implemented and tested
+* [ ] **Acceptance criteria** is implemented and tested
   * [ ] Functional criteria are tested functionally (i.e. use the app and check the behavior is as expected)
   * [ ] Non-functional criteria are validated by the developer, via logging or other appropriate method
-* [ ] All linting, unit and integration tests are passing (usually in Github pipeline)
-* [ ] All comments are removed
-* [ ] All changed classes and functions are documented ([TSDoc](https://tsdoc.org/) for Typescript)
-* [ ] README.md is updated if the way to run is changed or anything else relevant
-* [ ] If any externally facing interfaces change, then any dependant software in other repositories is updated. See [Repositories](https://github.com/Tonomy-Foundation/Tonomy-ID-Integration/tree/development#repositories)
-* [ ] A developer that did not do the work reviews the PR and approves it (or gives feedback which needs to be addressed)
-* [ ] Before the PR is merged, the branch is rebased from development. See [Git rebase](#git-rebase) below.
-* [ ] The PR is merged
+* [ ] User interface **matches the Figma designs**
+* [ ] Unit and integration **tests are written** covering success and most failure cases
+* [ ] All linting, unit and integration **tests are passing** (usually in Github pipeline)
+* [ ] All changed classes and functions are **documented** ([TSDoc](https://tsdoc.org/) for Typescript)
+* [ ] All debugging **comments and logging is removed**
+* [ ] Developer documentation (**README.md**) is updated if the way to run is changed or anything else relevant
+* [ ] External documentation (**readthedocs.io**) is updated.Or a task is created to do this.
+* [ ] If any externally facing interfaces change, then any **dependant software in other repositories is updated**. See [Repositories](https://github.com/Tonomy-Foundation/Tonomy-ID-Integration/tree/development#repositories). Or a task is created to do this.
+* [ ] A developer that did not do the work **reviews the PR** and approves it (or gives feedback which needs to be addressed).
+* [ ] Before the PR is merged, the branch is **rebased** from development. See [Git rebase](#git-rebase) below.
+* [ ] The PR is **merged**.
 
 #### Git rebase
 
