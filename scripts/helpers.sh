@@ -2,34 +2,9 @@
 
 function gitinit {
     cd "$PARENT_PATH"
-    git submodule init
-    git submodule update
-
-    cd "$PARENT_PATH/Tonomy-ID-SDK"
-    git checkout development
-    git pull
-
-    git submodule init
-    git submodule update
-    cd "$PARENT_PATH/Tonomy-ID-SDK/Tonomy-Contracts"
-    git checkout development
-    git pull
-
-    cd "$PARENT_PATH/Tonomy-ID"
-    git checkout development
-    git pull
-
-    cd "$PARENT_PATH/Tonomy-ID-SSO-Website"
-    git checkout development
-    git pull
-    
-    cd "$PARENT_PATH/Tonomy-ID-Demo-market.com"
-    git checkout development
-    git pull
-
-    cd "$PARENT_PATH/Tonomy-Communication"
-    git checkout development
-    git pull
+    git submodule update --init --recursive
+    git submodule foreach --recursive git checkout development
+    git submodule foreach --recursive git pull
 }
 
 function install {
