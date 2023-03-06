@@ -46,10 +46,10 @@ Source: <https://drive.google.com/file/d/1-mACdt8ucz5ONKpqiECjSz3GAP0ASq8o/view?
 
 This policy defines when all developer tasks are ready to be started/worked on.
 
-* [ ] (optional for complex tasks open to mis-interpretation) A small implementation plan is created and reviewed by another developer before implementation starts. This is suggested for all new contributors, and all junior developers. See [Implementation plan](#implementation-plan) below.
-* [ ] x
-* [ ] y
-* [ ] z
+* [ ] **Acceptance criteria are defined**: Set of pre-defined requirements that must be achieved to consider the story complete.
+* [ ] All **dependencies are accounted for** (identified and handling is clear): If there are dependencies in a story, they should be outlined, and their handling should be defined.
+* [ ] **Estimated and below our maximum limit**: Stories should be estimated using a non-linear scale. The maximum value depends on the team and should be set by each one.
+* [ ] (**optional** for complex tasks open to mis-interpretation) A small **implementation plan** is created and reviewed by another developer before implementation starts. This is suggested for all new contributors, and all junior developers. See [Implementation plan](#implementation-plan) below.
 
 ### Definition of done
 
