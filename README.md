@@ -43,7 +43,7 @@ In case you have problems here is a list of the dependencies
 
 - [Docker](http://docs.docker.com) v20.10+
 - [Docker Compose](http://docs.docker.com/compose/) v1.29+
-- [npm](https://www.npmjs.com/) v16.4-17.0. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
+- [npm](https://www.npmjs.com/) v18.12.1. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
 - [pm2](https://pm2.io) v5.5+ installed globally by `npm`
 
 Check out the file `./scripts/install_prerequisits.sh`. This can be used as a guide to install all dependencies on an Ubuntu 18+ machine. Run the script line-by-line, as sometimes you need to exit terminal or restart your machine to continue.

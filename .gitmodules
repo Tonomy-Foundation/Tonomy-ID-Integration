@@ -14,7 +14,3 @@
 	path = Tonomy-ID-Demo-market.com
 	url = ../Tonomy-ID-Demo-market.com.git
 	branch = development
-[submodule "Tonomy-Communication"]
-	path = Tonomy-Communication
-	url = ../Tonomy-Communication.git
-	branch = development
