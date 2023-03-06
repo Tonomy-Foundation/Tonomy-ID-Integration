@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SDK_PATH="$PARENT_PATH/Tonomy-ID-SDK"
+
 function gitinit {
     cd "$PARENT_PATH"
     git submodule update --init --recursive
@@ -12,15 +14,18 @@ function install {
 
     if [ "${ARG1}" == "sdk" ]
     then
-        cd "$PARENT_PATH/Tonomy-ID-SDK"
+        cd "$SDK_PATH"
         npm run prepare
         return
     fi
 
-    cd "$PARENT_PATH/Tonomy-ID-SDK/Tonomy-Contracts"
+    cd "$SDK_PATH/Tonomy-Contracts"
     ./blockchain/build-docker.sh
 
-    cd "$PARENT_PATH/Tonomy-ID-SDK"
+    cd "$SDK_PATH/Tonomy-Communication"
+    yarn install
+
+    cd "$SDK_PATH"
     npm install
 
     cd "$PARENT_PATH/Tonomy-ID"
@@ -31,9 +36,6 @@ function install {
 
     cd "$PARENT_PATH/Tonomy-ID-Demo-market.com"
     npm install
-
-    cd "$PARENT_PATH/Tonomy-Communication"
-    yarn install
 }
 
 function deletecontracts {
@@ -45,7 +47,7 @@ function init {
     echo "Waiting 8 seconds for blockchain node to start"
     sleep 8
 
-    cd "$PARENT_PATH/Tonomy-ID-SDK"
+    cd "$SDK_PATH"
     npm run bootstrap
 
     echo ""
@@ -75,7 +77,7 @@ function start {
     startdocker
 
     echo "Starting Tonomy-ID-SDK"
-    cd "$PARENT_PATH/Tonomy-ID-SDK"
+    cd "$SDK_PATH"
     pm2 start npm --name "sdk" -- run start
 
     echo "Starting Tonomy-ID"
@@ -100,9 +102,8 @@ function start {
         cd "${PARENT_PATH}/Tonomy-ID-Demo-market.com"
         BROWSER=none pm2 start npm --name "market" -- start
 
-
         echo "Starting communication microservice"
-        cd  "$PARENT_PATH/Tonomy-Communication"
+        cd  "$SDK_PATH/Tonomy-Communication"
         pm2 start yarn --name "micro" -- run start:dev
     fi
 
@@ -140,8 +141,8 @@ function reset {
     then
         echo "Deleting all node_modules"
         set +e
-        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/node_modules"
-        rm -R "${PARENT_PATH}/Tonomy-Communication/node_modules" 
+        rm -R "$SDK_PATH/node_modules"
+        rm -R "${SDK_PATH}/Tonomy-Communication/node_modules" 
         rm -R "${PARENT_PATH}/Tonomy-ID-SDK/dist"
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID/.expo"
