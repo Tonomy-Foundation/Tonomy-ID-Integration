@@ -6,10 +6,6 @@
 	path = Tonomy-ID-SDK
 	url = ../Tonomy-ID-SDK.git
 	branch = development
-[submodule "Tonomy-Communication"]
-	path = Tonomy-Communication
-	url = ../Tonomy-Communication.git
-	branch = development
 [submodule "Tonomy-App-Websites"]
 	path = Tonomy-App-Websites
 	url = ../Tonomy-App-Websites.git

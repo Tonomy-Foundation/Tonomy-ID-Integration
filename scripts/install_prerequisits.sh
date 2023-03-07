@@ -27,9 +27,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 # nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 exit
-echo "Setting up to use node v16.4.1"
-nvm install v16.4.1
-nvm alias default v16.4.1
+echo "Setting up to use node v18.12.1"
+nvm install v18.12.1
+nvm alias default v18.12.1
 
 echo "enable corepack"
 corepack enable
