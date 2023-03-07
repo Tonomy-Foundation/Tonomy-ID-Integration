@@ -46,6 +46,7 @@ Source: <https://drive.google.com/file/d/1-mACdt8ucz5ONKpqiECjSz3GAP0ASq8o/view?
 
 This policy defines when all developer tasks are ready to be started/worked on.
 
+* [ ] Part of a valid **epic**
 * [ ] **User story is defined** in the epic
 * [ ] **Acceptance criteria are defined**: Set of pre-defined requirements that must be achieved to consider the story complete.
 * [ ] All **dependencies are accounted for** (identified and handling is clear): If there are dependencies in a story, they should be outlined, and their handling should be defined.

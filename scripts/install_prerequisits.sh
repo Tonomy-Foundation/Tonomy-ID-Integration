@@ -31,7 +31,7 @@ echo "Setting up to use node v16.4.1"
 nvm install v16.4.1
 nvm alias default v16.4.1
 
-echo "enable corepack"
+echo "enable corepack to use yarn"
 corepack enable
 
 echo "Installing pm2 globally"
