@@ -86,7 +86,7 @@ function start {
     echo "NODE_ENV=${NODE_ENV}"
 
     export BLOCKCHAIN_URL="http://${ip}:8888"
-    export SSO_WEBSITE_ORIGIN="http://sso.${ip}:5173"
+    export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
     export VITE_COMMUNICATION_URL="ws://${ip}:5000"
     pm2 start npm --name "id" -- run start
 
