@@ -26,8 +26,7 @@ function loghelp {
     echo "    antelope - blockchain node (antelope)"
     echo "    sdk      - Tonomy ID SDK (tsdx)"
     echo "    id       - Tonomy ID app expo packaer (react native)"
-    echo "    sso      - Tonomy ID SSO app (react)"
-    echo "    market   - Tonomy ID Demo market app (react)"
+    echo "    apps      - Tonomy ID SSO app  & Tonomy ID DEMO MARKET (react)"
     echo "    micro   - Tonomy Communication microservice (nestjs)"
 }
 
@@ -49,9 +48,9 @@ function printservices {
 }
 
 function printWebsiteServices {
-    echo "Tonomy ID Demo SSO Website (react)    - http://${ip}:3000 or http://localhost:3000"
-    echo "Tonomy ID Demo market app (react)     - http://${ip}:3001 or http://localhost:3001"
-    echo "Tonomy Communication microservice     - http://localhost:5000"
+    echo "Tonomy ID Demo SSO Website (react)    - http://${ip}:3000 "
+    echo "Tonomy ID Demo market app (react)     - http://${ip}:3001"
+    echo "Tonomy Communication microservice     - http://localhost:5000 or http://${ip}:5000"
     echo "" 
     echo ""
 }

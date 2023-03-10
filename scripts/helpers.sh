@@ -7,6 +7,10 @@ function gitinit {
     git submodule update --init --recursive
     git submodule foreach --recursive git checkout development
     git submodule foreach --recursive git pull
+    cd "$SDK_PATH" 
+    git submodule update --init --recursive
+    git submodule foreach --recursive git checkout development
+    git submodule foreach --recursive git pull
 }
 
 function install {
@@ -31,11 +35,8 @@ function install {
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
 
-    cd "$PARENT_PATH/Tonomy-ID-SSO-Website"
-    npm install
-
-    cd "$PARENT_PATH/Tonomy-ID-Demo-market.com"
-    npm install
+    cd "$PARENT_PATH/Tonomy-App-Websites"
+    yarn install
 }
 
 function deletecontracts {
@@ -70,7 +71,7 @@ function start {
     if [ -z "${NODE_ENV}" ]
     then
         export NODE_ENV="local";
-        export REACT_APP_NODE_ENV="local";
+        export VITE_APP_NODE_ENV="local";
     fi
     set -u
 
@@ -86,25 +87,24 @@ function start {
 
     export BLOCKCHAIN_URL="http://${ip}:8888"
     export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
-    export REACT_APP_COMMUNICATION_URL="ws://${ip}:5000"
+    export VITE_COMMUNICATION_URL="ws://${ip}:5000"
     pm2 start npm --name "id" -- run start
 
     if [ "${ARG1}" == "all" ]
     then
-        export REACT_APP_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
-        export REACT_APP_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
+        export VITE_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
+        export VITE_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
         
-        echo "Starting Tonomy-ID-SSO-Website"
-        cd "${PARENT_PATH}/Tonomy-ID-SSO-Website"
-        BROWSER=none pm2 start npm --name "sso" -- start
-
-        echo "Starting Tonomy-ID-Demo-market.com"
-        cd "${PARENT_PATH}/Tonomy-ID-Demo-market.com"
-        BROWSER=none pm2 start npm --name "market" -- start
+        echo "Starting Tonomy-App-Websites"
+        cd "${PARENT_PATH}/Tonomy-App-Websites"
+        BROWSER=none pm2 start yarn --name "apps" -- dev --host
 
         echo "Starting communication microservice"
         cd  "$SDK_PATH/Tonomy-Communication"
         pm2 start yarn --name "micro" -- run start:dev
+
+        cd "${PARENT_PATH}/Tonomy-App-Websites"
+        docker-compose -f ./docker.compose-development.yaml up -d
     fi
 
     printservices
@@ -146,8 +146,7 @@ function reset {
         rm -R "${PARENT_PATH}/Tonomy-ID-SDK/dist"
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID/.expo"
-        rm -R "${PARENT_PATH}/Tonomy-ID-SSO-Website/node_modules"
-        rm -R "${PARENT_PATH}/Tonomy-ID-Demo-market.com/node_modules"
+        rm -R "${PARENT_PATH}/Tonomy-App-Websites/node_modules"
         set -e
         deletecontracts
     fi
@@ -161,16 +160,14 @@ function log {
         docker-compose logs -f antelope
     elif [ "${SERVICE}" == "id" ]; then
         pm2 log --lines 20 id
-    elif [ "${SERVICE}" == "sso" ]; then
-        pm2 log sso
     elif [ "${SERVICE}" == "sdk" ]; then
         pm2 log sdk
     elif [ "${SERVICE}" == "linking" ]; then
         pm2 log linking
     elif [ "${SERVICE}" == "nginx" ]; then
         tail -f --lines=10 /var/log/nginx/access.log
-    elif [ "${SERVICE}" == "market" ]; then
-        pm2 log market
+    elif [ "${SERVICE}" == "apps" ]; then
+        pm2 log apps
     elif [ "${SERVICE}" == "micro" ]; then
         pm2 log micro
     else
