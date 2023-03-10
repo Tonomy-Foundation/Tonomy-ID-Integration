@@ -7,7 +7,7 @@ function gitinit {
     git submodule update --init --recursive
     git submodule foreach --recursive git checkout development
     git submodule foreach --recursive git pull
-    cd $SDK_PATH 
+    cd "$SDK_PATH" 
     git submodule update --init --recursive
     git submodule foreach --recursive git checkout development
     git submodule foreach --recursive git pull
