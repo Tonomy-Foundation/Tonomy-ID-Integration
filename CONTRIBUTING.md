@@ -6,7 +6,7 @@ Reading and following these guidelines will help us make the contribution proces
 
 ## Quicklinks
 
-* [Getting Started](#getting-started)
+* [Git and development policy](#git-and-development-policy)
 * [Tonomy ID Workshop](#tonomy-id-workshop)
 * [Design](#design)
 * [General Practices](#general-practices)
@@ -14,24 +14,41 @@ Reading and following these guidelines will help us make the contribution proces
 * [Pull Requests](#pull-requests)
 * [Getting Help](#getting-help)
 
-## Getting Started
+## Git and development policy
 
-### Software Repositories
+Git branch policy:
 
-We use the Ubuntu 20.04 / 22.04 environments. Please use them, as Windows is not suggested & Mac is untested.
-If you have a Windows PC, it's suggested to install VirtualBox.
+<img src="./assets/Development process-Branch.drawio.png" />
+
+Development process:
+
+<img src="./assets/Development process-Simple dev process.drawio.png" />
+
+Source: <https://drive.google.com/file/d/1-mACdt8ucz5ONKpqiECjSz3GAP0ASq8o/view?usp=sharing>
+
+## Resources
 
 ### Tonomy ID Workshop
+
+Watch to understand the architecture and general model and use case:
 
 <https://www.loom.com/share/d29cda0913bf4f569ed501aee76c5337>
 
 ### Design
+
+Figma design:
 
 <https://www.figma.com/file/cvV48t0f7O2znT6QBxK0Zj/Tonomy-ID>
 
 ### General practices
 
 * The JavaScript variables capital convention is [CamelCase](https://textcaseconvert.com/blog/what-is-camel-case/)
+
+## Contributing
+
+### Looking for how to contribute?
+
+Check out the issues in the [repositories](./README.md#repositories), or, if you have access, the issues in our [Zenhub board](https://app.zenhub.com/workspaces/tonomy-id-62a06b705d27820023023630/board)
 
 ### Issues
 
@@ -46,6 +63,6 @@ PRs are the best and quickest way to get your fix, improvement or feature merged
 * Only fix/add the functionality in the issue
 * Address a single concern in the least number of changed lines as possible
 
-## Getting Help
+### Getting Help
 
-Send a message to contact@tonomy.foundation for help.
+Send a message to contact@tonomy.foundation for help or reach out on our [Discord](https://discord.gg/rrJwz6Uf5P)

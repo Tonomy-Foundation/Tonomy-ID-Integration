@@ -9,11 +9,10 @@ function help {
     echo "    gitinit        - initializes all git submodules and checks out master branch"
     echo "    install        - installs all application repositories"
     echo "    init           - starts application components through docker compose and initializes and resets the blockchain and database"
-    echo "    start          - starts application components through docker compose"
+    echo "    start [all]    - starts application components through docker compose"
     echo "    stop           - stops application execution"
     echo "    reset [all]    - stops application execution and resets all data. Optionally specify 'all' to also reset all node_modules"
-    echo "    test [all]     - reset and run integration tests. Optionally specify 'all' to run all unit tests"
-    echo "    log [service] - prints logs for the service"
+    echo "    log [service]  - prints logs for the service"
 }
 
 function loghelp {
@@ -24,11 +23,11 @@ function loghelp {
     echo "    app.sh log [commands]"
     echo ""
     echo "Commands:"
-    echo "    eosio    - blockchain node (eosio)"
+    echo "    antelope - blockchain node (antelope)"
+    echo "    sdk      - Tonomy ID SDK (tsdx)"
     echo "    id       - Tonomy ID app expo packaer (react native)"
-    echo "    demo     - Tonomy ID Demo app (react)"
-    echo "    sdk      - Tonomy ID SDK (node)"
-    echo "    linking  - linking service (node)"
+    echo "    apps      - Tonomy ID SSO app  & Tonomy ID DEMO MARKET (react)"
+    echo "    micro   - Tonomy Communication microservice (nestjs)"
 }
 
 function printservices {
@@ -38,21 +37,20 @@ function printservices {
     echo ""
     echo "Services now running:"
     echo ""
-    echo "Tonomy ID app expo packager (react native) - http://localhost:19002"
-    echo "Tonomy ID Demo app (react)                 - http://localhost:3000"
-    echo "Blockchain node (eosio)                    - http://localhost:8888/v1/chain/get_info"
-    echo "Blockchain explorer                        - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&coreSymbol=SYS&systemDomain=eosio"
-    echo "" 
+    echo "Tonomy ID expo package (react native) - http://localhost:8081"
+    echo "Tonomy ID app debugger                - http://localhost:8081/debugger-ui/"
+    echo "Blockchain node (eosio)               - http://localhost:8888/v1/chain/get_info"
+    echo "Blockchain explorer                   - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&coreSymbol=SYS&systemDomain=eosio"
     echo ""
-    echo "Scan this QR code in your Expo app on your phone to use the Tonomy ID app"
-    printidqrcode
+    echo "Your IP = ${ip}"
     echo ""
     echo ""
 }
 
-function printidqrcode {
-    LINES=`wc -l < ~/.pm2/logs/id-out.log`
-    START=$((LINES-19))
-    END=$((LINES-5))
-    sed -n "${START},${END}p" ~/.pm2/logs/id-out.log
+function printWebsiteServices {
+    echo "Tonomy ID Demo SSO Website (react)    - http://${ip}:3000 "
+    echo "Tonomy ID Demo market app (react)     - http://${ip}:3001"
+    echo "Tonomy Communication microservice     - http://localhost:5000 or http://${ip}:5000"
+    echo "" 
+    echo ""
 }

@@ -2,11 +2,57 @@
 
 Developer environment to run Tonomy ID locally alongside a blockchain node, and the demo app.
 
-Check the [CONTRIBUTING.md](./CONTRIBUTING.md) for developers contributing to this project.
+All developers contributing to the project should check [Contributors Guide](./CONTRIBUTING.md) and first check the [Troubleshoot Guide](./TROUBLESHOOT.md) if you have issues installing or running.
 
-# Server Compatible
+## Staging environment
+
+See `./staging`
+
+- Demo market.com: <https://tonomy-id-market-com-staging.tonomy.foundation>
+- Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
+- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
+- Blockchain API: <https://blockchain-api-staging.tonomy.foundation>
+- Readthedocs: <https://tonomy-id-sdk.readthedocs.io>
+- Tonomy ID:
+  - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
+  - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
+    - TestFlight: TODO
+- Testers issue reporting sheet: <https://docs.google.com/spreadsheets/d/1_LtUzEV8aiw5OYYuEHnQd-Mf0Jpwd4jWEUZgnJqI9ME/edit#gid=1902629582>
+
+## Repositories
+
+- [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our React Native cross-platform mobile wallet for public & private Antelope blockchains.
+  - [Directory Structure](https://learn.habilelabs.io/best-folder-structure-for-react-native-project-a46405bdba7)
+- [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - used in Tonomy ID to interact and call with the Antelope blockchain and services.
+  - [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) (inside SDK repo) - Smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
+- [SSO-Demo](https://github.com/Tonomy-Foundation/Tonomy-ID-Demo) - A reactjs application to show demo flows with Tonomy ID
+- [Market.com](https://github.com/Tonomy-Foundation/Tonomy-ID-Demo-market.com.git) - A reactjs application to show demo flows with Tonomy ID and Tonomy ID SSO
+
+## Environment compatibility
 
 - Linux debian distribution (Ubuntu 20.0.4 LTS used)
+
+Hardware suggestions:
+
+- 2 Gb RAM minimum
+- 2 core minimum
+
+## Dependencies
+
+In case you have problems here is a list of the dependencies
+
+- [Docker](http://docs.docker.com) v20.10+
+- [Docker Compose](http://docs.docker.com/compose/) v1.29+
+- [npm](https://www.npmjs.com/) v18.12.1. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
+- [pm2](https://pm2.io) v5.5+ installed globally by `npm`
+
+Check out the file `./scripts/install_prerequisits.sh`. This can be used as a guide to install all dependencies on an Ubuntu 18+ machine. Run the script line-by-line, as sometimes you need to exit terminal or restart your machine to continue.
+
+### Pre-run (one time)
+
+In the `Tonomy-ID` repository you need to set up the expo build and install it on your phone. See instructions here
+
+<https://github.com/Tonomy-Foundation/Tonomy-ID/tree/development#pre-run-build-first-time-and-each-time-new-rn-only-packages-are-installed>
 
 ## Run
 
@@ -17,17 +63,19 @@ Follow these steps one by one & read them carefully. Do not rush through it.
 - `./app.sh` and read what each command does
 - `./app.sh gitinit`
 - `./app.sh install`
-- Now run the Pre-run setup below***
 - `./app.sh init`
 - Now, you can do one of the following;
-- `./app.sh start`
+- `./app.sh start` or
+- `./app.sh start all` to start all services (including the websites)
+  - Open the installed Tonomy ID app downloaded from [https://expo.dev](https://expo.dev) (See #pre-run-one-time)
+  - Call `getip` and then input the "Enter URL manually" `<http://{ip> fro getip}:8081
   - Check out the links shown
-  - Scan the QR code with the expo app
-- `./app.sh test` or `./app.sh test all`
-- `./app.sh log eosio`
+- `./app.sh log antelope`
 - `./app.sh stop` or `./app.sh reset` or `./app.sh reset all`
 
-If you see errors related to missing pages, then try `pm2 restart id`
+See [TROUBLESHOOT.md](./TROUBLESHOOT.md) to fix common issues when running the app.
+
+## Environment variables
 
 To run in staging or production, use:
 
@@ -39,49 +87,6 @@ export NODE_ENV=production
 ./app.sh start
 ```
 
-For visual aid, a recording of a full walkthrough of the setup with a junior dev can be found [here](https://www.loom.com/share/f44be75ce80044a08a73c53ea64a3afd)
+## Staging server
 
-A recording which explains how it all works, and how to run tests can be found [here](https://www.loom.com/share/8566b834759742309ebc96c74e955767)
-
-### Pre-run (one time)
-
-See the Run instructions below for when to do this***
-
-1. Create an expo account to build the app. [https://expo.dev/signup](https://expo.dev/signup)
-2. Move to the Tonomy-ID directory `cd ./Tonomy-ID`
-3. Remove the following lines from `app.json`
-
-```json
-    "extra": {
-      "eas": {
-        "projectId": "afffe2ee-9f93-4d18-9361-df30429cbd98"
-      }
-    }
-```
-
-4. (for IOS only) Run `eas device:create` to create a device profile for your phone
-5. Run `eas build --profile development --platform ios` (ios) or `eas build --profile development --platform android` (android) to build the app for your phone
-6. Return to [https://expo.dev/](https://expo.dev/) and click on the Tonomy ID project build
-7. Install the created app on your phone
-
-## Dependancies
-
-In case you have problems here is a list of the dependencies
-
-- [Docker](http://docs.docker.com) v20.10+
-- [Docker Compose](http://docs.docker.com/compose/) v1.29+
-- [watchman](https://facebook.github.io/watchman/) v4.9.0+
-- [npm](https://www.npmjs.com/) v16.4-17.0. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
-- [expo-cli](https://expo.dev/) v5.2+ installed globally by `npm`
-- [pm2](https://pm2.io) v5.5+ installed globally by `npm`
-- [tsdx](https://tsdx.io) v0.14.1 installed globally by `npm`
-- [wml](https://www.wml.io) v0.0.83+ installed globally by `npm`
-- [Eas-cli](https://docs.expo.dev/workflow/expo-cli/) v2.2.1 globally installed with npm
-
-## Repositories
-
-- [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our React Native cross-platform mobile wallet for public & private EOSIO blockchains.
-  - [Directory Structure](https://learn.habilelabs.io/best-folder-structure-for-react-native-project-a46405bdba7)
-- [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - used in Tonomy ID to interact and call with the EOSIO blockchain and services.
-- [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) - Smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
-- [Demo](https://github.com/Tonomy-Foundation/Tonomy-ID-Demo) - A reactjs application to show demo flows with Tonomy ID
+See `./staging/staging.sh`
