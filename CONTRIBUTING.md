@@ -42,7 +42,7 @@ If you do not have a Linux machine we suggest setting up a [VirtualBox](https://
 
 Source: <https://drive.google.com/file/d/1-mACdt8ucz5ONKpqiECjSz3GAP0ASq8o/view?usp=sharing>
 
-### Definition of ready
+### **Definition of ready** (DOR) for **tasks in a DEV epic**
 
 This policy defines when all developer tasks are ready to be started/worked on.
 
@@ -53,27 +53,36 @@ This policy defines when all developer tasks are ready to be started/worked on.
 * [ ] **Estimated and below our maximum limit**: Stories should be estimated using a non-linear scale. The maximum value depends on the team and should be set by each one.
 * [ ] (**optional** for complex tasks open to mis-interpretation) A small **implementation plan** is created and reviewed by another developer before implementation starts. This is suggested for all new contributors, and all junior developers. See [Implementation plan](#implementation-plan) below.
 
-### Definition of done
+### **Definition of done** (DOD) for **tasks in a DEV epic**
 
 This policy defines when all developer tasks are finished and can be closed. This applies to all tasks with the 'Application' tag.
 
-* [ ] **Acceptance criteria** is implemented and tested
+* [ ] 💯 **Acceptance criteria are met**: implemented and tested locally
   * [ ] Functional criteria are tested functionally (i.e. use the app and check the behavior is as expected)
   * [ ] Non-functional criteria are validated by the developer, via logging or other appropriate method
-* [ ] User interface **matches the Figma designs**
-* [ ] Unit and integration **tests are written** covering success and most failure cases
-* [ ] All linting, unit and integration **tests are passing** (usually in Github pipeline)
-* [ ] All changed classes and functions are **documented** ([TSDoc](https://tsdoc.org/) for Typescript)
-* [ ] All debugging **comments and logging is removed**
-* [ ] Developer documentation (**README.md**) is updated if the way to run is changed or anything else relevant
-* [ ] External documentation (**readthedocs.io**) is updated.Or a task is created to do this.
-* [ ] If any externally facing interfaces change, then any **dependant software in other repositories is updated**. See [Repositories](https://github.com/Tonomy-Foundation/Tonomy-ID-Integration/tree/development#repositories). Or a task is created to do this.
-* [ ] A developer that did not do the work **reviews the PR** and approves it (or gives feedback which needs to be addressed).
-* [ ] Before the PR is merged, the branch is **rebased** from development. See [Git rebase](#git-rebase) below.
-* [ ] **Test again** after rebase if there were upstream changes merged
-* [ ] The PR is **merged**.
+* [ ] 🖌️ **User interface** matches the Figma designs exactly
+* [ ] 👌 **Tests** are created or updated to cover changes: Check:
+  * [ ] Unit and integration tests cover new code main expected success and failure cases
+  * [ ] Unit and integration tests are passing
+  * [ ] All linting checks are passing
+* [ ] 📄 **Documentation** is created or updated to match changes. Check the following
+  * [ ] All changed classes and functions are **documented** with ([JSDoc](https://devhints.io/jsdoc) for Typescript)
+  * [ ] All debugging **comments and logging is removed**
+  * [ ] (**README.md**) is updated if the way to run is changed or anything else relevant
+  * [ ] (**readthedocs.io**) documentation is updated if needed for external interface or behavioural changes. Or create a task to do this and tell the Product Owner.
+  * [ ] Any other documentation that are relevant
+* [ ] 🔗 **Dependant software or repositories** are updated if needed. Or create a task to do this and tell the Product Owner.
+  * [ ] Check all repos in our multi-repo software: Tonomy ID, SDK, Integration, Demo website, Login website, Contracts and Communication
+  * [ ] Think if there is other dependant software: errors, logging, services, UI components, package.json, navigation, storage, settings, cryptography, networking, initialization etc...
+* [ ] ⏭️ Before the merge
+  * [ ] **PR review** from a developer that did not do the work and approves it (or gives feedback which needs to be addressed).
+  * [ ] **Rebase branch** from development. See [Git rebase](#git-rebase) below.
+  * [ ] **Test again** after rebase if there were upstream changes merged that affect your files
+* [ ] ▶️ The PR is **merged**.
 
 #### Git rebase
+
+You can press the "Update Branch" button on Github if there are no conflicts. Otherwise you will need to do the following:
 
 Full `git merge` steps:
 
@@ -85,7 +94,7 @@ git merge development
 # fix conflicts
 ```
 
-Don't use `git rebase` ([why](https://medium.com/@fredrikmorken/why-you-should-stop-using-git-rebase-5552bee4fed1))
+Don't use `git rebase` ([why?](https://medium.com/@fredrikmorken/why-you-should-stop-using-git-rebase-5552bee4fed1))
 
 #### Implementation plan
 
