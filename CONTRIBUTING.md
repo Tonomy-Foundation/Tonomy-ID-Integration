@@ -76,9 +76,10 @@ This policy defines when all developer tasks are finished and can be closed. Thi
   * [ ] Think if there is other dependant software: errors, logging, services, UI components, package.json, navigation, storage, settings, cryptography, networking, initialization etc...
 * [ ] ⏭️ Before the merge
   * [ ] **PR review** from a developer that did not do the work and approves it (or gives feedback which needs to be addressed).
-  * [ ] **Rebase branch** from development. See [Git rebase](#git-rebase) below.
+  * [ ] **Rebase branch** from development. See [Git rebase](#git-rebase) below
   * [ ] **Test again** after rebase if there were upstream changes merged that affect your files
 * [ ] ▶️ The PR is **merged**.
+* [ ] 😊 **Check acceptance criteria on staging** and any functionalities effected by your code changes
 
 #### Git rebase
 
