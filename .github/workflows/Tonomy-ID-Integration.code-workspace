@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "Tonomy-ID-SDK",
+			"path": "../../Tonomy-ID-SDK"
+		},
+		{
+			"name": "Tonomy-App-Websites",
+			"path": "../../Tonomy-App-Websites"
+		},
+		{
+			"name": "Tonomy-Communication",
+			"path": "../../Tonomy-ID-SDK/Tonomy-Communication"
+		},
+		{
+			"name": "Tonomy-ID",
+			"path": "../../Tonomy-ID"
+		}
+	],
+	"settings": {
+		"jest.disabledWorkspaceFolders": [
+			"Tonomy-ID-Integration",
+			"Tonomy-App-Websites",
+			"Tonomy-Contracts",
+			"Tonomy-Communication",
+		]
+	}
+}
