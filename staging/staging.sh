@@ -21,8 +21,8 @@ git checkout development
 ./scripts/install_prerequisits.sh
 
 ## install nodejs manually, as the nvm installation doesnt work with root user
-wget nodejs.org/dist/v16.4.1/node-v16.4.1-linux-x64.tar.gz
-sudo tar -C /usr/local --strip-components 1 -xzf node-v16.4.1-linux-x64.tar.gz
+wget nodejs.org/dist/v18.12.1/node-v18.12.1-linux-x64.tar.gz
+sudo tar -C /usr/local --strip-components 1 -xzf node-v18.12.1-linux-x64.tar.gz
 ## pm2 is not needed
 
 # Setup SSL
