@@ -61,7 +61,7 @@ function init {
     sleep 8
 
     cd "$SDK_PATH"
-    npm run bootstrap
+    npm run cli bootstrap
 
     echo ""
     echo ""
