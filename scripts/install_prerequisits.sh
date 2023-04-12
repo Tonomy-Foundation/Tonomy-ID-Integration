@@ -36,3 +36,7 @@ corepack enable
 
 echo "Installing pm2 globally"
 npm i -g pm2@5.2.0
+
+echo "Installing mkdocs"
+sudo apt install python-is-python3
+pip install mkdocs mkdocs-material

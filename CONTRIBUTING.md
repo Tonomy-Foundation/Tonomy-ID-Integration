@@ -69,7 +69,7 @@ This policy defines when all developer tasks are finished and can be closed. Thi
   * [ ] All changed classes and functions are **documented** with ([JSDoc](https://devhints.io/jsdoc) for Typescript)
   * [ ] All debugging **comments and logging is removed**
   * [ ] (**README.md**) is updated if the way to run is changed or anything else relevant
-  * [ ] (**readthedocs.io**) documentation is updated if needed for external interface or behavioural changes. Or create a task to do this and tell the Product Owner.
+  * [ ] (**mkdocs**) documentation is updated if needed for external interface or behavioral changes. Or create a task to do this and tell the Product Owner.
   * [ ] Any other documentation that are relevant
 * [ ] 🔗 **Dependant software or repositories** are updated if needed. Or create a task to do this and tell the Product Owner.
   * [ ] Check all repos in our multi-repo software: Tonomy ID, SDK, Integration, Demo website, Login website, Contracts and Communication

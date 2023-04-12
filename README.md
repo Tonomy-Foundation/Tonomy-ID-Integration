@@ -12,7 +12,7 @@ See `./staging`
 - Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
 - Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
 - Blockchain API: <https://blockchain-api-staging.tonomy.foundation>
-- Readthedocs: <https://tonomy-id-sdk.readthedocs.io>
+- Docs: <https://docs.tonomy.foundation>
 - Tonomy ID:
   - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
   - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
