@@ -31,7 +31,6 @@ function install {
 
     cd "$SDK_PATH"
     npm install
-    npm run build
 
     cd "$PARENT_PATH/Tonomy-ID"
     npm install
@@ -159,6 +158,7 @@ function reset {
         rm -R "${SDK_PATH}/Tonomy-Communication/.yarn" 
         rm -R "${PARENT_PATH}/Tonomy-ID-SDK/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID-SDK/build"
+        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/site"
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID/.expo"
         rm -R "${PARENT_PATH}/Tonomy-App-Websites/node_modules"
