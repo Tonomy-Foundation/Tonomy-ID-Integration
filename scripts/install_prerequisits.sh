@@ -2,7 +2,6 @@
 
 # Ubuntu 20 machine
 
-
 echo "Run this script manually, as you need to reboot and exit terminal during installation."
 echo "Press any key to exit..."
 read var
@@ -38,5 +37,5 @@ echo "Installing pm2 globally"
 npm i -g pm2@5.2.0
 
 echo "Installing mkdocs"
-sudo apt install python-is-python3
+sudo apt install -y python-is-python3 python3-pip
 pip install mkdocs mkdocs-material
