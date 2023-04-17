@@ -9,12 +9,8 @@ Reading and following these guidelines will help us make the contribution proces
 * [Developer environment](#developer-environment)
 * [Git and development policy](#git-and-development-policy)
 * [Developer expectations](#developer-expectations)
-* [Tips and tricks](#tips-and-tricks)
 * [Resources](#resources)
 * [Contributing](#contributing)
-  * [Issues](#issues)
-  * [Pull Requests](#pull-requests)
-  * [Getting Help](#getting-help)
 
 ## Developer environment
 
@@ -96,35 +92,34 @@ An implementation plan shows the changes to class/function interfaces. Pseudo-co
 
 ## Developer expectations
 
+#### README.md
+
 Read the README.md in full and in detail, before asking for help! In all repositories and sub-repositories that you are working in.
 
 SOLID: <https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design>
 
 DRY: <https://www.digitalocean.com/community/tutorials/what-is-dry-development>
 
-Communication and creating PRs for review:
+#### Communication and creating PRs for review
+
 <https://discord.com/channels/1029385699071381524/1039498885598552065/1070264623397351506>
 
-Branch naming
+#### Branch naming
+
 <img src="./assets/Development process-Branch.drawio.png" />
 
-Git commits:
+#### Git commits
 
 * Conventional commits: <https://www.conventionalcommits.org/en/v1.0.0/#summary>
 * Use the VS Studio recommended extension to do commits
 
-Turn on all recommended VS Code extensions. They are configured to help!
+**Turn on all recommended VS Code extensions. They are configured to help!**
 
 ### Conventions
 
 #### Javascript
 
 * Variables convention is [CamelCase](https://textcaseconvert.com/blog/what-is-camel-case/)
-
-## Tips and tricks
-
-Testing Staging Tonomy ID locally without needing to wait for deploy to Play store
-<https://discord.com/channels/1029385699071381524/1039498885598552065/1093444834477490186>
 
 ## Resources
 
