@@ -8,15 +8,10 @@ Reading and following these guidelines will help us make the contribution proces
 
 * [Developer environment](#developer-environment)
 * [Git and development policy](#git-and-development-policy)
-  * [Branch policy](#git-branch-policy)
-  * [Development process](#development-process)
-  * [Definition of ready](#definition-of-ready)
-  * [Definition of done](#definition-of-done)
 * [Developer expectations](#developer-expectations)
 * [Tips and tricks](#tips-and-tricks)
 * [Resources](#resources)
 * [Contributing](#contributing)
-  * [General Practices](#general-practices)
   * [Issues](#issues)
   * [Pull Requests](#pull-requests)
   * [Getting Help](#getting-help)
@@ -33,10 +28,6 @@ If you do not have a Linux machine we suggest setting up a [VirtualBox](https://
 <img src="./assets/snapshots.jpg" />
 
 ## Git and development policy
-
-### Git branch policy
-
-<img src="./assets/Development process-Branch.drawio.png" />
 
 ### Development process
 
@@ -113,6 +104,16 @@ DRY: <https://www.digitalocean.com/community/tutorials/what-is-dry-development>
 
 Communication and creating PRs for review:
 <https://discord.com/channels/1029385699071381524/1039498885598552065/1070264623397351506>
+
+Branch naming
+<img src="./assets/Development process-Branch.drawio.png" />
+
+Git commits:
+
+* Conventional commits: <https://www.conventionalcommits.org/en/v1.0.0/#summary>
+* Use the VS Studio recommended extension to do commits
+
+Turn on all recommended VS Code extensions. They are configured to help!
 
 ### Conventions
 
