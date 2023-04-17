@@ -12,12 +12,14 @@ Reading and following these guidelines will help us make the contribution proces
   * [Development process](#development-process)
   * [Definition of ready](#definition-of-ready)
   * [Definition of done](#definition-of-done)
-* [Tonomy ID Workshop](#tonomy-id-workshop)
-* [Design](#design)
-* [General Practices](#general-practices)
-* [Issues](#issues)
-* [Pull Requests](#pull-requests)
-* [Getting Help](#getting-help)
+* [Developer expectations](#developer-expectations)
+* [Tips and tricks](#tips-and-tricks)
+* [Resources](#resources)
+* [Contributing](#contributing)
+  * [General Practices](#general-practices)
+  * [Issues](#issues)
+  * [Pull Requests](#pull-requests)
+  * [Getting Help](#getting-help)
 
 ## Developer environment
 
@@ -112,6 +114,12 @@ DRY: <https://www.digitalocean.com/community/tutorials/what-is-dry-development>
 Communication and creating PRs for review:
 <https://discord.com/channels/1029385699071381524/1039498885598552065/1070264623397351506>
 
+### Conventions
+
+#### Javascript
+
+* Variables convention is [CamelCase](https://textcaseconvert.com/blog/what-is-camel-case/)
+
 ## Tips and tricks
 
 Testing Staging Tonomy ID locally without needing to wait for deploy to Play store
@@ -130,10 +138,6 @@ Watch to understand the architecture and general model and use case:
 Figma design:
 
 <https://www.figma.com/file/cvV48t0f7O2znT6QBxK0Zj/Tonomy-ID>
-
-### General practices
-
-* The JavaScript variables capital convention is [CamelCase](https://textcaseconvert.com/blog/what-is-camel-case/)
 
 ## Contributing
 
