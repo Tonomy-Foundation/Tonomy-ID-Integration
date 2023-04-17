@@ -101,6 +101,22 @@ Don't use `git rebase` ([why?](https://medium.com/@fredrikmorken/why-you-should-
 
 An implementation plan shows the changes to class/function interfaces. Pseudo-code can also be added to show intended implementation. This should be done in the Github Issue, or a PR. The implementation plan exists to have a conversation, but not to fix the outcome at the end.
 
+## Developer expectations
+
+Read the README.md in full and in detail, before asking for help! In all repositories and sub-repositories that you are working in.
+
+SOLID: <https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design>
+
+DRY: <https://www.digitalocean.com/community/tutorials/what-is-dry-development>
+
+Communication and creating PRs for review:
+<https://discord.com/channels/1029385699071381524/1039498885598552065/1070264623397351506>
+
+## Tips and tricks
+
+Testing Staging Tonomy ID locally without needing to wait for deploy to Play store
+<https://discord.com/channels/1029385699071381524/1039498885598552065/1093444834477490186>
+
 ## Resources
 
 ### Tonomy ID Workshop
