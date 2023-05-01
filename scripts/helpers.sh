@@ -19,7 +19,7 @@ function install {
     if [ "${ARG1}" == "sdk" ]
     then
         cd "$SDK_PATH"
-        npm run prepare
+        npm run build
         return
     fi
 
@@ -39,8 +39,19 @@ function install {
     yarn install
 }
 
+function update {
+    cd "$SDK_PATH/Tonomy-Communication"
+    yarn up @tonomy/tonomy-id-sdk
+
+    cd "$PARENT_PATH/Tonomy-ID"
+    npm update @tonomy/tonomy-id-sdk
+
+    cd "$PARENT_PATH/Tonomy-App-Websites"
+    yarn up @tonomy/tonomy-id-sdk
+}
+
 function deletecontracts {
-    cd "$PARENT_PATH/Tonomy-Contracts"
+    cd "$PARENT_PATH/Tonomy-ID-SDK/Tonomy-Contracts"
     ./delete-buildt-contracts.sh
 }
 
@@ -49,7 +60,7 @@ function init {
     sleep 8
 
     cd "$SDK_PATH"
-    npm run bootstrap
+    npm run cli bootstrap
 
     echo ""
     echo ""
@@ -143,10 +154,16 @@ function reset {
         set +e
         rm -R "$SDK_PATH/node_modules"
         rm -R "${SDK_PATH}/Tonomy-Communication/node_modules" 
-        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/dist"
+        rm -R "${SDK_PATH}/Tonomy-Communication/dist" 
+        rm -R "${SDK_PATH}/Tonomy-Communication/.yarn" 
+        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/node_modules"
+        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/build"
+        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/site"
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID/.expo"
         rm -R "${PARENT_PATH}/Tonomy-App-Websites/node_modules"
+        rm -R "${PARENT_PATH}/Tonomy-App-Websites/.yarn"
+        rm -R "${PARENT_PATH}/Tonomy-App-Websites/dist"
         set -e
         deletecontracts
     fi

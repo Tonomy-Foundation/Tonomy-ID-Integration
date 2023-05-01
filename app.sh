@@ -28,6 +28,9 @@ then
 elif [ "$ARG1" == "install" ]
 then
     install "${ARG2}"
+elif [ "$ARG1" == "updateclientssdk" ]
+then
+    update
 elif [ "$ARG1" == "init" ]
 then
     stop

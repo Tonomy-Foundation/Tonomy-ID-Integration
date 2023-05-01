@@ -8,6 +8,7 @@ function help {
     echo "Commands:"
     echo "    gitinit        - initializes all git submodules and checks out master branch"
     echo "    install        - installs all application repositories"
+    echo "    updateclientssdk - updates all client's with latest publish @tonomy/tonomy-id-sdk repository"
     echo "    init           - starts application components through docker compose and initializes and resets the blockchain and database"
     echo "    start [all]    - starts application components through docker compose"
     echo "    stop           - stops application execution"
