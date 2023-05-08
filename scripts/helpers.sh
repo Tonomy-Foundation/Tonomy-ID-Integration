@@ -30,10 +30,10 @@ function install {
     yarn install
 
     cd "$SDK_PATH"
-    npm install
+    npm ci
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm install
+    npm ci
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn install
@@ -48,6 +48,19 @@ function update {
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn up @tonomy/tonomy-id-sdk
+}
+
+function link {
+    cd "$SDK_PATH/Tonomy-Communication"
+    yarn link ../
+
+    cd "$PARENT_PATH/Tonomy-ID"
+    npm link "$SDK_PATH"
+
+    cd "$PARENT_PATH/Tonomy-App-Websites"
+    yarn link "$SDK_PATH"
+
+    echo "WARN: Make sure you DO NOT commit these changes to the repository!"
 }
 
 function deletecontracts {
