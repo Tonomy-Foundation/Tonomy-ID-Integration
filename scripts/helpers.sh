@@ -60,6 +60,7 @@ function link {
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn link "$SDK_PATH"
 
+    echo ""
     echo "WARN: Make sure you DO NOT commit these changes to the repository!"
 }
 
