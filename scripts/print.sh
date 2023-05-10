@@ -11,7 +11,7 @@ function help {
     echo "    updateclientssdk - updates all client's with latest publish @tonomy/tonomy-id-sdk repository"
     echo "    link           - links all repositories together with npm/yarn link command, useful for checking development"
     echo "    init           - starts application components through docker compose and initializes and resets the blockchain and database"
-    echo "    start [all]    - starts application components through docker compose"
+    echo "    start          - starts all application components (need to run init first)"
     echo "    stop           - stops application execution"
     echo "    reset [all]    - stops application execution and resets all data. Optionally specify 'all' to also reset all node_modules"
     echo "    log [service]  - prints logs for the service"

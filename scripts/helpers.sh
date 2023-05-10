@@ -114,22 +114,19 @@ function start {
     export VITE_COMMUNICATION_URL="ws://${ip}:5000"
     pm2 start npm --name "id" -- run start
 
-    if [ "${ARG1}" == "all" ]
-    then
-        export VITE_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
-        export VITE_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
-        
-        echo "Starting Tonomy-App-Websites"
-        cd "${PARENT_PATH}/Tonomy-App-Websites"
-        BROWSER=none pm2 start yarn --name "apps" -- dev --host
+    export VITE_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
+    export VITE_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
+    
+    echo "Starting Tonomy-App-Websites"
+    cd "${PARENT_PATH}/Tonomy-App-Websites"
+    BROWSER=none pm2 start yarn --name "apps" -- dev --host
 
-        echo "Starting communication microservice"
-        cd  "$SDK_PATH/Tonomy-Communication"
-        pm2 start yarn --name "micro" -- run start:dev
+    echo "Starting communication microservice"
+    cd  "$SDK_PATH/Tonomy-Communication"
+    pm2 start yarn --name "micro" -- run start:dev
 
-        cd "${PARENT_PATH}/Tonomy-App-Websites"
-        docker-compose -f ./docker.compose-development.yaml up -d
-    fi
+    cd "${PARENT_PATH}/Tonomy-App-Websites"
+    docker-compose -f ./docker.compose-development.yaml up -d
 
     printservices
     if [ "${ARG1}" == "all" ]
