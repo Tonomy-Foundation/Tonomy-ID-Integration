@@ -26,11 +26,11 @@ function install {
     cd "$SDK_PATH/Tonomy-Contracts"
     ./blockchain/build-docker.sh
 
-    cd "$SDK_PATH/Tonomy-Communication"
-    yarn install
-
     cd "$SDK_PATH"
     npm ci
+
+    cd "$SDK_PATH/Tonomy-Communication"
+    yarn install
 
     cd "$PARENT_PATH/Tonomy-ID"
     npm ci
