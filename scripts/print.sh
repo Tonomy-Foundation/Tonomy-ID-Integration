@@ -43,16 +43,11 @@ function printservices {
     echo "Tonomy ID app debugger                - http://localhost:8081/debugger-ui/"
     echo "Blockchain node (eosio)               - http://localhost:8888/v1/chain/get_info"
     echo "Blockchain explorer                   - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&coreSymbol=SYS&systemDomain=eosio"
+    echo "Tonomy ID Demo SSO Website (react)    - http://${ip}:3000 "
+    echo "Tonomy ID Demo market app (react)     - http://${ip}:3001"
+    echo "Tonomy Communication microservice     - http://localhost:5000 or http://${ip}:5000"    echo ""
     echo ""
     echo "Your IP = ${ip}"
     echo ""
-    echo ""
-}
-
-function printWebsiteServices {
-    echo "Tonomy ID Demo SSO Website (react)    - http://${ip}:3000 "
-    echo "Tonomy ID Demo market app (react)     - http://${ip}:3001"
-    echo "Tonomy Communication microservice     - http://localhost:5000 or http://${ip}:5000"
-    echo "" 
     echo ""
 }

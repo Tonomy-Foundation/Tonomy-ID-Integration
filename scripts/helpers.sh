@@ -130,10 +130,6 @@ function start {
     docker-compose -f ./docker.compose-development.yaml up -d
 
     printservices
-    if [ "${ARG1}" == "all" ]
-    then
-        printWebsiteServices
-    fi
 }
 
 function stop {
