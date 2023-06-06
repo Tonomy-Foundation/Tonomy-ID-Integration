@@ -19,7 +19,7 @@ function install {
     if [ "${ARG1}" == "sdk" ]
     then
         cd "$SDK_PATH"
-        npm run build
+        yarn run build
         return
     fi
 
@@ -27,7 +27,7 @@ function install {
     ./blockchain/build-docker.sh
 
     cd "$SDK_PATH"
-    npm ci
+    yarn install
 
     cd "$SDK_PATH/Tonomy-Communication"
     yarn install
@@ -74,7 +74,7 @@ function init {
     sleep 8
 
     cd "$SDK_PATH"
-    npm run cli bootstrap
+    yarn run cli bootstrap
 
     echo ""
     echo ""
@@ -104,7 +104,7 @@ function start {
 
     echo "Starting Tonomy-ID-SDK"
     cd "$SDK_PATH"
-    pm2 start npm --name "sdk" -- run start
+    pm2 start yarn --name "sdk" -- run start
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
