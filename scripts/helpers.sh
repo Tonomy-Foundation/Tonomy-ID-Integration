@@ -19,21 +19,21 @@ function install {
     if [ "${ARG1}" == "sdk" ]
     then
         cd "$SDK_PATH"
-        npm run build
+        yarn run build
         return
     fi
 
     cd "$SDK_PATH/Tonomy-Contracts"
     ./blockchain/build-docker.sh
 
+    cd "$SDK_PATH"
+    yarn install
+
     cd "$SDK_PATH/Tonomy-Communication"
     yarn install
 
-    cd "$SDK_PATH"
-    npm install
-
     cd "$PARENT_PATH/Tonomy-ID"
-    npm install
+    npm ci
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn install
@@ -50,6 +50,20 @@ function update {
     yarn up @tonomy/tonomy-id-sdk
 }
 
+function link {
+    cd "$SDK_PATH/Tonomy-Communication"
+    yarn link ../
+
+    cd "$PARENT_PATH/Tonomy-ID"
+    npm link "$SDK_PATH"
+
+    cd "$PARENT_PATH/Tonomy-App-Websites"
+    yarn link "$SDK_PATH"
+
+    echo ""
+    echo "WARN: Make sure you DO NOT commit these changes to the repository!"
+}
+
 function deletecontracts {
     cd "$PARENT_PATH/Tonomy-ID-SDK/Tonomy-Contracts"
     ./delete-buildt-contracts.sh
@@ -60,7 +74,7 @@ function init {
     sleep 8
 
     cd "$SDK_PATH"
-    npm run cli bootstrap
+    yarn run cli bootstrap
 
     echo ""
     echo ""
@@ -90,7 +104,7 @@ function start {
 
     echo "Starting Tonomy-ID-SDK"
     cd "$SDK_PATH"
-    pm2 start npm --name "sdk" -- run start
+    pm2 start yarn --name "sdk" -- run start
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
@@ -101,28 +115,21 @@ function start {
     export VITE_COMMUNICATION_URL="ws://${ip}:5000"
     pm2 start npm --name "id" -- run start
 
-    if [ "${ARG1}" == "all" ]
-    then
-        export VITE_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
-        export VITE_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
-        
-        echo "Starting Tonomy-App-Websites"
-        cd "${PARENT_PATH}/Tonomy-App-Websites"
-        BROWSER=none pm2 start yarn --name "apps" -- dev --host
+    export VITE_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
+    export VITE_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
+    
+    echo "Starting Tonomy-App-Websites"
+    cd "${PARENT_PATH}/Tonomy-App-Websites"
+    BROWSER=none pm2 start yarn --name "apps" -- dev --host
 
-        echo "Starting communication microservice"
-        cd  "$SDK_PATH/Tonomy-Communication"
-        pm2 start yarn --name "micro" -- run start:dev
+    echo "Starting communication microservice"
+    cd  "$SDK_PATH/Tonomy-Communication"
+    pm2 start yarn --name "micro" -- run start:dev
 
-        cd "${PARENT_PATH}/Tonomy-App-Websites"
-        docker-compose -f ./docker.compose-development.yaml up -d
-    fi
+    cd "${PARENT_PATH}/Tonomy-App-Websites"
+    docker-compose -f ./docker.compose-development.yaml up -d
 
     printservices
-    if [ "${ARG1}" == "all" ]
-    then
-        printWebsiteServices
-    fi
 }
 
 function stop {

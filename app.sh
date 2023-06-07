@@ -37,6 +37,9 @@ then
     reset
     startdocker
     init
+elif [ "$ARG1" == "link" ]
+then
+    link
 elif [ "$ARG1" == "start" ]
 then
     stop
