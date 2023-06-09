@@ -133,7 +133,9 @@ function start {
 }
 
 function test {
-    export LOG=false
+    export LOG="false"
+    export NODE_ENV="local"
+    export VITE_APP_NODE_ENV="local";
     
     cd "$SDK_PATH"
     yarn run build
