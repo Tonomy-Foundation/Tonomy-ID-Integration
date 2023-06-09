@@ -55,7 +55,7 @@ function link {
     yarn link ../
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm link "$SDK_PATH"
+    npm link --save "$SDK_PATH"
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn link "$SDK_PATH"
