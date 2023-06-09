@@ -86,6 +86,12 @@ export NODE_ENV=production
 ./app.sh start
 ```
 
+To show logs within the SDK, use
+
+```bash
+export LOG=true
+```
+
 ## Staging server
 
 See `./staging/staging.sh`
