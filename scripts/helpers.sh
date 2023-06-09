@@ -132,6 +132,33 @@ function start {
     printservices
 }
 
+function test {
+    export LOG=false
+    
+    cd "$SDK_PATH"
+    yarn run build
+    yarn run lint
+    yarn run test:unit
+    yarn run test:setup
+    yarn run test:integration
+
+    cd "$PARENT_PATH/Tonomy-ID"
+    npm test
+    npm run lint
+    npm run typeCheck
+    
+    cd "$PARENT_PATH/Tonomy-App-Websites"
+    yarn run build
+
+    cd "$SDK_PATH/Tonomy-Communication"
+    yarn run build
+    yarn run lint
+    yarn run test
+
+    cd "$SDK_PATH/Tonomy-Contracts"
+    ./build-contracts.sh
+}
+
 function stop {
     cd "${PARENT_PATH}"
     docker-compose exec antelope ./nodeos.sh stop || true
