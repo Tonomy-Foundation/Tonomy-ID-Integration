@@ -19,6 +19,19 @@ See `./staging`
     - TestFlight: TODO
 - Testers issue reporting sheet: <https://docs.google.com/spreadsheets/d/1_LtUzEV8aiw5OYYuEHnQd-Mf0Jpwd4jWEUZgnJqI9ME/edit#gid=1902629582>
 
+## Testing environment
+
+- Demo market.com: <https://tonomy-id-market-com-staging.tonomy.foundation>
+- Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
+- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
+- Blockchain API: <https://blockchain-api-staging.tonomy.foundation>
+- Docs: <https://staging-docs.tonomy.foundation>
+- Tonomy ID:
+  - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
+  - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
+    - TestFlight: TODO
+- Testers issue reporting sheet: <https://docs.google.com/spreadsheets/d/1_LtUzEV8aiw5OYYuEHnQd-Mf0Jpwd4jWEUZgnJqI9ME/edit#gid=1902629582>
+
 ## Repositories
 
 - [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our React Native cross-platform mobile wallet for public & private Antelope blockchains.
