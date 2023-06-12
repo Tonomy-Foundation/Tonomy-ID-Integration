@@ -44,7 +44,8 @@ function update {
     yarn up @tonomy/tonomy-id-sdk
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm update @tonomy/tonomy-id-sdk
+    npm remove @tonomy/tonomy-id-sdk
+    npm install @tonomy/tonomy-id-sdk
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn up @tonomy/tonomy-id-sdk
