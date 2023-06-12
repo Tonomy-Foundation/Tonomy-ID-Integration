@@ -44,6 +44,10 @@ elif [ "$ARG1" == "start" ]
 then
     stop
     start "${ARG2}"
+elif [ "$ARG1" == "test" ]
+then
+    stop
+    test
 elif [ "$ARG1" == "stop" ]
 then
     stop

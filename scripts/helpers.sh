@@ -44,7 +44,8 @@ function update {
     yarn up @tonomy/tonomy-id-sdk
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm update @tonomy/tonomy-id-sdk
+    npm remove @tonomy/tonomy-id-sdk
+    npm install @tonomy/tonomy-id-sdk
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn up @tonomy/tonomy-id-sdk
@@ -55,7 +56,7 @@ function link {
     yarn link ../
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm link "$SDK_PATH"
+    npm link --save "$SDK_PATH"
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn link "$SDK_PATH"
@@ -130,6 +131,35 @@ function start {
     docker-compose -f ./docker.compose-development.yaml up -d
 
     printservices
+}
+
+function test {
+    export LOG="false"
+    export NODE_ENV="local"
+    export VITE_APP_NODE_ENV="local";
+    
+    cd "$SDK_PATH"
+    yarn run build
+    yarn run lint
+    yarn run test:unit
+    yarn run test:setup
+    yarn run test:integration
+
+    cd "$PARENT_PATH/Tonomy-ID"
+    npm test
+    npm run lint
+    npm run typeCheck
+    
+    cd "$PARENT_PATH/Tonomy-App-Websites"
+    yarn run build
+
+    cd "$SDK_PATH/Tonomy-Communication"
+    yarn run build
+    yarn run lint
+    yarn run test
+
+    cd "$SDK_PATH/Tonomy-Contracts"
+    ./build-contracts.sh
 }
 
 function stop {
