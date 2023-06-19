@@ -30,13 +30,13 @@ function install {
     yarn install
 
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn install
+    yarn install && yarn add @tonomy/tonomy-id-sdk@development
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm ci
+    npm ci && yarn add @tonomy/tonomy-id-sdk@development
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    yarn install
+    yarn install && yarn add @tonomy/tonomy-id-sdk@development
 }
 
 function update {
