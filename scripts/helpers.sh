@@ -41,13 +41,14 @@ function install {
 
 function update {
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn up @tonomy/tonomy-id-sdk
+    yarn up @tonomy/tonomy-id-sdk@development
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm update @tonomy/tonomy-id-sdk
+    npm update @tonomy/tonomy-id-sdk@development
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    yarn up @tonomy/tonomy-id-sdk
+    yarn up @tonomy/tonomy-id-sdk@development
+    
 }
 
 function link {
