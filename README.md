@@ -4,7 +4,7 @@ Developer environment to run Tonomy ID locally alongside a blockchain node, and 
 
 All developers contributing to the project should check [Contributors Guide](./CONTRIBUTING.md) and first check the [Troubleshoot Guide](./TROUBLESHOOT.md) if you have issues installing or running.
 
-## Staging environment
+## Try it out here
 
 See `./staging`
 
@@ -16,8 +16,7 @@ See `./staging`
 - Tonomy ID:
   - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
   - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
-    - TestFlight: TODO
-- Testers issue reporting sheet: <https://docs.google.com/spreadsheets/d/1_LtUzEV8aiw5OYYuEHnQd-Mf0Jpwd4jWEUZgnJqI9ME/edit#gid=1902629582>
+- Testers issue reporting sheet: <https://tonomy-foundation.notion.site/Tonomy-ID-Testing-Procedure-4a084f9e43df413695425289ca017446?pvs=4>
 
 ## Testing environment
 
@@ -34,10 +33,11 @@ See `./staging`
 
 ## Repositories
 
-- [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our React Native cross-platform mobile wallet for public & private Antelope blockchains.
+- [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our expo (React Native) cross-platform mobile wallet for public & private Antelope blockchains.
   - [Directory Structure](https://learn.habilelabs.io/best-folder-structure-for-react-native-project-a46405bdba7)
-- [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - used in Tonomy ID to interact and call with the Antelope blockchain and services.
-  - [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) (inside SDK repo) - Smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
+- [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - typescript library used in Tonomy ID to interact and call with the Antelope blockchain and services.
+  - [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) (inside SDK repo) - Antelope smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
+  - [Microservice](https://github.com/Tonomy-Foundation/Tonomy-Communication) (inside SDK repo) - nextjs peer to peer message broker for communication between different identities.
 - [Demo](https://github.com/Tonomy-Foundation/Tonomy-App-Websites/tree/master/src/demo) - A reactjs application to facilitate the SSO login with Tonomy ID to web apps
 - [SSO Login](https://github.com/Tonomy-Foundation/Tonomy-App-Websites/tree/master/src/sso) - A reactjs application to show demo flows with Tonomy ID and Tonomy ID SSO
 
@@ -79,10 +79,8 @@ Follow these steps one by one & read them carefully. Do not rush through it.
 - `./app.sh install`
 - `./app.sh init`
 - Now, you can do one of the following;
-- `./app.sh start` or
-- `./app.sh start all` to start all services (including the websites)
+- `./app.sh start`
   - Open the installed Tonomy ID app downloaded from [https://expo.dev](https://expo.dev) (See #pre-run-one-time)
-  - Call `getip` and then input the "Enter URL manually" `<http://{ip> fro getip}:8081
   - Check out the links shown
 - `./app.sh log antelope`
 - `./app.sh stop` or `./app.sh reset` or `./app.sh reset all`
@@ -99,6 +97,12 @@ export NODE_ENV=staging
 export NODE_ENV=production
 #then
 ./app.sh start
+```
+
+To show logs within the SDK, use
+
+```bash
+export LOG=true
 ```
 
 ## Staging server
