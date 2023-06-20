@@ -30,25 +30,26 @@ function install {
     yarn install
 
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn install
+    yarn install && yarn add @tonomy/tonomy-id-sdk@development
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm ci
+    npm ci && yarn add @tonomy/tonomy-id-sdk@development
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    yarn install
+    yarn install && yarn add @tonomy/tonomy-id-sdk@development
 }
 
 function update {
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn up @tonomy/tonomy-id-sdk
+    yarn up @tonomy/tonomy-id-sdk@development
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm remove @tonomy/tonomy-id-sdk
-    npm install @tonomy/tonomy-id-sdk
+    npm remove @tonomy/tonomy-id-sdk@development
+    npm install @tonomy/tonomy-id-sdk@development
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    yarn up @tonomy/tonomy-id-sdk
+    yarn up @tonomy/tonomy-id-sdk@development
+    
 }
 
 function link {
