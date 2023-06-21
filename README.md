@@ -12,7 +12,7 @@ See `./staging`
 - Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
 - Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
 - Blockchain API: <https://blockchain-api-staging.tonomy.foundation>
-- Docs: <https://docs.tonomy.foundation>
+- Docs: <https://staging-docs.tonomy.foundation>
 - Tonomy ID:
   - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
   - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
@@ -20,11 +20,13 @@ See `./staging`
 
 ## Testing environment
 
+See `./demo`
+
 - Demo market.com: <https://tonomy-id-market-com-staging.tonomy.foundation>
 - Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
 - Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
-- Blockchain API: <https://blockchain-api-staging.tonomy.foundation>
-- Docs: <https://staging-docs.tonomy.foundation>
+- Blockchain API: <https://blockchain-api-demo.tonomy.foundation>
+- Docs: <https://docs.tonomy.foundation>
 - Tonomy ID:
   - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
   - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
@@ -89,12 +91,12 @@ See [TROUBLESHOOT.md](./TROUBLESHOOT.md) to fix common issues when running the a
 
 ## Environment variables
 
-To run in staging or production, use:
+To run in staging or demo, use:
 
 ```bash
 export NODE_ENV=staging
 #or
-export NODE_ENV=production
+export NODE_ENV=demo
 #then
 ./app.sh start
 ```
@@ -108,3 +110,7 @@ export LOG=true
 ## Staging server
 
 See `./staging/staging.sh`
+
+## Demo server
+
+See `./demo/demo.sh`
