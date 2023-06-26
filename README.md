@@ -8,7 +8,7 @@ All developers contributing to the project should check [Contributors Guide](./C
 
 See `./staging`
 
-- Demo market.com: <https://tonomy-id-market-com-staging.tonomy.foundation>
+- Demo market.com: <https://demo.staging.tonomy.foundation>
 - Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
 - Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
 - Blockchain API: <https://blockchain-api-staging.tonomy.foundation>
