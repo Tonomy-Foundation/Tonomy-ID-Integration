@@ -127,8 +127,7 @@ function start {
     ARG1=${1-default}
     export LOG="true"
     set +u
-    if [ -z "${NODE_ENV}" ]
-    then
+    if [ -z "${NODE_ENV}" ]; then
         export NODE_ENV="local";
         export VITE_APP_NODE_ENV="local";
     fi
@@ -220,15 +219,14 @@ function reset {
     
     if [ "${ARG1}" == "all" ]
     then
-        echo "Deleting all node_modules"
+        echo "Deleting all packages and builds"
         set +e
         rm -R "$SDK_PATH/node_modules"
+        rm -R "$SDK_PATH/build"
+        rm -R "$SDK_PATH/site"
         rm -R "${SDK_PATH}/Tonomy-Communication/node_modules" 
         rm -R "${SDK_PATH}/Tonomy-Communication/dist" 
         rm -R "${SDK_PATH}/Tonomy-Communication/.yarn" 
-        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/node_modules"
-        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/build"
-        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/site"
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID/.expo"
         rm -R "${PARENT_PATH}/Tonomy-App-Websites/node_modules"
