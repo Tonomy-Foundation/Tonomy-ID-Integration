@@ -71,7 +71,6 @@ function update {
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn up @tonomy/tonomy-id-sdk@development
-    
 }
 
 function link {
