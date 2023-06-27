@@ -25,18 +25,6 @@ function gitinit {
     git submodule foreach --recursive git pull
 }
 
-
-function gitinitmaster {
-    cd "$PARENT_PATH"
-    git submodule update --init --recursive
-    git submodule foreach --recursive git checkout master
-    git submodule foreach --recursive git pull
-    cd "$SDK_PATH" 
-    git submodule update --init --recursive
-    git submodule foreach --recursive git checkout master
-    git submodule foreach --recursive git pull
-}
-
 function install {
     ARG1=${1-default}
 
