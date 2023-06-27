@@ -8,23 +8,27 @@ All developers contributing to the project should check [Contributors Guide](./C
 
 See `./staging`
 
-- Demo market.com: <https://tonomy-id-market-com-staging.tonomy.foundation>
-- Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
+- Demo: <https://demo.staging.tonomy.foundation>
+- Accounts website: <https://accounts.staging.tonomy.foundation>
 - Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
 - Blockchain API: <https://blockchain-api-staging.tonomy.foundation>
-- Docs: <https://docs.tonomy.foundation>
+- Communication Service: <https://communication.staging.tonomy.foundation>
+- Docs: <https://docs.staging.tonomy.foundation>
 - Tonomy ID:
   - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
   - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
 - Testers issue reporting sheet: <https://tonomy-foundation.notion.site/Tonomy-ID-Testing-Procedure-4a084f9e43df413695425289ca017446?pvs=4>
 
-## Testing environment
+## Demo environment
 
-- Demo market.com: <https://tonomy-id-market-com-staging.tonomy.foundation>
-- Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
-- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
-- Blockchain API: <https://blockchain-api-staging.tonomy.foundation>
-- Docs: <https://staging-docs.tonomy.foundation>
+See `./demo`
+
+- Demo: <https://demo.demo.tonomy.foundation>
+- Accounts website: <https://accounts.demo.tonomy.foundation>
+- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-demo.tonomy.foundation&systemDomain=eosio>
+- Blockchain API: <https://blockchain-api-demo.tonomy.foundation>
+- Communication Service: <https://communication.demo.tonomy.foundation>
+- Docs: <https://docs.tonomy.foundation>
 - Tonomy ID:
   - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
   - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
@@ -89,12 +93,12 @@ See [TROUBLESHOOT.md](./TROUBLESHOOT.md) to fix common issues when running the a
 
 ## Environment variables
 
-To run in staging or production, use:
+To run in staging or demo, use:
 
 ```bash
 export NODE_ENV=staging
 #or
-export NODE_ENV=production
+export NODE_ENV=demo
 #then
 ./app.sh start
 ```
@@ -108,3 +112,7 @@ export LOG=true
 ## Staging server
 
 See `./staging/staging.sh`
+
+## Demo server
+
+See `./demo/demo.sh`
