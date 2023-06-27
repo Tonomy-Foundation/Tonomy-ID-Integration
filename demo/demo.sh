@@ -13,7 +13,7 @@
 git clone https://github.com/Tonomy-Foundation/Tonomy-ID-Integration.git
 cd Tonomy-ID-Integration
 git checkout master
-./app.sh gitinit
+./app.sh gitinit master
 
 
 # Install prerequisits
@@ -47,7 +47,7 @@ export NODE_ENV=demo
 cd Tonomy-ID-Integration
 ./apps.sh stop
 git pull
-./app.sh gitinit
+./app.sh gitinit master
 ./app.sh reset all
 ./app.sh install
 export NODE_ENV=demo
