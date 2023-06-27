@@ -9,10 +9,12 @@ All developers contributing to the project should check [Contributors Guide](./C
 See `./staging`
 
 - Demo market.com: <https://demo.staging.tonomy.foundation>
+- SSO website: <https://accounts.staging.tonomy.foundation>
 - Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
 - Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
 - Blockchain API: <https://blockchain-api-staging.tonomy.foundation>
-- Docs: <https://staging-docs.tonomy.foundation>
+- Communication Service: <https://communication.staging.tonomy.foundation>
+- Docs: <https://docs.staging.tonomy.foundation>
 - Tonomy ID:
   - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
   - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
@@ -22,10 +24,12 @@ See `./staging`
 
 See `./demo`
 
-- Demo market.com: <https://tonomy-id-market-com-staging.tonomy.foundation>
-- Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
-- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
+- Demo market.com: <https://demo.demo.tonomy.foundation>
+- SSO website: <https://accounts.demo.tonomy.foundation>
+- Tonomy login website: <https://tonomy-id-demo.tonomy.foundation>
+- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-demo.tonomy.foundation&systemDomain=eosio>
 - Blockchain API: <https://blockchain-api-demo.tonomy.foundation>
+- Communication Service: <https://communication.demo.tonomy.foundation>
 - Docs: <https://docs.tonomy.foundation>
 - Tonomy ID:
   - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
