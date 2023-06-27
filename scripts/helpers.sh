@@ -42,13 +42,23 @@ function install {
     yarn install
 
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn install && yarn add @tonomy/tonomy-id-sdk@development
+    yarn install
+    if [ "${ARG1}" != "master" ]; then
+        yarn add @tonomy/tonomy-id-sdk@development
+    fi
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm ci && yarn add @tonomy/tonomy-id-sdk@development
+    npm ci
+    if [ "${ARG1}" != "master" ]; then
+        npm i @tonomy/tonomy-id-sdk@development
+    fi
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    yarn install && yarn add @tonomy/tonomy-id-sdk@development
+    yarn install
+    if [ "${ARG1}" != "master" ]; then
+        yarn add @tonomy/tonomy-id-sdk@development
+    fi
+
 }
 
 function update {
