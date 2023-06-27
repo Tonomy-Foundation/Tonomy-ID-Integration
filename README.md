@@ -4,14 +4,30 @@ Developer environment to run Tonomy ID locally alongside a blockchain node, and 
 
 All developers contributing to the project should check [Contributors Guide](./CONTRIBUTING.md) and first check the [Troubleshoot Guide](./TROUBLESHOOT.md) if you have issues installing or running.
 
-## Staging environment
+## Try it out here
 
 See `./staging`
 
-- Demo market.com: <https://tonomy-id-market-com-staging.tonomy.foundation>
-- Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
+- Demo: <https://demo.staging.tonomy.foundation>
+- Accounts website: <https://accounts.staging.tonomy.foundation>
 - Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
 - Blockchain API: <https://blockchain-api-staging.tonomy.foundation>
+- Communication Service: <https://communication.staging.tonomy.foundation>
+- Docs: <https://docs.staging.tonomy.foundation>
+- Tonomy ID:
+  - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
+  - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
+- Testers issue reporting sheet: <https://tonomy-foundation.notion.site/Tonomy-ID-Testing-Procedure-4a084f9e43df413695425289ca017446?pvs=4>
+
+## Demo environment
+
+See `./demo`
+
+- Demo: <https://demo.demo.tonomy.foundation>
+- Accounts website: <https://accounts.demo.tonomy.foundation>
+- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-demo.tonomy.foundation&systemDomain=eosio>
+- Blockchain API: <https://blockchain-api-demo.tonomy.foundation>
+- Communication Service: <https://communication.demo.tonomy.foundation>
 - Docs: <https://docs.tonomy.foundation>
 - Tonomy ID:
   - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
@@ -21,10 +37,11 @@ See `./staging`
 
 ## Repositories
 
-- [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our React Native cross-platform mobile wallet for public & private Antelope blockchains.
+- [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our expo (React Native) cross-platform mobile wallet for public & private Antelope blockchains.
   - [Directory Structure](https://learn.habilelabs.io/best-folder-structure-for-react-native-project-a46405bdba7)
-- [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - used in Tonomy ID to interact and call with the Antelope blockchain and services.
-  - [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) (inside SDK repo) - Smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
+- [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - typescript library used in Tonomy ID to interact and call with the Antelope blockchain and services.
+  - [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) (inside SDK repo) - Antelope smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
+  - [Microservice](https://github.com/Tonomy-Foundation/Tonomy-Communication) (inside SDK repo) - nextjs peer to peer message broker for communication between different identities.
 - [Demo](https://github.com/Tonomy-Foundation/Tonomy-App-Websites/tree/master/src/demo) - A reactjs application to facilitate the SSO login with Tonomy ID to web apps
 - [SSO Login](https://github.com/Tonomy-Foundation/Tonomy-App-Websites/tree/master/src/sso) - A reactjs application to show demo flows with Tonomy ID and Tonomy ID SSO
 
@@ -66,10 +83,8 @@ Follow these steps one by one & read them carefully. Do not rush through it.
 - `./app.sh install`
 - `./app.sh init`
 - Now, you can do one of the following;
-- `./app.sh start` or
-- `./app.sh start all` to start all services (including the websites)
+- `./app.sh start`
   - Open the installed Tonomy ID app downloaded from [https://expo.dev](https://expo.dev) (See #pre-run-one-time)
-  - Call `getip` and then input the "Enter URL manually" `<http://{ip> fro getip}:8081
   - Check out the links shown
 - `./app.sh log antelope`
 - `./app.sh stop` or `./app.sh reset` or `./app.sh reset all`
@@ -78,16 +93,26 @@ See [TROUBLESHOOT.md](./TROUBLESHOOT.md) to fix common issues when running the a
 
 ## Environment variables
 
-To run in staging or production, use:
+To run in staging or demo, use:
 
 ```bash
 export NODE_ENV=staging
 #or
-export NODE_ENV=production
+export NODE_ENV=demo
 #then
 ./app.sh start
+```
+
+To show logs within the SDK, use
+
+```bash
+export LOG=true
 ```
 
 ## Staging server
 
 See `./staging/staging.sh`
+
+## Demo server
+
+See `./demo/demo.sh`

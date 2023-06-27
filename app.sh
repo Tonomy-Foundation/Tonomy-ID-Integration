@@ -24,7 +24,7 @@ then
     help
 elif [ "$ARG1" == "gitinit" ]
 then
-    gitinit
+    gitinit "${ARG2}"
 elif [ "$ARG1" == "install" ]
 then
     install "${ARG2}"
@@ -37,10 +37,17 @@ then
     reset
     startdocker
     init
+elif [ "$ARG1" == "link" ]
+then
+    link
 elif [ "$ARG1" == "start" ]
 then
     stop
     start "${ARG2}"
+elif [ "$ARG1" == "test" ]
+then
+    stop
+    test
 elif [ "$ARG1" == "stop" ]
 then
     stop

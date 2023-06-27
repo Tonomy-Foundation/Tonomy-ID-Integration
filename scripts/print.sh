@@ -6,14 +6,16 @@ function help {
     echo "    app.sh [commands]"
     echo ""
     echo "Commands:"
-    echo "    gitinit        - initializes all git submodules and checks out master branch"
-    echo "    install        - installs all application repositories"
+    echo "    gitinit [master] - initializes all git submodules and checks out development (or master) branch"
+    echo "    install          - installs all application repositories"
     echo "    updateclientssdk - updates all client's with latest publish @tonomy/tonomy-id-sdk repository"
-    echo "    init           - starts application components through docker compose and initializes and resets the blockchain and database"
-    echo "    start [all]    - starts application components through docker compose"
-    echo "    stop           - stops application execution"
-    echo "    reset [all]    - stops application execution and resets all data. Optionally specify 'all' to also reset all node_modules"
-    echo "    log [service]  - prints logs for the service"
+    echo "    link             - links all repositories together with npm/yarn link command, useful for checking development"
+    echo "    init             - starts application components through docker compose and initializes and resets the blockchain and database"
+    echo "    start            - starts all application components (need to run init first)"
+    echo "    stop             - stops application execution"
+    echo "    test             - runs all automated tests"
+    echo "    reset [all]      - stops application execution and resets all data. Optionally specify 'all' to also reset all node_modules"
+    echo "    log [service]    - prints logs for the service"
 }
 
 function loghelp {
@@ -42,16 +44,11 @@ function printservices {
     echo "Tonomy ID app debugger                - http://localhost:8081/debugger-ui/"
     echo "Blockchain node (eosio)               - http://localhost:8888/v1/chain/get_info"
     echo "Blockchain explorer                   - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&coreSymbol=SYS&systemDomain=eosio"
+    echo "Tonomy ID Demo SSO Website (react)    - http://${ip}:3000 "
+    echo "Tonomy ID Demo market app (react)     - http://${ip}:3001"
+    echo "Tonomy Communication microservice     - http://localhost:5000 or http://${ip}:5000"    echo ""
     echo ""
     echo "Your IP = ${ip}"
     echo ""
-    echo ""
-}
-
-function printWebsiteServices {
-    echo "Tonomy ID Demo SSO Website (react)    - http://${ip}:3000 "
-    echo "Tonomy ID Demo market app (react)     - http://${ip}:3001"
-    echo "Tonomy Communication microservice     - http://localhost:5000 or http://${ip}:5000"
-    echo "" 
     echo ""
 }
