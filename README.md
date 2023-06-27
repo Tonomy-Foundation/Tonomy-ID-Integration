@@ -8,9 +8,8 @@ All developers contributing to the project should check [Contributors Guide](./C
 
 See `./staging`
 
-- Demo market.com: <https://demo.staging.tonomy.foundation>
-- SSO website: <https://accounts.staging.tonomy.foundation>
-- Tonomy login website: <https://tonomy-id-staging.tonomy.foundation>
+- Demo: <https://demo.staging.tonomy.foundation>
+- Accounts website: <https://accounts.staging.tonomy.foundation>
 - Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
 - Blockchain API: <https://blockchain-api-staging.tonomy.foundation>
 - Communication Service: <https://communication.staging.tonomy.foundation>
@@ -20,13 +19,12 @@ See `./staging`
   - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
 - Testers issue reporting sheet: <https://tonomy-foundation.notion.site/Tonomy-ID-Testing-Procedure-4a084f9e43df413695425289ca017446?pvs=4>
 
-## Testing environment
+## Demo environment
 
 See `./demo`
 
-- Demo market.com: <https://demo.demo.tonomy.foundation>
-- SSO website: <https://accounts.demo.tonomy.foundation>
-- Tonomy login website: <https://tonomy-id-demo.tonomy.foundation>
+- Demo: <https://demo.demo.tonomy.foundation>
+- Accounts website: <https://accounts.demo.tonomy.foundation>
 - Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-demo.tonomy.foundation&systemDomain=eosio>
 - Blockchain API: <https://blockchain-api-demo.tonomy.foundation>
 - Communication Service: <https://communication.demo.tonomy.foundation>
