@@ -125,6 +125,7 @@ function startdocker {
 
 function start {
     ARG1=${1-default}
+    export LOG="true"
     set +u
     if [ -z "${NODE_ENV}" ]
     then
