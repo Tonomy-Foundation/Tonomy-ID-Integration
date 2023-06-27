@@ -24,7 +24,7 @@ then
     help
 elif [ "$ARG1" == "gitinit" ]
 then
-    gitinit
+    gitinit "${ARG2}"
 elif [ "$ARG1" == "install" ]
 then
     install "${ARG2}"
