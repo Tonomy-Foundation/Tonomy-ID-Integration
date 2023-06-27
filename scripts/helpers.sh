@@ -7,8 +7,7 @@ function gitinit {
 
     cd "$PARENT_PATH"
     git submodule update --init --recursive
-    if [ "${ARG1}" == "master" ]
-    then
+    if [ "${ARG1}" == "master" ]; then
         git submodule foreach --recursive git checkout master
     else
         git submodule foreach --recursive git checkout development
@@ -16,8 +15,7 @@ function gitinit {
     git submodule foreach --recursive git pull
     cd "$SDK_PATH" 
     git submodule update --init --recursive
-    if [ "${ARG1}" == "master" ]
-    then
+    if [ "${ARG1}" == "master" ]; then
         git submodule foreach --recursive git checkout master
     else
         git submodule foreach --recursive git checkout development
@@ -28,8 +26,7 @@ function gitinit {
 function install {
     ARG1=${1-default}
 
-    if [ "${ARG1}" == "sdk" ]
-    then
+    if [ "${ARG1}" == "sdk" ]; then
         cd "$SDK_PATH"
         yarn run build
         return
@@ -63,14 +60,27 @@ function install {
 
 function update {
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn up @tonomy/tonomy-id-sdk@development
+    if [ "${ARG1}" == "master" ]; then
+        yarn up @tonomy/tonomy-id-sdk
+    else
+        yarn up @tonomy/tonomy-id-sdk@development
+    fi
 
+    
     cd "$PARENT_PATH/Tonomy-ID"
-    npm remove @tonomy/tonomy-id-sdk@development
-    npm install @tonomy/tonomy-id-sdk@development
+    npm remove @tonomy/tonomy-id-sdk
+    if [ "${ARG1}" == "master" ]; then
+        npm install @tonomy/tonomy-id-sdk
+    else
+        npm install @tonomy/tonomy-id-sdk@development
+    fi
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    yarn up @tonomy/tonomy-id-sdk@development
+    if [ "${ARG1}" == "master" ]; then
+        yarn up @tonomy/tonomy-id-sdk
+    else
+        yarn up @tonomy/tonomy-id-sdk@development
+    fi
 }
 
 function link {
