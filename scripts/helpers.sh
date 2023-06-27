@@ -3,13 +3,25 @@
 SDK_PATH="$PARENT_PATH/Tonomy-ID-SDK"
 
 function gitinit {
+    ARG1=${1-default}
+
     cd "$PARENT_PATH"
     git submodule update --init --recursive
-    git submodule foreach --recursive git checkout development
+    if [ "${ARG1}" == "master" ]
+    then
+        git submodule foreach --recursive git checkout master
+    else
+        git submodule foreach --recursive git checkout development
+    fi
     git submodule foreach --recursive git pull
     cd "$SDK_PATH" 
     git submodule update --init --recursive
-    git submodule foreach --recursive git checkout development
+    if [ "${ARG1}" == "master" ]
+    then
+        git submodule foreach --recursive git checkout master
+    else
+        git submodule foreach --recursive git checkout development
+    fi
     git submodule foreach --recursive git pull
 }
 
