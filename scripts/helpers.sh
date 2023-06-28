@@ -141,7 +141,9 @@ function start {
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
+    export EXPO_NODE_ENV="${NODE_ENV}"
     echo "NODE_ENV=${NODE_ENV}"
+    echo "EXPO_NODE_ENV=${EXPO_NODE_ENV}"
 
     export BLOCKCHAIN_URL="http://${ip}:8888"
     export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
