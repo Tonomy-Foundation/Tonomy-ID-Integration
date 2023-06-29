@@ -61,7 +61,7 @@ function install {
 function update {
     cd "$SDK_PATH/Tonomy-Communication"
     if [ "${ARG1}" == "master" ]; then
-        yarn up @tonomy/tonomy-id-sdk@latest
+        yarn up @tonomy/tonomy-id-sdk
     else
         yarn up @tonomy/tonomy-id-sdk@development
     fi
@@ -70,14 +70,14 @@ function update {
     cd "$PARENT_PATH/Tonomy-ID"
     npm remove @tonomy/tonomy-id-sdk
     if [ "${ARG1}" == "master" ]; then
-        npm install @tonomy/tonomy-id-sdk@latest
+        npm install @tonomy/tonomy-id-sdk
     else
         npm install @tonomy/tonomy-id-sdk@development
     fi
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     if [ "${ARG1}" == "master" ]; then
-        yarn up @tonomy/tonomy-id-sdk@latest
+        yarn up @tonomy/tonomy-id-sdk
     else
         yarn up @tonomy/tonomy-id-sdk@development
     fi
