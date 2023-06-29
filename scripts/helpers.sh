@@ -7,8 +7,7 @@ function gitinit {
 
     cd "$PARENT_PATH"
     git submodule update --init --recursive
-    if [ "${ARG1}" == "master" ]
-    then
+    if [ "${ARG1}" == "master" ]; then
         git submodule foreach --recursive git checkout master
     else
         git submodule foreach --recursive git checkout development
@@ -16,8 +15,7 @@ function gitinit {
     git submodule foreach --recursive git pull
     cd "$SDK_PATH" 
     git submodule update --init --recursive
-    if [ "${ARG1}" == "master" ]
-    then
+    if [ "${ARG1}" == "master" ]; then
         git submodule foreach --recursive git checkout master
     else
         git submodule foreach --recursive git checkout development
@@ -28,8 +26,7 @@ function gitinit {
 function install {
     ARG1=${1-default}
 
-    if [ "${ARG1}" == "sdk" ]
-    then
+    if [ "${ARG1}" == "sdk" ]; then
         cd "$SDK_PATH"
         yarn run build
         return
@@ -42,26 +39,48 @@ function install {
     yarn install
 
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn install && yarn add @tonomy/tonomy-id-sdk@development
+    yarn install
+    if [ "${ARG1}" != "master" ]; then
+        yarn add @tonomy/tonomy-id-sdk@development
+    fi
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm ci && yarn add @tonomy/tonomy-id-sdk@development
+    npm ci
+    if [ "${ARG1}" != "master" ]; then
+        npm i @tonomy/tonomy-id-sdk@development
+    fi
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    yarn install && yarn add @tonomy/tonomy-id-sdk@development
+    yarn install
+    if [ "${ARG1}" != "master" ]; then
+        yarn add @tonomy/tonomy-id-sdk@development
+    fi
+
 }
 
 function update {
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn up @tonomy/tonomy-id-sdk@development
+    if [ "${ARG1}" == "master" ]; then
+        yarn up @tonomy/tonomy-id-sdk
+    else
+        yarn up @tonomy/tonomy-id-sdk@development
+    fi
 
+    
     cd "$PARENT_PATH/Tonomy-ID"
-    npm remove @tonomy/tonomy-id-sdk@development
-    npm install @tonomy/tonomy-id-sdk@development
+    npm remove @tonomy/tonomy-id-sdk
+    if [ "${ARG1}" == "master" ]; then
+        npm install @tonomy/tonomy-id-sdk
+    else
+        npm install @tonomy/tonomy-id-sdk@development
+    fi
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    yarn up @tonomy/tonomy-id-sdk@development
-    
+    if [ "${ARG1}" == "master" ]; then
+        yarn up @tonomy/tonomy-id-sdk
+    else
+        yarn up @tonomy/tonomy-id-sdk@development
+    fi
 }
 
 function link {
@@ -106,9 +125,9 @@ function startdocker {
 
 function start {
     ARG1=${1-default}
+    export LOG="true"
     set +u
-    if [ -z "${NODE_ENV}" ]
-    then
+    if [ -z "${NODE_ENV}" ]; then
         export NODE_ENV="local";
         export VITE_APP_NODE_ENV="local";
     fi
@@ -122,7 +141,9 @@ function start {
 
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
+    export EXPO_NODE_ENV="${NODE_ENV}"
     echo "NODE_ENV=${NODE_ENV}"
+    echo "EXPO_NODE_ENV=${EXPO_NODE_ENV}"
 
     export BLOCKCHAIN_URL="http://${ip}:8888"
     export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
@@ -200,15 +221,14 @@ function reset {
     
     if [ "${ARG1}" == "all" ]
     then
-        echo "Deleting all node_modules"
+        echo "Deleting all packages and builds"
         set +e
         rm -R "$SDK_PATH/node_modules"
+        rm -R "$SDK_PATH/build"
+        rm -R "$SDK_PATH/site"
         rm -R "${SDK_PATH}/Tonomy-Communication/node_modules" 
         rm -R "${SDK_PATH}/Tonomy-Communication/dist" 
         rm -R "${SDK_PATH}/Tonomy-Communication/.yarn" 
-        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/node_modules"
-        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/build"
-        rm -R "${PARENT_PATH}/Tonomy-ID-SDK/site"
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID/.expo"
         rm -R "${PARENT_PATH}/Tonomy-App-Websites/node_modules"
