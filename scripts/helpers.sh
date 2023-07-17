@@ -59,6 +59,8 @@ function install {
 }
 
 function update {
+    ARG1=${1-default}
+    
     cd "$SDK_PATH/Tonomy-Communication"
     if [ "${ARG1}" == "master" ]; then
         yarn up @tonomy/tonomy-id-sdk
@@ -126,6 +128,7 @@ function startdocker {
 function start {
     ARG1=${1-default}
     export LOG="true"
+    export VITE_LOG="true"
     set +u
     if [ -z "${NODE_ENV}" ]; then
         export NODE_ENV="local";

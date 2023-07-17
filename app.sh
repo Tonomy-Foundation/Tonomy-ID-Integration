@@ -30,7 +30,7 @@ then
     install "${ARG2}"
 elif [ "$ARG1" == "update" ]
 then
-    update
+    update "${ARG2}"
 elif [ "$ARG1" == "init" ]
 then
     stop
