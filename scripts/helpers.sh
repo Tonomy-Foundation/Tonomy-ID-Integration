@@ -45,9 +45,9 @@ function install {
     fi
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm ci
+    yarn
     if [ "${ARG1}" != "master" ]; then
-        npm i @tonomy/tonomy-id-sdk@development
+        yarn add @tonomy/tonomy-id-sdk@development
     fi
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
@@ -70,11 +70,10 @@ function update {
 
     
     cd "$PARENT_PATH/Tonomy-ID"
-    npm remove @tonomy/tonomy-id-sdk
     if [ "${ARG1}" == "master" ]; then
-        npm install @tonomy/tonomy-id-sdk
+        yarn up @tonomy/tonomy-id-sdk
     else
-        npm install @tonomy/tonomy-id-sdk@development
+        yarn up @tonomy/tonomy-id-sdk@development
     fi
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
@@ -90,7 +89,7 @@ function link {
     yarn link ../
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm link --save "$SDK_PATH"
+    yarn link "$SDK_PATH"
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn link "$SDK_PATH"
@@ -151,14 +150,14 @@ function start {
     export BLOCKCHAIN_URL="http://${ip}:8888"
     export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
     export VITE_COMMUNICATION_URL="ws://${ip}:5000"
-    pm2 start npm --name "id" -- run start
+    pm2 start yarn --name "id" -- run start
 
     export VITE_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
     export VITE_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
     
     echo "Starting Tonomy-App-Websites"
     cd "${PARENT_PATH}/Tonomy-App-Websites"
-    BROWSER=none pm2 start yarn --name "apps" -- dev --host
+    BROWSER=none pm2 start yarn --name "apps" -- run dev --host
 
     echo "Starting communication microservice"
     cd  "$SDK_PATH/Tonomy-Communication"
@@ -183,9 +182,9 @@ function test {
     yarn run test:integration
 
     cd "$PARENT_PATH/Tonomy-ID"
-    npm test
-    npm run lint
-    npm run typeCheck
+    yarn run test
+    yarn run lint
+    yarn run typeCheck
     
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn run build
@@ -205,7 +204,7 @@ function stop {
 
     docker-compose down
 
-    echo "Stopping npm apps (ID and Demo)"
+    echo "Stopping pm2 apps (ID, Apps, Sdk, Micro)"
     set +e
     pm2 stop all
     pm2 delete all

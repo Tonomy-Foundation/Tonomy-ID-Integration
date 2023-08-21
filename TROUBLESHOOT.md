@@ -2,11 +2,11 @@
 
 ## Package issues
 
-### Error: Requiring module "node_modules/...
+### Error: Requiring module "node_modules/
 
 **FIX** you need to create a new expo build with the latest dependencies
 
-`npm run build:ios` (ios) or `npm run build:android`
+`yarn run build:ios` (ios) or `yarn run build:android`
 
 ### Error: Cannot find module './tonomy-id-sdk.cjs.development.js'
 
@@ -14,7 +14,7 @@
 
 ```bash
 cd Tonomy-ID-SDK
-npm i
+yarn
 pm2 restart id
 ```
 
