@@ -60,7 +60,7 @@ In case you have problems here is a list of the dependencies
 
 - [Docker](http://docs.docker.com) v20.10+
 - [Docker Compose](http://docs.docker.com/compose/) v1.29+
-- [npm](https://www.npmjs.com/) v18.12.1. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
+- [npm](https://www.npmjs.com/) with `corepack enabled` v18.12.1. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
 - [pm2](https://pm2.io) v5.5+ installed globally by `npm`
 - [mkdocs](https://www.mkdocs.org) with [material](https://squidfunk.github.io/mkdocs-material) theme
 

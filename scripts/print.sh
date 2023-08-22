@@ -9,7 +9,7 @@ function help {
     echo "    gitinit [master] - initializes all git submodules and checks out development (or master) branch"
     echo "    install [master] - installs all application repositories"
     echo "    update [master]  - updates all client's with latest publish @tonomy/tonomy-id-sdk repository"
-    echo "    link             - links all repositories together with npm/yarn link command, useful for debugging"
+    echo "    link             - links all repositories together with yarn link command, useful for debugging"
     echo "    init             - starts application components through docker compose and initializes and resets the blockchain and database"
     echo "    start            - starts all application components (need to run init first)"
     echo "    stop             - stops application execution"
