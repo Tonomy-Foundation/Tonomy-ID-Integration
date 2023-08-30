@@ -39,7 +39,7 @@ function install {
     yarn install
 
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn install
+    yarn
     if [ "${ARG1}" != "master" ]; then
         yarn add @tonomy/tonomy-id-sdk@development
     fi
@@ -51,7 +51,7 @@ function install {
     fi
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    yarn install
+    yarn
     if [ "${ARG1}" != "master" ]; then
         yarn add @tonomy/tonomy-id-sdk@development
     fi
@@ -61,6 +61,7 @@ function install {
 function update {
     ARG1=${1-default}
     
+    echo "Updating Tonomoy Communication with @tonomy/tonomy-id-sdk"
     cd "$SDK_PATH/Tonomy-Communication"
     if [ "${ARG1}" == "master" ]; then
         yarn up @tonomy/tonomy-id-sdk
@@ -68,7 +69,7 @@ function update {
         yarn up @tonomy/tonomy-id-sdk@development
     fi
 
-    
+    echo "Updating Tonomy ID with @tonomy/tonomy-id-sdk"    
     cd "$PARENT_PATH/Tonomy-ID"
     if [ "${ARG1}" == "master" ]; then
         yarn up @tonomy/tonomy-id-sdk
@@ -76,6 +77,7 @@ function update {
         yarn up @tonomy/tonomy-id-sdk@development
     fi
 
+    echo "Updating Tonomy App Websites with @tonomy/tonomy-id-sdk"
     cd "$PARENT_PATH/Tonomy-App-Websites"
     if [ "${ARG1}" == "master" ]; then
         yarn up @tonomy/tonomy-id-sdk
@@ -89,7 +91,7 @@ function link {
     yarn link ../
 
     cd "$PARENT_PATH/Tonomy-ID"
-    yarn link "$SDK_PATH"
+    yarn add "$SDK_PATH"
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn link "$SDK_PATH"
@@ -108,7 +110,7 @@ function init {
     sleep 8
 
     cd "$SDK_PATH"
-    yarn run cli bootstrap
+    yarn run cli bootstrap PVT_K1_2bfGi9rYsXQSXXTvJbDAPhHLQUojjaNLomdm3cEJ1XTzMqUt3V
 
     echo ""
     echo ""
@@ -150,6 +152,7 @@ function start {
     export BLOCKCHAIN_URL="http://${ip}:8888"
     export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
     export VITE_COMMUNICATION_URL="ws://${ip}:5000"
+    export ACCOUNTS_SERVICE_URL="http://${ip}:5000"
     pm2 start yarn --name "id" -- run start
 
     export VITE_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
