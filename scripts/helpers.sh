@@ -60,30 +60,24 @@ function install {
 
 function update {
     ARG1=${1-default}
-    
+
+    if [ "${ARG1}" == "master" ]; then
+        BRANCH="master"
+    else
+        BRANCH="development"
+    fi
+
     echo "Updating Tonomoy Communication with @tonomy/tonomy-id-sdk"
     cd "$SDK_PATH/Tonomy-Communication"
-    if [ "${ARG1}" == "master" ]; then
-        yarn up @tonomy/tonomy-id-sdk
-    else
-        yarn up @tonomy/tonomy-id-sdk@development
-    fi
+    yarn run updateSdkVersion "${BRANCH}"
 
     echo "Updating Tonomy ID with @tonomy/tonomy-id-sdk"    
     cd "$PARENT_PATH/Tonomy-ID"
-    if [ "${ARG1}" == "master" ]; then
-        yarn up @tonomy/tonomy-id-sdk
-    else
-        yarn up @tonomy/tonomy-id-sdk@development
-    fi
+    yarn run updateSdkVersion "${BRANCH}"
 
     echo "Updating Tonomy App Websites with @tonomy/tonomy-id-sdk"
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    if [ "${ARG1}" == "master" ]; then
-        yarn up @tonomy/tonomy-id-sdk
-    else
-        yarn up @tonomy/tonomy-id-sdk@development
-    fi
+    yarn run updateSdkVersion "${BRANCH}"
 }
 
 function link {
@@ -97,7 +91,7 @@ function link {
     yarn link "$SDK_PATH"
 
     echo ""
-    echo "WARN: Make sure you DO NOT commit these changes to the repository!"
+    echo "WARNING: Make sure you DO NOT commit these changes to the repository!"
 }
 
 function deletecontracts {
