@@ -137,8 +137,6 @@ function start {
     cd "$SDK_PATH"
     pm2 start yarn --name "sdk" -- run start
 
-    echo "Starting Tonomy-ID"
-    cd "${PARENT_PATH}/Tonomy-ID"
     export EXPO_NODE_ENV="${NODE_ENV}"
     echo "NODE_ENV=${NODE_ENV}"
     echo "EXPO_NODE_ENV=${EXPO_NODE_ENV}"
@@ -147,11 +145,15 @@ function start {
     export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
     export VITE_COMMUNICATION_URL="ws://${ip}:5000"
     export ACCOUNTS_SERVICE_URL="http://${ip}:5000"
-    pm2 start yarn --name "id" -- run start
-
+    export HCAPTCHA_SITE_KEY="10000000-ffff-ffff-ffff-000000000001"
+    
     export VITE_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
     export VITE_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
     
+    echo "Starting Tonomy-ID"
+    cd "${PARENT_PATH}/Tonomy-ID"
+    pm2 start yarn --name "id" -- run start
+
     echo "Starting Tonomy-App-Websites"
     cd "${PARENT_PATH}/Tonomy-App-Websites"
     BROWSER=none pm2 start yarn --name "apps" -- run dev --host
