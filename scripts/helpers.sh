@@ -39,7 +39,7 @@ function install {
     yarn install
 
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn install
+    yarn
     if [ "${ARG1}" != "master" ]; then
         yarn add @tonomy/tonomy-id-sdk@development
     fi
@@ -51,7 +51,7 @@ function install {
     fi
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    yarn install
+    yarn
     if [ "${ARG1}" != "master" ]; then
         yarn add @tonomy/tonomy-id-sdk@development
     fi
@@ -60,28 +60,24 @@ function install {
 
 function update {
     ARG1=${1-default}
-    
+
+    if [ "${ARG1}" == "master" ]; then
+        BRANCH="master"
+    else
+        BRANCH="development"
+    fi
+
+    echo "Updating Tonomoy Communication with @tonomy/tonomy-id-sdk"
     cd "$SDK_PATH/Tonomy-Communication"
-    if [ "${ARG1}" == "master" ]; then
-        yarn up @tonomy/tonomy-id-sdk
-    else
-        yarn up @tonomy/tonomy-id-sdk@development
-    fi
+    yarn run updateSdkVersion "${BRANCH}"
 
-    
+    echo "Updating Tonomy ID with @tonomy/tonomy-id-sdk"    
     cd "$PARENT_PATH/Tonomy-ID"
-    if [ "${ARG1}" == "master" ]; then
-        yarn up @tonomy/tonomy-id-sdk
-    else
-        yarn up @tonomy/tonomy-id-sdk@development
-    fi
+    yarn run updateSdkVersion "${BRANCH}"
 
+    echo "Updating Tonomy App Websites with @tonomy/tonomy-id-sdk"
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    if [ "${ARG1}" == "master" ]; then
-        yarn up @tonomy/tonomy-id-sdk
-    else
-        yarn up @tonomy/tonomy-id-sdk@development
-    fi
+    yarn run updateSdkVersion "${BRANCH}"
 }
 
 function link {
@@ -89,13 +85,13 @@ function link {
     yarn link ../
 
     cd "$PARENT_PATH/Tonomy-ID"
-    yarn link "$SDK_PATH"
+    yarn add "$SDK_PATH"
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn link "$SDK_PATH"
 
     echo ""
-    echo "WARN: Make sure you DO NOT commit these changes to the repository!"
+    echo "WARNING: Make sure you DO NOT commit these changes to the repository!"
 }
 
 function deletecontracts {
@@ -108,7 +104,7 @@ function init {
     sleep 8
 
     cd "$SDK_PATH"
-    yarn run cli bootstrap
+    yarn run cli bootstrap PVT_K1_2bfGi9rYsXQSXXTvJbDAPhHLQUojjaNLomdm3cEJ1XTzMqUt3V
 
     echo ""
     echo ""
@@ -141,8 +137,6 @@ function start {
     cd "$SDK_PATH"
     pm2 start yarn --name "sdk" -- run start
 
-    echo "Starting Tonomy-ID"
-    cd "${PARENT_PATH}/Tonomy-ID"
     export EXPO_NODE_ENV="${NODE_ENV}"
     echo "NODE_ENV=${NODE_ENV}"
     echo "EXPO_NODE_ENV=${EXPO_NODE_ENV}"
@@ -150,11 +144,16 @@ function start {
     export BLOCKCHAIN_URL="http://${ip}:8888"
     export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
     export VITE_COMMUNICATION_URL="ws://${ip}:5000"
-    pm2 start yarn --name "id" -- run start
-
+    export ACCOUNTS_SERVICE_URL="http://${ip}:5000"
+    export HCAPTCHA_SITE_KEY="10000000-ffff-ffff-ffff-000000000001"
+    
     export VITE_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
     export VITE_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
     
+    echo "Starting Tonomy-ID"
+    cd "${PARENT_PATH}/Tonomy-ID"
+    pm2 start yarn --name "id" -- run start
+
     echo "Starting Tonomy-App-Websites"
     cd "${PARENT_PATH}/Tonomy-App-Websites"
     BROWSER=none pm2 start yarn --name "apps" -- run dev --host
