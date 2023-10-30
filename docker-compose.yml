@@ -6,6 +6,7 @@ volumes:
       name: antelope-data
 
 services:
+  # Blockchain node running antelope protocol
   antelope:
     image: tonomy_blockchain_initialized
     container_name: "antelope"
@@ -13,3 +14,12 @@ services:
       - 8888:8888
     volumes:
       - antelope-data:/data
+  
+  # Reverse proxy to allow for IP address routing to the app
+  nginx:
+    image: nginx:1.23.3-alpine
+    volumes:
+      - ./development/nginx.conf:/etc/nginx/nginx.conf
+    container_name: webserver
+    restart: unless-stopped
+    network_mode: host

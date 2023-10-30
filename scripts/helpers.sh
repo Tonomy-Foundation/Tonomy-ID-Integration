@@ -125,7 +125,7 @@ function startdocker {
 }
 
 function start {
-    ARG1=${1-default}
+    ARG1=${1-}
     export LOG="true"
     export VITE_LOG="true"
     set +u
@@ -165,9 +165,6 @@ function start {
     echo "Starting communication microservice"
     cd  "$SDK_PATH/Tonomy-Communication"
     pm2 start yarn --name "micro" -- run start:dev
-
-    cd "${PARENT_PATH}/Tonomy-App-Websites"
-    docker-compose -f ./docker.compose-development.yaml up -d
 
     printservices
 }
