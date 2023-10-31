@@ -50,7 +50,7 @@ function install {
 }
 
 function update {
-    ARG1=${1-default}
+    ARG1=${1-}
 
     if [ "${ARG1}" == "master" ]; then
         BRANCH="master"
@@ -59,15 +59,15 @@ function update {
     fi
 
     echo "Updating Tonomoy Communication with @tonomy/tonomy-id-sdk"
-    cd "$SDK_PATH/Tonomy-Communication"
+    cd "${SDK_PATH}/Tonomy-Communication"
     yarn run updateSdkVersion "${BRANCH}"
 
     echo "Updating Tonomy ID with @tonomy/tonomy-id-sdk"    
-    cd "$PARENT_PATH/Tonomy-ID"
+    cd "${PARENT_PATH}/Tonomy-ID"
     yarn run updateSdkVersion "${BRANCH}"
 
     echo "Updating Tonomy App Websites with @tonomy/tonomy-id-sdk"
-    cd "$PARENT_PATH/Tonomy-App-Websites"
+    cd "${PARENT_PATH}/Tonomy-App-Websites"
     yarn run updateSdkVersion "${BRANCH}"
 }
 
