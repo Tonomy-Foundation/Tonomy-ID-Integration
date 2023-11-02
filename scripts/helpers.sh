@@ -24,10 +24,10 @@ function gitinit {
 }
 
 function install {
-    ARG1=${1-default}
+    ARG1=${1-}
 
     if [ "${ARG1}" == "sdk" ]; then
-        cd "$SDK_PATH"
+        cd "${SDK_PATH}"
         yarn run build
         return
     fi
@@ -40,26 +40,17 @@ function install {
 
     cd "$SDK_PATH/Tonomy-Communication"
     yarn
-    if [ "${ARG1}" != "master" ]; then
-        yarn add @tonomy/tonomy-id-sdk@development
-    fi
 
     cd "$PARENT_PATH/Tonomy-ID"
     yarn
-    if [ "${ARG1}" != "master" ]; then
-        yarn add @tonomy/tonomy-id-sdk@development
-    fi
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn
-    if [ "${ARG1}" != "master" ]; then
-        yarn add @tonomy/tonomy-id-sdk@development
-    fi
 
 }
 
 function update {
-    ARG1=${1-default}
+    ARG1=${1-}
 
     if [ "${ARG1}" == "master" ]; then
         BRANCH="master"
@@ -68,16 +59,28 @@ function update {
     fi
 
     echo "Updating Tonomoy Communication with @tonomy/tonomy-id-sdk"
-    cd "$SDK_PATH/Tonomy-Communication"
+    cd "${SDK_PATH}/Tonomy-Communication"
     yarn run updateSdkVersion "${BRANCH}"
 
     echo "Updating Tonomy ID with @tonomy/tonomy-id-sdk"    
-    cd "$PARENT_PATH/Tonomy-ID"
+    cd "${PARENT_PATH}/Tonomy-ID"
     yarn run updateSdkVersion "${BRANCH}"
 
     echo "Updating Tonomy App Websites with @tonomy/tonomy-id-sdk"
-    cd "$PARENT_PATH/Tonomy-App-Websites"
+    cd "${PARENT_PATH}/Tonomy-App-Websites"
     yarn run updateSdkVersion "${BRANCH}"
+}
+
+RED='\033[0;31m'
+ORANGE='\033[0;33m'
+NOCOLOR='\033[0m'
+
+function echo_red {
+    echo -e "${RED}${@}${NOCOLOR}"
+}
+
+function echo_orange {
+    echo -e "${ORANGE}${@}${NOCOLOR}"
 }
 
 function link {
@@ -91,7 +94,8 @@ function link {
     yarn link "$SDK_PATH"
 
     echo ""
-    echo "WARNING: Make sure you DO NOT commit these changes to the repository!"
+    echo "Linking of clients to SDK complete"
+    echo_orange "WARNING: Make sure you DO NOT commit these changes to the repository!"
 }
 
 function deletecontracts {
@@ -121,7 +125,7 @@ function startdocker {
 }
 
 function start {
-    ARG1=${1-default}
+    ARG1=${1-}
     export LOG="true"
     export VITE_LOG="true"
     set +u
@@ -161,9 +165,6 @@ function start {
     echo "Starting communication microservice"
     cd  "$SDK_PATH/Tonomy-Communication"
     pm2 start yarn --name "micro" -- run start:dev
-
-    cd "${PARENT_PATH}/Tonomy-App-Websites"
-    docker-compose -f ./docker.compose-development.yaml up -d
 
     printservices
 }
