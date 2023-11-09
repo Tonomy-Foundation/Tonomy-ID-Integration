@@ -2,6 +2,10 @@
 
 Welcome to our project! This README outlines the conventions and best practices we follow to ensure our code is clean, consistent, and easy to maintain. Adherence to these guidelines is crucial for collaboration and the long-term health of the codebase.
 
+**IMPORTANT:**
+
+Conventions apply to our `javascript/typescript` software only. Different conventions exist for other languages.
+
 ## Table of Contents
 
 - [General Principles](#general-principles)
