@@ -6,13 +6,15 @@ Reading and following these guidelines will help us make the contribution proces
 
 ## Quick links
 
-* [Developer environment](#developer-environment)
-* [Git and development policy](#git-and-development-policy)
-* [Developer expectations](#developer-expectations)
+* [Developer Environment](#developer-environment)
+* [Git and Development Policy](#git-and-development-policy)
+* [Developer Expectations](#developer-expectations)
+* [Conventions](#conventions)
+* [Best Practices](#best-practices)
 * [Resources](#resources)
 * [Contributing](#contributing)
 
-## Developer environment
+## Developer Environment
 
 Developers are suggested to use linux with Ubuntu 20.04 for development. We use [VS Code](https://code.visualstudio.com/) as an IDE for development and have several suggested extensions in the repositories that are useful.
 
@@ -25,7 +27,7 @@ If you do not have a Linux machine we suggest setting up a [VirtualBox](https://
 
 ## Git and development policy
 
-### Development process
+### Development Process
 
 <img src="./assets/Development process-Advanced dev process.drawio.png" />
 
@@ -90,7 +92,7 @@ Don't use `git rebase` ([why?](https://medium.com/@fredrikmorken/why-you-should-
 
 An implementation plan shows the changes to class/function interfaces. Pseudo-code can also be added to show intended implementation. This should be done in the Github Issue, or a PR. The implementation plan exists to have a conversation, but not to fix the outcome at the end.
 
-## Developer expectations
+## Developer Expectations
 
 ### README.md
 
