@@ -122,7 +122,7 @@ DRY: <https://www.digitalocean.com/community/tutorials/what-is-dry-development>
 ### Javascript
 
 * Variables convention is [CamelCase](https://textcaseconvert.com/blog/what-is-camel-case/)
-* Constant conventis is [CamelCase] (https://www.30secondsofcode.org/js/s/naming-conventions/)
+* Constant convention is [CamelCase] (https://www.30secondsofcode.org/js/s/naming-conventions/)
 * Function name convention is [CamelCase](https://textcaseconvert.com/blog/what-is-camel-case/)
 * Classes name convention is [PascalCase] (https://www.30secondsofcode.org/js/s/naming-conventions/)
 
