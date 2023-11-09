@@ -34,6 +34,13 @@ This document outlines the best practices for writing JavaScript code. Each prac
   - [Use Utility Types](#use-utility-types)
   - [Non-null Assertion Operator](#non-null-assertion-operator)
   - [Function Parameters as Options Object](#function-parameters-as-options-object)
+- [DRY and SOLID Principles](#dry-and-solid-principles)
+  - [DRY Principle](#dry-principle)
+  - [Single Responsibility Principle (SRP)](#single-responsibility-principle-srp)
+  - [Open/Closed Principle (OCP)](#openclosed-principle-ocp)
+  - [Liskov Substitution Principle (LSP)](#liskov-substitution-principle-lsp)
+  - [Interface Segregation Principle (ISP)](#interface-segregation-principle-isp)
+  - [Dependency Inversion Principle (DIP)](#dependency-inversion-principle-dip)
 - [Conclusion](#conclusion)
 
 ### Async/Await
@@ -620,6 +627,218 @@ function createUser(name: string, email: string, password: string, age?: number,
 
 // Usage - It's unclear what the true parameter stands for.
 createUser('Alice', 'alice@example.com', 'securePass123', 42, true);
+```
+
+## DRY and SOLID Principles
+
+The DRY principle emphasizes the need to reduce the repetition of software patterns, replacing them with abstractions or using data normalization to avoid redundancy.
+
+The SOLID principles are a set of guidelines for object-oriented programming that facilitate scalability and maintainability.
+
+### DRY Principle
+
+**Do:**
+
+```javascript
+// Encapsulate repeated logic into functions or classes.
+function calculateArea(radius) {
+  return Math.PI * radius * radius;
+}
+
+const areaOfCircle1 = calculateArea(10);
+const areaOfCircle2 = calculateArea(20);
+```
+
+**Don't:**
+
+```javascript
+// Repeat the same logic in multiple places.
+const areaOfCircle1 = Math.PI * 10 * 10;
+const areaOfCircle2 = Math.PI * 20 * 20;
+```
+
+### Single Responsibility Principle (SRP)
+
+**Do:**
+
+```typescript
+// Define classes or components with a single responsibility.
+class UserAuthenticator {
+  authenticateUser(user) {
+    // Handle authentication
+  }
+}
+```
+
+**Don't:**
+
+```typescript
+// Create classes or components that handle multiple responsibilities.
+class UserManager {
+  authenticateUser(user) {
+    // Handle authentication
+  }
+
+  updateUserDetails(user) {
+    // Handle updating user details
+  }
+
+  deleteUser(user) {
+    // Handle deleting a user
+  }
+}
+```
+
+## Open/Closed Principle (OCP)
+
+**Do:**
+
+```typescript
+// Design modules, classes, functions to be open for extension but closed for modification.
+class Shape {
+  getArea() {}
+}
+
+class Rectangle extends Shape {
+  constructor(public width: number, public height: number) {
+    super();
+  }
+
+  getArea() {
+    return this.width * this.height;
+  }
+}
+```
+
+**Don't:**
+
+```typescript
+// Modify existing classes when adding new functionality, which risks breaking existing code.
+class Shape {
+  getArea(shapeType) {
+    if (shapeType === 'rectangle') {
+      // Calculate area of rectangle
+    }
+    // Other shapes...
+  }
+}
+```
+
+## Liskov Substitution Principle (LSP)
+
+**Do:**
+
+```typescript
+// Ensure that subclasses can be used interchangeably with their base class.
+class Bird {
+  fly() {
+    // ...
+  }
+}
+
+class Duck extends Bird {}
+class Ostrich extends Bird {
+  fly() {
+    throw new Error("Can't fly!");
+  }
+}
+```
+
+**Don't:**
+
+```typescript
+// Write subclasses that cannot be used in place of their base class without altering the desired result.
+class Bird {
+  fly() {
+    // ...
+  }
+}
+
+class Duck extends Bird {}
+class Ostrich extends Bird {} // Ostriches can't fly, so this violates LSP.
+```
+
+## Interface Segregation Principle (ISP)
+
+**Do:**
+
+```typescript
+// Create specific interfaces that are tailored to the needs of the client.
+interface Printable {
+  print(): void;
+}
+
+class Book implements Printable {
+  print() {
+    // Print the book
+  }
+}
+```
+
+## Don't
+
+```typescript
+// Force a class to implement interfaces they don't use.
+interface Worker {
+  work(): void;
+  eat(): void;
+}
+
+class Robot implements Worker {
+  work() {
+    // Perform work
+  }
+
+  eat() {
+    // Robots don't eat, this method shouldn't exist!
+  }
+}
+```
+
+## Dependency Inversion Principle (DIP)
+
+**Do:**
+
+```typescript
+// High-level modules should not depend on low-level modules. Both should depend on abstractions. Also, abstractions should not depend on details. Details should depend on abstractions.
+interface Database {
+  query();
+}
+
+class MySqlDatabase implements Database {
+  query() {
+    // Query logic
+  }
+}
+
+class UserManager {
+  database: Database;
+
+  constructor(database: Database) {
+    this.database = database;
+  }
+
+  findUser(userId) {
+    return this.database.query(`SELECT * FROM users WHERE id = ${userId}`);
+  }
+}
+```
+
+**Don't:**
+
+```typescript
+// Hardcode dependencies on low-level modules.
+class UserManager {
+  findUser(userId) {
+    return mySqlDatabase.query(`SELECT * FROM users WHERE id = ${userId}`);
+  }
+}
+
+const mySqlDatabase = {
+  query: (sql) => {
+    // Query logic
+  }
+};
 ```
 
 ## Conclusion
