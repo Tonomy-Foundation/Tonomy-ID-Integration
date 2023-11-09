@@ -2,10 +2,6 @@
 
 Welcome to our project! This README outlines the conventions and best practices we follow to ensure our code is clean, consistent, and easy to maintain. Adherence to these guidelines is crucial for collaboration and the long-term health of the codebase.
 
-**IMPORTANT:**
-
-Conventions apply to our `javascript/typescript` software only. Different conventions exist for other languages.
-
 ## Table of Contents
 
 - [General Principles](#general-principles)
@@ -52,9 +48,10 @@ Conventions apply to our `javascript/typescript` software only. Different conven
 
 ## General
 
+- **Variables**: Use `CamelCase`. Example: `userData`.
 - **Interfaces**: Prefix with `I` and use `PascalCase`. Example: `IUser`.
 - **Enums**: Use `PascalCase` in singular form. Example: `UserRole`.
-- **Constants**: Use `UPPER_SNAKE_CASE`. Example: `DEFAULT_USER_ROLE`.
+- **Global Constants**: Use `UPPER_SNAKE_CASE`. Example: `DEFAULT_USER_ROLE`.
 - **Environment Variables**: Use `UPPER_SNAKE_CASE`. Example: `API_BASE_URL`.
 - **Assets/Images/Icons**: Name with `kebab-case`. Example: `logo-icon.svg`.
 - **Test Filenames**: Match the tested file's filename with `.test.ts` (e.g., `dateHelpers.test.ts`).
@@ -71,22 +68,10 @@ Conventions apply to our `javascript/typescript` software only. Different conven
 
 ## Best Coding Practices
 
-- **DRY Principle**: Avoid code duplication.
-- **SOLID Principles**: Maintainable, understandable, and flexible OOP design.
-- **Single Responsibility**: One function, one purpose.
-- **Pure Functions**: Aim for no side effects.
 - **TSDoc**: For all public interfaces, classes, functions, and methods.
 - **Linting**: Try ensure as many coding conventions and styles are enforced with our linters. This is defined in the files `.prettierrc.json`, `tsconfig.json` and `.eslintrc.json`. By downloading the suggested `VSCode` extensions (specified in `.vscode/extensions.json`) your code will be automatically formatted to these rules.
-- **Testing**: Ensure unit tests cover all business logic adequately. Currently we do **not** do UI automated testing.
-- **Refactoring**: Regularly refactor to improve performance and readability.
-- **Dependencies**: Keep track of any dependencies the helper functions have and make sure they are kept up to date.
 
-For more information:
-
-- [DRY Principle](https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design)
-- [SOLID Principles](https://www.digitalocean.com/community/tutorials/what-is-dry-development)
-
-## TSDoc Guide
+### TSDoc Guide
 
 - **When to Add**: On public interfaces, classes, functions, methods.
 - **Minimum Include**: Description, parameters, return type.

@@ -113,22 +113,23 @@ Read the README.md in full and in detail, before asking for help! In all reposit
 
 ## Conventions
 
-### Javascript
-
-* Variables convention is [CamelCase](https://textcaseconvert.com/blog/what-is-camel-case/)
-* Constant convention is [CamelCase] (<https://www.30secondsofcode.org/js/s/naming-conventions/>)
-* Function name convention is [CamelCase](https://textcaseconvert.com/blog/what-is-camel-case/)
-* Classes name convention is [PascalCase] (<https://www.30secondsofcode.org/js/s/naming-conventions/>)
-
-### CSS
-
-* CSS class naming convention is [Hyphen Delimited Strings] (<https://www.freecodecamp.org/news/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849/>)
+### Javascript Conventions
 
 Read [JAVASCRIPT_CONVENTIONS](./JAVASCRIPT_CONVENTIONS.md).
 
 ## Best Practices
 
-Read [BEST_PRACTICES](./BEST_PRACTICES.md).
+* **[DRY Principle](https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design)**: Avoid code duplication.
+* **[SOLID Principles](https://www.digitalocean.com/community/tutorials/what-is-dry-development)**: Maintainable, understandable, and flexible OOP design.
+* **Refactoring**: Regularly refactor to improve performance and readability.
+* **Testing**: Ensure unit tests cover all business logic adequately. Currently we do **not** do UI automated testing.
+* **Dependencies**: Keep track of any dependencies the helper functions have and make sure they are kept up to date.
+* **Single Responsibility**: One function, one purpose.
+* **Pure Functions**: Aim for no side effects.
+
+### Javascript Best Practices
+
+Read [JAVASCRIPT_BEST_PRACTICES](./JAVASCRIPT_BEST_PRACTICES.md).
 
 ## Resources
 
