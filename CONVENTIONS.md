@@ -6,7 +6,12 @@ Welcome to our project! This README outlines the conventions and best practices 
 
 - [General Principles](#general-principles)
 - [Front-End Conventions](#front-end-conventions)
+  - [Cascading Style Sheets](#cascading-style-sheets)
+- [Library Conventions](#libraries-conventions)
 - [Back-End Conventions](#back-end-conventions)
+- [Helpers Conventions](#helpers-conventions)
+- [General](#general)
+- [File Names & Structures](#file-names--structures)
 - [Best Coding Practices](#best-coding-practices)
 - [TSDoc Guide](#tsdoc-guide)
 

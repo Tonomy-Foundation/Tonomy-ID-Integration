@@ -4,7 +4,7 @@ This document outlines the best practices for writing JavaScript code. Each prac
 
 ## Table of Contents
 
-### Javascript best practices
+### Javascript Best Practices
 
 - [Async/Await](#asyncawait)
 - [Object Property Access](#object-property-access)
@@ -35,6 +35,7 @@ This document outlines the best practices for writing JavaScript code. Each prac
 - [Interface over Type Alias](#interface-over-type-alias)
 - [Use Utility Types](#use-utility-types)
 - [Non-null Assertion Operator](#non-null-assertion-operator)
+- [Function Parameters as Options Object](#function-parameters-as-options-object)
 
 ## Async/Await
 
@@ -486,9 +487,8 @@ const values = [1, 2, 3, 1, 2, 3].filter((value, index, self) => self.indexOf(va
 
 **Do:**
 
-Declare return types explicitly for functions to improve readability and prevent unintended return values.
-
 ```typescript
+// Declare return types explicitly for functions to improve readability and prevent unintended return values.
 function add(a: number, b: number): number {
   return a + b;
 }
@@ -497,6 +497,7 @@ function add(a: number, b: number): number {
 **Don't:**
 
 ```typescript
+//Omit return types, which can lead to less predictable code and reliance on type inference, which might not always work as expected.
 function add(a: number, b: number) {
   return a + b;
 }
@@ -506,9 +507,8 @@ function add(a: number, b: number) {
 
 **Do:**
 
-Prefer interfaces over type aliases when declaring object shapes. Interfaces can be extended and merged, offering more flexibility.
-
 ```typescript
+// Prefer interfaces over type aliases when declaring object shapes. Interfaces can be extended and merged, offering more flexibility.
 interface User {
   name: string;
   age: number;
@@ -518,6 +518,7 @@ interface User {
 **Don't:**
 
 ```typescript
+// Use type aliases for object shapes unless you need a feature specific to type aliases, such as union or intersection types.
 type User = {
   name: string;
   age: number;
@@ -528,9 +529,8 @@ type User = {
 
 **Do:**
 
-Leverage TypeScript’s utility types like `Partial<T>`, `Readonly<T>`, `Record<K, T>`, etc., to create types based on transformations of other types.
-
 ```typescript
+// Leverage TypeScript’s utility types like `Partial<T>`, `Readonly<T>`, `Record<K, T>`, etc., to create types based on transformations of other types.
 function updateProfile(user: Partial<User>) {
   // ...
 }
@@ -539,6 +539,7 @@ function updateProfile(user: Partial<User>) {
 **Don't:**
 
 ```typescript
+// Manually recreate the functionality provided by utility types, leading to more verbose and less maintainable code.
 function updateProfile(user: { name?: string; age?: number }) {
   // ...
 }
@@ -548,9 +549,8 @@ function updateProfile(user: { name?: string; age?: number }) {
 
 **Do:**
 
-Use non-null assertion operators (!) sparingly, and only when you are certain that a value will not be null or undefined.
-
 ```typescript
+// Use non-null assertion operators (!) sparingly, and only when you are certain that a value will not be null or undefined.
 function initialize() {
   const el = document.getElementById('myId')!;
   // ...
@@ -564,6 +564,45 @@ function initialize() {
   const el = document.getElementById('myId')!; // Risky if 'myId' does not exist
   // ...
 }
+```
+
+## Function Parameters as Options Object
+
+**Do:**
+
+```typescript
+// Use an options object for functions with multiple optional parameters to improve readability and maintainability. Useful when a function has several parameters, especially if many of them are optional.
+
+interface CreateUserOptions {
+  name: string;
+  email: string;
+  password: string;
+  age?: number;
+  isAdmin?: boolean;
+}
+
+function createUser(options: CreateUserOptions): void {
+  // Implementation...
+}
+
+// Usage
+createUser({
+  name: 'Alice',
+  email: 'alice@example.com',
+  password: 'securePass123',
+  age: 42,
+});
+```
+
+**Don't:**
+
+```typescript
+function createUser(name: string, email: string, password: string, age?: number, isAdmin?: boolean): void {
+  // Implementation...
+}
+
+// Usage - It's unclear what the true parameter stands for.
+createUser('Alice', 'alice@example.com', 'securePass123', 42, true);
 ```
 
 ## Conclusion
