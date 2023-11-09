@@ -96,12 +96,6 @@ An implementation plan shows the changes to class/function interfaces. Pseudo-co
 
 Read the README.md in full and in detail, before asking for help! In all repositories and sub-repositories that you are working in.
 
-### Principals
-
-SOLID: <https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design>
-
-DRY: <https://www.digitalocean.com/community/tutorials/what-is-dry-development>
-
 ### Communication and creating PRs for review
 
 <https://discord.com/channels/1029385699071381524/1039498885598552065/1070264623397351506>
@@ -122,13 +116,19 @@ DRY: <https://www.digitalocean.com/community/tutorials/what-is-dry-development>
 ### Javascript
 
 * Variables convention is [CamelCase](https://textcaseconvert.com/blog/what-is-camel-case/)
-* Constant convention is [CamelCase] (https://www.30secondsofcode.org/js/s/naming-conventions/)
+* Constant convention is [CamelCase] (<https://www.30secondsofcode.org/js/s/naming-conventions/>)
 * Function name convention is [CamelCase](https://textcaseconvert.com/blog/what-is-camel-case/)
-* Classes name convention is [PascalCase] (https://www.30secondsofcode.org/js/s/naming-conventions/)
+* Classes name convention is [PascalCase] (<https://www.30secondsofcode.org/js/s/naming-conventions/>)
 
 ### CSS
-* CSS class naming convention is [Hyphen Delimited Strings] (https://www.freecodecamp.org/news/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849/)
 
+* CSS class naming convention is [Hyphen Delimited Strings] (<https://www.freecodecamp.org/news/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849/>)
+
+Read [JAVASCRIPT_CONVENTIONS](./JAVASCRIPT_CONVENTIONS.md).
+
+## Best Practices
+
+Read [BEST_PRACTICES](./BEST_PRACTICES.md).
 
 ## Resources
 
@@ -165,4 +165,4 @@ PRs are the best and quickest way to get your fix, improvement or feature merged
 
 ### Getting Help
 
-Send a message to contact@tonomy.foundation for help or reach out on our [Discord](https://discord.gg/rrJwz6Uf5P)
+Send a message to <contact@tonomy.foundation> for help or reach out on our [Discord](https://discord.gg/rrJwz6Uf5P)

@@ -83,8 +83,8 @@ Conventions apply to our `javascript/typescript` software only. Different conven
 
 For more information:
 
-- [DRY Principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
-- [SOLID Principles](https://en.wikipedia.org/wiki/SOLID)
+- [DRY Principle](https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design)
+- [SOLID Principles](https://www.digitalocean.com/community/tutorials/what-is-dry-development)
 
 ## TSDoc Guide
 
