@@ -4,40 +4,39 @@ This document outlines the best practices for writing JavaScript code. Each prac
 
 ## Table of Contents
 
-### Javascript Best Practices
+- [Javascript Best Practices](#javascript-best-practices)
+  - [Async/Await](#asyncawait)
+  - [Object Property Access](#object-property-access)
+  - [Array Iteration](#array-iteration)
+  - [Asynchronous Iteration](#asynchronous-iteration)
+  - [Variable Declarations](#variable-declarations)
+  - [Template Literals](#template-literals)
+  - [Destructuring Assignment](#destructuring-assignment)
+  - [Spread and Rest Operators](#spread-and-rest-operators)
+  - [Arrow Functions](#arrow-functions)
+  - [Modules](#modules)
+  - [Default Parameters](#default-parameters)
+  - [Error Handling](#error-handling)
+  - [Pure Functions](#pure-functions)
+  - [Callback Hell](#callback-hell)
+  - [Input Validation](#input-validation)
+- [General Best Practices](#general-best-practices)
+  - [Code Splitting](#code-splitting)
+  - [Linting and Formatting](#linting-and-formatting)
+  - [Testing](#testing)
+  - [Comments and Documentation](#comments-and-documentation)
+  - [Refactoring](#refactoring)
+  - [Security Practices](#security-practices)
+  - [Performance Optimization](#performance-optimization)
+- [Typescript Best Practices](#typescript-best-practices)
+  - [Explicit Return Type](#explicit-return-types)
+  - [Interface over Type Alias](#interface-over-type-alias)
+  - [Use Utility Types](#use-utility-types)
+  - [Non-null Assertion Operator](#non-null-assertion-operator)
+  - [Function Parameters as Options Object](#function-parameters-as-options-object)
+- [Conclusion](#conclusion)
 
-- [Async/Await](#asyncawait)
-- [Object Property Access](#object-property-access)
-- [Array Iteration](#array-iteration)
-- [Asynchronous Iteration](#asynchronous-iteration)
-- [Variable Declarations](#variable-declarations)
-- [Template Literals](#template-literals)
-- [Destructuring Assignment](#destructuring-assignment)
-- [Spread and Rest Operators](#spread-and-rest-operators)
-- [Arrow Functions](#arrow-functions)
-- [Modules](#modules)
-- [Default Parameters](#default-parameters)
-- [Error Handling](#error-handling)
-- [Pure Functions](#pure-functions)
-- [Callback Hell](#callback-hell)
-- [Input Validation](#input-validation)
-- [Code Splitting](#code-splitting)
-- [Linting and Formatting](#linting-and-formatting)
-- [Testing](#testing)
-- [Comments and Documentation](#comments-and-documentation)
-- [Refactoring](#refactoring)
-- [Security Practices](#security-practices)
-- [Performance Optimization](#performance-optimization)
-
-### Typescript Best Practices
-
-- [Explicit Return Type](#explicit-return-types)
-- [Interface over Type Alias](#interface-over-type-alias)
-- [Use Utility Types](#use-utility-types)
-- [Non-null Assertion Operator](#non-null-assertion-operator)
-- [Function Parameters as Options Object](#function-parameters-as-options-object)
-
-## Async/Await
+### Async/Await
 
 **Do:**
 
@@ -68,7 +67,7 @@ function fetchData() {
 }
 ```
 
-## Object Property Access
+### Object Property Access
 
 **Do:**
 
@@ -84,7 +83,7 @@ const person = { name: 'Alice', age: 25 };
 console.log(person['name']);
 ```
 
-## Array Iteration
+### Array Iteration
 
 **Do:**
 
@@ -103,7 +102,7 @@ for (let i = 0; i < numbers.length; i++) {
 }
 ```
 
-## Asynchronous Iteration
+### Asynchronous Iteration
 
 **Do:**
 
@@ -128,14 +127,14 @@ async function processArray(array) {
 **Don't:**
 
 ```javascript
-function processArray(array) {
-  array.forEach(async (item) => {
+async function processArray(array) {
+  await array.forEach(async (item) => { // <-- This will immediately return
     await processItem(item);
   });
 }
 ```
 
-## Variable Declarations
+### Variable Declarations
 
 **Do:**
 
@@ -148,8 +147,9 @@ let score = 5; // for variables that may change.
 
 ```javascript
 var name = 'Alice'; // 'var' is function-scoped and can lead to confusion.
-Template Literals
 ```
+
+### Template Literals
 
 **Do:**
 
@@ -161,8 +161,9 @@ const greeting = `Hello, ${name}!`;
 
 ```javascript
 const greeting = 'Hello, ' + name + '!';
-Destructuring Assignment
 ```
+
+### Destructuring Assignment
 
 **Do:**
 
@@ -177,36 +178,7 @@ const name = person.name;
 const age = person.age;
 ```
 
-## Template Literals
-
-**Do:**
-
-```javascript
-const greeting = `Hello, ${name}!`;
-```
-
-**Don't:**
-
-```javascript
-const greeting = 'Hello, ' + name + '!';
-```
-
-## Destructuring Assignment
-
-**Do:**
-
-```javascript
-const { name, age } = person;
-```
-
-**Don't:**
-
-```javascript
-const name = person.name;
-const age = person.age;
-```
-
-## Spread and Rest Operators
+### Spread and Rest Operators
 
 **Do:**
 
@@ -222,7 +194,7 @@ const newArray = oldArray.concat(newItem);
 const x = obj.x, y = obj.y;
 ```
 
-## Arrow Functions
+### Arrow Functions
 
 **Do:**
 
@@ -238,7 +210,7 @@ function add(a, b) {
 }
 ```
 
-## Modules
+### Modules
 
 **Do:**
 
@@ -254,7 +226,7 @@ import myFunction from './myModule';
 const myFunction = require('./myModule');
 ```
 
-## Default Parameters
+### Default Parameters
 
 **Do:**
 
@@ -273,7 +245,7 @@ function greet(name) {
 }
 ```
 
-## Error Handling
+### Error Handling
 
 **Do:**
 
@@ -292,7 +264,7 @@ try {
 // No error handling
 ```
 
-## Pure Functions
+### Pure Functions
 
 **Do:**
 
@@ -311,7 +283,7 @@ function add(a, b) {
 }
 ```
 
-## Callback Hell
+### Callback Hell
 
 **Do:**
 
@@ -335,7 +307,7 @@ function callbackHell() {
 }
 ```
 
-## Input Validation
+### Input Validation
 
 **Do:**
 
@@ -357,7 +329,50 @@ function processInput(input) {
 }
 ```
 
-## Code Splitting
+### Shallow Copy
+
+**Do:**
+
+```javascript
+// Use the spread operator or `Object.assign` for creating a shallow copy of an object when nested objects are not a concern.
+const original = { a: 1, b: 2 };
+const shallowCopy = { ...original };
+```
+
+**Don't:**
+
+```javascript
+// Use a shallow copy if your object contains nested structures and you need a deep copy, as changes to nested data will affect the original.
+const original = { a: 1, b: { c: 3 } };
+const shallowCopy = { ...original };
+shallowCopy.b.c = 4; // This will change original.b.c to 4 as well.
+```
+
+### Deep Copy
+
+**Do:**
+
+```javascript
+// Use a utility function like JSON.parse(JSON.stringify(object)) for a quick deep copy when you don't have functions or circular references in your object.
+const original = { a: 1, b: { c: 3 } };
+const deepCopy = JSON.parse(JSON.stringify(original));
+deepCopy.b.c = 4; // This will not affect original.b.c
+```
+
+**Don't:**
+
+```javascript
+// Rely on JSON.parse(JSON.stringify(object)) for deep copying objects containing functions, dates, undefined, or circular references, as it will not preserve those values.
+const original = { a: 1, b: () => console.log("Not copied!"), c: new Date() };
+const deepCopy = JSON.parse(JSON.stringify(original));
+// deepCopy.b is undefined, and deepCopy.c is a string, not a Date object.
+```
+
+For complex objects, consider using a utility library like Lodash's `_.cloneDeep` method, or write a custom deep copy function that handles all edge cases specific to your needs.
+
+## General Best Practices
+
+### Code Splitting
 
 **Do:**
 
@@ -373,7 +388,7 @@ const MyComponent = React.lazy(() => import('./MyComponent'));
 import MyComponent from './MyComponent';
 ```
 
-## Linting and Formatting
+### Linting and Formatting
 
 **Do:**
 
@@ -388,7 +403,7 @@ import MyComponent from './MyComponent';
 // Write code without any linting or formatting tools, leading to inconsistent styles
 ```
 
-## Testing
+### Testing
 
 **Do:**
 
@@ -410,7 +425,7 @@ function add(a, b) {
 }
 ```
 
-## Comments and Documentation
+### Comments and Documentation
 
 **Do:**
 
@@ -435,7 +450,7 @@ function add(a, b) {
 }
 ```
 
-## Refactoring
+### Refactoring
 
 **Do:**
 
@@ -449,7 +464,7 @@ function add(a, b) {
 // Leave old, unused, or inefficient code in the codebase without attempting to improve it
 ```
 
-## Security Practices
+### Security Practices
 
 **Do:**
 
@@ -467,7 +482,7 @@ const express = require('express');
 const app = express();
 ```
 
-## Performance Optimization
+### Performance Optimization
 
 **Do:**
 
@@ -483,7 +498,9 @@ const values = new Set([1, 2, 3]);
 const values = [1, 2, 3, 1, 2, 3].filter((value, index, self) => self.indexOf(value) === index);
 ```
 
-## Explicit Return Types
+## Typescript Best Practices
+
+### Explicit Return Types
 
 **Do:**
 
@@ -503,7 +520,7 @@ function add(a: number, b: number) {
 }
 ```
 
-## Interface over Type Alias
+### Interface over Type Alias
 
 **Do:**
 
@@ -525,7 +542,7 @@ type User = {
 };
 ```
 
-## Use Utility Types
+### Use Utility Types
 
 **Do:**
 
@@ -545,7 +562,7 @@ function updateProfile(user: { name?: string; age?: number }) {
 }
 ```
 
-## Non-null Assertion Operator
+### Non-null Assertion Operator
 
 **Do:**
 
@@ -566,7 +583,7 @@ function initialize() {
 }
 ```
 
-## Function Parameters as Options Object
+### Function Parameters as Options Object
 
 **Do:**
 
