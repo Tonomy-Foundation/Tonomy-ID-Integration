@@ -6,13 +6,15 @@ Reading and following these guidelines will help us make the contribution proces
 
 ## Quick links
 
-* [Developer environment](#developer-environment)
-* [Git and development policy](#git-and-development-policy)
-* [Developer expectations](#developer-expectations)
+* [Developer Environment](#developer-environment)
+* [Git and Development Policy](#git-and-development-policy)
+* [Developer Expectations](#developer-expectations)
+* [Conventions](#conventions)
+* [Best Practices](#best-practices)
 * [Resources](#resources)
 * [Contributing](#contributing)
 
-## Developer environment
+## Developer Environment
 
 Developers are suggested to use linux with Ubuntu 20.04 for development. We use [VS Code](https://code.visualstudio.com/) as an IDE for development and have several suggested extensions in the repositories that are useful.
 
@@ -25,7 +27,7 @@ If you do not have a Linux machine we suggest setting up a [VirtualBox](https://
 
 ## Git and development policy
 
-### Development process
+### Development Process
 
 <img src="./assets/Development process-Advanced dev process.drawio.png" />
 
@@ -90,17 +92,11 @@ Don't use `git rebase` ([why?](https://medium.com/@fredrikmorken/why-you-should-
 
 An implementation plan shows the changes to class/function interfaces. Pseudo-code can also be added to show intended implementation. This should be done in the Github Issue, or a PR. The implementation plan exists to have a conversation, but not to fix the outcome at the end.
 
-## Developer expectations
+## Developer Expectations
 
 ### README.md
 
 Read the README.md in full and in detail, before asking for help! In all repositories and sub-repositories that you are working in.
-
-### Principals
-
-SOLID: <https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design>
-
-DRY: <https://www.digitalocean.com/community/tutorials/what-is-dry-development>
 
 ### Communication and creating PRs for review
 
@@ -119,9 +115,23 @@ DRY: <https://www.digitalocean.com/community/tutorials/what-is-dry-development>
 
 ## Conventions
 
-### Javascript
+### Javascript Conventions
 
-* Variables convention is [CamelCase](https://textcaseconvert.com/blog/what-is-camel-case/)
+Read [JAVASCRIPT_CONVENTIONS](./JAVASCRIPT_CONVENTIONS.md).
+
+## Best Practices
+
+* **[DRY Principle](https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design)**: Avoid code duplication.
+* **[SOLID Principles](https://www.digitalocean.com/community/tutorials/what-is-dry-development)**: Maintainable, understandable, and flexible OOP design.
+* **Refactoring**: Regularly refactor to improve performance and readability.
+* **Testing**: Ensure unit tests cover all business logic adequately. Currently we do **not** do UI automated testing.
+* **Dependencies**: Keep track of any dependencies the helper functions have and make sure they are kept up to date.
+* **Single Responsibility**: One function, one purpose.
+* **Pure Functions**: Aim for no side effects.
+
+### Javascript Best Practices
+
+Read [JAVASCRIPT_BEST_PRACTICES](./JAVASCRIPT_BEST_PRACTICES.md).
 
 ## Resources
 
@@ -158,4 +168,4 @@ PRs are the best and quickest way to get your fix, improvement or feature merged
 
 ### Getting Help
 
-Send a message to contact@tonomy.foundation for help or reach out on our [Discord](https://discord.gg/rrJwz6Uf5P)
+Send a message to <contact@tonomy.foundation> for help or reach out on our [Discord](https://discord.gg/rrJwz6Uf5P)
