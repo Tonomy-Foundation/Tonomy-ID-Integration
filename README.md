@@ -19,19 +19,35 @@ See `./staging`
   - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
 - Testers issue reporting sheet: <https://tonomy-foundation.notion.site/Tonomy-ID-Testing-Procedure-4a084f9e43df413695425289ca017446?pvs=4>
 
-## Demo environment
+## Testnet environment
 
-See `./demo`
+See `./testnet`
 
-- Demo: <https://demo.demo.tonomy.foundation>
-- Accounts website: <https://accounts.demo.tonomy.foundation>
-- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-demo.tonomy.foundation&systemDomain=eosio>
-- Blockchain API: <https://blockchain-api-demo.tonomy.foundation>
-- Communication Service: <https://communication.demo.tonomy.foundation>
-- Docs: <https://docs.tonomy.foundation>
+- Demo: <https://demo.testnet.pangeavision.org>
+- Accounts website: <https://accounts.testnet.pangeavision.org>
+- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-testnet.pangeavision.org&systemDomain=eosio>
+- Blockchain API: <https://blockchain-api-testnet.pangeavision.org>
+- Communication Service: <https://communication.testnet.pangeavision.org>
+- Docs: <https://docs-testnet.pangeavision.org>
 - Tonomy ID:
   - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
-  - iTunes store: <https://apps.apple.com/us/app/tonomy-id-demo/id1663471436>
+  - iTunes store: <https://apps.apple.com/us/app/pangeavision/id1663471436>
+    - TestFlight: TODO
+- Testers issue reporting sheet: <https://docs.google.com/spreadsheets/d/1_LtUzEV8aiw5OYYuEHnQd-Mf0Jpwd4jWEUZgnJqI9ME/edit#gid=1902629582>
+
+## Production environment
+
+See `./mainnet`
+
+- Demo: <https://demo.pangeavision.org>
+- Accounts website: <https://accounts.pangeavision.org>
+- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api.pangeavision.org&systemDomain=eosio>
+- Blockchain API: <https://blockchain-api.pangeavision.org>
+- Communication Service: <https://communication.pangeavision.org>
+- Docs: <https://docs.pangeavision.org>
+- Tonomy ID:
+  - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
+  - iTunes store: <https://apps.apple.com/us/app/pangeavision/id1663471436>
     - TestFlight: TODO
 - Testers issue reporting sheet: <https://docs.google.com/spreadsheets/d/1_LtUzEV8aiw5OYYuEHnQd-Mf0Jpwd4jWEUZgnJqI9ME/edit#gid=1902629582>
 
@@ -42,7 +58,8 @@ See `./demo`
 - [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - typescript library used in Tonomy ID to interact and call with the Antelope blockchain and services.
   - [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) (inside SDK repo) - Antelope smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
   - [Microservice](https://github.com/Tonomy-Foundation/Tonomy-Communication) (inside SDK repo) - nextjs peer to peer message broker for communication between different identities.
-- [Demo](https://github.com/Tonomy-Foundation/Tonomy-App-Websites/tree/master/src/demo) - A reactjs application to facilitate the SSO login with Tonomy ID to web apps
+- [Testnet](https://github.com/Tonomy-Foundation/Tonomy-App-Websites/tree/master/src/testnet) - A reactjs application to facilitate the SSO login with Tonomy ID to web apps
+- [Mainnet](https://github.com/Tonomy-Foundation/Tonomy-App-Websites/tree/master/src/master) - A reactjs application to facilitate the SSO login with Tonomy ID to web apps
 - [SSO Login](https://github.com/Tonomy-Foundation/Tonomy-App-Websites/tree/master/src/sso) - A reactjs application to show demo flows with Tonomy ID and Tonomy ID SSO
 
 ## Environment compatibility
@@ -93,12 +110,14 @@ See [TROUBLESHOOT.md](./TROUBLESHOOT.md) to fix common issues when running the a
 
 ## Environment variables
 
-To run in staging or demo, use:
+To run in staging or testnet or mainnet, use:
 
 ```bash
 export NODE_ENV=staging
 #or
-export NODE_ENV=demo
+export NODE_ENV=testnet
+#or 
+export NODE_ENV=production
 #then
 ./app.sh start
 ```
@@ -113,6 +132,10 @@ export LOG=true
 
 See `./staging/staging.sh`
 
-## Demo server
+## Testnet server
 
-See `./demo/demo.sh`
+See `./testnet/testnet.sh`
+
+## Mainnet server
+
+See `./mainnet/mainnet.sh`
