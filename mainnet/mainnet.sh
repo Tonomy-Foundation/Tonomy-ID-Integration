@@ -35,7 +35,7 @@ sudo systemctl restart nginx
 # https://dash.cloudflare.com/62eb32c324aaeaeaecc751b529bfb23a/tonomy.foundation/ssl-tls/origin
 # Install the Cloudflare Origin SSL certificate *.tonomy.foundation in the /etc/ssl/cert.pem and /etc/ssl/cert.key
 
-# In Cloudflare, add a new proxied A record blockchain-api-production.pangeavision.org and point it to the IP of the droplet.
+# In Cloudflare, add a new proxied A record blockchain-api-production.pangea.web4.world and point it to the IP of the droplet.
 
 # Install, run and initialize the blockchain-api
 cd Tonomy-ID-Integration

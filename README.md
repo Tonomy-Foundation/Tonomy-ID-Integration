@@ -23,15 +23,15 @@ See `./staging`
 
 See `./testnet`
 
-- Demo: <https://demo.testnet.pangeavision.org>
-- Accounts website: <https://accounts.testnet.pangeavision.org>
-- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-testnet.pangeavision.org&systemDomain=eosio>
-- Blockchain API: <https://blockchain-api-testnet.pangeavision.org>
-- Communication Service: <https://communication.testnet.pangeavision.org>
-- Docs: <https://docs-testnet.pangeavision.org>
+- Demo: <https://demo.testnet.pangea.web4.world>
+- Accounts website: <https://accounts.testnet.pangea.web4.world>
+- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-testnet.pangea.web4.world&systemDomain=eosio>
+- Blockchain API: <https://blockchain-api-testnet.pangea.web4.world>
+- Communication Service: <https://communication.testnet.pangea.web4.world>
+- Docs: <https://docs-testnet.pangea.web4.world>
 - Tonomy ID:
   - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
-  - iTunes store: <https://apps.apple.com/us/app/pangeavision/id1663471436>
+  - iTunes store: <https://apps.apple.com/us/app/pangea.web4.world/id1663471436>
     - TestFlight: TODO
 - Testers issue reporting sheet: <https://docs.google.com/spreadsheets/d/1_LtUzEV8aiw5OYYuEHnQd-Mf0Jpwd4jWEUZgnJqI9ME/edit#gid=1902629582>
 
@@ -39,15 +39,15 @@ See `./testnet`
 
 See `./mainnet`
 
-- Demo: <https://demo.pangeavision.org>
-- Accounts website: <https://accounts.pangeavision.org>
-- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api.pangeavision.org&systemDomain=eosio>
-- Blockchain API: <https://blockchain-api.pangeavision.org>
-- Communication Service: <https://communication.pangeavision.org>
-- Docs: <https://docs.pangeavision.org>
+- Demo: <https://demo.pangea.web4.world>
+- Accounts website: <https://accounts.pangea.web4.world>
+- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api.pangea.web4.world&systemDomain=eosio>
+- Blockchain API: <https://blockchain-api.pangea.web4.world>
+- Communication Service: <https://communication.pangea.web4.world>
+- Docs: <https://docs.pangea.web4.world>
 - Tonomy ID:
   - Play store: <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging>
-  - iTunes store: <https://apps.apple.com/us/app/pangeavision/id1663471436>
+  - iTunes store: <https://apps.apple.com/us/app/pangea.web4.world/id1663471436>
     - TestFlight: TODO
 - Testers issue reporting sheet: <https://docs.google.com/spreadsheets/d/1_LtUzEV8aiw5OYYuEHnQd-Mf0Jpwd4jWEUZgnJqI9ME/edit#gid=1902629582>
 
