@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Commands for the demo server
+# Commands for the production server
 
 # Install a Digital Ocean droplet
 # https://cloud.digitalocean.com/droplets/new?i=634b1f&size=s-2vcpu-2gb&region=ams3&options=install_agent
@@ -28,19 +28,19 @@ corepack enable
 
 # Setup SSL
 sudo apt install -y nginx
-cp ./demo/nginx.conf /etc/nginx/conf.d/default.conf
+cp ./production/nginx.conf /etc/nginx/conf.d/default.conf
 sudo systemctl restart nginx
 
 # Generate a new Cloudflare origin certificate, or use your existing one
 # https://dash.cloudflare.com/62eb32c324aaeaeaecc751b529bfb23a/tonomy.foundation/ssl-tls/origin
 # Install the Cloudflare Origin SSL certificate *.tonomy.foundation in the /etc/ssl/cert.pem and /etc/ssl/cert.key
 
-# In Cloudflare, add a new proxied A record blockchain-api-demo.tonomy.foundation and point it to the IP of the droplet.
+# In Cloudflare, add a new proxied A record blockchain-api-production.pangea.web4.world and point it to the IP of the droplet.
 
 # Install, run and initialize the blockchain-api
 cd Tonomy-ID-Integration
 ./app.sh install
-export NODE_ENV=demo
+export NODE_ENV=production
 ./app.sh init
 
 # To reset
@@ -50,6 +50,6 @@ git pull
 ./app.sh gitinit master
 ./app.sh reset all
 ./app.sh install
-export NODE_ENV=demo
+export NODE_ENV=production
 ./apps.sh init
 
