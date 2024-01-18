@@ -9,6 +9,7 @@ All developers contributing to the project should check [Contributors Guide](./C
 See `./staging`
 
 - Demo: <https://demo.staging.tonomy.foundation>
+- Developer Console: <https://console.developer.staging.tonomy.foundation>
 - Accounts website: <https://accounts.staging.tonomy.foundation>
 - Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&systemDomain=eosio>
 - Blockchain API: <https://blockchain-api-staging.tonomy.foundation>
@@ -24,6 +25,7 @@ See `./staging`
 See `./testnet`
 
 - Demo: <https://demo.testnet.pangea.web4.world>
+- Developer Console: <https://console.developer.testnet.pangea.web4.world>
 - Accounts website: <https://accounts.testnet.pangea.web4.world>
 - Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-testnet.pangea.web4.world&systemDomain=eosio>
 - Blockchain API: <https://blockchain-api-testnet.pangea.web4.world>
@@ -37,6 +39,7 @@ See `./testnet`
 ## Production environment
 
 - Demo: <https://demo.pangea.web4.world>
+- Developer Console: <https://console.developer.pangea.web4.world>
 - Accounts website: <https://accounts.pangea.web4.world>
 - Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api.pangea.web4.world&systemDomain=eosio>
 - Blockchain API: <https://blockchain-api.pangea.web4.world>
