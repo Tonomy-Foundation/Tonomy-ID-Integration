@@ -12,8 +12,8 @@
 # Clone Tonomy-ID-Integration and initialize submoules
 git clone https://github.com/Tonomy-Foundation/Tonomy-ID-Integration.git
 cd Tonomy-ID-Integration
-git checkout master
-./app.sh gitinit master
+git checkout testnet
+./app.sh gitinit testnet
 
 
 # Install prerequisits
@@ -28,7 +28,7 @@ corepack enable
 
 # Setup SSL
 sudo apt install -y nginx
-cp ./testnet/nginx.conf /etc/nginx/conf.d/default.conf
+cp ./Tonomy-ID-Integration/testnet/nginx.conf /etc/nginx/conf.d/default.conf
 sudo systemctl restart nginx
 
 # Generate a new Cloudflare origin certificate, or use your existing one
@@ -47,7 +47,7 @@ export NODE_ENV=testnet
 cd Tonomy-ID-Integration
 ./apps.sh stop
 git pull
-./app.sh gitinit master
+./app.sh gitinit testnet
 ./app.sh reset all
 ./app.sh install
 export NODE_ENV=testnet
