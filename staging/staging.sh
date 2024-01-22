@@ -39,6 +39,8 @@ sudo systemctl restart nginx
 
 # Install, run and initialize the blockchain-api
 cd Tonomy-ID-Integration
+git checkout development
+./app.sh gitinit development
 ./app.sh install
 export NODE_ENV=staging
 ./app.sh init
@@ -51,5 +53,5 @@ git pull
 ./app.sh reset all
 ./app.sh install
 export NODE_ENV=staging
-./apps.sh init
+./app.sh init
 
