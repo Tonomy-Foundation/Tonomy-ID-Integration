@@ -106,6 +106,13 @@ Follow these steps one by one & read them carefully. Do not rush through it.
 
 See [TROUBLESHOOT.md](./TROUBLESHOOT.md) to fix common issues when running the app.
 
+## Test all
+
+Run all the above steps up to and including `./app.sh install`, then:
+
+- `./app.sh link`
+- `./app.sh test`
+
 ## Environment variables
 
 To run in staging or testnet or mainnet, use:

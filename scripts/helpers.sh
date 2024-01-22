@@ -87,13 +87,13 @@ function echo_orange {
 
 function link {
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn link ../
-
-    cd "$PARENT_PATH/Tonomy-ID"
-    yarn add "$SDK_PATH"
+    yarn link "$SDK_PATH"
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn link "$SDK_PATH"
+
+    cd "$PARENT_PATH/Tonomy-ID"
+    yarn add "$SDK_PATH"
 
     echo ""
     echo "Linking of clients to SDK complete"
@@ -182,6 +182,7 @@ function test {
     yarn run test:unit
     yarn run test:setup
     yarn run test:integration
+    yarn run test:setup-down
 
     cd "$PARENT_PATH/Tonomy-ID"
     yarn run test
