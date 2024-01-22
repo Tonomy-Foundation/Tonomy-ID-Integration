@@ -27,6 +27,9 @@ corepack enable
 # pm2 not needed as we only need to run the blockchain-api
 
 # Setup SSL
+sudo apt install -y certbot python3-certbot-dns-cloudflare
+certbot certonly --agree-tos -m developers@tonomy.foundation --dns-cloudflare --dns-cloudflare-credentials /tmp/.secrets/certbot/cloudflare.ini -d blockchain-api-testnet.pangea.web4.world
+
 sudo apt install -y nginx
 cp ./testnet/nginx.conf /etc/nginx/conf.d/default.conf
 sudo systemctl restart nginx
