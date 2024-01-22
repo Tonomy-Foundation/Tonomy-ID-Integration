@@ -15,7 +15,7 @@ function set_settings_from_branch {
             DOMAIN=blockchain-api-staging.tonomy.foundation
             ;;
         "testnet")
-            IP=164.90.176.113
+            IP=64.227.67.205
             NODE_ENV=testnet
             DOMAIN=blockchain-api-testnet.pangea.web4.world
             ;;
@@ -85,11 +85,10 @@ function local_copy_files_to_server {
 # Setup SSL certificate. Need to copy the nginx.conf file and the cloudflare.ini file to the server first.
 function server_setup_ssl {
     sudo apt install -y certbot python3-certbot-dns-cloudflare
-    certbot certonly --agree-tos -m developers@tonomy.foundation --dns-cloudflare --dns-cloudflare-credentials /tmp/.secrets/certbot/cloudflare.ini -d "${DOMAIN}"
+    certbot certonly --agree-tos -m developers@tonomy.foundation --dns-cloudflare --dns-cloudflare-credentials /tmp/.secrets/certbot/cloudflare.ini -d "${DOMAIN}" --non-interactive
     rm /tmp/.secrets/certbot/cloudflare.ini
 
     sudo apt install -y nginx
-    cp ./testnet/nginx.conf /etc/nginx/conf.d/default.conf
     sudo systemctl restart nginx
 }
 
