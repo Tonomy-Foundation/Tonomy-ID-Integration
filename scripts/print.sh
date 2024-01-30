@@ -45,6 +45,7 @@ function printservices {
     echo "Blockchain node (Antelope)        - http://localhost:8888/v1/chain/get_info"
     echo "Blockchain explorer               - https://local.bloks.io/?nodeUrl=http%3A%2F%2Flocalhost%3A8888&coreSymbol=SYS&systemDomain=eosio"
     echo "Tonomy ID Accounts App (react)    - http://${ip}:3000 "
+    echo "Tonomy ID Console App (react)     - http://${ip}:3002 "
     echo "Tonomy ID Demo App (react)        - http://${ip}:3001"
     echo "Tonomy Communication microservice - http://${ip}:5000"
     echo ""

@@ -87,13 +87,13 @@ function echo_orange {
 
 function link {
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn link ../
-
-    cd "$PARENT_PATH/Tonomy-ID"
-    yarn add "$SDK_PATH"
+    yarn link "$SDK_PATH"
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn link "$SDK_PATH"
+
+    cd "$PARENT_PATH/Tonomy-ID"
+    yarn add "$SDK_PATH"
 
     echo ""
     echo "Linking of clients to SDK complete"
@@ -110,7 +110,7 @@ function init {
     sleep 8
 
     cd "$SDK_PATH"
-    yarn run cli bootstrap PVT_K1_2bfGi9rYsXQSXXTvJbDAPhHLQUojjaNLomdm3cEJ1XTzMqUt3V
+    yarn run cli bootstrap
 
     echo ""
     echo ""
@@ -182,6 +182,8 @@ function test {
     yarn run test:unit
     yarn run test:setup
     yarn run test:integration
+    yarn run test:governance
+    yarn run test:setup-down
 
     cd "$PARENT_PATH/Tonomy-ID"
     yarn run test
@@ -229,10 +231,8 @@ function reset {
         set +e
         rm -R "$SDK_PATH/node_modules"
         rm -R "$SDK_PATH/build"
-        rm -R "$SDK_PATH/site"
         rm -R "${SDK_PATH}/Tonomy-Communication/node_modules" 
         rm -R "${SDK_PATH}/Tonomy-Communication/dist" 
-        rm -R "${SDK_PATH}/Tonomy-Communication/.yarn" 
         rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
         rm -R "${PARENT_PATH}/Tonomy-ID/.expo"
         rm -R "${PARENT_PATH}/Tonomy-App-Websites/node_modules"
