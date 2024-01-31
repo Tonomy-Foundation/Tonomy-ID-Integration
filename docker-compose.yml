@@ -12,6 +12,7 @@ services:
     container_name: "antelope"
     ports:
       - 8888:8888
+      - 9876:9876
     volumes:
       - antelope-data:/data
   
