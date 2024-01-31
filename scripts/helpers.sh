@@ -110,6 +110,12 @@ function init {
     sleep 8
 
     cd "$SDK_PATH"
+    NODE_ENV="${NODE_ENV:-development}"
+    if [[ "${NODE_ENV}" == "development" ]]
+    then
+        echo "Using development environment: setting keys"
+        source ./test/export_test_keys.sh
+    fi
     yarn run cli bootstrap
 
     echo ""
