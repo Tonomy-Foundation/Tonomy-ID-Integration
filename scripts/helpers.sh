@@ -214,14 +214,13 @@ function test {
 function stop {
     cd "${PARENT_PATH}"
     docker-compose exec antelope ./nodeos.sh stop || true
+    docker rm -f tonomy_blockchain_integration || true
 
     docker-compose down
 
     echo "Stopping pm2 apps (ID, Apps, Sdk, Micro)"
-    set +e
-    pm2 stop all
-    pm2 delete all
-    set -e
+    pm2 stop all || true
+    pm2 delete all || true
 }
 
 function reset {
