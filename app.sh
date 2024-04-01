@@ -47,6 +47,7 @@ then
 elif [ "$ARG1" == "test" ]
 then
     stop
+    link
     test
 elif [ "$ARG1" == "stop" ]
 then
