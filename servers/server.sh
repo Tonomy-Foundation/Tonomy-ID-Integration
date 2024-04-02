@@ -93,7 +93,6 @@ function server_setup_ssl {
 }
 
 function server_reset {
-    cd Tonomy-ID-Integration
     ./app.sh stop
     git pull
     ./app.sh gitinit "${BRANCH}"
