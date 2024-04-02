@@ -27,7 +27,7 @@ See `./testnet`
 - Demo: <https://demo.testnet.pangea.web4.world>
 - Developers Console: <https://console.developers.testnet.pangea.web4.world>
 - Accounts website: <https://accounts.testnet.pangea.web4.world>
-- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-testnet.pangea.web4.world&systemDomain=eosio>
+- Block explorer: <https://explorer.testnet.pangea.web4.world/>
 - Blockchain API: <https://blockchain-api-testnet.pangea.web4.world>
 - Communication Service: <https://communication.testnet.pangea.web4.world>
 - Docs: <https://docs.testnet.pangea.web4.world>
@@ -41,7 +41,7 @@ See `./testnet`
 - Demo: <https://demo.pangea.web4.world>
 - Developers Console: <https://console.developers.pangea.web4.world>
 - Accounts website: <https://accounts.pangea.web4.world>
-- Block explorer: <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api.pangea.web4.world&systemDomain=eosio>
+- Block explorer: <https://explorer.pangea.web4.world/>
 - Blockchain API: <https://blockchain-api.pangea.web4.world>
 - Communication Service: <https://communication.pangea.web4.world>
 - Docs: <https://docs.pangea.web4.world>
