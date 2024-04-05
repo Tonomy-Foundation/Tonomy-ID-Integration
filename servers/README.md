@@ -25,7 +25,7 @@ You will need to set the environment variables:
 
 The corresponding keys/passphrases will also need to be added to relevant CI/Devops processes for your environment:
 
-Then run all the commands found in the functions `server.sh`
+Then run all the commands found in the functions found here `server.sh`
 
 ```bash
 server_setup_prerequisits
@@ -33,8 +33,22 @@ server_setup_tonomy_first_time
 server_setup_ssl
 ```
 
-Next time, to reset and re-initalize
+Next time, to reset and re-initialize
 
 ```bash
+git pull
+cd servers
+source ./server.sh development
+cd ../
+
+# Run the environment specific settings. Example (developer environment)
+export NODE_ENV=staging
+export TONOMY_OPS_PRIVATE_KEY=PVT_K1_24kG9VcMk3VkkgY4hh42X262AWV18YcPjBTd2Hox4YWoP8vRTU
+export TONOMY_BOARD_PUBLIC_KEYS='{"keys":["PUB_K1_81aU18Y3RdyFf2WY4Wy7g7fvG9M9d7hmY4rhNFeXouYYPjExua","PUB_K1_5HWprCobEy8LiYUpfVmh8BdGDb8ANPc8rhBhtNqhvXnuxpyCaq","PUB_K1_5VLYVhqfe7oh8TW2i6Nw251wbpoZ4p15DV7udqDjiaKnryx9YU"]}'
+export TONOMY_TEST_ACCOUNTS_PASSPHRASE='above day fever lemon piano sport'
+history -d -2
+history -d -2
+history -d -2
+
 server_reset
 ```

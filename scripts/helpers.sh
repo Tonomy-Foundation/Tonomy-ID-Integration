@@ -181,11 +181,12 @@ function test {
     export LOG="false"
     export NODE_ENV="local"
     export VITE_APP_NODE_ENV="local";
-    
+
     cd "$SDK_PATH"
     yarn run build
     yarn run lint
     yarn run test:unit
+    source ./test/export_test_keys.sh
     yarn run test:setup
     yarn run test:integration
     yarn run test:governance
@@ -206,19 +207,20 @@ function test {
 
     cd "$SDK_PATH/Tonomy-Contracts"
     ./build-contracts.sh
+
+    echo "All tests passed"
 }
 
 function stop {
     cd "${PARENT_PATH}"
     docker-compose exec antelope ./nodeos.sh stop || true
+    docker rm -f tonomy_blockchain_integration || true
 
     docker-compose down
 
     echo "Stopping pm2 apps (ID, Apps, Sdk, Micro)"
-    set +e
-    pm2 stop all
-    pm2 delete all
-    set -e
+    pm2 stop all || true
+    pm2 delete all || true
 }
 
 function reset {
