@@ -27,7 +27,7 @@ See `./testnet`
 - Demo: <https://demo.testnet.pangea.web4.world>
 - Developers Console: <https://console.developers.testnet.pangea.web4.world>
 - Accounts website: <https://accounts.testnet.pangea.web4.world>
-- Block explorer: <https://explorer.testnet.pangea.web4.world/>
+- Block explorer: <https://explorer.testnet.pangea.web4.world>
 - Blockchain API: <https://blockchain-api-testnet.pangea.web4.world>
 - Communication Service: <https://communication.testnet.pangea.web4.world>
 - Docs: <https://docs.testnet.pangea.web4.world>
@@ -41,7 +41,7 @@ See `./testnet`
 - Demo: <https://demo.pangea.web4.world>
 - Developers Console: <https://console.developers.pangea.web4.world>
 - Accounts website: <https://accounts.pangea.web4.world>
-- Block explorer: <https://explorer.pangea.web4.world/>
+- Block explorer: <https://explorer.pangea.web4.world>
 - Blockchain API: <https://blockchain-api.pangea.web4.world>
 - Communication Service: <https://communication.pangea.web4.world>
 - Docs: <https://docs.pangea.web4.world>
@@ -53,12 +53,10 @@ See `./testnet`
 
 - [Tonomy ID](https://github.com/Tonomy-Foundation/Tonomy-ID) - Our expo (React Native) cross-platform mobile wallet for public & private Antelope blockchains.
   - [Directory Structure](https://learn.habilelabs.io/best-folder-structure-for-react-native-project-a46405bdba7)
-- [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - typescript library used in Tonomy ID to interact and call with the Antelope blockchain and services.
-  - [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) (inside SDK repo) - Antelope smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
-  - [Microservice](https://github.com/Tonomy-Foundation/Tonomy-Communication) (inside SDK repo) - nextjs peer to peer message broker for communication between different identities.
-- [Testnet](https://github.com/Tonomy-Foundation/Tonomy-App-Websites/tree/master/src/testnet) - A reactjs application to facilitate the SSO login with Tonomy ID to web apps
-- [Mainnet](https://github.com/Tonomy-Foundation/Tonomy-App-Websites/tree/master/src/master) - A reactjs application to facilitate the SSO login with Tonomy ID to web apps
-- [SSO Login](https://github.com/Tonomy-Foundation/Tonomy-App-Websites/tree/master/src/sso) - A reactjs application to show demo flows with Tonomy ID and Tonomy ID SSO
+- [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - typescript library used in Tonomy ID to interact and call with the
+- [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) (inside SDK repo) - Antelope smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
+- [Microservice](https://github.com/Tonomy-Foundation/Tonomy-Communication) (inside SDK repo) - nextjs peer to peer message broker for communication between different identities.
+- [App Websites](https://github.com/Tonomy-Foundation/Tonomy-App-Websites) - A reactjs application to facilitate the SSO login with Tonomy ID to web apps
 
 ## Environment compatibility
 
