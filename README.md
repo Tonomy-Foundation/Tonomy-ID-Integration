@@ -6,8 +6,6 @@ All developers contributing to the project should check [Contributors Guide](./C
 
 ## Try it out here
 
-See `./staging`
-
 - Demo: <https://demo.staging.tonomy.foundation>
 - Developers Console: <https://console.developers.staging.tonomy.foundation>
 - Accounts website: <https://accounts.staging.tonomy.foundation>
@@ -21,8 +19,6 @@ See `./staging`
 - Testers issue reporting sheet: <https://tonomy-foundation.notion.site/Tonomy-ID-Testing-Procedure-4a084f9e43df413695425289ca017446?pvs=4>
 
 ## Testnet environment
-
-See `./testnet`
 
 - Demo: <https://demo.testnet.pangea.web4.world>
 - Developers Console: <https://console.developers.testnet.pangea.web4.world>
@@ -133,14 +129,6 @@ To show logs within the SDK, use
 export LOG=true
 ```
 
-## Staging server
+## Server settings
 
-See `./staging/staging.sh`
-
-## Testnet server
-
-See `./testnet/testnet.sh`
-
-## Mainnet server
-
-See `./mainnet/mainnet.sh`
+See `./servers/README.md`
