@@ -107,14 +107,6 @@ To show logs within the SDK, use
 export LOG=true
 ```
 
-## Staging server
+## Servers
 
-See `./staging/staging.sh`
-
-## Testnet server
-
-See `./testnet/testnet.sh`
-
-## Mainnet server
-
-See `./mainnet/mainnet.sh`
+See `./servers/README.md`
