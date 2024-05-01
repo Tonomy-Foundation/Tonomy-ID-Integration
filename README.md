@@ -18,7 +18,7 @@ All developers contributing to the project should check [Contributors Guide](./C
 |  | Hyperion API | <https://pangea.eosusa.io> | <https://test.pangea.eosusa.io> | - |
 | Communication | Service | <https://communication.pangea.web4.world> | <https://communication.testnet.pangea.web4.world> | <https://communication.staging.tonomy.foundation> |
 | Docs | Gitbook | <https://docs.pangea.web4.world> | - | <https://docs.staging.tonomy.foundation> |
-| Wallet | Play store | <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.pangeapassport> | <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.pangeapassporttestnet> | <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging> |
+| Wallet | Play store | <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.unitedwallet> | <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.pangeatestnet> | <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging> |
 |  | iTunes store | <https://apps.apple.com/us/app/pangea.web4.world/id1663471436> | - | - |
 |  | TestFlight | - | <https://testflight.apple.com/join/ou7KmYiE> | <https://testflight.apple.com/join/7Bdd9jdB> |
 
