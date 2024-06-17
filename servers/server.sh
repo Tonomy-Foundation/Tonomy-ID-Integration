@@ -78,17 +78,19 @@ function local_copy_files_to_server {
     cp ./nginx.conf ./nginx.conf.bak
     sed -i "s/{{DOMAIN}}/${DOMAIN}/g" ./nginx.conf    
     scp ./nginx.conf root@${IP}:/etc/nginx/conf.d/default.conf
+    ssh root@${IP} "mkdir -p /tmp/.secrets/certbot/"
     scp ./cloudflare.ini root@${IP}:/tmp/.secrets/certbot/cloudflare.ini
     cp ./nginx.conf.bak ./nginx.conf
 }
 
 # Setup SSL certificate. Need to copy the nginx.conf file and the cloudflare.ini file to the server first.
+# If not using subdomain/wildcare of TLD you first need to create a Cloudflare advanced certificate (https://developers.cloudflare.com/ssl/edge-certificates/advanced-certificate-manager/manage-certificates/))
 function server_setup_ssl {
     sudo apt install -y certbot python3-certbot-dns-cloudflare
     certbot certonly --agree-tos -m developers@tonomy.foundation --dns-cloudflare --dns-cloudflare-credentials /tmp/.secrets/certbot/cloudflare.ini -d "${DOMAIN}" --non-interactive
     rm /tmp/.secrets/certbot/cloudflare.ini
 
-    sudo apt install -y nginx
+    # sudo apt install -y nginx
     sudo systemctl restart nginx
 }
 
