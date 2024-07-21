@@ -47,6 +47,8 @@ function install {
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn
 
+    echo "Installing pm2 for use with npx"
+    npm install -g pm2
 }
 
 function update {
@@ -150,7 +152,7 @@ function start {
 
     echo "Starting Tonomy-ID-SDK"
     cd "$SDK_PATH"
-    pm2 start yarn --name "sdk" -- run start
+    npx pm2 start yarn --name "sdk" -- run start
 
     export EXPO_NODE_ENV="${NODE_ENV}"
     echo "NODE_ENV=${NODE_ENV}"
@@ -167,15 +169,15 @@ function start {
     
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
-    pm2 start yarn --name "id" -- run start
+    npx pm2 start yarn --name "id" -- run start
 
     echo "Starting Tonomy-App-Websites"
     cd "${PARENT_PATH}/Tonomy-App-Websites"
-    BROWSER=none pm2 start yarn --name "apps" -- run dev --host
+    BROWSER=none npx pm2 start yarn --name "apps" -- run dev --host
 
     echo "Starting communication microservice"
     cd  "$SDK_PATH/Tonomy-Communication"
-    pm2 start yarn --name "micro" -- run start:dev
+    npx pm2 start yarn --name "micro" -- run start:dev
 
     printservices
 }
@@ -222,8 +224,8 @@ function stop {
     docker-compose down
 
     echo "Stopping pm2 apps (ID, Apps, Sdk, Micro)"
-    pm2 stop all || true
-    pm2 delete all || true
+    npx pm2 stop all || true
+    npx pm2 delete all || true
 }
 
 function reset {
@@ -232,8 +234,8 @@ function reset {
     set +e
     docker volume rm antelope-data
 
-    pm2 stop all
-    pm2 delete all
+    npx pm2 stop all
+    npx pm2 delete all
     set -e
     
     if [ "${ARG1}" == "all" ]
@@ -261,17 +263,17 @@ function log {
     if [ "${SERVICE}" == "antelope" ]; then
         docker-compose logs -f antelope
     elif [ "${SERVICE}" == "id" ]; then
-        pm2 log --lines 20 id
+        npx pm2 log --lines 20 id
     elif [ "${SERVICE}" == "sdk" ]; then
-        pm2 log sdk
+        npx pm2 log sdk
     elif [ "${SERVICE}" == "linking" ]; then
-        pm2 log linking
+        npx pm2 log linking
     elif [ "${SERVICE}" == "nginx" ]; then
         tail -f --lines=10 /var/log/nginx/access.log
     elif [ "${SERVICE}" == "apps" ]; then
-        pm2 log apps
+        npx pm2 log apps
     elif [ "${SERVICE}" == "micro" ]; then
-        pm2 log micro
+        npx pm2 log micro
     else
         loghelp
     fi
