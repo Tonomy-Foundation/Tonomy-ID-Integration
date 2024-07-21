@@ -177,7 +177,7 @@ function start {
 
     echo "Starting communication microservice"
     cd  "$SDK_PATH/Tonomy-Communication"
-    npx pm2 start yarn --name "micro" -- run start:dev
+    npx pm2 start yarn --name "micro" -- run start
 
     printservices
 }
