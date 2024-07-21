@@ -86,11 +86,14 @@ function echo_orange {
 }
 
 function link {
+    cd "$SDK_PATH"
+    yarn link
+
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn link "$SDK_PATH"
+    yarn link "@tonomy/tonomy-id-sdk"
 
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    yarn link "$SDK_PATH"
+    yarn link "@tonomy/tonomy-id-sdk"
 
     cd "$PARENT_PATH/Tonomy-ID"
     yarn add "$SDK_PATH"
