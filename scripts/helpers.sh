@@ -48,7 +48,7 @@ function install {
     yarn
 
     echo "Installing pm2 for use with npx"
-    npm install -g pm2
+    yarn global add pm2
 }
 
 function update {
