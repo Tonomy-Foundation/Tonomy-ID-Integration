@@ -99,11 +99,23 @@ export NODE_ENV=production
 ./app.sh start
 ```
 
-To show logs within the SDK, use
+## Debugging
 
-```bash
-export LOG=true
-```
+Uses [debug](https://www.npmjs.com/package/debug) package.
+
+How to use:
+
+- `export DEBUG="tonomy*"` all tonomy logs
+- `export DEBUG="tonomy-sdk*"` all Tonomy ID SDK logs
+- `export DEBUG="tonomy-id*"` all Tonomy ID logs
+- `export DEBUG="tonomy-app-websites*"` all Tonomy App Website logs
+- `export DEBUG="tonomy-communication*"` all Tonomy Communication logs
+
+Other examples:
+
+- `export DEBUG="tonomy-sdk:services:communication:communication"` to see all logs from the `/Tonomy-ID-SDK/src/sdk/services/communication/communication.ts` module
+- `export DEBUG="*"` all debug logs from all installed packages
+- `export DEBUG="tonomy*,-tonomy-sdk*"` all tonomy logs except for tonomy-id-sdk
 
 ## Servers
 

@@ -138,15 +138,33 @@ function startdocker {
 }
 
 function start {
-    ARG1=${1-}
-    export LOG="true"
-    export VITE_LOG="true"
+    # Set debug. See https://www.npmjs.com/package/debug
+    export DEBUG="tonomy*,-tonomy-sdk:util:ssi:veramo"
+
+    # Set NODE_ENV to local if unset
     set +u
     if [ -z "${NODE_ENV}" ]; then
         export NODE_ENV="local";
-        export VITE_APP_NODE_ENV="local";
     fi
     set -u
+
+    # Expo prefix variables
+    export EXPO_NODE_ENV="${NODE_ENV}"
+    echo "NODE_ENV=${NODE_ENV}"
+    echo "EXPO_NODE_ENV=${EXPO_NODE_ENV}"
+
+    # Application variables
+    export BLOCKCHAIN_URL="http://${ip}:8888"
+    export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
+    export ACCOUNTS_SERVICE_URL="http://${ip}:5000"
+    export HCAPTCHA_SITE_KEY="10000000-ffff-ffff-ffff-000000000001"
+
+    # Vite prefix variables    
+    export VITE_DEBUG="${DEBUG}"
+    export VITE_APP_NODE_ENV="${NODE_ENV}";
+    export VITE_COMMUNICATION_URL="ws://${ip}:5000"
+    export VITE_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
+    export VITE_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
 
     startdocker
 
@@ -154,19 +172,7 @@ function start {
     cd "$SDK_PATH"
     npx pm2 start yarn --name "sdk" -- run start
 
-    export EXPO_NODE_ENV="${NODE_ENV}"
-    echo "NODE_ENV=${NODE_ENV}"
-    echo "EXPO_NODE_ENV=${EXPO_NODE_ENV}"
-
-    export BLOCKCHAIN_URL="http://${ip}:8888"
-    export SSO_WEBSITE_ORIGIN="http://${ip}:3000"
-    export VITE_COMMUNICATION_URL="ws://${ip}:5000"
-    export ACCOUNTS_SERVICE_URL="http://${ip}:5000"
-    export HCAPTCHA_SITE_KEY="10000000-ffff-ffff-ffff-000000000001"
-    
-    export VITE_SSO_WEBSITE_ORIGIN="${SSO_WEBSITE_ORIGIN}"
-    export VITE_BLOCKCHAIN_URL="${BLOCKCHAIN_URL}"
-    
+   
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
     npx pm2 start yarn --name "id" -- run start
