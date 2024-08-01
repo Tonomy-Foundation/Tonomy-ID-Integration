@@ -117,6 +117,8 @@ Other examples:
 - `export DEBUG="*"` all debug logs from all installed packages
 - `export DEBUG="tonomy*,-tonomy-sdk*"` all tonomy logs except for tonomy-id-sdk
 
+`DEBUG` is set in [./scripts/helpers.sh:L142](./scripts/helpers.sh)
+
 ## Servers
 
 See `./servers/README.md`
