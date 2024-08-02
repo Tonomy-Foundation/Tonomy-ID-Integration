@@ -23,6 +23,14 @@ function gitinit {
     git submodule foreach --recursive git pull
 }
 
+check_status() {
+    if wait $1; then
+        echo "$2 completed successfully."
+    else
+        echo_red "Error: $2 failed."
+    fi
+}
+
 function install {
     ARG1=${1-}
 
@@ -32,23 +40,45 @@ function install {
         return
     fi
 
+    echo "Installing Tonomy Contracts"
     cd "$SDK_PATH/Tonomy-Contracts"
-    ./blockchain/build-docker.sh
+    ./blockchain/build-docker.sh > /dev/null 2>&1 &
+    contracts_pid=$!
 
+    echo "Installing Tonomy SDK"
     cd "$SDK_PATH"
-    yarn install
+    yarn install > /dev/null 2>&1 && yarn run build > /dev/null 2>&1 &
+    sdk_pid=$!
 
+    echo "Installing Tonomy Communication"
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn
+    yarn > /dev/null 2>&1 &
+    comm_pid=$!
 
+    echo "Installing Tonomy ID"
     cd "$PARENT_PATH/Tonomy-ID"
-    yarn
+    yarn > /dev/null 2>&1 &
+    id_pid=$!
 
+    echo "Installing Tonomy App Websites"
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    yarn
+    yarn > /dev/null 2>&1 &
+    app_pid=$!
 
     echo "Installing pm2 for use with npx"
-    yarn global add pm2
+    npm i -g pm2 > /dev/null 2>&1 &
+    pm2_pid=$!
+
+    echo_orange "Please wait for all installations to complete before running ./app.sh install again"
+    echo "Waiting for installations to complete in parallel"
+    check_status $pm2_pid "pm2 installation"
+    check_status $contracts_pid "Tonomy Contracts"
+    check_status $comm_pid "Tonomy Communication"
+    check_status $id_pid "Tonomy ID"
+    check_status $app_pid "Tonomy App Websites"
+    check_status $sdk_pid "Tonomy SDK"
+
+    echo "Installations complete"
 }
 
 function update {
@@ -138,13 +168,14 @@ function startdocker {
 }
 
 function start {
-    # Set debug. See https://www.npmjs.com/package/debug
-    export DEBUG="tonomy*,-tonomy-sdk:util:ssi:veramo"
-
     # Set NODE_ENV to local if unset
     set +u
     if [ -z "${NODE_ENV}" ]; then
         export NODE_ENV="local";
+    fi
+    # Set debug if unset. See https://www.npmjs.com/package/debug
+    if [ -z "${DEBUG}" ]; then
+        export DEBUG="tonomy*,-tonomy-sdk:util:ssi:veramo"
     fi
     set -u
 
@@ -246,18 +277,36 @@ function reset {
     
     if [ "${ARG1}" == "all" ]
     then
-        echo "Deleting all packages and builds"
-        set +e
-        rm -R "$SDK_PATH/node_modules"
-        rm -R "$SDK_PATH/build"
-        rm -R "${SDK_PATH}/Tonomy-Communication/node_modules" 
-        rm -R "${SDK_PATH}/Tonomy-Communication/dist" 
-        rm -R "${PARENT_PATH}/Tonomy-ID/node_modules"
-        rm -R "${PARENT_PATH}/Tonomy-ID/.expo"
-        rm -R "${PARENT_PATH}/Tonomy-App-Websites/node_modules"
-        rm -R "${PARENT_PATH}/Tonomy-App-Websites/.yarn"
-        rm -R "${PARENT_PATH}/Tonomy-App-Websites/dist"
-        set -e
+        directories=(
+            "${SDK_PATH}"
+            "${SDK_PATH}/Tonomy-Communication"
+            "${PARENT_PATH}/Tonomy-ID"
+            "${PARENT_PATH}/Tonomy-App-Websites"
+        )
+
+        to_delete=(
+            "node_modules"
+            ".pnp.js"
+            ".pnp.cjs"
+            ".expo"
+            ".yarn"
+            "yarn-error.log"
+            "dist"
+            "build"
+        )
+
+        # Iterate through each directory
+        for dir in "${directories[@]}"; do
+            echo "Processing directory: $dir"
+
+            for item in "${to_delete[@]}"; do
+                # Delete item if it exists
+                if [ -d "$dir/$item" ] || [ -f "$dir/$item" ]; then
+                    echo "Deleting $dir/$item"
+                    rm -rf "$dir/$item"
+                fi
+            done
+        done
         deletecontracts
     fi
 
