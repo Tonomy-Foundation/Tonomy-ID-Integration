@@ -69,8 +69,14 @@ function install {
     npm i -g pm2 > /dev/null 2>&1 &
     pm2_pid=$!
 
+    echo "Building docker containers"
+    cd "$PARENT_PATH"
+    docker-compose build > /dev/null 2>&1 &
+    docker_pid=$!
+
     echo_orange "Please wait for all installations to complete before running ./app.sh install again"
     echo "Waiting for installations to complete in parallel"
+    check_status $docker_pid "Docker containers"
     check_status $pm2_pid "pm2 installation"
     check_status $contracts_pid "Tonomy Contracts"
     check_status $comm_pid "Tonomy Communication"
@@ -118,17 +124,17 @@ function echo_orange {
 }
 
 function link {
-    cd "$SDK_PATH"
-    yarn link
-
+    echo "Linking SDK to Tonomy-Communication"
     cd "$SDK_PATH/Tonomy-Communication"
-    yarn link "@tonomy/tonomy-id-sdk"
+    yarn link "$SDK_PATH"
 
+    echo "Linking SDK to Tonomy-ID"
     cd "$PARENT_PATH/Tonomy-App-Websites"
-    yarn link "@tonomy/tonomy-id-sdk"
+    yarn link "$SDK_PATH"
 
+    echo "Linking SDK to Tonomy-App-Websites"
     cd "$PARENT_PATH/Tonomy-ID"
-    yarn add "$SDK_PATH"
+    yarn link "$SDK_PATH"
 
     echo ""
     echo "Linking of clients to SDK complete"
@@ -175,7 +181,7 @@ function start {
     fi
     # Set debug if unset. See https://www.npmjs.com/package/debug
     if [ -z "${DEBUG}" ]; then
-        export DEBUG="tonomy*,-tonomy-sdk:util:ssi:veramo"
+        export DEBUG="tonomy*";
     fi
     set -u
 
@@ -220,7 +226,6 @@ function start {
 }
 
 function test {
-    export LOG="false"
     export NODE_ENV="local"
     export VITE_APP_NODE_ENV="local";
 
