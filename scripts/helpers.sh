@@ -192,10 +192,23 @@ function test {
     yarn run test:governance
     yarn run test:setup-down
 
+    ## Ensure ganache-cli is installed globally
+    npm install -g ganache-cli
+
+    # Start ganache-cli in the background
+    ganache-cli -d & 
+    GANACHE_PID=$!
+
+    # Add a short delay to ensure ganache-cli has time to start
+    sleep 5
+
     cd "$PARENT_PATH/Tonomy-ID"
     yarn run test
     yarn run lint
     yarn run typeCheck
+
+    # Stop ganache-cli
+    kill $GANACHE_PID
     
     cd "$PARENT_PATH/Tonomy-App-Websites"
     yarn run build
