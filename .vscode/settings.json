@@ -12,5 +12,11 @@
     ],
     "conventionalCommits.scopes": [
         "README.md"
-    ]
+    ],
+    "git.branchPrefix": "feature/",
+    "git.branchProtection": [
+        "master",
+        "main",
+        "development"
+    ],
 }

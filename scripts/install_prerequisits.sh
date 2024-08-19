@@ -26,16 +26,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 # nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 exit
-echo "Setting up to use node v18.12.1"
-nvm install v18.12.1
-nvm alias default v18.12.1
+echo "Setting up to use node v22.3.0"
+nvm install v22.3.0
+nvm alias default v22.3.0
 
 echo "enable corepack to use yarn"
 corepack enable
-
-echo "Installing pm2 globally"
-npm i -g pm2@5.2.0
-
-echo "Installing mkdocs"
-sudo apt install -y python-is-python3 python3-pip
-pip install mkdocs mkdocs-material
