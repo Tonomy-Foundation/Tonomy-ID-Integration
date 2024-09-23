@@ -50,8 +50,8 @@ function server_setup_prerequisits {
     sudo chmod +x /usr/local/bin/docker-compose
 
     # nodejs
-    wget nodejs.org/dist/v18.12.1/node-v18.12.1-linux-x64.tar.gz
-    sudo tar -C /usr/local --strip-components 1 -xzf node-v18.12.1-linux-x64.tar.gz
+    wget nodejs.org/dist/v22.3.0/node-v22.3.0-linux-x64.tar.gz
+    sudo tar -C /usr/local --strip-components 1 -xzf node-v22.3.0-linux-x64.tar.gz
 
     echo "enable corepack to use yarn"
     corepack enable

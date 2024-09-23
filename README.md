@@ -49,9 +49,7 @@ In case you have problems here is a list of the dependencies
 
 - [Docker](http://docs.docker.com) v20.10+
 - [Docker Compose](http://docs.docker.com/compose/) v1.29+
-- [npm](https://www.npmjs.com/) with `corepack enabled` v18.12.1. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
-- [pm2](https://pm2.io) v5.5+ installed globally by `npm`
-- [mkdocs](https://www.mkdocs.org) with [material](https://squidfunk.github.io/mkdocs-material) theme
+- [npm](https://www.npmjs.com/) with `corepack enabled` v20+. Suggested to install with [nvm](https://github.com/nvm-sh/nvm) v0.35+
 
 Check out the file `./scripts/install_prerequisits.sh`. This can be used as a guide to install all dependencies on an Ubuntu 18+ machine. Run the script line-by-line, as sometimes you need to exit terminal or restart your machine to continue.
 
@@ -101,11 +99,25 @@ export NODE_ENV=production
 ./app.sh start
 ```
 
-To show logs within the SDK, use
+## Debugging
 
-```bash
-export LOG=true
-```
+Uses [debug](https://www.npmjs.com/package/debug) package.
+
+How to use:
+
+- `export DEBUG="tonomy*"` all tonomy logs
+- `export DEBUG="tonomy-sdk*"` all Tonomy ID SDK logs
+- `export DEBUG="tonomy-id*"` all Tonomy ID logs
+- `export DEBUG="tonomy-app-websites*"` all Tonomy App Website logs
+- `export DEBUG="tonomy-communication*"` all Tonomy Communication logs
+
+Other examples:
+
+- `export DEBUG="tonomy-sdk:services:communication:communication"` to see all logs from the `/Tonomy-ID-SDK/src/sdk/services/communication/communication.ts` module
+- `export DEBUG="*"` all debug logs from all installed packages
+- `export DEBUG="tonomy*,-tonomy-sdk*"` all tonomy logs except for tonomy-id-sdk
+
+`DEBUG` is set in [./scripts/helpers.sh:L142](./scripts/helpers.sh)
 
 ## Servers
 
