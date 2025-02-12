@@ -143,7 +143,7 @@ function link {
 
 function deletecontracts {
     cd "$PARENT_PATH/Tonomy-ID-SDK/Tonomy-Contracts"
-    ./delete-buildt-contracts.sh
+    ./delete-built-contracts.sh
 }
 
 function init {
