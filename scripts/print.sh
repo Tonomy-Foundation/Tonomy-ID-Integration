@@ -27,6 +27,7 @@ function loghelp {
     echo ""
     echo "Commands:"
     echo "    antelope - blockchain node (antelope)"
+    echo "    antelope:console - will print smart contract console logs that use the event_log string in them"
     echo "    sdk      - Tonomy ID SDK (tsdx)"
     echo "    id       - Tonomy ID app expo packaer (react native)"
     echo "    apps      - Tonomy ID SSO app  & Tonomy ID DEMO MARKET (react)"
