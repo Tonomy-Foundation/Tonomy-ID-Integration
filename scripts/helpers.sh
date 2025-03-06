@@ -321,7 +321,11 @@ function log {
     SERVICE=${1-default}
 
     if [ "${SERVICE}" == "antelope" ]; then
-        docker-compose logs -f antelope
+        docker-compose logs -f antelope -n 100
+    elif [ "${SERVICE}" == "antelope:console" ]; then
+        FILTER="event_log"
+        echo "Filtering transaction with: ${FILTER}"
+        docker-compose logs -f antelope -n 100 | grep "${FILTER}"
     elif [ "${SERVICE}" == "id" ]; then
         npx pm2 log --lines 20 id
     elif [ "${SERVICE}" == "sdk" ]; then
