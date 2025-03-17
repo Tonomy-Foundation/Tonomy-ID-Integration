@@ -321,6 +321,9 @@ function reset {
 print_event_log() {
     line=$1
 
+    # Remove "antelope  | " from the start of the line if found
+    line=$(echo "$line" | sed 's/^antelope  | //')
+
     if [[ "$line" =~ \"events\":\[ ]]; then
         # Split the line into two parts: before and after "events":[
         before_events=$(echo "$line" | sed 's/\(.*"events":\[\).*/\1/')
@@ -333,7 +336,7 @@ print_event_log() {
         if [[ -n "$after_events" ]]; then
             # Print the events on separate lines
             echo "["
-            echo "$after_events" | sed 's/},{/},\n{/g' | sed 's/^/                /'
+            echo "$after_events" | sed 's/},{/},\n{/g' | sed 's/^/    /'
             echo "]}"
         else
             # No events, just close the JSON
