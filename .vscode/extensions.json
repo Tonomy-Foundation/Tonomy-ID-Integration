@@ -4,6 +4,7 @@
         "ms-azuretools.vscode-docker",
         "dbaeumer.vscode-eslint",
         "streetsidesoftware.code-spell-checker",
-        "vivaxy.vscode-conventional-commits"
+        "vivaxy.vscode-conventional-commits",
+        "wayou.vscode-todo-highlight"
     ]
 }
