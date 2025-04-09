@@ -143,7 +143,7 @@ function link {
 
 function deletecontracts {
     cd "$PARENT_PATH/Tonomy-ID-SDK/Tonomy-Contracts"
-    ./delete-buildt-contracts.sh
+    ./delete-built-contracts.sh
 }
 
 function init {
@@ -317,11 +317,49 @@ function reset {
 
 }
 
+# Prints out the event_logs and puts each event on a new line
+print_event_log() {
+    line=$1
+
+    # Remove "antelope  | " from the start of the line if found
+    line=$(echo "$line" | sed 's/^antelope  | //')
+
+    if [[ "$line" =~ \"events\":\[ ]]; then
+        # Split the line into two parts: before and after "events":[
+        before_events=$(echo "$line" | sed 's/\(.*"events":\[\).*/\1/')
+        after_events=$(echo "$line" | sed 's/.*"events":\[\(.*\)\].*/\1/')
+
+        # Print the part before "events":[
+        echo -n "$before_events"
+
+        # Check if there are any events
+        if [[ -n "$after_events" ]]; then
+            # Print the events on separate lines
+            echo "["
+            echo "$after_events" | sed 's/},{/},\n{/g' | sed 's/^/    /'
+            echo "]}"
+        else
+            # No events, just close the JSON
+            echo "[]}"
+        fi
+    else
+        # Print the line as is if it doesn't contain "events":[
+        echo "$line"
+    fi
+}
+
 function log {
     SERVICE=${1-default}
 
     if [ "${SERVICE}" == "antelope" ]; then
-        docker-compose logs -f antelope
+        docker-compose logs -f antelope -n 100
+    elif [ "${SERVICE}" == "antelope:console" ]; then
+        FILTER="event_log"
+        echo "Filtering transaction with: ${FILTER}"
+        # docker-compose logs -f antelope --tail 100 | grep  --line-buffered "${FILTER}"
+        docker-compose logs -f antelope --tail 100 | grep --line-buffered "${FILTER}" | while IFS= read -r line; do
+            print_event_log "$line"
+        done
     elif [ "${SERVICE}" == "id" ]; then
         npx pm2 log --lines 20 id
     elif [ "${SERVICE}" == "sdk" ]; then
