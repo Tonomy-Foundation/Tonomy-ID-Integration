@@ -17,12 +17,12 @@ function set_settings_from_branch {
         "testnet")
             IP=64.227.67.205
             NODE_ENV=testnet
-            DOMAIN=blockchain-api-testnet.pangea.web4.world
+            DOMAIN=blockchain-api-testnet.tonomy.io
             ;;
         "master")
             IP=164.90.176.113
             NODE_ENV=production
-            DOMAIN=blockchain-api.pangea.web4.world
+            DOMAIN=blockchain-api.tonomy.io
             ;;
         *)
             echo "Invalid branch name"
