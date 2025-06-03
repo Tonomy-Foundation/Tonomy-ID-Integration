@@ -8,16 +8,16 @@ All developers contributing to the project should check [Contributors Guide](./C
 
 | Category | Service | Production | Testnet | Staging |
 |---|---|---|---|---|
-| Apps | Demo | <https://demo.pangea.web4.world> | <https://demo.testnet.pangea.web4.world> | <https://demo.staging.tonomy.foundation> |
-|  | Developers Console | <https://console.developers.pangea.web4.world> | <https://console.developers.testnet.pangea.web4.world> | <https://console.developers.staging.tonomy.foundation> |
-|  | Accounts | <https://accounts.pangea.web4.world> | <https://accounts.testnet.pangea.web4.world> | <https://accounts.staging.tonomy.foundation> |
+| Apps | Demo | <https://demo.tonomy.io> | <https://demo.testnet.tonomy.io> | <https://demo.staging.tonomy.foundation> |
+|  | Developers Console | <https://console.developers.tonomy.io> | <https://console.developers.testnet.tonomy.io> | <https://console.developers.staging.tonomy.foundation> |
+|  | Accounts | <https://accounts.tonomy.io> | <https://accounts.testnet.tonomy.io> | <https://accounts.staging.tonomy.foundation> |
 | Blockchain | chainId | 66d565f72ac08f8321a3036e2d92eea7f96ddc90599bdbfc2d025d810c74c248 | 8a34ec7df1b8cd06ff4a8abbaa7cc50300823350cadc59ab296cb00d104d2b8f | - |
-|  | Block explorer | <https://explorer.pangea.web4.world> | <https://explorer.testnet.pangea.web4.world> | - |
-|  | Bloks.io explorer | <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api.pangea.web4.world&coreSymbol=LEOS&corePrecision=6&systemDomain=eosio> | <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-testnet.pangea.web4.world&coreSymbol=LEOS&corePrecision=6&systemDomain=eosio> | <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&coreSymbol=LEOS&corePrecision=6&systemDomain=eosio> |
-|  | Blockchain API | <https://blockchain-api.pangea.web4.world> | <https://blockchain-api-testnet.pangea.web4.world> | <https://blockchain-api-staging.tonomy.foundation> |
+|  | Block explorer | <https://explorer.tonomy.io> | <https://explorer.testnet.tonomy.io> | - |
+|  | Bloks.io explorer | <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api.tonomy.io&coreSymbol=TONO&corePrecision=6&systemDomain=eosio> | <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-testnet.tonomy.io&coreSymbol=TONO&corePrecision=6&systemDomain=eosio> | <https://local.bloks.io/?nodeUrl=https%3A%2F%2Fblockchain-api-staging.tonomy.foundation&coreSymbol=TONO&corePrecision=6&systemDomain=eosio> |
+|  | Blockchain API | <https://blockchain-api.tonomy.io> | <https://blockchain-api-testnet.tonomy.io> | <https://blockchain-api-staging.tonomy.foundation> |
 |  | Hyperion API | <https://pangea.eosusa.io> | <https://test.pangea.eosusa.io> | - |
-| Communication | Service | <https://communication.pangea.web4.world> | <https://communication.testnet.pangea.web4.world> | <https://communication.staging.tonomy.foundation> |
-| Docs | Gitbook | <https://docs.pangea.web4.world> | - | <https://docs.staging.tonomy.foundation> |
+| Communication | Service | <https://communication.tonomy.io> | <https://communication.testnet.tonomy.io> | <https://communication.staging.tonomy.foundation> |
+| Docs | Gitbook | <https://docs.tonomy.io> | - | <https://docs.staging.tonomy.foundation> |
 | Wallet | Play store | <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.unitedwallet> | <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.pangeatestnet> | <https://play.google.com/store/apps/details?id=foundation.tonomy.projects.tonomyidstaging> |
 |  | iTunes store | <https://apps.apple.com/us/app/united-citizens-wallet/id6482296993> | - | - |
 |  | TestFlight | - | <https://testflight.apple.com/join/ou7KmYiE> | <https://testflight.apple.com/join/7Bdd9jdB> |
