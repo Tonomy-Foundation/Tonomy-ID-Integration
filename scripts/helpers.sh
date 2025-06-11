@@ -232,6 +232,7 @@ function test {
     cd "$SDK_PATH"
     yarn run build
     yarn run lint
+    yarn run typeCheck
     yarn run test:unit
     source ./test/export_test_keys.sh
     yarn run test:setup
