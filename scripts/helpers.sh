@@ -45,6 +45,11 @@ function install {
     ./blockchain/build-docker.sh > /dev/null 2>&1 &
     contracts_pid=$!
 
+    echo "Installing Ethereum Token"
+    cd "$SDK_PATH/Ethereum-token"
+    yarn install && yarn compile > /dev/null 2>&1 &
+    token_pid=$!
+
     echo "Installing Tonomy SDK"
     cd "$SDK_PATH"
     yarn install > /dev/null 2>&1 && yarn run build > /dev/null 2>&1 &
@@ -79,6 +84,7 @@ function install {
     check_status $docker_pid "Docker containers"
     check_status $pm2_pid "pm2 installation"
     check_status $contracts_pid "Tonomy Contracts"
+    check_status $token_pid "Ethereum Token"
     check_status $comm_pid "Tonomy Communication"
     check_status $id_pid "Tonomy ID"
     check_status $app_pid "Tonomy App Websites"
@@ -98,7 +104,7 @@ function update {
         BRANCH="development"
     fi
 
-    echo "Updating Tonomoy Communication with @tonomy/tonomy-id-sdk"
+    echo "Updating Tonomy Communication with @tonomy/tonomy-id-sdk"
     cd "${SDK_PATH}/Tonomy-Communication"
     yarn run updateSdkVersion "${BRANCH}"
 
@@ -144,6 +150,9 @@ function link {
 function deletecontracts {
     cd "$PARENT_PATH/Tonomy-ID-SDK/Tonomy-Contracts"
     ./delete-built-contracts.sh
+
+    cd "$SDK_PATH/Ethereum-token"
+    rm -rf artifacts
 }
 
 function init {
@@ -256,6 +265,9 @@ function test {
     cd "$SDK_PATH/Tonomy-Contracts"
     ./build-contracts.sh
 
+    cd "$SDK_PATH/Ethereum-token"
+    yarn run test
+
     echo "All tests passed"
 }
 
@@ -288,6 +300,7 @@ function reset {
             "${SDK_PATH}/Tonomy-Communication"
             "${PARENT_PATH}/Tonomy-ID"
             "${PARENT_PATH}/Tonomy-App-Websites"
+            "${SDK_PATH}/Ethereum-token"
         )
 
         to_delete=(
@@ -299,6 +312,7 @@ function reset {
             "yarn-error.log"
             "dist"
             "build"
+            "artifacts"
         )
 
         # Iterate through each directory
