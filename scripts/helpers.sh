@@ -47,7 +47,7 @@ function install {
 
     echo "Installing Ethereum Token"
     cd "$SDK_PATH/Ethereum-token"
-    yarn install && yarn compile > /dev/null 2>&1 &
+    yarn install > /dev/null 2>&1 && yarn compile > /dev/null 2>&1 &
     token_pid=$!
 
     echo "Installing Tonomy SDK"
