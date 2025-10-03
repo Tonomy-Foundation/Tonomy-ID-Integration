@@ -156,21 +156,21 @@ function init {
     then
         echo "Using development environment: setting keys"
         source ./test/export_test_keys.sh
+         # Run Ethereum node and deploy contract
+        cd  "$SDK_PATH/Ethereum-token"
+        npx pm2 stop hardhat || true
+        npx pm2 delete hardhat || true
+        npx pm2 start --interpreter /bin/bash yarn --name "hardhat" -- run node
+        DEPLOY_OUTPUT=$(yarn run deploy --network localhost)
+        echo "$DEPLOY_OUTPUT"
+        BASE_TOKEN_ADDRESS=$(echo "$DEPLOY_OUTPUT" | grep "Proxy contract:" | awk '{print $3}')
+        export BASE_TOKEN_ADDRESS
+        cd "$SDK_PATH"
+        echo "BASE_TOKEN_ADDRESS=$BASE_TOKEN_ADDRESS" > .env
+        echo "Token proxy contract address: $BASE_TOKEN_ADDRESS"
     fi
-    # Run Ethereum node and deploy contract
-    cd  "$SDK_PATH/Ethereum-token"
-    npx pm2 stop hardhat || true
-    npx pm2 delete hardhat || true
-    npx pm2 start --interpreter /bin/bash yarn --name "hardhat" -- run node
-    DEPLOY_OUTPUT=$(yarn run deploy --network localhost)
-    echo "$DEPLOY_OUTPUT"
-    BASE_TOKEN_ADDRESS=$(echo "$DEPLOY_OUTPUT" | grep "Proxy contract:" | awk '{print $3}')
-    export BASE_TOKEN_ADDRESS
-    cd "$SDK_PATH"
-    echo "BASE_TOKEN_ADDRESS=$BASE_TOKEN_ADDRESS" > .env
-    echo "Token proxy contract address: $BASE_TOKEN_ADDRESS"
+   
     yarn run cli bootstrap
-
     echo ""
     echo ""
     echo "Blockchain running and initialized"
@@ -244,6 +244,7 @@ function test {
     cd "$SDK_PATH"
     yarn run build
     yarn run lint
+    yarn run typeCheck
     yarn run test:unit
     source ./test/export_test_keys.sh
     yarn run test:setup
