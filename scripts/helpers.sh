@@ -55,6 +55,11 @@ function install {
     yarn > /dev/null 2>&1 &
     comm_pid=$!
 
+    echo "Installing Ethereum-token"
+    cd "$SDK_PATH/Ethereum-token"
+    yarn > /dev/null 2>&1 &
+    token_pid=$!
+
     echo "Installing Tonomy ID"
     cd "$PARENT_PATH/Tonomy-ID"
     yarn > /dev/null 2>&1 &
@@ -83,6 +88,7 @@ function install {
     check_status $id_pid "Tonomy ID"
     check_status $app_pid "Tonomy App Websites"
     check_status $sdk_pid "Tonomy SDK"
+    check_status $token_pid "Ethereum-token"
 
     echo "Installations complete"
 }
@@ -298,6 +304,7 @@ function reset {
         directories=(
             "${SDK_PATH}"
             "${SDK_PATH}/Tonomy-Communication"
+            "${SDK_PATH}/Ethereum-token"
             "${PARENT_PATH}/Tonomy-ID"
             "${PARENT_PATH}/Tonomy-App-Websites"
         )
@@ -311,6 +318,10 @@ function reset {
             "yarn-error.log"
             "dist"
             "build"
+            "artifacts"
+            "cache"
+            ".openzeppelin"
+            "typechain-types"
         )
 
         # Iterate through each directory
