@@ -160,7 +160,7 @@ function init {
         cd  "$SDK_PATH/Ethereum-token"
         npx pm2 stop hardhat || true
         npx pm2 delete hardhat || true
-        npx pm2 start --interpreter /bin/bash yarn --name "hardhat" -- run node
+        npx pm2 start yarn --name "hardhat" -- run node
         DEPLOY_OUTPUT=$(yarn run deploy --network localhost)
         echo "$DEPLOY_OUTPUT"
         BASE_TOKEN_ADDRESS=$(echo "$DEPLOY_OUTPUT" | grep "Proxy contract:" | awk '{print $3}')
