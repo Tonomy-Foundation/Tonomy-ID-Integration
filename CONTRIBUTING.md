@@ -63,7 +63,7 @@ This policy defines when all developer tasks are finished and can be closed. Thi
   * [ ] (**mkdocs**) documentation is updated if needed for external interface or behavioral changes. Or create a task to do this and tell the Product Owner.
   * [ ] Any other documentation that are relevant
 * [ ] 🔗 **Dependant software or repositories** are updated if needed. Or create a task to do this and tell the Product Owner.
-  * [ ] Check all repos in our multi-repo software: Tonomy ID, SDK, Integration, Demo website, Login website, Contracts and Communication
+  * [ ] Check all repos in our multi-repo software: Tonomy ID, SDK, Integration, Demo website, Login website, Contracts, Ethereum-token and Communication
   * [ ] Think if there is other dependant software: errors, logging, services, UI components, package.json, navigation, storage, settings, cryptography, networking, initialization etc...
 * [ ] ⏭️ Before the merge
   * [ ] **PR review** from a developer that did not do the work and approves it (or gives feedback which needs to be addressed).
