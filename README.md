@@ -28,6 +28,7 @@ All developers contributing to the project should check [Contributors Guide](./C
   - [Directory Structure](https://learn.habilelabs.io/best-folder-structure-for-react-native-project-a46405bdba7)
 - [SDK](https://github.com/Tonomy-Foundation/Tonomy-ID-SDK) - typescript library used in Tonomy ID to interact and call with the Antelope blockchain and services.
   - [Contracts](https://github.com/Tonomy-Foundation/Tonomy-Contracts) (inside SDK repo) - Antelope smart contracts to run the governance, identity, DAO, token and other ecosystem tools.
+  - [Ethereum-token](https://github.com/Tonomy-Foundation/Ethereum-token) (inside SDK repo) - ERC20 token running on Base chain with bridge to Tonomy Blockchain token.
   - [Microservice](https://github.com/Tonomy-Foundation/Tonomy-Communication) (inside SDK repo) - nextjs peer to peer message broker for communication between different identities.
 - Apps Websites
   - [Accounts](https://github.com/Tonomy-Foundation/Tonomy-App-Websites/tree/master/src/accounts) - A reactjs application to facilitate the SSO login with Tonomy ID to web apps
