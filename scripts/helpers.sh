@@ -60,6 +60,11 @@ function install {
     yarn > /dev/null 2>&1 &
     comm_pid=$!
 
+    echo "Installing Ethereum-token"
+    cd "$SDK_PATH/Ethereum-token"
+    yarn > /dev/null 2>&1 &
+    token_pid=$!
+
     echo "Installing Tonomy ID"
     cd "$PARENT_PATH/Tonomy-ID"
     yarn > /dev/null 2>&1 &
@@ -89,6 +94,7 @@ function install {
     check_status $id_pid "Tonomy ID"
     check_status $app_pid "Tonomy App Websites"
     check_status $sdk_pid "Tonomy SDK"
+    check_status $token_pid "Ethereum-token"
 
     echo "Installations complete"
 }
@@ -169,7 +175,7 @@ function init {
         cd  "$SDK_PATH/Ethereum-token"
         npx pm2 stop hardhat || true
         npx pm2 delete hardhat || true
-        npx pm2 start --interpreter /bin/bash yarn --name "hardhat" -- run node
+        npx pm2 start yarn --name "hardhat" -- run node
         DEPLOY_OUTPUT=$(yarn run deploy --network localhost)
         echo "$DEPLOY_OUTPUT"
         BASE_TOKEN_ADDRESS=$(echo "$DEPLOY_OUTPUT" | grep "Proxy contract:" | awk '{print $3}')
@@ -310,6 +316,7 @@ function reset {
         directories=(
             "${SDK_PATH}"
             "${SDK_PATH}/Tonomy-Communication"
+            "${SDK_PATH}/Ethereum-token"
             "${PARENT_PATH}/Tonomy-ID"
             "${PARENT_PATH}/Tonomy-App-Websites"
             "${SDK_PATH}/Ethereum-token"
@@ -325,6 +332,9 @@ function reset {
             "dist"
             "build"
             "artifacts"
+            "cache"
+            ".openzeppelin"
+            "typechain-types"
         )
 
         # Iterate through each directory
