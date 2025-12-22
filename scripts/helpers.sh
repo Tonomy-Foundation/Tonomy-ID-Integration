@@ -60,6 +60,11 @@ function install {
     yarn > /dev/null 2>&1 &
     comm_pid=$!
 
+    echo "Installing Ethereum-token"
+    cd "$SDK_PATH/Ethereum-token"
+    yarn > /dev/null 2>&1 &
+    token_pid=$!
+
     echo "Installing Tonomy ID"
     cd "$PARENT_PATH/Tonomy-ID"
     yarn > /dev/null 2>&1 &
@@ -89,6 +94,7 @@ function install {
     check_status $id_pid "Tonomy ID"
     check_status $app_pid "Tonomy App Websites"
     check_status $sdk_pid "Tonomy SDK"
+    check_status $token_pid "Ethereum-token"
 
     echo "Installations complete"
 }
@@ -169,7 +175,7 @@ function init {
         cd  "$SDK_PATH/Ethereum-token"
         npx pm2 stop hardhat || true
         npx pm2 delete hardhat || true
-        npx pm2 start --interpreter /bin/bash yarn --name "hardhat" -- run node
+        npx pm2 start --name "hardhat" --interpreter none yarn -- run node
         DEPLOY_OUTPUT=$(yarn run deploy --network localhost)
         echo "$DEPLOY_OUTPUT"
         BASE_TOKEN_ADDRESS=$(echo "$DEPLOY_OUTPUT" | grep "Proxy contract:" | awk '{print $3}')
@@ -228,20 +234,19 @@ function start {
 
     echo "Starting Tonomy-ID-SDK"
     cd "$SDK_PATH"
-    npx pm2 start yarn --name "sdk" -- run start
+    npx pm2 start --name "sdk" --interpreter none yarn -- run start
 
    
     echo "Starting Tonomy-ID"
     cd "${PARENT_PATH}/Tonomy-ID"
-    npx pm2 start yarn --name "id" -- run start
+    npx pm2 start --name "id" --interpreter none yarn -- run start
 
     echo "Starting Tonomy-App-Websites"
     cd "${PARENT_PATH}/Tonomy-App-Websites"
-    BROWSER=none npx pm2 start yarn --name "apps" -- run dev --host
-
+    BROWSER=none npx pm2 start --name "apps" --interpreter none yarn -- run dev --host
     echo "Starting communication microservice"
     cd  "$SDK_PATH/Tonomy-Communication"
-    npx pm2 start yarn --name "micro" -- run start
+    npx pm2 start --name "micro" --interpreter none yarn -- run start
 
     printservices
 }
@@ -310,6 +315,7 @@ function reset {
         directories=(
             "${SDK_PATH}"
             "${SDK_PATH}/Tonomy-Communication"
+            "${SDK_PATH}/Ethereum-token"
             "${PARENT_PATH}/Tonomy-ID"
             "${PARENT_PATH}/Tonomy-App-Websites"
             "${SDK_PATH}/Ethereum-token"
@@ -325,6 +331,9 @@ function reset {
             "dist"
             "build"
             "artifacts"
+            "cache"
+            ".openzeppelin"
+            "typechain-types"
         )
 
         # Iterate through each directory
